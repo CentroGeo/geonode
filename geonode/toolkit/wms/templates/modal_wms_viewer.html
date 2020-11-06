@@ -1,0 +1,61 @@
+<!-- Modal para la intersección de elementos de un mapa -->
+<div id="tools_wms" class="modal modal-hide">
+    <div class="modal-backdrop"></div>
+        <div class="modal-window" style="padding-left: 20px;">
+        <a href="#" class="modal-close"><i class="fa fa-times fa-lg"></i></a>
+        <div class="modal-wrapper ">
+            <h4 class="modal-title" id="myModalLabel">WMS Externo</h4>
+            <div class="modalwms-content">
+                <div class="modal-source">
+                    <div class="row edit-modal">
+                        <div class="text-body-mod">
+                            <div class="radio-count-data" >
+                                <hr></hr>
+                            </div>
+
+                            <table>
+                                <tr>
+                                    <td style="vertical-align: top; text-align:left; width: 380px;">
+                                        <div id="WMSfinal" class="wmsselect" style="padding: 25px;">
+                                            <select class="select-style" id="wmsSelect" style="width:265px; height:23px;">
+                                                <option value="null">Seleccione WMS</option>
+                                                {% for wms in wms_services %}
+                                                    <option value="{{wms.base_url}}">{{wms.name}}</option>
+                                                {% endfor %}
+                                            </select>
+                                        </div>
+                                    </td>
+                                    <td align="center">Capas del WMS</td>
+                                    <!--<td id="emptyWms" style="text-align:right; padding-right:10px;"><button id="emptyWms2" style="padding: 0px 9px; border-radius:5px; font-size:9px; height:20px; line-height:20px;" type="button" class="btn btn-default" disabled="disabled">Limpiar selección</button>-->
+                                    <td style="text-align:right; padding-right:10px;"><button id="emptyWms" style="padding: 0px 9px; border-radius:5px; font-size:9px; height:20px; line-height:20px;" type="button" class="btn btn-default">Limpiar selección</button>
+</td>
+                                </tr>
+
+                                <tr>
+                                    <td style="vertical-align: top; padding: 25px; padding-bottom:5px;" height="30px">
+                                        <label style="font-size:15px;">WMS Adicional :</label>
+                                        <div style="font-size:5px;">&nbsp</div>
+                                        <input id="nameSearch" style="width: 265px; height:23px; font-size:12px;" type="text" placeholder="NOMBRE DEL SERVICIO" class="ng-pristine ng-valid ng-touched">
+                                        <div style="font-size:5px;">&nbsp</div>
+                                        <input id="wmsUrl" style="width: 265px; height:23px; font-size:12px;" type="text" placeholder="URL" class="ng-pristine ng-valid ng-touched">
+                                        <p id="invalidUrlMsg" style="display:none; color:red; font-size:11px; margin:0; padding:0;">La URL no es valida</p>
+                                    </td>
+                                    <td colspan="2" rowspan="2" id="layers_wms" align="center">
+                                        <div id="wmsLayers" style="height: 250px; width: 380px; overflow-y: scroll; font-size:13px;"></div>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td style="vertical-align: top; text-align:right; padding-right:25px;"><button id="addWmsBtn" style="padding: 0px 9px; border-radius:5px; font-size:9px; height:20px; line-height:20px;" type="button" class="btn btn-default">Buscar</button></td>
+                                    <!--<td style="vertical-align: top; text-align:right; padding-right:25px;"><button style="padding: 0px 9px; border-radius:5px; font-size:9px; height:20px; line-height:20px;" type="button" class="btn btn-default" disabled="disabled">Buscar</button></td>-->
+                                </tr>
+                            </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+</div>
+ <!--End Modal-->
+{% include "modal_wms_viewer.js" %}

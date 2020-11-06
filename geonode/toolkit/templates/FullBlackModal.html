@@ -1,0 +1,29 @@
+<!--FullBlackMOdal Modal generico. -->
+<!--Query modal-body ac-->
+    <div id="collapse-icon-container-down" style="display: none; bottom: 0px;"><i class="fa fa-arrow-down fa-1x" aria-hidden="true"></i>
+    </div>
+    <div id="collapse-icon-container" style="display: none; bottom: 0px;">
+    </div>
+    <!--FullBlackMOdal-->
+    <div id="query-result2" style="display: none;">
+
+        <div id="query-result-content2" class="container-crops">
+              <div class="row">
+                  <div id="query-result-title2" class="col-md-12">
+                      <div class="header-request-fbm">
+                        <span class="header-info-title"></span><!--Mandar a llmar para insertar un html para el titulo
+                        ej: $('.header-info-title').html("mi titulo");-->
+                          <span class="close_AC modal-close" id="close_ac_info"><i class="fa fa-times" title="Cerrar analisis" aria-hidden="true"></i></span>
+                      </div>
+                      <div class="query-result-section-content">
+                          
+                          <div id="stats-content-modal" style="display:none;">
+                              {% include "stats_full_modal.html" %}
+                          </div>
+                     </div>
+              </div>
+          </div>
+      </div>
+<!-- FullBlackMOdal -->
+    </div>
+{% include "FullBlackModal.js" %}

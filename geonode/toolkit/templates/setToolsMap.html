@@ -1,0 +1,20 @@
+<div class="container_tool" id="tool-container"><!--Container Dragable div of Chart-->
+  <span class="body-tool">
+    {% if charting_tool %}
+        <div class="col-sm-6">
+          <i class="fa fa-pie-chart fa-3x"></i>
+          <h4>Herramientas de Analisis</h4>
+          <div class="set-tool-check">
+            {% for tool in charting_tool %}
+                {% if tool.tittle|safe in string_tools|safe %}
+                    <input type="checkbox" name="charting_tool_selected" title="{{tool.tittle}}, {{tool.description}}" id="ch{{tool.id}}" value="{{tool.id}}" checked>{{tool.tittle|truncatechars:26}}<br>
+                {% else %}
+                    <input type="checkbox" name="charting_tool_selected" title="{{tool.tittle}}, {{tool.description}}" id="ch{{tool.id}}" value="{{tool.id}}">{{tool.tittle|truncatechars:26}}<br>
+                {% endif %}
+            {% endfor %}
+          </div>
+          <a class="btn btn-default btn-block btn-xs" href="#" id="set_charting_tool_select">Asignar</a>
+        </div>
+      {% endif %}
+  </span>
+</div>

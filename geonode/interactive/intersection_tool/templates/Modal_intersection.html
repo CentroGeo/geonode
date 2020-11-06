@@ -1,0 +1,66 @@
+{% load bootstrap_tags %}
+<!-- Modal para la intersección de elementos de un mapa -->
+<div class="modal fade" id="tools_analisys" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal-dialog">
+  <div class="modal-content">
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+      <h4 class="modal-title" id="myModalLabel">Gráficar</h4>
+    </div>
+    <div class="modal-body">
+      <div class="row edit-modal">
+        <div class="text-body-mod">
+          <div class="radio-count-data" style="padding-left: 20px;">
+            <form>
+
+              <table>
+                <th>
+                  <td colspan="2">
+                    <h5>Gráficar por:</h5>
+                  </td>
+                  <td>
+                  </td>
+                </th>
+                <tr>
+                  <td>
+                    <input type="radio" name="element" value="count" checked> Total de elementos a esta escala &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  </td>
+                  <td>
+                    <input type="radio" name="element" value="analysis"> intersección de elementos
+                  </td>
+                </tr>
+              </table>
+            </form>
+            <hr></hr>
+          </div>
+          <div class="right-pie" style="padding-left: 20px;">
+            <div class="question-pie-data">
+              <!--Input div question -->
+            </div>
+            <div class="pie-data-base">
+              <!--Input div grafic -->
+            </div>
+            <div class="pie-data-general-grafic">
+              <!--Input div base layers -->
+            </div>
+            <div class="check-data-general-grafic-pie">
+              <!--Input div base layers -->
+            </div>
+            <div class="check-analisys-data-general-grafic-pie">
+              <!--Input div base layers -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <div class="less-selected">
+        <!--Input less selected -->
+      </div>
+      <button type="button" class="btn btn-default" id="general-pie">Gráficar</button><!--data-dismiss="modal" -->
+      <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+    </div>
+  </div>
+</div>
+</div>
+<!--End Modal-->

@@ -1,0 +1,18 @@
+  <!-- Intersections -->
+ <link rel="stylesheet" href="{{ STATIC_URL }}soa_toolkit/css/Intersections_tool.css" />
+  <!-- Intersections -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="http://d3js.org/d3.v3.min.js"></script>
+<script src="http://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"></script>
+
+
+<div class="div_RootBody" id="pie_chart_mw">
+  <div class="right-icons">
+    <i id="close-general-grafic-soa" class="fa fa-times" title="Cerrar Gráfica" aria-hidden="true"></i>
+    <i id="update-general-grafic-soa" class="fa fa-refresh" title="Actualizar Datos" aria-hidden="true"></i>
+  </div>
+  <h4 class="h4_Body" id="count-data"><!--Conteo de Datos-->
+  </h4>
+  <div class="chart"></div>
+</div>
+{% include "intersection_tool_mw.js" %}

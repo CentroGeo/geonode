@@ -1,0 +1,24 @@
+<div id="modal-result" class="scrollbar-fbm">
+    <div class="overflow-fbm">
+       <div id="stats-modal-table"></div>
+       <div>
+           <div id="stats-modal-radio">
+               <input type="radio" name="stats-bar-radio" value="value"> Cantidad
+               <input type="radio" name="stats-bar-radio" value="area"> Área
+           </div>
+           <div id="stats-modal-graph"></div>
+       </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$('input[name=stats-bar-radio]').on('change', function() {
+    $("#stats-modal-graph").empty();
+    if (this.value == 'area') {
+        drawBarGraph(stats_pie_data, 'area')
+    }
+    else {
+        drawBarGraph(stats_pie_data, 'value')
+    }
+});
+</script>

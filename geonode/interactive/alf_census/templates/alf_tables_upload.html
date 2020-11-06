@@ -1,0 +1,50 @@
+{% extends "site_base.html" %}
+{% load bootstrap_tags %}
+{% load i18n %}
+
+{% block title %} Cargar Tabla {% endblock %}
+
+{% block head %}{{ block.super }}{% endblock %}
+
+{% block body_outer %}
+<!--HEADER-TITULO-->
+<div id="page-header" class="content">
+  <div class="container">
+    <div class="titulo-blk-row">
+      <div class="titulo-img blk-cell"><img src="{{STATIC_URL}}carousel/images/ico11_capas.png" alt=""></div>
+        <div class="titulo-txt blk-cell">
+          <h2>Cargar Tabla del Censo AGF 2007</h2>
+        </div>
+    </div>
+  </div>
+</div>
+<div class="container">
+<a href="{% url 'alf_tables_list' %}" class="btn btn-primary pull-right">Explorar Tablas</a>
+<div class="row">
+{% block body %}
+<div class="col-md-8">
+  <form id="upload_form"  method="post" enctype="multipart/form-data" action="{% url "alf_tables_upload" %}">
+    <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}" />
+    <p>Tipos de archivo permitidos: .csv .xls .xlsx</p>
+    {{ form|as_bootstrap }}
+    <p>Nota: Este proceso puede tomar unos minutos, de acuerdo
+        al tamaño del archivo.</p>
+    <button type="submit" id="upload-button" class="btn btn-primary">Cargar</button>
+  </form>
+</div>
+{% endblock %}
+</div>
+</div>
+{% endblock body_outer %}
+
+
+{% block extra_script %}
+{% include "_permissions_form_js.html" %}
+<script type="text/javascript">
+    $('#id_uploaded_file').on('change', function(){
+        if($('#id_title').val() == ''){
+            $('#id_title').val($('#id_uploaded_file').val().replace("C:\\fakepath\\", ""));
+        }
+    });
+</script>
+{% endblock extra_script %}

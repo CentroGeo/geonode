@@ -1,0 +1,9 @@
+<div class="panel panel-default" id="composerCart">
+    <div class="panel-heading">Mi Selección</div>
+    <div class="panel-body">
+      <p ng-show="!cart.getCart().items.length">Agregue recursos haciendo clic en:  <i class="fa fa-plus-circle"></i></p>
+    </div>
+    <ul class="list-group">
+      <li class="list-group-item" ng-repeat="resource in cart.getCart().items">{{ resource.title | limitTo: 30}}{{ resource.title.length > 30 ? '...' : '' }}<button class="btn btn-default btn-xs pull-right togg" ng-click="cart.removeItem(resource)"><i class="fa fa-remove fa-lg"></i></button></li>
+    </ul>
+  </div>

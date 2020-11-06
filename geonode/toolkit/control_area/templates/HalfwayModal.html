@@ -1,0 +1,22 @@
+<div id="halfway-modal" class="scroll-thin-dark">
+  <span class="close-halfways" id="hide-halfway" style="cursor:pointer;" title="Ocultar"><i class="fa fa-chevron-right" aria-hidden="true"></i></span>
+    <div class="text-container">
+          <div class="header-request-fbm" style="background:#565656; color:white; height:35px;">
+            <div style="float:left;">
+                <span class="draw-square" style="cursor: pointer;"><i class="fa fa-pencil-square-o" title="Dibuja un área para hacer la consulta" aria-hidden="true"></i></span>
+                <span class="back-menu" style="cursor: pointer;"><i class="fa fa-backward" title="Cambio de categoria" aria-hidden="true"></i></span>
+            </div>
+            <span class="header-info-title"> Selecciona tema de análisis</span>
+            <div style="float:right;">
+                <span class="close-halfways" id="close-halfway" style="display:block; cursor:pointer;"><i class="fa fa-times" title="Cerrar" aria-hidden="true"></i></span>
+            </div>
+          </div>
+          <div id="halfway-content">
+              {% include "main_fields.html" %}
+          </div>
+          <div>
+            {% include "BasicElements.html" %}
+          </div>
+    </div>
+</div>
+{% include "HalfwayModal.js" %}

@@ -1,0 +1,97 @@
+﻿/* Accordion Menu by www.menucool.com/vertical/accordion-menu*/
+
+#accordion {
+    visibility:hidden;
+}
+
+/* root UL */
+#accordion ul {
+    padding:0;
+    margin:0;
+    list-style:none;
+    /*background:linear-gradient(to right,#28231f,#483f36,#312c26,#28231f);*/
+    background-color: white;
+}
+
+/* sub UL */
+#accordion ul ul {
+    background:#fff;
+    padding:0px 0;
+}
+
+/*---------- Indents ------*/
+
+/*top-level*/
+#accordion .top > a, #accordion .top > div { 
+    padding-left:16px;
+    padding-top:12px;padding-bottom:12px;
+    font-size:1em;
+}
+
+/*2nd-level*/
+#accordion li li > a, #accordion li li > div {
+    padding-left:30px;
+    padding-top:8px;padding-bottom:8px;
+}
+
+/*3rd-level*/
+#accordion li li li > a, #accordion li li li > div { padding-left:50px; }
+
+
+/*---------- Other styles ------*/
+
+/* headings */
+#accordion li > div{
+    font-family: 'Lucida Grande', Geneva, Candara, sans-serif;
+    text-transform:uppercase;
+    letter-spacing:3px;
+    font-weight:bold;
+    color:#707d92;
+}
+#accordion .active > div{
+    color:#707d92;
+}
+
+#accordion li {
+    font-family: 'Lucida Grande', Geneva, Candara, sans-serif;
+    font-size:13px;
+	padding: 0;
+    margin:0;
+    overflow:hidden;
+	cursor: pointer;
+}
+
+/* Add borders to the top LIs */
+#accordion .top {
+	/*border-top: 1px solid #707d92;*/
+    border-bottom: 1px solid #707d92;
+}
+
+/* links */
+#accordion a {
+    color:#999;
+    font-weight:normal;
+    font-size:13px;
+    text-decoration:none;
+    display:block;
+    line-height:1;
+    transition:all 0.3s;
+}
+#accordion a:hover {
+    color:white;
+}
+/*
+#accordion a.active {
+    color:white;
+    background-color:#666;
+}
+*/
+
+
+#accordion li {
+    -ms-user-select:none;
+    -mos-user-select:none;
+    -webkit-user-select:none;
+    -o-user-select:none;
+    user-select:none;
+}

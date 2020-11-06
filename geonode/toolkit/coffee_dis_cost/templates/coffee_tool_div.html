@@ -1,0 +1,70 @@
+{% if user.is_authenticated %}
+<div class="container">
+    <div id="addnode">
+        <h2>Agregar un nodo</h2>
+        <p>Agrege un punto con la herramienta Draw a marker</p>
+        <form class="form-horizontal" onsubmit="event.preventDefault(); addnodes();">
+            <div class="form-group">
+                <label class="control-label col-sm-2" for="tiponode">Tipo:</label>
+                <div class="col-sm-10">
+                    <select class="form-control" id="tiponode">
+                        <!--<option value="cultivo">Cultivo</option>-->
+                        <option value="acopios">Acopio</option>
+                        <option value="beneficio">Beneficio</option>
+                        <option value="tostadora">Tostadora</option>
+                        <option value="exportadora">Exportadora</option>
+                    </select>
+                </div>
+            </div>
+            <br>
+            <br>
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <button class="btn btn-default">Guardar puntos</button>
+                </div>
+            </div>
+        </form>
+        <br>
+    </div>
+    <div id="rallnodes">
+        <h2>Eliminar todos mis puntos guardados</h2>
+        <form class="form-horizontal" onsubmit="event.preventDefault(); rallnodes();">
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <button class="btn btn-default">Eliminal</button>
+                </div>
+            </div>
+        </form>
+        <br>
+    </div>
+    <div id="recalcular" style="display:none;">
+        <h2>Recalcular costo de cultivos</h2>
+        <form class="form-horizontal" onsubmit="event.preventDefault(); calcular_cafe_dif();">
+
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <button class="btn btn-default">Recalcular</button>
+                </div>
+            </div>
+        </form>
+        <br>
+    </div>
+    <div id="difres" style="display:none;">
+        <h2>Calcular cambio de costos de los cultivos</h2>
+        <form class="form-horizontal" onsubmit="event.preventDefault(); calcular_cafe_difres();">
+
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <button class="btn btn-default">Calcular diferencia</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <br>
+    <br>
+</div>
+{% endif %}
+<script src="{{ STATIC_URL }}leaflet-geotiff/js/geotiff.js"></script>
+<script src="{{ STATIC_URL }}leaflet-geotiff/js/plotty.js"></script>
+<script src="{{ STATIC_URL }}leaflet-geotiff/js/leaflet-geotiff.js"></script>
+{% include "coffee_tool.js" %}

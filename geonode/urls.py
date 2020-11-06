@@ -252,3 +252,30 @@ if settings.MONITORING_ENABLED:
     urlpatterns += [url(r'^monitoring/',
                         include(('geonode.monitoring.urls', 'geonode.monitoring'),
                                 namespace='monitoring'))]
+
+# IDEGEO urls
+urlpatterns += [
+
+    #path('interfaz/$', views.config_interface, name='config_interface'),
+    #path('interfaz/<id>', views.config_interface, name='config_interface'),
+    #path('project/', include('project.urls')),
+    #path('datatables/', include('geonode.contrib.datatables.urls')),
+    #blog
+    #path('blog/', include('geonode.blog.urls')),
+    # meta
+    #path('lang\.js/', TemplateView.as_view(template_name='lang.js', content_type='text/javascript'),
+    #                       name='lang'),
+    #path('ide/', TemplateView.as_view(template_name='indexIdegeo.html'), name='indexIdegeo'),
+                       
+    url(r'^interactive/', include('geonode.interactive.urls')),
+    #url('references/', include('geonode.references.urls')),
+
+    # Micro Site
+    #url('ms/', include('geonode.ms.urls')),
+    # Micro Viewer
+    url(r'^mviewer/', include('geonode.mviewer.urls')),
+    # Toolkit spatial object analysis
+    url(r'^toolkit/', include('geonode.toolkit.urls')),
+    # Content Handler
+    #url('cms/', include('geonode.content_handler.urls')),
+]

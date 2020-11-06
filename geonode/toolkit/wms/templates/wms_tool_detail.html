@@ -1,0 +1,50 @@
+<!--HTML QUE CONTIENE LAS OPCIONES DE LA HERRAMIENTA DENTRO DE LA PÁGINA DE GESTIÓN [detail]-->
+
+    <tr id="tool-{{tool.tool.id}}" class="toolkit">
+        <td>
+            <span>{{tool.tool}}{% if tool.tool.help %}({{tool.tool.help}}){% endif %}</span>
+        </td>
+        <td>
+            <span>
+                <a href="{% url 'delete_configure_mviewer' mviewer.id tool.id %}">
+                    <i class="fa fa-trash" title="Eliminar Herramienta" aria-hidden="true"></i>
+                </a>
+            </span>
+        </td>
+        <td>
+            <span class="minimize-menu-wms" style="float:right;" tool-id="{{tool.tool.id}}">
+                <i class="fa fa-expand fa-.1x"  title="Expandir toolbox"></i>
+            </span>
+        </td>
+    </tr>
+    <tr id="tool-{{tool.tool.id}}-head" style="display:none" class="top-exp">
+        <td></td>
+        <th>Servicio</th>
+        <th scope="col">
+            <span style="float:right;">
+                <a href=""><i class="fa fa-cog" title="Configurar Servicios WMS" data-toggle="modal" data-target="#editWmsModal"></i></a>
+                <a href=""><i class="fa fa-plus" title="Agregar nuevo WMS" aria-hidden="true" data-toggle="modal" data-target="#addWMS"></i></a>
+                <a href=""><i class="fa fa-exchange add-layers-btn" title="Seleccionar WMS" data-toggle="modal" data-target="#miModal" data-id="{{top.id}}" aria-hidden="true"></i></a>
+            </span>
+        </th>
+    </tr>
+    <tr id="tool-{{tool.tool.id}}-lays" style="display:none" class="wms-lays">
+        <td></td>
+        <td id="wms-layers">
+            {% for wms in mviewer_wms %}
+            <div id="wms{{wms.id}}" wms-regid="{{wms.id}}">
+                <span><i class="fa fa-trash" title="Eliminar Servicio" aria-hidden="true"></i></span>
+                <label>{{wms.name}}</label>
+            </div>
+            {% endfor %}
+        </td>
+        <td></td>
+    </tr>
+
+<script type="text/javascript" src="{{ STATIC_URL }}carousel/js/jquery.min.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}soa_toolkit/js/jquery.multi-select.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}soa_toolkit/css/multi-select.css"></script>
+{% include "modal_wms_tool_detail.html" %}
+{% include "modal_add_wms.html" %}
+{% include "modal_edit_wms.html" %}
+{% include "modal_wms_tool_detail.js" %}

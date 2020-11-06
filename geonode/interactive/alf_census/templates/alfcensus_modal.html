@@ -1,0 +1,63 @@
+{% load i18n %}
+<!-- Contenido oculto para realizar consulta intercensal -->
+<div id="alf-census" class="modal fade" role="dialog" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Realiza una consulta</h4>
+            </div>
+            <div class="modal-body">
+              <form id="alf_form" action="#">
+                  <p>Tema</p>
+                  <select name="DdlTema" id="alf-theme" class="form-control">
+                        <option selected="selected" value="null">------</option>
+                        <option value="conf_unidad_prod">Conformación de la Unidad de Producción</option>
+                        <option value="agricultura">Agricultura</option>
+                        <option value="vivero_invernadero">Vivero e Invernadero</option>
+                        <option value="ganaderia">Ganadería</option>
+                        <option value="forestal">Aprovechamiento Forestal</option>href
+                        <option value="vehiculos">Tractores, Vehículos y maquinaria</option>
+                        <option value="creditos">Obtención de créditos, seguros, apoyos y ahorro</option>
+                        <option value="organizacion">Organización para la producción y mano de obra</option>
+                        <option value="capacitacion">Capacitación</option>
+                        <option value="terrenos">Actividad económica en los terrenos</option>
+                        <option value="caract_sociodemo">Características sociodemográficas del productor</option>
+                        <option value="caract_vivienda">Características de la vivienda del productor</option>
+                  </select>
+                  <br><br>
+                  <p id="alf-noDataMsg" style="display:none; color:red;">No hay datos catalogados para este tema</p>
+                  <div id="alf_list" style="display:none;">
+                  <p>Subtema</p>
+                  <select id="alf_table" class="form-control">
+                    <option value=''>------</option>
+                  </select>
+                  </div>
+                  <br>
+                  <div id="alf-filter-value" style="display:none;">
+                    <p>Valor</p>
+                    <select id="alf_attr_value" class="form-control">
+                      <option value=''>------</option>
+                    </select>
+                    <br><br>
+                  </div>
+                  <div id="alf-theme-field" style="display:none;">
+                    <p>Campo de Tematización</p>
+                    <select id="alf-attributes" class="form-control">
+                        <option value=''>------</option>
+                    </select>
+                    <br><br>
+                  </div>
+
+                  <input type="submit" class="btn btn-success btn-xs" id="btnQueryAlf" value="Generar Mapa" style="display:none;">
+                  <br><br>
+                  <p id="alf-proccessMsg" style="display:none; color:blue;">Espere mientras se procesa su consulta.</p>
+                  <p id="alf-proccessedMsg" style="display:none; color:red;">Ya se realizó esta consulta.</p>
+              </form>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>

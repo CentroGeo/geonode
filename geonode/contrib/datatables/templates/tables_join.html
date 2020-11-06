@@ -1,0 +1,55 @@
+{% extends "tables_base.html" %}
+{% load bootstrap_tags %}
+{% load i18n %}
+
+{% block title %}Union de tabla{% endblock %}
+
+{% block head %}{{ block.super }}{% endblock %}
+
+{% block body %}
+<div class="container">
+<div class="row">
+  <div class="col-md-8">
+    <br>
+    <p class="lead">
+      Unión de Tabla: <i>{{ resource.title }}</i> <br>con Capa: <i>{{ resource.resource }}</i>
+    </p>
+    <form id="join_form" action="{% url "datatables_join" resource.id %}" method="POST">
+      <h2>Seleccione los campos</h2>
+      {% csrf_token %}
+      <div class="col-md-6 form-controls">
+        {{ form|as_bootstrap }}
+        <p id="warning" style="font-size: 14px; color:red"></p>
+        <input type="submit" class="btn btn-primary" value="Probar Union"/>
+        <a id="change_type" href="#" class="btn btn-default" style="display:none">Convertir Tipo</a>
+      </div>
+    </form>
+  </div>
+</div>
+</div>
+{% endblock body %}
+
+{% block extra_script %}
+<script type="text/javascript">
+    $('#join_form').submit(function(){
+      var a = $( "#id_datatable_join-layer_attribute option:selected" ).text().split(" ");
+      var b = $( "#id_datatable_join-table_attribute option:selected" ).text().split(" ");
+      var val_a = $( "#id_datatable_join-layer_attribute option:selected" ).val();
+      var val_b = $( "#id_datatable_join-table_attribute option:selected" ).val();
+      var link = '{% url "datatables_change_attr" resource.id 'LAYER_ATTR' 'TABLE_ATTR' %}';
+      link = link.replace('LAYER_ATTR', val_a).replace('TABLE_ATTR', val_b);
+      if(val_a!='' && val_b!= '' && a[1]!=b[1]){
+          $('#warning').text('LOS TIPOS NO COINCIDEN, Selecciono'+ ' ' + a[1] +
+                              ' ' + ' y ' + ' ' + b[1] +
+                              '. SI ESTA SEGURO de la seleccion puede convertir el tipo en la tabla.');
+          $("a[href='#']").attr("href", link)
+          $("#change_type").css("display", "inline");
+          return false;
+        }
+    })
+
+    $("#resource").select2({
+
+    })
+</script>
+{% endblock extra_script %}

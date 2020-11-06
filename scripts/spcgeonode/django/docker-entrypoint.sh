@@ -8,6 +8,10 @@ echo "-----------------------------------------------------"
 echo "STARTING DJANGO ENTRYPOINT $(date)"
 echo "-----------------------------------------------------"
 
+# Install new added packages
+echo "Install geonode/idegeo dependencies"
+pip --no-cache-dir install --upgrade -r requirements.txt
+
 # Setting dynamic env vars (some of this could probably be put in docker-compose once
 # https://github.com/docker/compose/pull/5268 is merged, or even better hardcoded if
 # geonode supported relative site urls)

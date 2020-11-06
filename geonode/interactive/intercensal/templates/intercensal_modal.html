@@ -1,0 +1,101 @@
+{% load i18n %}
+<!-- Contenido oculto para realizar consulta intercensal -->
+<div id="census-poll" class="modal fade" role="dialog" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Realiza una consulta</h4>
+            </div>
+            <div class="modal-body">
+              <form id="poll_form" action="#">
+                  <!--
+                  <p>Entidad Federativa:</p>
+                  <select name="DdlEntidad" id="poll-entity">
+                        <option selected="selected" value="0">Estados Unidos Mexicanos</option>
+                        <option value="1">Aguascalientes</option>
+                        <option value="2">Baja California</option>
+                        <option value="3">Baja California Sur</option>
+                        <option value="4">Campeche</option>
+                        <option value="5">Coahuila de Zaragoza</option>
+                        <option value="6">Colima</option>
+                        <option value="7">Chiapas</option>
+                        <option value="8">Chihuahua</option>
+                        <option value="9">Distrito Federal</option>
+                        <option value="10">Durango</option>
+                        <option value="11">Guanajuato</option>
+                        <option value="12">Guerrero</option>
+                        <option value="13">Hidalgo</option>
+                        <option value="14">Jalisco</option>
+                        <option value="15">México</option>
+                        <option value="16">Michoacán de Ocampo</option>
+                        <option value="17">Morelos</option>
+                        <option value="18">Nayarit</option>
+                        <option value="19">Nuevo León</option>
+                        <option value="20">Oaxaca</option>
+                        <option value="21">Puebla</option>
+                        <option value="22">Querétaro</option>
+                        <option value="23">Quintana Roo</option>
+                        <option value="24">San Luis Potosí</option>
+                        <option value="25">Sinaloa</option>
+                        <option value="26">Sonora</option>
+                        <option value="27">Tabasco</option>
+                        <option value="28">Tamaulipas</option>
+                        <option value="29">Tlaxcala</option>
+                        <option value="30">Veracruz de Ignacio de la Llave</option>
+                        <option value="31">Yucatán</option>
+                        <option value="32">Zacatecas</option>
+                  </select>
+                  <br><br>
+                  -->
+                  <p>Tema</p>
+                  <select name="DdlTema" id="poll-theme" class="form-control">
+                        <option selected="selected" value="null">------</option>
+                        <option value="poblacion">Población</option>
+                        <option value="migracion">Migración</option>
+                        <option value="etnicidad">Etnicidad</option>href
+                        <option value="educacion">Educación</option>
+                        <option value="salud">Servicios de salud</option>
+                        <option value="economia">Características económicas</option>
+                        <option value="no_remunerado">Trabajo no remunerado</option>
+                        <option value="conyugal">Situación conyugal</option>
+                        <option value="hogares">Hogares</option>
+                        <option value="vivienda">Vivienda</option>
+                        <option value="alimentacion">Alimentación</option>
+                  </select>
+                  <br><br>
+                  <p id="noDataMsg" style="display:none; color:red;">No hay datos catalogados para este tema</p>
+                  <div id="poll_list" style="display:none;">
+                  <p>Subtema</p>
+                  <select id="poll_table" class="form-control">
+                    <option value=''>------</option>
+                  </select>
+                  </div>
+                  <br>
+                  <div id="filter-value" style="display:none;">
+                    <p>Valor</p>
+                    <select id="attr_value" class="form-control">
+                      <option value=''>------</option>
+                    </select>
+                    <br><br>
+                  </div>
+                  <div id="theme-field" style="display:none;">
+                    <p>Campo de Tematización</p>
+                    <select id="attributes" class="form-control">
+                        <option value=''>------</option>
+                    </select>
+                    <br><br>
+                  </div>
+
+                  <input type="submit" class="btn btn-success btn-xs" id="btnQueryPoll" value="Generar Mapa" style="display:none;">
+                  <br><br>
+                  <p id="proccessMsg" style="display:none; color:blue;">Espere mientras se procesa su consulta.</p>
+                  <p id="proccessedMsg" style="display:none; color:red;">Ya se realizó esta consulta.</p>
+              </form>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,24 @@
+<div class="main_fields" style="cursor: pointer;">
+  <span class="title-chars">Censo agropecuario 2007<span>
+<div id="pv_mf" class="crops-main-img"><img src="{{STATIC_URL}}soa_toolkit/img/ac/crops.png" width="110px;" title="Agricultura" alt="pv"/></div>
+<div id="farm_mf" class="crops-main-img"><img src="{{STATIC_URL}}soa_toolkit/img/ac/cow.png" width="110px;" title="Ganadería" alt="pv"/></div>
+<div id="forest_mf" class="crops-main-img"><img src="{{STATIC_URL}}soa_toolkit/img/ac/forest.png" width="110px;" title="Forestal" alt="pv"/></div>
+<div id="industry_mf" class="crops-main-img"><img src="{{STATIC_URL}}soa_toolkit/img/ac/tractor.png" width="110px;" title="Tractor" alt="pv"/></div>
+</div>
+{% include "HeaderCrop.html" %}
+<div id="control-area-div-modal">
+  {% include "results_selection_modal_AC.html" %}
+</div>
+<div id="quer-crops" style="display: none;">
+{% include "query_crops.html" %}
+</div>
+<div id="quer-farm" style="display: none;">
+{% include "query_fram.html" %}
+</div>
+<div id="quer-forest" style="display: none;">
+{% include "query_forest.html" %}
+</div>
+<div id="quer-industry" style="display: none;">
+{% include "query_industry.html" %}
+</div>
+{% include "main_fields.js" %}

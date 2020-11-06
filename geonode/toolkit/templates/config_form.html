@@ -1,0 +1,25 @@
+{% extends "mviewer_base.html" %}
+{% load bootstrap_tags %}
+{% block title %} Herramienta {% endblock %}
+{% block middle %}
+<div class="container_documents">
+  <div id="header">
+	<div class="container">
+	  <div class="logo" style="width:885px;">Liga la herramienta con; {{obj}}</div>
+	</div>
+  </div>
+</div>
+{% block body_outer %}
+<div class="container">
+	<div class="row">
+		<div class="col-md-6" id="general">
+			<form id="formulario" method="post" enctype="multipart/form-data" action="">{% csrf_token %}
+				{{ form.media }}
+				{{form|as_bootstrap}}
+				<p><input type="submit" class="btn btn-primary" value="Guardar"></p>
+			</form>
+		</div>
+	</div>
+</div>
+{% endblock %}
+{% endblock %}

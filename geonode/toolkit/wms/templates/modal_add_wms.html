@@ -1,0 +1,25 @@
+{% load bootstrap_tags %}
+<div class="modal fade" id="addWMS" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    	 <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Agregar Servicio WMS </h4>
+                </div>
+                <div class="modal-body" style="max-width:500px; left:50px;">
+                    <form id="add_wmsForm" action="#">
+                        {{wms_form|as_bootstrap}}
+                        <div class="btn-group">
+                            <input type="submit" class="btn btn-primary btn-xs" id="btnSaveWms" value="Guardar">
+                        </div>
+                    </form>
+                    <p id="wmsAddMsg" class="add_fadeMsg">Wms Guardado Exitosamente</p>
+                    <p id="wmsAlreadyMsg" class="add_fadeMsg">Servicio ya registrado</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+</div>

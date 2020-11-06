@@ -1,0 +1,70 @@
+<!--
+IMPORTANTE; ANTES DE COMENZAR A USAR ESTA HERRAMIENTA LEER EL MODO DE USO.
+Este archivo es un div generico para mostar un combo en donde se pueden vizualizar las herramientas ligadas
+Para usarse se debe de importar el archivo y su js para que funcione en el template donde se quiere vizualizar.
+a un vizualizador, capa o mapa.
+Para agregar una herramienta es necesario poner un div abajo dentro de container_tool y ahí importar nuestro html.
+Cada HTML debe importar su propio js para que este código sea modular.
+toolkit es el modulo principal, si se desea agregar una herramienta nueva;
+1.- Se tiene que crear un modulo dentro de toolkit.
+2.- Todo el css y js es necesario que se importe en un html principal y ese html importarlo en el archivo que se quiere mostrar.
+3.- Hacer un registro en http://127.0.0.1:8000/toolkit/ -> en esta ruta se da de alta la nueva herramienta, se le debe de asignar  una CONSTANTE única.
+Esto alimentará al modelo SpatialObject.
+4.- por último es necesario agregar un if con la constante que se dio de alta para su herramienta, en; mail_tool_menu.js método-> selectTool(constatnt)
+En el if tiene que appendiar su resultado en el div que se creo en este archivo.
+5.- El usuario final tiene podrá ver la herramienta que dimos de alta y asignarla al vizualizador, capa o mapa.
+Esto alimentará al modelo ConfigureObjectSOA.
+NOTA: si se quiere quitar una herramienta solo se necesita quitar el div que incluyen los htmls para cada herramienta.
+No olvidar quitar el reguistro de la base de datos en SpatialObject.
+-->
+<!-- Toolkit spatial object analysis -->
+<head>
+<link href="{{ STATIC_URL }}soa_toolkit/css/sos.css" rel="stylesheet" type="text/css">
+<!-- FullModalBlack Area -->
+<link rel="stylesheet" type="text/css" href="{{STATIC_URL}}/soa_toolkit/css/FullBlackModal.css" />
+<!-- Control Area -->
+<link rel="stylesheet" type="text/css" href="{{STATIC_URL}}/soa_toolkit/css/crops_control_area.css" />
+<link rel="stylesheet" type="text/css" href="{{STATIC_URL}}/soa_toolkit/css/cafe_tool.css" />
+<link rel="stylesheet" type="text/css" href="{{STATIC_URL}}/soa_toolkit/css/modal_tool.css" />
+<link rel="stylesheet" type="text/css" href="{{STATIC_URL}}/soa_toolkit/css/slides_control.css" />
+</head>
+<div class="tab-analysis">
+    <div id="analysis-content" class="analysis-content">
+        <div id="default" class="analysis-tab-content -active">
+            <div id="generic-tools">
+                <div class="choose_tool"></div><!--Carga herramientas generales por main_tool_menu.js-->
+            </div>
+            <div id="layer-tools">
+                <div class="l_tool"></div><!--Carga herramientas de capa por main_tool_menu.js-->
+            </div>
+        </div>
+        <!--DIV de herramienta de estadistica-->
+        <div id="STATISTICS-div" class="analysis-tab-content">
+            {% include "statistics_tool_div.html" %}
+        </div>
+          <!--DIV intersectar  intersection_tool_div-->
+         <div id="PIE_GRAPH_INTERSECTION-div" class="analysis-tab-content">
+          {% include "drag_intersection_grafic.html" %}
+          {% include "Modal_soa_intersect.html" %}
+          {% include "intersection_tool_div.html" %}
+        </div>
+          <!--DIV control area -->
+         <div id="CROPS_ANALISYS_SPRING-div" class="analysis-tab-content">
+           {% include "LoneySpatialGraphicLight.js" %}
+           {% include "CensusConstants.js" %}
+         </div>
+        <!--DIV WMS-->
+        <div id="WMS-div" class="analysis-tab-content">
+            {% include "modal_wms_viewer.html" %}
+        </div>
+        <!-- DIV cafe -->
+        <div id="COFFEE_ROOT-div" class="analysis-tab-content">
+            {% include "coffee_tool_div.html" %}
+        </div>
+        <div id="HOSTPOT-div" class="analysis-tab-content">
+            {% include "hotspot.html" %}
+        </div>
+        <div id="CENSUS-div" class="analysis-tab-content">
+        </div>
+    </div>
+</div>

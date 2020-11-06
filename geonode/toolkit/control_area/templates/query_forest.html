@@ -1,0 +1,29 @@
+<div id="main-forest-graf" style="display: none;">
+ <div class="sp-slideshow">
+      <input id="button-1" type="radio" name="radio-set" class="sp-selector-1" checked="checked" />
+      <label for="button-1" class="button-label-1"></label>
+
+      <input id="button-2" type="radio" name="radio-set" class="sp-selector-2" />
+      <label for="button-2" class="button-label-2"></label>
+
+      <label for="button-1" class="sp-arrow sp-a1"></label>
+      <label for="button-2" class="sp-arrow sp-a2"></label>
+
+      <div class="sp-content">
+        <div class="sp-parallax-bg"></div>
+        <ul class="ac-slider clearfix">
+          <li>
+            <div class="title-chars">Producción maderable</div>
+            <div class="content-panel2" id="barchart-wood"></div>
+          </li>
+          <li>
+            <div class="title-chars">Producción no maderable (Recolección)</div>
+            <div class="content-panel2" id="barchar-wood-non"></div>
+          </li>
+        </ul>
+      </div>
+    </div>
+</div>
+<div>
+  {% include "BasicForest.html" %}
+</div>

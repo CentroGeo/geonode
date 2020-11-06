@@ -1,0 +1,62 @@
+{% extends "tables_base.html" %}
+{% load i18n %}
+{% load staticfiles %}
+
+
+{% block title %} Explorar Tablas {% endblock %}
+
+{% block body_class %}layers explore{% endblock %}
+
+{% block body %}
+
+<!--HEADER-TITULO-->
+<div id="page-header" class="content">
+  <div class="container">
+    <div class="titulo-blk-row">
+      <div class="titulo-img blk-cell"><img src="{{STATIC_URL}}carousel/images/ico11_capas.png" alt=""></div>
+        <div class="titulo-txt blk-cell">
+          <h2>Explorar Tablas de Atributos</h2>
+        </div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="nav btn-group pull-right" style="text-align: right;">
+    <a href='{% url "tables_upload" %}' class="btn btn-primary">Cargar Tabla</a>
+    <a href='{% url "custom_tables_list" %}' class="btn btn-primary">Encuesta Intercensal</a>
+    <a href='{% url "alf_tables_list" %}' class="btn btn-primary">Censo AGF 2007</a>
+  </div>
+  {% with include_type_filter='false' %}
+  {% with include_extent_filter='false' %}
+  {% with facet_type='tables' %}
+  {% with header='Type' %}
+  {% with filter='type__in' %}
+  {% include "search/_search_content.html" %}
+  {% endwith %}
+  {% endwith %}
+  {% endwith %}
+  {% endwith %}
+  {% endwith %}
+  {% with is_layer='false' %}
+  {% include "_bulk_permissions_form.html" %}
+  {% endwith %}
+</div>
+{% endblock %}
+
+{% block extra_script %}
+  {% if GEONODE_SECURITY_ENABLED %}
+    {% include "_permissions_form_js.html" %}
+  {% endif %}
+  <script type="text/javascript">
+      {% if HAYSTACK_SEARCH %}
+          SEARCH_URL = '{% url 'api_get_search' api_name='api' resource_name='base' %}?type__in=tables'
+      {% else %}
+          SEARCH_URL = '{% url 'api_dispatch_list' api_name='api' resource_name='tables' %}';
+      {% endif %}
+    FILTER_TYPE = 'table';
+  </script>
+  {% with include_spatial='true' %}
+  {% include 'search/search_scripts.html' %}
+  {% endwith %}
+{% endblock extra_script %}

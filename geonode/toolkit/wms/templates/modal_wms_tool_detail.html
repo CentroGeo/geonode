@@ -1,0 +1,29 @@
+<div class="modal fade" id="miModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    	<div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <div class="modal-body"></div>
+                    <h3 class="modal-title" id="myModalLabel">WMS Externo</h3>
+                </div>
+                <div class="modal-body">
+                    <div class="container" style="width: 550px;">
+                        <h4>Elige los servicios WMS de interés</h4>
+                        <div class="row"></div>
+                            <select multiple="multiple" id="wmsSelect" class="wmsSelect" name="my-select">
+                                {% for wms in wms_services %}
+                                    <option value="{{wms.id}}">{{wms.name}}</option>
+                                {% endfor %}
+                            </select>
+                    </div>
+                </div>
+                <div></div>
+                <div id="btn-wms" class="btn-group" role="group" data-dismiss="modal" aria-label="Add" disabled="disabled">
+                    <button type="button" class="btn btn-default" disabled="disabled">Agregar WMS</button>
+                </div>
+                <div style="font-size:12px">&nbsp</div>
+            </div>
+        </div>
+</div>

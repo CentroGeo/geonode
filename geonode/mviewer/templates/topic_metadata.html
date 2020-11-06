@@ -1,0 +1,28 @@
+{% extends "mviewer_base.html" %}
+{% load i18n %}
+{% load bootstrap_tags %}
+
+{% block title %} Metadato de Visualizador {% endblock %}
+
+{% block body_outer %}
+<div id="page-header" class="content">
+  <div class="container">
+    <div class="titulo-blk-row">
+      <div class="titulo-img blk-cell"><img src="{{STATIC_URL}}idegeo/carousel/images/ico11_capas.png" alt=""></div>
+        <div class="titulo-txt blk-cell">
+          <h2>Temática</h2>
+        </div>
+    </div>
+  </div>
+</div>
+<div class="container">
+	<div class="cont_meta">
+		<div class="col-md-6" id="general">
+			<form id="formulario" method="post" enctype="multipart/form-data" action="">{% csrf_token %}
+				{{form|as_bootstrap}}
+				<p><a href="{% url 'mviewer_detail' mvid %}" class="btn btn-primary">Regresar</a><input type="submit" class="btn btn-primary pull-right" value="Confirmar"></p></br>
+			</form>
+		</div>
+	</div>
+</div>
+{% endblock %}

@@ -1,0 +1,55 @@
+{% load i18n %}
+<!-- Contenido oculto para realizar consulta intercensal -->
+<div id="census2010" class="modal fade" role="dialog" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Realiza una consulta</h4>
+            </div>
+            <div class="modal-body">
+              <form id="c2010_form" action="#">
+                  <p>Tema</p>
+                  <select name="DdlTema" id="c10-topic" class="form-control">
+                        <option selected="selected" value="null">------</option>
+                        <option value="POB">Población</option>
+                        <option value="FEC">Fecundidad</option>
+                        <option value="MIG">Migración</option>
+                        <option value="IND">Población Indígena</option>href
+                        <option value="DISC">Discapacidad</option>
+                        <option value="EDU">Características Educativas</option>
+                        <option value="ECN">Características económicas</option>
+                        <option value="SLD">Servicios de salud</option>
+                        <option value="CNY">Situación conyugal</option>
+                        <option value="RLG">Religión</option>
+                        <option value="HCEN">Hogares Censales</option>
+                        <option value="VIV">Vivienda</option>
+                  </select>
+                  <p id="c10noDataMsg" style="display:none; color:red;">No hay datos catalogados para este tema</p>
+                  <br>
+                  <div id="subtopic-div" style="display:none;">
+                  <p>Subtema</p>
+                  <select id="c10-subtopic" class="form-control">
+                    <option value=''>------</option>
+                  </select>
+                  </div>
+                  <br>
+                  <div id="sld-div" style="display:none;">
+                    <p>Campo de Tematización</p>
+                    <select id="sld-field" class="form-control">
+                        <option value=''>------</option>
+                    </select>
+                    <br>
+                  </div>
+                  <input type="submit" class="btn btn-success btn-xs" id="btnQueryC10" value="Tematizar Capa" style="display:none;">
+                  <br>
+                  <p id="c10proccessMsg" style="display:none; color:blue;">Espere mientras se procesa su consulta.</p>
+                  <p id="c10proccessedMsg" style="display:none; color:red;">Ya se realizó esta consulta.</p>
+              </form>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>

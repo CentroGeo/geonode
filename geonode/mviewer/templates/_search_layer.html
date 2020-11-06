@@ -1,0 +1,51 @@
+{% load i18n %}
+<div ng-controller="CartList1">
+  <div class="col-md-3 col-add-layer">
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="selections">
+            Filtros
+        </div>
+            {% if SEARCH_FILTERS.TEXT_ENABLED %}
+              {% include "search/_text_filter.html" %}
+            {% endif  %}
+        <div id="slide-pane">
+          {% if SEARCH_FILTERS.H_KEYWORDS_ENABLED %}
+            {% include "search/_h_keywords_filter.html" %}
+          {% endif %}
+          {% if SEARCH_FILTERS.T_KEYWORDS_ENABLED %}
+            {% include "search/_t_keywords_filter.html" %}
+          {% endif %}
+          {% if SEARCH_FILTERS.TYPE_ENABLED and include_type_filter == 'true' %}
+            {% include "search/_type_filters.html" %}
+          {% endif %}
+          {% include "search/_general_filters.html" %}
+          {% if SEARCH_FILTERS.REGION_ENABLED %}
+            {% include "search/_region_filter.html" %}
+          {% endif %}
+          {% if SEARCH_FILTERS.EXTENT_ENABLED %}
+            {% include "search/_extent_filter.html" %}
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-9 col-add-layer">
+    <div class="col-md-9">
+      {% if facet_type == 'layers' %}
+        <span>Total: </span>
+        <span ng-bind="total_counts"></span>
+      {% endif %}
+    </div>
+    {% include "search/_sort_filters.html" %}
+    <div class="col-md-12 grid-spacer col-add-layer">
+    {% include '_layer_snippet.html' %}
+    {% include 'search/_pagination.html' %}
+    </div>
+  </div>
+  <resource-cart class="col-md-12"></resource-cart>
+  <div class="col-md-12" role="group">
+    <button type="button" class="btn btn-default pull-right" ng-disabled="!cart.getCart().items.length" ng-click="addTopicLayers()">Agregar capas</button>
+  </div>
+  {% include "_bulk_permissions_form.html" %}
+</div>

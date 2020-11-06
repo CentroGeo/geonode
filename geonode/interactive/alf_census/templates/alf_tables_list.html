@@ -1,0 +1,83 @@
+{% extends "tables_base.html" %}
+{% load i18n %}
+{% load staticfiles %}
+
+
+{% block title %} Explorar Tablas {% endblock %}
+
+{% block body_class %}layers explore{% endblock %}
+
+{% block body %}
+
+<!--HEADER-TITULO-->
+<div id="page-header" class="content">
+  <div class="container">
+    <div class="titulo-blk-row">
+      <div class="titulo-img blk-cell"><img src="{{STATIC_URL}}carousel/images/ico11_capas.png" alt=""></div>
+      <div class="titulo-txt blk-cell">
+        <h2>Tablas del Censo AGF 2007</h2>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="nav" style="text-align: right;">
+    <a href='{% url "alf_tables_upload" %}' class="btn btn-primary">Cargar Tabla</a>
+  </div>
+  <div>
+    {% for table in alf_tables%}
+    <div>
+      <div>
+        <li><h3>{{table.title}}</h3></li>
+        {% if request.user.is_authenticated %}
+        Editar Recurso:
+        <a href="#" data-toggle="modal" data-target="#deleteCTable{{ forloop.counter }}" data-toggle="tooltip" title="Eliminar" class="fa fa-times fa-1x" style="position:relative; left:390px;"></a>
+        <a href="{% url 'alf_tables_metadata' table.id %}" data-toggle="tooltip" title="Editar metadato" class="fa fa-bars fa-1x" style="position:relative; left:390px;"></a>
+        {% endif %}
+      </div>
+    </div>
+
+    <!-- Contenido oculto para eliminar ALF tables -->
+    <div id="deleteCTable{{ forloop.counter }}" class="modal fade" role="dialog" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Borrar Tabla</h4>
+          </div>
+          <div class="modal-body">
+            <form action="{% url 'alf_tables_remove' table.id %}" method="POST">
+              <h4>¿Esta seguro que desea eliminar: <i>{{ table.title }}?</i></h4>
+              {% csrf_token %}
+              {% if table.alflayer_set.all %}
+                Se eliminaran las siguientes capas asociadas:
+                <ul style="list-style-type: square; margin-left:35px">
+                    {% for narrative in table.alflayer_set.all %}
+                        <li>{{ narrative.title }}</li>
+                    {% endfor %}
+                </ul>
+                <br>
+              {% endif %}
+              <div class="form-actions">
+                <input type="submit" value="{% trans "Yes, I am sure" %}" class="btn btn-danger" />
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    {% empty %}
+    <p>Aun no hay tablas</p>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}
+
+{% block extra_script %}
+
+{% endblock extra_script %}

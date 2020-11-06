@@ -1,0 +1,28 @@
+{% extends "site_base.html" %}
+{% load i18n %}
+
+{% block title %}{{ mv.name }} — {{ block.super }}{% endblock %}
+
+{% block body_outer %}
+<div class="container" id="rm_padding">
+  <div class="row"><br>
+    <div class="col-md-10">
+      <form   aling="center" action="{% url "mviewer_remove" mviewer.id %}" method="POST">
+        <h2 class="alert">
+          {% blocktrans with mviewer.name as ms_title %}
+            ¿Esta seguro que desea eliminar el Panorama: {{ ms_title }}?
+          {% endblocktrans %}
+        </h2>
+         
+        <br>
+        {% csrf_token %}
+        <input type="hidden" value="{{ slope.typename }}" />
+        <div class="form-actions">
+          <input type="submit" value="Si, Eliminar" class="btn btn-danger" />
+          <a href="{% url 'mviewer_detail' mviewer.id %}" class="btn btn-default">Cancelar</a>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}

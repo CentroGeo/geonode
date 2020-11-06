@@ -1,1 +1,532 @@
 
+{% load i18n avatar_tags %}
+{% load static from staticfiles %}  
+{% load account socialaccount %}
+{% load base_tags %}   
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}{{ SITE_NAME }}{% endblock %}</title>
+
+
+    <link rel="shortcut icon" href="{% static 'idegeo/geonode/img/favicon.ico' %}" />
+    <link href="{% static "idegeo/lib/css/ol.css" %}" rel="stylesheet" />
+    <script src="{% static "idegeo/lib/js/ol.js" %}"></script>
+
+    <script src="{% static "idegeo/lib/js/jquery.js" %}"></script>
+
+    {% block head %}
+
+
+        {% if DEBUG_STATIC %}
+            <link href="{% static "idegeo/lib/css/jquery.dataTables.css" %}" rel="stylesheet" />
+            <link href="{% static "idegeo/lib/css/select2.css" %}" rel="stylesheet"/>
+            <link href="{% static "idegeo/lib/css/bootstrap.css" %}" rel="stylesheet"/>
+            <link href="{% static "idegeo/lib/css/bootstrap-treeview.css" %}" rel="stylesheet"/>
+            <link href="{% static "idegeo/lib/css/jquery-ui.theme.css" %}" rel="stylesheet"/>
+            <link href="{% static "idegeo/lib/css/jquery-ui.structure.css" %}" rel="stylesheet"/>
+            <link href="{% static "idegeo/lib/css/bootstrap-treeview.css" %}" rel="stylesheet"/>
+        {% else %}
+            <link href="{% static "idegeo/lib/css/assets.min.css" %}" rel="stylesheet"/>
+        {% endif %}
+        
+
+        <link href="{% static "idegeo/geonode/css/base.css" %}" rel="stylesheet" />  
+        <link href="{{ STATIC_URL }}idegeo/geonode/css/ext-compatibility.css?v={{ VERSION }}" rel="stylesheet" />
+        <!--<link href="{{ STATIC_URL }}idegeo/style_adesur/css/assets.min_custom.css" rel="stylesheet"/>-->
+        <link href="{{ STATIC_URL }}idegeo/style_adesur/css/idegeo.mod.css" rel="stylesheet" />
+        <link href="{{ STATIC_URL }}idegeo/carousel/css/tooltipster.css" rel="stylesheet" />
+        <link href="{{ STATIC_URL }}idegeo/carousel/css/layerslider.css" rel="stylesheet" type="text/css">
+        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+        <!-- TERMINAN ESTILOS PERSONALIZADOS  -->
+        <style type="text/css">[ng\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide:not(.ng-hide-animate){display:none !important;}</style>
+        {% block extra_head %}
+        {% endblock %}
+
+    {% endblock %}
+    
+    {% if MainHeader %}
+        <style>
+            :root{
+            	--color-theme: {{MainHeader.color}};
+            }
+        </style>
+    {% else %}
+        <style>
+            :root{
+            	--color-theme: rgb(0, 98, 96);
+            }
+        </style>
+    {% endif %}
+    
+    <link rel="search" type="application/opensearchdescription+xml" href="{{SITEURL}}catalogue/opensearch" title="{% trans "GeoNode Search" %}"/>
+
+    <script>
+        var siteUrl = '{{ SITEURL }}'.replace(/\/?$/, '/');
+        var staticUrl = '{% static 'idegeo/' %}';
+    </script>
+
+    <!-- Autocomplete script for input boxes -->
+    <script src="{% static "idegeo/geonode/js/search/autocomplete.js" %}"></script>
+
+    <script type="text/javascript">
+      function thumbnailFeedbacks(data, status) {
+        try {
+          $("#_thumbnail_feedbacks").find('.modal-title').text(status);
+          $("#_thumbnail_feedbacks").find('.modal-body').text(data);
+          $("#_thumbnail_feedbacks").modal("show");
+        } catch (err) {
+          console.log(err);
+        } finally {
+          return true;
+        }
+      }
+    </script>
+
+</head>
+
+<body class="{% block body_class %}{% endblock %}">
+    {% block header %}
+<div id="home-container">
+    <!--TOP-NAV-->
+    <header id="headeri">
+        <div class="container">
+            <div class="header-logo-lf"><a href="http://www.conacyt.mx/"><img src="{{STATIC_URL}}idegeo/carousel/img/header_logo-conacyt.png" alt="logo conacyt"></a></div>
+            <div class="header-title">
+                <h1 class="header-sitename">Servicios de Información Geoespacial</h1>
+                <div class="header-subtitle">Plataforma GeoWeb IDEGEO</div>
+            </div>
+            <div class="header-logo-rg"><a href="http://www.centrogeo.org.mx/"><img src="{{STATIC_URL}}idegeo/mviewer/img/CentroGeo-CMX_Logo-V.png" alt="logo centrogeo" height="80px"></a></div>        </div>
+    </header>
+    <!--fin-->
+    <!--MAIN-NAV-->
+    {% url 'home' as home_url %}
+    {% if request.get_full_path == home_url %}
+    <section id="admin">
+        <div class="container">
+            <div class="main-nav-lf admin-nav admin-nav-lf">
+                <ul class="main-nav">
+                    {% if request.user.is_authenticated and request.user.ide_access %}
+                    <li class="dropdown"><a href="#" class="btn"><i class="fa fa-cog" aria-hidden="true"></i> Gestión</a>
+                        <div class="dropdown-content">
+                            <a href="{% url "layer_browse" %}" class="dd-elem">Vectoriales</a>
+                            <a href="{% url 'maps_browse' %}" class="dd-elem">Mapas</a>
+                            <a href = "{% url "tables_browse" %}" class="dd-elem">Tabulares</a>
+                            <a href = "{% url 'project_browse' %}" class="dd-elem">Proyectos</a>
+                            <a href = "{% url 'document_browse' %}" class="dd-elem">Documentos</a>
+                            <a href="{% url 'profile_browse' %}" class="dd-elem">Usuarios</a>
+                            {% if MainHeader %}
+                                <a href="{% url 'config_interface' MainHeader.id %}" class="dd-elem">Editar interfaz</a>
+                            {% else %}
+                                <a href="{% url 'config_interface' %}" class="dd-elem">Generar Estilos</a>
+                            {% endif %}
+                        </div>
+                    </li>
+                    {% endif %}
+                    {% if request.user.is_authenticated and request.user.microsite_access %}
+                    <li class="dropdown"><a href="#" class="btn"><i class="fa fa-cog" aria-hidden="true"></i> Difusión (Gestión)</a>
+                        <div class="dropdown-content">
+                            <a href="{% url 'blog_admin' %}" class="dd-elem">Blog</a>
+                            {% comment %}<a href="{% url 'ms_gestor_list' %}" class="dd-elem">Micrositios</a>{% endcomment %}
+                            <a href="{% url 'mviewer_list' %}" class="dd-elem">Panoramas</a>
+                        </div>
+                    </li>
+                    {% endif %}
+                    <li class="dropdown"><a href="#" class="btn"><i class="fa fa-newspaper-o" aria-hidden="true"></i> Difusión</a>
+                        <div class="dropdown-content">
+                            {% comment %}<a href="{% url 'ms_public_list' %}" class="dd-elem">Micrositios</a>{% endcomment %}
+                            <a href="{% url 'mviewer_public' %}" class="dd-elem">Panoramas</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            {% if user.is_authenticated %}
+            <div class="admin-nav admin-nav-rg">
+                <a href="#" id="admin-login" class="btn" data-toggle="modal" data-target="#UserModal" role="button" aria-expanded="false">{% avatar user 20 %} {{ user.username }}</a>
+            </div>
+            {% else %}
+            <div class="admin-nav admin-nav-rg">
+                <a href="#" data-toggle="modal" data-target="#SigninModal" role="button" id="admin-login" class="btn"><i class="fa fa-user" aria-hidden="true"></i> {% trans 'Sign in' %}</a>
+            </div>
+            {% endif %}
+        </div>
+    </section>
+
+    {% else %}
+    <nav id="admin" role="navigation">
+        <div class="container">
+            <div class="main-nav-lf admin-nav admin-nav-lf">
+                {% block tabs %}
+                <ul class="main-nav">
+                    <li class="main_vert"><a href="{% url 'home' %}" class="btn">Inicio</a></li>
+                    {% if 'interactive' in request.get_full_path and 'map_composer' not in request.get_full_path %}
+                    <li class="main_vert"><a href="{% url 'layer_interface' %}" class="btn">Capas</a></li>
+                    <li class="main_vert"><a href="{% url 'maps_interface' %}" class="btn">Mapas</a></li>
+                    <li class="main_vert"><a href="{% url 'blog' %}" class="btn">Divulgacion</a></li>
+                    <!--<li class="main_vert"><a href="{% url 'documents_interface' %}" class="btn">Documentos</a></li>-->
+                    {% elif 'public' in request.get_full_path %}
+                        {% comment %}<li class="main_vert" id="nav_ms"><a href = "{% url 'ms_public_list' %}" class="btn">Micrositios</a></li>{% endcomment %}
+                        <li class="main_vert" id="nav_mviewer"><a href = "{% url 'mviewer_public' %}" class="btn">Panoramas</a></li>
+                    {% elif request.user.is_authenticated %}
+                      {% if request.user.ide_access and 'mviewer' not in request.get_full_path and 'ms' not in request.get_full_path %}
+                        <li class="main_vert"><a href="{% url 'layer_browse' %}" class="btn">Vectoriales</a></li>
+                        <li class="main_vert" id="nav_maps"><a href="{% url 'maps_browse' %}" class="btn">Mapas</a></li>
+                        <li class="main_vert"><a href = "{% url 'tables_browse' %}" class="btn">Tabulares</a></li>
+                        <li class="main_vert" id="nav_projects"><a href = "{% url 'project_browse' %}" class="btn">Proyectos</a></li>
+                        <li class="main_vert" id="nav_documents"><a href = "{% url 'document_browse' %}" class="btn">Documentos</a></li>
+                        <li class="main_vert" id="nav_people"><a href="{% url 'profile_browse' %}" class="btn">Usuarios</a></li>
+                        <li class="main_vert" id="nav_groups"><a href="{% url 'group_list' %}" class="btn">Grupos</a></li>
+                      {% elif request.user.microsite_access %}
+                        {% comment %}<li class="main_vert" id="nav_ms"><a href = "{% url 'ms_gestor_list' %}" class="btn"><i class="fa fa-cog"></i>Micrositios</a></li>{% endcomment %}
+                        <li class="main_vert" id="nav_mviewer"><a href = "{% url 'mviewer_list' %}" class="btn"><i class="fa fa-cog"></i>Panoramas</a></li>
+                        {% comment %}
+                        <li class="main_vert" id="nav_ms"><a href = "{% url 'content_handler_list' %}" class="btn"><i class="fa fa-cog"></i>CMS</a></li>
+                        {% endcomment %}
+                        <li class="main_vert" id="nav_groups"><a href="{% url 'group_list' %}" class="btn">Grupos</a></li>
+                      {% endif %}
+                    {% endif %}
+                </ul>
+                {% endblock %}
+            </div>
+            {% if user.is_authenticated %}
+            <div class="admin-nav admin-nav-rg">
+                <a href="#" id="admin-login" class="btn" data-toggle="modal" data-target="#UserModal" role="button" aria-expanded="false">{% avatar user 20 %} {{ user.username }}</a>
+            </div>
+            {% else %}
+            <div class="admin-nav admin-nav-rg">
+                <a href="#" data-toggle="modal" data-target="#SigninModal" role="button" id="admin-login" class="btn"><i class="fa fa-user" aria-hidden="true"></i> {% trans 'Sign in' %}</a>
+            </div>
+            {% endif %}
+        </div>
+    </nav>
+    {% endif %}
+
+</div>
+<div id="ieflag" class="alert alert-danger alert-dismissible" role="alert" style="display: none;">
+    <div class="container">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h3>You are using an outdated browser that is not supported on this Website.</h3>
+        <p>Please use a <strong>modern browser</strong> like Mozilla Firefox, Google Chrome or Safari.</p>
+    </div>
+</div>
+
+<!--MESSAGE-->
+<div id="status-message" class="alert alert-warn" hidden="hidden">
+    <div class="container"><a class="close" onclick="$('.alert').hide()">×</a>
+        <p id="status-message-text">Placeholder for status-message</p>
+        <p id="status-message-text-body">Placeholder for status-message-body</p>
+    </div>
+</div>
+{% endblock header %}
+
+<div class="alert alert-danger alert-dismissible" role="alert" id="ieflag" style="display:none">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    <h1>You are using an outdated browser that is not supported by GeoNode.</h1>
+    <p>Please use a <strong>modern browser</strong> like Mozilla Firefox, Google Chrome or Safari.</p>
+</div>
+
+<div id="wrap" style="padding-top: 0px;">
+    {% block map_view %}{% endblock %}
+    {% block middle %}
+    <!--<div class="container">-->
+    {% include "_status_message.html" %}
+    {% include "_announcements.html" %}
+    {% include "_messages.html" %}
+    {% block body_outer %}
+        <div class="row">
+            <div class="col-md-8">
+                {% block body %}{% endblock %}
+            </div>
+            <div class="col-md-4">
+                {% block sidebar %}{% endblock %}
+            </div>
+        </div>
+    {% endblock %}
+    <!--</div>-->
+    {% endblock middle %}
+</div>
+
+{% block footer %}
+<!--BOTTOM-NAV-->
+<div id="bottom-nav">
+    <div class="container">
+        <div class="bottom-nav-logos col-md-8">
+            <div class="nav-logos"><a href="http://www.conacyt.mx/" target="_blank" title="www.conacyt.mx"><span class="mm-footer-logo">
+                    <img src="{{ STATIC_URL }}idegeo/carousel/img/logo-conacyt_footer.png" alt="logo-conacyt"></span><span class="mm-footer-name">Consejo Nacional de Ciencia y Tecnología</span></a></div>
+        </div>
+        <div class="bottom-nav-menu col-md-4">
+            <ul class="nav-menu">
+                <li><img src="/static/style_adesur/img/logo-idegeoNew.png" alt=""></li>
+                <li><a href="#">Acerca de la IDEGeo</a></li>
+                <li><a href="http://www.geonode.org/" title="www.geonode.org">Basado en GeoNode</a></li>
+<!--                <li><a href="http://www.centrogeo.org.mx/" title="www.centrogeo.org.mx">CentroGeo</a></li>-->
+                <li><a href="#">Contacto y soporte</a></li>
+            </ul>
+            <div class="bottom-nav-commons">
+                <div class="nav-commons"><a href="http://creativecommons.org/licenses/by-nc-sa/2.5/mx/deed.es_ES" target="_blank" rel="license" title="Esta obra está bajo una licencia de Creative Commons Reconocimiento-NoComercial-CompartirIgual 2.5 México.">
+                    <img style="border: 0px none;" src="{{ STATIC_URL }}idegeo/carousel/img/cc_by-nc-sa.png" alt="cc by-nc-sa"></a></div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- .:: END BOTTOM-NAV ::.. -->
+<footer id="footer">
+    <div class="container">
+        <div class="footer-copy">2020 IDEGeo: Infraestructura de datos Geoespaciales del CentroGeo</div>
+    </div>
+</footer>
+{% endblock footer %}
+
+
+<!-- Modal must stay outside the navbar -->
+{% if not user.is_authenticated %}
+    <div class="modal fade" id="SigninModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">{% trans "Close" %}</span></button>
+            <h4 class="modal-title" id="myModalLabel">{% trans "Sign in" %}</h4>
+          </div>
+          <form class="form-signin" role="form" action="{% url "account_login" %}?next={{ request.path }}" method="post">
+            <div class="modal-body">
+              {% csrf_token %}
+              {% get_providers as socialaccount_providers %}
+              {% if socialaccount_providers %}
+                  {% include "socialaccount/snippets/provider_list.html" with process="login" %}
+                  {% include "socialaccount/snippets/login_extra.html" %}
+                <hr>
+              {% endif %}
+              <div class="form-group">
+                <label for="id_username" class="sr-only">{% trans "Username" %}:</label>
+                <input id="id_username" class="form-control" name="login" placeholder="{% trans "Username" %}" type="text" />
+              </div>
+              <div class="form-group">
+                <label for="id_password" class="sr-only">{% trans "Password" %}:</label>
+                <input id="id_password" class="form-control" name="password" placeholder="{% trans "Password" %}" type="password" autocomplete="off" />
+              </div>
+              <label class="checkbox">
+                <input type="checkbox" /> {% trans "Remember Me" %}
+              </label>
+              <p>
+                <a href="{% url 'account_reset_password' %}">{% trans "Forgot Password?" %}</a>
+              </p>
+            </div>
+            <div class="modal-footer">
+              <button type="submit" class="btn btn-primary btn-block">{% trans "Sign in" %}</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+{% else %}
+<div class="modal fade" id="UserModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">{% trans "Menu" %}</h4>
+            </div>
+            <div class="modal-body">
+                <ul class="list-unstyled">
+                    <!--<li><a href="{% url "layer_upload" %}"><i class="fa fa-cloud-upload"></i> {% trans "Upload Layers" %}</a></li>-->
+                    <li class="modal-divider"></li>
+                    {% if request.user.is_authenticated and request.user.ide_access %}
+                    <li><a href="{% url 'layer_browse' %}"><i class="fa fa-cog"></i> Gestión del catálogo</a></li>
+                    {% if MainHeader %}
+                        <li><a href="{% url 'config_interface' MainHeader.id %}"><i class="fa fa-paint-brush"></i> Editar interfaz</a></li>
+                    {% else %}
+                    <li><a href="{% url 'config_interface' %}"><i class="fa fa-paint-brush"></i> Generar estilos de interfaz</a></li>
+                    {% endif %}
+                    {% endif %}
+                    {% comment %}
+                    <li><a href="{% url 'ms_gestor_list' %}"><i class="fa fa-cubes"></i> Micrositios</a></li>
+                    {% endcomment %}
+                    <li><a href="{% url 'mviewer_list' %}"><i class="fa fa-window-maximize"></i> Panoramas</a></li>
+                    {% comment %}
+                    <li><a href="{% url 'content_handler_list' %}"><i class="fa fa-window-restore"></i> CMS</a></li>
+                    <li><a href="{% url 'blog_admin' %}"><i class="fa fa-th-large" aria-hidden="true"></i> Blog</a></li>
+                    {% endcomment %}
+                    <hr>
+                    <li><a href="{{ user.get_absolute_url }}"><i class="fa fa-user"></i> {% trans "Profile" %}</a></li>
+                    <!--<li><a href="{% url "recent-activity" %}"><i class="fa fa-fire"></i> {% trans "Recent Activity" %}</a></li>-->
+                    <!--<li><a href="{% url "messages_inbox" %}"><i class="fa fa-inbox"></i> {% trans "Inbox" %}</a></li>-->
+                    {% comment %}
+                    <!--<li><a href="{% url "notification_notice_settings" %}"><i class="fa fa-bell"></i> {% trans "Notifications" %}</a></li>-->
+                    {% endcomment %}
+                    {% if perms.announcements.can_manage %}
+                    <li><a href="{% url "announcements_list" %}"><i class="fa fa-bullhorn"></i> {% trans "Announcements" %}</a></li>
+                    {% endif %}
+                    {% if user.is_superuser %}
+                    <li><a href="{% url "services" %}"><i class="fa fa-globe"></i> {% trans "Remote Services" %}</a></li>
+                    <li><a href="{% url "geonode.invitations:geonode-send-invite" %}"><i class="fa fa-edit"></i> {% trans "Invite User" %}</a></li>
+                    <li class="modal-divider"></li>
+                    <li><a href="{{ GEOSERVER_BASE_URL }}"><i class="fa fa-gears"></i> {% trans "GeoServer" %}</a></li>
+                    {% endif %}
+                    {% if user.is_staff %}
+                    <li><a href="{% url "admin:index" %}"><i class="fa fa-cog"></i> {% trans "Admin" %}</a></li>
+                    {% endif %}
+                    {% block extra_user_menu %}
+                    {% endblock %}
+                    <li class="modal-divider"></li>
+                    <li><a title="Help" rel="tooltip" href="/help/"><i class="fa fa-question-circle"></i> {% trans "Help" %}</a></li>
+                </ul>
+            </div>
+            <div class="modal-footer">
+                <form action="{% url "account_logout" %}" id="logout_form" method="post">
+                {% csrf_token %}
+                <a class="btn btn-warning btn-block" href="javascript:{}" onclick="document.getElementById('logout_form').submit();">{% trans "Log out" %}</a>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endif %}
+<!-- End of Modal -->
+<!-- End of Modal -->
+<script type="text/javascript" src="{{ STATIC_URL }}idegeo/carousel/js/jquery.min.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}idegeo/carousel/js/layerslider.transitions.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}idegeo/carousel/js/layerslider.kreaturamedia.jquery.js"></script>
+<script  type="text/javascript" src="{{ STATIC_URL }}idegeo/carousel/js/layerslider.scripts.js"></script>
+<script  type="text/javascript" src="{{ STATIC_URL }}idegeo/carousel/js/jquery.tooltipster.js"></script>
+
+    {% if DEBUG_STATIC %}
+    <script src="{% static "idegeo/lib/js/jquery.js" %}"></script>
+    <script src="{% static "idegeo/lib/js/jquery.dataTables.js" %}"></script>
+    <script src="{% static "idegeo/lib/js/bootstrap-treeview.js" %}"></script>
+    <script src="{% static "idegeo/lib/js/bootstrap-tokenfield.js" %}"></script>
+    <script src="{% static "idegeo/lib/js/fastselect.standalone.js" %}"></script>
+    <script src="{% static "idegeo/lib/js/select2.full.js" %}"></script>
+    <script src="{% static "idegeo/lib/js/jquery.timeago.js" %}"></script>
+    <script src="{% static "idegeo/lib/js/jq-ajax-progress.js" %}"></script>
+    <script src="{% static "idegeo/lib/js/jquery-ui.js" %}"></script>
+    <script src="{% static "idegeo/lib/js/jquery.raty.js" %}"></script>
+    <script src="{% static "idegeo/lib/js/bootstrap.js" %}"></script>
+    <script src="{% static "idegeo/lib/js/moment-with-locales.js" %}"></script>
+    <script src="{% static "idegeo/lib/js/bootstrap-datetimepicker.js" %}"></script>
+    <script src="{% static "idegeo/lib/js/json2.js" %}"></script>
+    <script src="{% static "idegeo/lib/js/waypoints.js" %}"></script>
+    {% else %}
+    <script src="{% static "idegeo/lib/js/assets.min.js" %}"></script>
+    {% endif %}
+    <script src="{% static "idegeo/geonode/js/utils/utils.js" %}"></script>
+    <script src="{% static "idegeo/geonode/js/base/base.js" %}"></script>
+    <script type="text/javascript" src="{% url "javascript-catalog" %}"></script>
+    {% block extra_script %}{% endblock extra_script %}
+    <script type="text/javascript">
+
+        // Autocomplete instance for the search found in the header.
+        $(document).ready(function() {
+          window.autocomplete2 = new Autocomplete({
+            form_btn: null,
+            form_submit: '#search',
+            form_selector: '#search',
+            input_selector: '#search_input',
+            container_selector: '#search-container',
+            url: '{% url "autocomplete_base" %}'
+          })
+          window.autocomplete2.setup()
+        })
+  
+        $('#search').on('submit', (e) => {
+            $('#search_abstract_input')[0].value =$('#search_input')[0].value;
+            $('#search_purpose_input')[0].value = $('#search_input')[0].value;
+        });
+  
+        $(window).on('load', function() {
+            setTimeout(() => {
+                document.body.scrollTop = 0;
+                document.documentElement.scrollTop = 0;
+            });
+          });
+  
+        $(".datepicker").datepicker({
+            format: "yyyy-mm-dd"
+        });
+      </script>
+  
+      <div class="modal fade" style="width: 100%; height: 100%;" id="_resource_uploading" data-backdrop="static" data-keyboard="false" aria-hidden="true">
+          <div class="modal-dialog">
+              <div class="modal-content">
+                  <div class="modal-header">
+                      <h1>{% trans "Uploading..." %}</h1>
+                  </div>
+                  <div class="modal-body">
+                      <div class="progress">
+                        <div class="progress-bar progress-bar-info progress-bar-striped active" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:100%">
+                          {% trans "Upload in progress..." %}
+                        </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  
+      <div class="modal fade" style="width: 100%; height: 100%;" id="_thumbnail_processing" data-backdrop="static" data-keyboard="false" aria-hidden="true">
+          <div class="modal-dialog">
+              <div class="modal-content">
+                  <div class="modal-header">
+                      <h1>{% trans "Processing..." %}</h1>
+                  </div>
+                  <div class="modal-body">
+                      <div class="progress">
+                        <div class="progress-bar progress-bar-info progress-bar-striped active" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:100%">
+                          {% trans "Updating Thumbnail..." %}
+                        </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  
+      <div class="modal fade" id="_thumbnail_feedbacks" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <h4 class="modal-title" id="exampleModalLabel">{% trans "Message box" %}</h4>
+            </div>
+            <div class="modal-body">
+              ...
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">{% trans "OK" %}</button>
+            </div>
+          </div>
+        </div>
+      </div>
+  
+      <div id="confirmMsgBoxModalOK" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <!-- How to use it: 
+          $("#confirmMsgBoxModalOK").find('.modal-title').text('{% trans "Title" %}');
+          $("#confirmMsgBoxModalOK").find('.modal-body').text('{% trans "Message. Do you want to proceed?" %}');
+          $("#confirmMsgBoxModalOK_control_field").val('your_control_value');
+          $("#confirmMsgBoxModalOK").modal("show");
+  
+          $('#confirmMsgBoxModalOK').find('.modal-footer #confirm').on('click', function() {
+            if ($("#control_field").val() == 'your_control_value') {
+              CONFIRMED
+            }
+          });
+        
+        <div class="modal-dialog">
+          <input type="hidden" class="form-control" id="confirmMsgBoxModalOK_control_field" />
+          <div class="modal-content panel-success">
+            <div class="modal-header panel-heading">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4 class="modal-title">{% trans "Confirm" %}</h4>
+            </div>
+            <div class="modal-body">
+              <p>{% trans "Some text in the modal" %}.</p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">{% trans "Cancel" %}</button>
+              <button type="button" class="btn btn-danger confirm" id="confirm">{% trans "OK" %}</button>
+            </div>
+          </div>
+        </div>-->
+      </div>
+</body>
+</html>

@@ -1,0 +1,23 @@
+{% load i18n %}
+<!-- Contenido oculto para realizar una respuesta de un chat -->
+<div id="response_chat_map_modal" class="modal fade" role="dialog" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Responder a:<span class="user_to_response"></span></h4>
+            </div>
+            <div class="modal-body-response">
+                  <p>Responder</p>
+                  <textarea class="textarea_comments" id="comment-modal"></textarea>
+                  <input type="submit" class="btn btn-primary" id="response_to_btn" value="Responder">
+                  <input type="hidden" name="id_chat_modal" id="id_chat_modal" value=""/>
+
+                  <br>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>

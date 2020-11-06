@@ -1,0 +1,76 @@
+{% extends "mviewer_base.html" %}
+{% load bootstrap_tags %}
+{% block title %} Control Área {% endblock %}
+{% block head %}
+  {{ block.super }}
+{% endblock %}
+{% block body_outer %}
+<!--HEADER-TITULO-->
+<div id="header">
+<div class="container">
+  <div class="logo" style="width:885px;">Configurar Herramienta</div>
+</div>
+</div>
+<div class="container">
+	<div class="row">
+		<div class="col-md-6" id="ca">
+			<form id="formulario" method="post" enctype="multipart/form-data" action="">{% csrf_token %}
+        <div>
+          <div class="form-group">
+            <label for="cov">Cobertura*:</label>
+            <select id="id_coverages" class="form-control">
+                  <option value='0'>--Selecciona la Cobertura--</option>
+                  <option value='statal'>Estatal</option>
+                  <option value='mun'>Municipal</option>
+                  <option value='ageb'>Agebs</option>
+                  <option value='ac'>Áreas de Control</option>
+            </select>
+          </div>
+          <input hidden="true" name="coverages" id="coverages"/>
+          <input hidden="true" name="state" id="state"/>
+          <input hidden="true" name="mun" id="mun"/>
+          <input hidden="true" name="ageb" id="ageb"/>
+          <input hidden="true" name="ac" id="ac"/>
+          <div class="form-group">
+            <label for="cov" class="covver-state" style="display: none;">Clave de Estado:</label>
+              <select id="ac_statal_select" class="form-control"><option value='0'>--Selecciona la opción correspondiente a la clave de estado--</option></select>
+            </div>
+            <div class="form-group">
+              <label for="cov" class="covver-mun" style="display: none;">Clave de Municipio:</label>
+                  <select id="ac_mun_select" class="form-control"><option value='0'>--Selecciona la opción correspondiente a la clave de municipio--</option></select>
+            </div>
+            <div class="form-group">
+              <label for="cov" class="covver-ageb" style="display: none;">Clave de Ageb:</label>
+                  <select id="ac_ageb_select" class="form-control"><option value='0'>--Selecciona la opción correspondiente a la clave de ageb--</option></select>
+            </div>
+            <div class="form-group">
+              <label for="cov" class="covver-ac" style="display: none;">Clave de Área de Control:</label>
+                  <select id="ac_ac_select" class="form-control"><option value='0'>--Selecciona la opción correspondiente a la clave de area de control--</option></select>
+            </div>
+        </div>
+				<p><input type="submit" class="btn btn-primary" value="Guardar"></p>
+			</form>
+		</div>
+	</div>
+	<!-- Modal para seleccionar un atributo de la capa -->
+<div class="modal fade" id="attribute-layer" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal-dialog">
+  <div class="modal-content">
+
+
+    <div class="modal-footer">
+      <div class="less-selected">
+        <!--Input less selected -->
+      </div>
+      <button type="button" class="btn btn-default" id="add-attribute">Asignar</button><!--data-dismiss="modal" -->
+      <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+    </div>
+  </div>
+</div>
+</div>
+<!--End Modal-->
+</div>
+{% endblock %}
+{% block extra_script %}
+    {% include "CoverageFormUpload.js" %}
+{% endblock %}

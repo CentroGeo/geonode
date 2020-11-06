@@ -1,0 +1,50 @@
+{% extends "tables_base.html" %}
+{% load bootstrap_tags %}
+{% load i18n %}
+
+{% block title %}{{ tj.title }}{% endblock %}
+
+{% block head %}
+{% if download %}
+<META HTTP-EQUIV="Refresh" CONTENT="1;URL={{ dwn_url }}">
+{% endif %}
+{{ block.super }}
+{% endblock %}
+
+{% block body %}
+<div class="container">
+{% if download %}
+<div class="row">
+  <div class="col-md-6">
+    <br>
+    <p class="lead">
+      Unión de Tabla: <i>{{ tj.datatable.table_name }}</i> <br>con Capa: <i>{{ tj.source_layer.name }}</i>
+    </p>
+    <h4><b>Su archivo se esta descargando...</b></h4>
+    <h2>Resultados de la operación:</h2>
+    <p>Atributo de tabla: {{ tj.table_attribute.attribute }}</p>
+    <p>Atributo de la capa: {{ tj.layer_attribute.attribute }}</p>
+    <p>Registros coincidentes: {{ tj.matched_records_count }}</p>
+    <p>Registros no coincidentes de la tabla: {{ tj.unmatched_records_count }}</p>
+    <p>Lista de registros no coindentes: {{ tj.unmatched_records_list }}</p>
+  </div>
+</div>
+{% else %}
+<div class="row">
+  <div class="col-md-6">
+    <br>
+    <p class="lead">
+      Unión de Tabla: <i>{{ tj.datatable.table_name }}</i> <br>con Capa: <i>{{ tj.source_layer.name }}</i>
+    </p>
+    <h3>Union creada con éxito</h3>
+    <h4>Resultados:</h4>
+    <p>Registros coincidentes: {{ tj.matched_records_count }}</p>
+    <p>Registros no coincidentes de la tabla: {{ tj.unmatched_records_count }}</p>
+    <p>Lista de registros no coindentes: {{ tj.unmatched_records_list }}</p>
+    <br>
+    <a href="{% url "datatables_metadata" resource.id %}" class="btn btn-primary">Llenar Metadato</a>
+  </div>
+</div>
+{% endif %}
+</div>
+{% endblock %}

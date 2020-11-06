@@ -1,0 +1,58 @@
+{% extends "mviewer_base.html" %}
+{% load bootstrap_tags %}
+{% block title %} Control Área {% endblock %}
+{% block head %}
+  {{ block.super }}
+{% endblock %}
+{% block body_outer %}
+<!--HEADER-TITULO-->
+<div id="header">
+<div class="container">
+  <div class="logo" style="width:885px;">Configurar Herramienta</div>
+</div>
+</div>
+<div class="container">
+	<div class="row">
+		<div class="col-md-6" id="ca">
+			<form id="formulario" method="post" enctype="multipart/form-data" action="">{% csrf_token %}
+				{{ form.media }}
+				{{form|as_bootstrap}}
+				<p><input type="submit" class="btn btn-primary" value="Guardar"></p>
+			</form>
+		</div>
+	</div>
+	<!-- Modal para seleccionar un atributo de la capa -->
+<div class="modal fade" id="attribute-layer" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal-dialog">
+  <div class="modal-content">
+
+    <div class="modal-body">
+		    <span class="select_att">
+              <select id="ac_statal_select"><option value='0'>--Selecciona la opción correspondiente a la clave de estado--</option></select>
+        </span>
+        <span class="select_att">
+              <select id="ac_mun_select"><option value='0'>--Selecciona la opción correspondiente a la clave de municipio--</option></select>
+        </span>
+        <span class="select_att">
+              <select id="ac_ageb_select"><option value='0'>--Selecciona la opción correspondiente a la clave de ageb--</option></select>
+        </span>
+        <span class="select_att">
+              <select id="ac_ac_select"><option value='0'>--Selecciona la opción correspondiente a la clave de area de control--</option></select>
+        </span>
+    </div>
+    <div class="modal-footer">
+      <div class="less-selected">
+        <!--Input less selected -->
+      </div>
+      <button type="button" class="btn btn-default" id="add-attribute">Asignar</button><!--data-dismiss="modal" -->
+      <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+    </div>
+  </div>
+</div>
+</div>
+<!--End Modal-->
+</div>
+{% endblock %}
+{% block extra_script %}
+    {% include "CoverageForm.js" %}
+{% endblock %}

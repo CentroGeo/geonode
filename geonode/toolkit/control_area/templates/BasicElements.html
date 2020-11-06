@@ -1,0 +1,29 @@
+<div id="main-agricola" style="display: none;">
+<div class="menu-left-ac">
+  <span id="installations_basic" class="crops-main-img" style="color: #630f4f;">
+    <!-- <i class="fa fa-wrench" title="Instalaciones" aria-hidden="true"></i> -->
+    <img src="{{STATIC_URL}}soa_toolkit/img/ac/installation_pink.png" width="25px;" title="Instalaciones" alt="pv"/>
+  </span>
+  <span id="technology_basic" class="crops-main-img">
+    <!-- <i class="fa fa-laptop" title="Tecnología agrícola" aria-hidden="true"></i> -->
+    <img src="{{STATIC_URL}}soa_toolkit/img/ac/technology.png" width="25px;" title="Tecnologia agrícola" alt="pv"/>
+  </span>
+  <span id="problematic_basic" class="crops-main-img">
+    <!-- <i class="fa fa-times-circle" title="Problemàtica" aria-hidden="true"></i> -->
+    <img src="{{STATIC_URL}}soa_toolkit/img/ac/problematic.png" width="25px;" title="Problematica" alt="pv"/>
+  </span>
+  <span id="destination_basic" class="crops-main-img">
+    <!-- <i class="fa fa-random"  title="Destino de la producción" aria-hidden="true"></i> -->
+    <img src="{{STATIC_URL}}soa_toolkit/img/ac/chain.png" width="25px;" title="Destino de la producción" alt="pv"/>
+  </span>
+  <span id="surfaces_basic" class="crops-main-img">
+    <img src="{{STATIC_URL}}soa_toolkit/img/ac/surface.png" width="25px;" title="Distribución de otras superficies" alt="pv"/>
+  </span>
+</div>
+  <div class="content-panel2" id="ejecute-installations"></div>
+  <div class="content-panel2" id="ejecute-basic" style="display: none;"></div>
+  <div class="content-panel2" id="ejecute-problematic" style="display: none;"></div>
+  <div class="content-panel2" id="ejecute-destination" style="display: none;"></div>
+  {% include "BasicSurface.html" %}
+</div>
+{% include "BasicElements.js" %}

@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {% load subtract %}
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{mviewer.name}}</title>
+    <!--BASE CSS-->
+    {% if mviewer.icon_title %}
+      <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}idegeo/mviewer/css/commonAlt.css" />
+    {% else %}
+      <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}idegeo/mviewer/css/commonAltitle.css" />
+    {% endif %}
+    <link rel="stylesheet" href="{{ STATIC_URL }}idegeo/lib/leaflet/easyPrint.css"/>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.4/dist/leaflet.css"
+      integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA=="
+      crossorigin=""/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/1.0.2/leaflet.draw.css" />
+    <link rel="stylesheet" href="{{ STATIC_URL }}idegeo/coordinates/Leaflet.Coordinates-0.1.5.css">
+    <link href="{{STATIC_URL}}idegeo/mviewer/css/leaflet-beautify-marker-icon.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="/static/zoombox/L.Control.ZoomBox.css" />
+
+    <script src="https://unpkg.com/leaflet@1.3.4/dist/leaflet-src.js"
+      integrity="sha512-+ZaXMZ7sjFMiCigvm8WjllFy6g3aou3+GZngAtugLzrmPFKFK7yjSri0XnElvCTu/PrifAYQuxZTybAEkA8VOA=="
+      crossorigin=""></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/esri-leaflet/2.0.7/esri-leaflet.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/1.0.2/leaflet.draw.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}idegeo/coordinates/Leaflet.Coordinates-0.1.5.min.js"></script>
+    <script src="/static/zoombox/L.Control.ZoomBox.min.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB6ZJwb2cqgW1YXsmXGT1I-0ujia5UREAg&libraries=places" async defer></script>
+    <script src="{{ STATIC_URL }}idegeo/lib/leaflet/leaflet.easyPrint.js"></script>
+    <script src='//api.tiles.mapbox.com/mapbox.js/plugins/leaflet-omnivore/v0.3.1/leaflet-omnivore.min.js'></script>
+    <script src='https://unpkg.com/leaflet.gridlayer.googlemutant@latest/Leaflet.GoogleMutant.js'></script>
+    <script src="{{STATIC_URL}}idegeo/mviewer/js/leaflet-beautify-marker-icon.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/leaflet.beautifymarker@1.1.1/leaflet-beautify-marker.js"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+
+</head>
+
+<!-- HEADER -->
+<header id="header">
+	<div class="header-wrapper">
+		<div class="header-row row-top">
+			<div class="header-sitename">
+				<h1 class="sitename"><span class="xtc-nowrap">{{mviewer.name}}</span></h1>
+			</div>
+		</div>
+	</div>
+</header>       
+<!-- MAP-WRAPPER -->
+<section id="map-wrapper">
+  		<!-- Loading <div id="loadingDiv"></div> -->
+		<div id="btn-panelHidden-lf" class="btn-panelHidden btn-panel-lf hidden" title="Ocultar Temática" style="transform: scale(1, -1); background-color: rgba(0, 0, 0, 0.0);"></div>
+  <!-- Mapa -->
+      <div id="wrapper">
+          <div id="map"></div>
+      </div> 
+  <!-- Left Panel -->
+  		<div id="leftPanel" class="mapPanel">
+        <div class="panelContainer"> 
+          <!-- PANEL-ICONS -->
+  				<div id="panelIcons" class="panelIcons  scroll-thin-dark" style="overflow-y:scroll;">
+          {% for top in topics %}
+            {% if top.custome_icon %}
+              <div id="m{{ forloop.counter }}" class="panelIcon tooltip-rg" data-toggle="tooltip-rg"  data-placement="left" title="{{top.name}}" data-topic="context">
+                <img src="{{MEDIA_URL}}{{top.custome_icon}}" style="width:25px; height:25px;">
+                <p class="iconText">{{top.name}}</p>
+              </div>
+            {% else %}
+              {% if top.icon %}
+                <div id="m{{ forloop.counter }}" class="panelIcon tooltip-rg" data-toggle="tooltip-rg"  data-placement="left" title="{{top.name}}" data-topic="context">
+                    <i class="fa fa-{{ top.icon }} fa-1x" aria-hidden="true"></i>
+                    <p class="iconText">{{top.name}}</p>
+                </div>
+                {% counter push %}
+              {% else %}
+                {% if push %}
+                <div id="m{{ forloop.counter }}" class="panelIcon tooltip-rg" data-toggle="tooltip-rg" data-placement="left" title="{{top.name}}" data-topic="context">
+                <img src="{{ forloop.counter | subtract:push | file_exists }}" style="width: 25px; vertical-align: middle;">
+                <p class="iconText">{{top.name}}</p>
+                </div>
+                {% else %}
+                <div id="m{{ forloop.counter }}" class="panelIcon tooltip-rg" data-toggle="tooltip-rg" data-placement="left" title="{{top.name}}" data-topic="context"><img src="{{ forloop.counter | file_exists }}" style="width: 25px; vertical-align: middle;">
+                <p class="iconText">{{top.name}}</p>
+                </div>
+                {% endif %}
+              {% endif %}
+            {% endif %}
+          {% endfor %}
+          </div>
+  			</div>
+  		</div>
+  <!-- Popup Left Panel -->
+  <div class="tematicT">
+    <div class="layerMenu translateLayerListRight animationTransition" id="panel_mviever">
+      <div id="accordion" class="scrollbar-panel">
+        {% for top in topics %}
+    		<div id="panelTitle" class="options-title"></div>
+            <div id="containerTematic{{ forloop.counter }}"class="categoryContainer hidden scroll-thin-dark" style="overflow-y:scroll;">
+    		  	<div id="panelTitle{{ forloop.counter }}" class="options-title"></div>
+            {% if top.custome_icon %}
+              <div class="category-sub top-{{forloop.counter}}">
+                <img src="{{MEDIA_URL}}{{top.custome_icon}}" style="width:25px; height:25px;"> {{top.name}}
+              </div>
+            {% else %}
+              {% if top.icon %}
+                <div class="category-sub top-{{forloop.counter}}">
+                    <i class="fa fa-{{ top.icon }} fa-1x" aria-hidden="true"></i>    {{top.name}}
+                </div>
+                {% counter count %}
+              {% else%}
+                {% if count %}
+                  <div class="category-sub top-{{forloop.counter}}"><img src="{{ forloop.counter | subtract:count | file_exists }}" style="width: 23px;">   {{top.name}}</div>
+                {% else %}
+                  <div class="category-sub top-{{forloop.counter}}"><img src="{{ forloop.counter | file_exists }}" style="width: 23px;">   {{top.name}}</div>
+                {% endif %}
+              {% endif %}
+             {% endif %}           
+              <ul class="noDots">
+                {% for lay in top.layerids_set.all|dictsort:"stack_order" %}
+                  {% for l in lays %}
+                    {% if l.id == lay.layer_id %}
+                      <li class="layer selected" data-layer="loss">
+                        <span class="onoffswitch" id="st{{top.id}}l{{l.id}}r{{lay.stack_order}}" data-typename="{{l.typename}}" data-href="{{l.ows_url}}"
+                              data-title="{{l.title}}" data-info="{{l.abstract}}" data-date="{{l.date}}" data-topid="{{top.id}}" data-layid="{{l.id}}"
+                              data-style="{{lay.style}}" data-defstyle="{{lay.default_style}}" data-regid="{{lay.id}}" data-x0="{{l.bbox_x0}}" data-y0="{{l.bbox_y0}}"
+                              data-x1="{{l.bbox_x1}}" data-y1="{{l.bbox_y1}}"><span></span>
+                        </span>
+                        <p class="layer-title">{% if lay.style != lay.default_style %}
+                        {{lay.style}}{% elif lay.abstract %}{{lay.abstract|truncatechars:60}}
+                        {% else %}{{ l.title }}{% endif %}<!--title-->
+                        </p>                    
+                      </li>
+                    {% endif %}
+                  {% endfor %}
+                {% endfor %}
+              </ul>
+            </div>
+          <script> var tematics = {{ forloop.counter }}</script>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+  
+    <!-- Modal para info -->
+  <div id="sourceModal" class="modal modal-hide hidden is-active">
+    <div class="modal-backdrop"></div>
+    <div class="modal-window">
+      <a class="modal-close"><i class="fa fa-times fa-lg"></i></a>
+      <div class="modal-wrapper scroll-dark has-footer">
+        <div class="modal-content">
+          <div class="modal-source">
+            <h2 id="lay-tit" class="modal-title"></h2>
+            <h3 id="lay-date" class="modal-subtitle"></h3>
+            <h2 class="modal-title">Resumen</h2>
+            <p id="lay-abst"></p>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <div class="m-btncontainer">
+              <a href="#" id="down-meta" class="btn" target="_blank">Descargar metadato</a>
+              <a href="#" id="down-shp" target="_blank" class="btn" style="display:none">Descargar capa</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {% include "FullBlackModal.html" %}
+  <!-- Right Panel -->
+  <div id="narrative-nav-maker" class="btn-panelHidden hidden">
+    <span id="prev-narrative" style="cursor:pointer;" title="Narrativa Anterior"><i class="fa fa-chevron-left" aria-hidden="true"></i></span>
+    <span style="margin:5px;"><i class="fa fa-info" aria-hidden="true"></i></span>
+    <span id="next-narrative" style="cursor:pointer;" title="Narrativa Siguiente"><i class="fa fa-chevron-right" aria-hidden="true"></i></span>
+  </div>
+  <div id="btn-panelHidden-rg" class="btn-panelHidden btn-panel-rg" title="Ocultar panel"></div>
+  <div id="leyenda" class="btn-r btn-panelHidden leyenda selected" title="Leyenda"></div>
+  <div id="mapa" class="btn-r btn-panelHidden mapa" title="Mapa base"></div>
+  <div id="description" class="btn-r btn-panelHidden description hidden" title="Descripción"></div>
+  <div id="rightPanel" class="mapPanel">
+  	<div class="panelContainer">
+  		<div class="panelSelect">
+  			<!-- TOPIC-TITLE -->
+  			<div class="topicTitle leyenda">
+          <i class="fas fa-layer-group"></i> Leyenda
+        </div>
+  			<div class="topicTitle mapa hidden">
+          <i class="fas fa-globe-americas"></i> Mapa base
+        </div>
+  			<div class="topicTitle description hidden">
+          <i class="fas fa-file-alt"></i> Descripción
+        </div>
+  			<section id="legends" class="topics scroll-thin-dark leyenda">
+           <ul>
+               <li>
+                   <ul class="scrollbar-inner" id="style-1">
+                       <li class="force-overflow-pan">
+                         <ul class="layers topics"></ul>
+                       </li>
+                   </ul>
+                </li>
+           </ul>
+        </section>
+  			<section id="listMaps" class="topics scroll-thin-dark mapa hidden">
+          <div class="tab-basemaps">
+              <ul class="maptype-list scroll-thin-dark"></ul>
+          </div>
+        </section>
+  			<section id="descriptionContent" class="topics scroll-thin-dark description hidden">
+          <div id="narrativeText">
+            <div id="descPanorama">
+              {% if mviewer.description %}
+                {{mviewer.description|safe|escape}}
+              {% endif %}
+            </div>
+            <div id="descCapa"></div>
+            <div id="marker-narrative" style="display:none;"></div>
+          </div>
+        </section>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% include "L.TileLayer.BetterWMS.js" %}
+<script>{% include "basemap.js" %}</script>
+{% include "variables_toolsoa.js" %}
+{% include "mviewer_marker_narrative.js" %}
+{% include "FullBlackModal.html" %}
+<script>{% include "mviewerAlt.js" %}</script>
+{% include "logotipos.js" %}
+{% include "main_tools_menu.js" %}
+{% include "tools_ac.js" %}
+{% include "gtag.js" %}

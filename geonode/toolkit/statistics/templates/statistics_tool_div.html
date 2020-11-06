@@ -1,0 +1,25 @@
+<h2>Estadística Básica</h2>
+<span class="close-tool" style="cursor: pointer;"><i class="fa fa-times"></i></span>
+<div id="div-btn-stats" style="margin: 12px 5px;">
+    <label style="font-size: 13px;">Seleccione una capa</label><br>
+    <button id="btn-start-stats" class="btn little green uppercase disabled">Analizar</button>
+</div>
+<div id="stats">
+    <div id="stats-select" style="display:none;">
+        <label for="layer-attr">Atributos</label>
+        <select id="layer-attr"></select>
+        <p id="exceededMsg" style="display:none; color:red;">El numero de categorias excede 50</p>
+    </div>
+    <div id="stats-result" style="display:none;">
+        <div id="s-table"></div>
+        <div id="pie-chart-stats">
+            <div id="stats-radio">
+                <input type="radio" name="stats-radio" value="value"> Cantidad
+                <input type="radio" name="stats-radio" value="area"> Área
+            </div>
+            <div id="s-chart"></div>
+        </div>
+    </div>
+</div>
+
+{% include "statistics.js" %}

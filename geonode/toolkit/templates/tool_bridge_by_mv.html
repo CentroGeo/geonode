@@ -1,0 +1,90 @@
+<!--This code is for tools for mviewer-->
+<div style="display: block;">
+    <table class="hor-minimalist-b">
+       <thead>
+       <tr>
+         <th scope="col" width="42%">
+             Herramientas generales de {{mviewer}}
+         </th>
+         <th width="50%"></th>
+         <th width="8%">
+           <span style="float:right;">
+             <a href="{% url 'upload_configure_mviewer' mviewer.id %}">
+                 <i class="fa fa-plus fa-1x"  title="Agregar herramienta" aria-hidden="true"></i>
+             </a>
+           </span>
+         </th>
+       </tr>
+       </thead>
+       <tbody>
+        {% for tool in tools %}
+          {% if tool.tool.general_tool %}
+            {% if tool.tool.constant in "WMS" %}
+                {% include "wms_tool_detail.html" %}
+            {% else %}
+                <tr id="tool-{{tool.tool.id}}" class="toolkit">
+                    <td>
+                        <span>{{tool.tool}}</span> {% if tool.tool.help %}<span>({{tool.tool.help}})</span>{% endif %}
+                    </td>
+                    <td colspan="2">
+                        <span>
+                            <a href="{% url 'delete_configure_mviewer' mviewer.id tool.id %}">
+                                <i class="fa fa-trash" title="Eliminar Herramienta" aria-hidden="true"></i>
+                            </a>
+                        </span>
+                    </td>
+                </tr>
+            {% endif%}
+            {% endif %}
+         {% endfor %}
+       </tbody>
+    </table>
+    <!-- <p>Nota: Recuerda que no puedes elegir la misma herramienta dos veces</p> -->
+    <table class="hor-minimalist-b">
+       <thead>
+       <tr>
+         <th scope="col" width="50%">
+             Herramientas ligadas a la capa
+         </th>
+         <th colspan="2" scope="col" width="50%">
+           Capa
+         </th>
+
+       </tr>
+       </thead>
+       <tbody>
+        {% for tool in tools %}
+          {% if tool.tool.general_tool %}
+
+          {% else %}
+              <tr>
+                <td>
+                  <span>{{tool.tool}}</span>
+                  <div class="helper-tool"> {{tool.tool.help}}</div>
+                </td>
+                <td>
+                  <span>{{tool.layer_mv.title}}</span>
+                </td>
+                <td>
+                  {% if tool.tool.constant in "CROPS_ANALISYS_SPRING" %}
+                    <span>
+                      <a href="{% url 'configure_tool' mviewer.id tool.id %}">
+                        <i class="fa fa-cog fa-1x"  title="Configurar herramienta" aria-hidden="true"></i>
+                      </a>
+                    </span>
+                  {% endif %}
+                  <span>
+                    <a href="{% url 'delete_configure_mviewer' mviewer.id tool.id %}">
+                      <i class="fa fa-trash fa-1x" title="Eliminar Asociación" aria-hidden="true"></i>
+                    </a>
+                  </span>
+                </td>
+              </tr>
+            {% endif %}
+         {% endfor %}
+
+       </tbody>
+
+    </table>
+</div>
+<!--This code is for tools for mviewer-->

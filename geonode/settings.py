@@ -488,6 +488,41 @@ INSTALLED_APPS = (
 
     # GeoNode
     'geonode',
+
+    # Applications
+    'geonode.contrib.datatables',
+    'geonode.interactive',
+    'geonode.interactive.intercensal',
+    'geonode.interactive.alf_census',
+    'geonode.interactive.census2010',
+    'geonode.interactive.map_composer',
+    'geonode.interactive.wms_service',
+    'geonode.interactive.chats_map',
+    'geonode.interactive.intersection_tool',
+    #'geonode.content_handler',
+    #'geonode.ms',
+    'geonode.mviewer',
+    #'geonode.blog',
+    #'geonode.references',
+    'geonode.toolkit',
+    'geonode.toolkit.intersection',
+    'geonode.toolkit.control_area',
+    'geonode.toolkit.statistics',
+    'geonode.toolkit.wms',
+    'geonode.toolkit.coffee_dis_cost',
+    'geonode.toolkit.hotspot',
+    'geonode.toolkit.census_tool',
+    'geonode.applications',
+
+    #apps
+    'geonode.applications.destination_exp',
+    'geonode.applications.mugs',
+    'geonode.applications.farming_siap',
+    'geonode.applications.lidar',
+
+    # Other
+    'ckeditor',
+    'fontawesome',
 )
 
 INSTALLED_APPS += ('markdownify',)
@@ -2006,6 +2041,12 @@ if MONITORING_ENABLED:
         'schedule': 60.0,
     }
 
+# Load more settings from a file called local_settings.py if it exists
+try:
+    from local_settings import *  # noqa
+except ImportError:
+    pass
+
 USER_ANALYTICS_ENABLED = ast.literal_eval(os.getenv('USER_ANALYTICS_ENABLED', 'False'))
 USER_ANALYTICS_GZIP = ast.literal_eval(os.getenv('USER_ANALYTICS_GZIP', 'False'))
 
@@ -2013,3 +2054,22 @@ GEOIP_PATH = os.getenv('GEOIP_PATH', os.path.join(PROJECT_ROOT, 'GeoIPCities.dat
 #This controls if tastypie search on resourches is performed only with titles
 SEARCH_RESOURCES_EXTENDED = strtobool(os.getenv('SEARCH_RESOURCES_EXTENDED', 'True'))
 # -- END Settings for MONITORING plugin
+# Configuracion de CKeditor
+CKEDITOR_UPLOAD_PATH = "uploads/ms/images/"
+CKEDITOR_MEDIA_PREFIX  = "/media/ckeditor/"
+CKEDITOR_RESTRICT_BY_USER = True
+CKEDITOR_CONFIGS = {
+    'default': {
+        'toolbar': 'MyToolbar',
+        'height': 550,
+        'width': 800,
+        'filebrowserWindowWidth': 830,
+        'filebrowserWindowHeight': 800,
+        'skin' : 'icy_orange',
+        'extraPlugins': 'widget,youtube,mapa,documentos,references',
+        'extraAllowedContent' :'p[id];'
+        +'a[data-id,data-toggle,data-target,data-title,data-mapa-saved,data-mapa,data-documentos-saved,data-documentos,lef_map_id];',
+        'removeButtons': 'Cut,Copy,Paste,Strike,Subscript,Superscript',
+        'contentsCss': '/static/narratives/css/styles.css',
+    },
+}

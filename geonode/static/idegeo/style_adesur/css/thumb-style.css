@@ -1,0 +1,30 @@
+
+/*Estilos para thumbs de recursos*/
+#img_thumbs {
+  border: 1px solid #CACCCF;
+  border-radius: 15px !important;
+  box-shadow: 5px 5px 5px #aaa;
+  max-width: 202px;
+}
+.title_map a{
+  color: #01242F;
+  font-size: 18px;
+  font-weight: bold;
+}
+.layer_abstract, .layer_title_for{
+	color: #807D7D;
+    font-family: Helvetica,Arial,sans-serif;
+    font-size: 14px;
+    line-height: 19px;
+}
+.layer_title_for{
+	font-weight: bold;
+}
+.fa-times
+{
+  position: absolute;
+  left: 110px;
+  top: 50px;
+  z-index: 9999999;
+  color: red;
+}

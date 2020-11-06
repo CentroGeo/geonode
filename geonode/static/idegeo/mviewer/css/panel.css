@@ -1,0 +1,331 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins&display=swap');
+/*
+*
+* Esta hoja de estilo, soló es para dar los estilos necesarios para que el panel funcione, el cual esta condicionado
+* a una condición: soló si el panel vertical esta activo entrará a esta hoja de estilos
+*
+*/
+
+.layerMenu {
+    position: absolute;
+    width: 340px;
+    left: 20px;
+    top: 119px;
+}
+/*
+*
+* el logo lo hacemos para la izquierda y un poco para abajo cuando el panel esta activo, para que puedan estar juntos
+*/
+.logo_nav {
+     left: 18px !important;
+     margin-bottom: -25px;
+}
+
+.arr-pa{
+    padding: 4px 0px 0px 5px;
+}
+.plus-right, .min-right{
+    cursor: pointer;
+    float: right;
+    padding: 5px 0px 10px 0px;
+}
+#min-simbio, #min-cate{
+    display: none;
+}
+.panel-header{
+    color: #707d92;
+    border-color: #707d92;
+    padding: 10px;
+}
+.panel-content{
+    border: 1px solid #191717;
+}
+#layers-img, #category-img{
+    display: none;
+}
+.panel-body{
+    color: #2f343c;
+    border-top: 1px solid #707d92;
+}
+/*
+ *  scroll
+ */
+.scrollbar-panel {
+    float: right;
+    max-height: 900px;
+    width: 100%;
+    margin: -2px -1px 10px 0px;
+    overflow-y: scroll;
+
+}
+/***
+medias query para el panel sea resizable
+*/
+@media (max-width: 1959px) {
+  .scrollbar-panel {
+    max-height: 690px;
+  }
+}
+@media (max-width: 1899px) {
+  .scrollbar-panel {
+    max-height: 650px;
+  }
+}
+@media (max-width: 1631px) {
+  .scrollbar-panel {
+    max-height: 620px;
+  }
+}
+@media (max-width: 1499px) {
+  .scrollbar-panel {
+    max-height: 710px;
+    width: 90%;
+  }
+  .layerMenu{
+    margin-left: -35px !important;
+    top: 81px !important;
+  }
+}
+@media (max-width: 1147px) {
+  .scrollbar-panel {
+    max-height: 650px;
+    width: 80%;
+  }
+  .layerMenu{
+   margin-left: -68px !important;
+   top: 81px !important;
+  }
+}
+@media (max-width: 800px) {
+  .scrollbar-panel {
+    max-height: 600px;
+    width: 70%;
+  }
+  .layerMenu{
+   margin-left: -115px !important;
+    top: 81px !important;
+  }
+}
+@media (max-width: 767px) {
+  .scrollbar-panel {
+    max-height: 500px;
+    width: 70%;
+  }
+  .layerMenu{
+   margin-left: -115px !important;
+    top: 81px !important;
+  }
+}
+@media (max-width: 667px) {
+  .scrollbar-panel {
+    max-height: 500px;
+    width: 70%;
+  }
+  .layerMenu{
+    margin-left: -115px !important;
+    top: 81px !important;
+  }
+}
+@media (max-width: 498px) {
+  .scrollbar-panel {
+    max-height: 300px;
+    width: 50%;
+    overflow-x: scroll;
+  }
+  .layerMenu{
+    margin-left: -115px !important;
+    top: 81px !important;
+  }
+}
+/***
+end medias query para el panel sea resizable
+*/
+#accordion::-webkit-scrollbar {
+    display: none;
+}
+.force-panel {
+    min-height: 50px;
+    max-height: 900px;
+    margin-right: 10px;
+
+}
+.scrollbar-inner {
+    background-color: #F5F5F5;
+    float: right;
+    max-height: 350px;
+    width: 100%;
+    margin: 2px -1px 10px 0px;
+    overflow-y: scroll;
+}
+.force-overflow-pan {
+    min-height: 50px;
+    max-height: 1250px;
+    margin-right: 10px;
+
+}
+.layers, .layer{
+    color: #d5dee2 !important;
+}
+/*
+ *  STYLE 1
+ */
+
+#style-1::-webkit-scrollbar-track
+{
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    border-radius: 10px;
+    background-color: #F5F5F5;
+}
+
+#style-1::-webkit-scrollbar
+{
+    width: 8px;
+    background-color: #F5F5F5;
+}
+
+#style-1::-webkit-scrollbar-thumb
+{
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+    background-color: #555;
+}
+/*
+ *  STYLE end
+ */
+/*
+* Estilos para agregar los colores del panel vertical
+*/
+.top-1{
+ border-left: 3px solid #e5d010;
+ border-bottom: 3px solid #e5d010;
+ /*font-family: 'Poppins', sans-serif;*/
+}
+.top-2{
+ border-left: 3px solid #ed7728;
+ border-bottom: 3px solid #ed7728;
+
+}
+.top-3{
+ border-bottom: 3px solid #cf7fec;
+ border-left: 3px solid #cf7fec;
+}
+.top-4{
+ border-bottom: 3px solid #ff6699;
+ border-left: 3px solid #ff6699;
+}
+.top-5{
+ border-bottom: 3px solid #2897ed;
+ border-left: 3px solid #2897ed;
+}
+.top-6{
+ border-bottom: 3px solid #81ea75;
+ border-left: 3px solid #81ea75;
+}
+.top-7{
+ border-bottom: 3px solid #707d92;
+ border-left: 3px solid #707d92;
+}
+.top-8{
+ border-bottom: 3px solid #455B80;
+ border-left: 3px solid #455B80;
+}
+.top-9{
+ border-bottom: 3px solid #D6E6FF;
+ border-left: 3px solid #D6E6FF;
+}
+.top-10{
+ border-bottom: 3px solid #8AB7FF;
+ border-left: 3px solid #8AB7FF;
+}
+.top-11{
+ border-bottom: 3px solid #6B7380;
+ border-left: 3px solid #6B7380;
+}
+.top-12{
+ border-bottom: 3px solid #6E92CC;
+ border-left: 3px solid #6E92CC;
+}
+.top-13{
+ border-bottom: 3px solid #FFAFA3;
+ border-left: 3px solid #FFAFA3;
+}
+.top-14{
+ border-bottom: 3px solid #8AB7FF;
+ border-left: 3px solid #8AB7FF;
+}
+.top-15{
+ border-bottom: 3px solid #AECC5A;
+ border-left: 3px solid #AECC5A;
+}
+.top-16{
+ border-bottom: 3px solid #9BB357;
+ border-left: 3px solid #9BB357;
+}
+.top-17{
+ border-bottom: 3px solid #4F75B3;
+ border-left: 3px solid #4F75B3;
+}
+.top-18{
+ border-bottom: 3px solid #FFAFA3;
+ border-left: 3px solid #FFAFA3;
+}
+.top-19{
+ border-bottom: 3px solid #8AB7FF;
+ border-left: 3px solid #8AB7FF;
+}
+.top-20{
+ border-bottom: 3px solid #AECC5A;
+ border-left: 3px solid #AECC5A;
+}
+.top-21{
+ border-bottom: 3px solid #9BB357;
+ border-left: 3px solid #9BB357;
+}
+/*
+*END
+*De estilos para agregar los colores del panel vertical
+*/
+.onoffswitch{
+    margin-right: 10px;
+    margin-top: 7px;
+    float: right;
+ }
+.category-sub{
+    letter-spacing: normal !important;
+    /*background: linear-gradient(to right,#130303,#756c6c,#3a2c2c,#100b0b)*/
+    border-top: 1px solid rgba(158, 158, 158, 0.3);
+
+}
+.layers{
+    font-family: 'Poppins', sans-serif;
+}
+.l-title {
+    cursor: default;
+    margin-left: 28px;
+    margin-top: -21px;
+    color: #9e9e9e;
+}
+
+.pull-right{
+    margin-right: 8px;
+}
+.container-info-icon{
+    display: none;
+}
+.container-eye-icon{
+    margin-left: 5px;
+}
+.layer-info-container{
+    padding: 10px 0px 0px 0px !important;
+    border-top: 1px solid #d6d3d3;
+}
+.layer-info{
+    margin-left: 27px;
+    margin-bottom: 10px;
+    color: #9e9e9e;
+}
+.inf-icon{
+    position: relative;
+    top: 16px;
+    right: -11px;
+}
