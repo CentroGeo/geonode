@@ -2065,11 +2065,11 @@ CKEDITOR_CONFIGS = {
         'width': 800,
         'filebrowserWindowWidth': 830,
         'filebrowserWindowHeight': 800,
-        'skin' : 'icy_orange',
+        #'skin' : 'icy_orange',
         'extraPlugins': 'widget,youtube,mapa,documentos,references',
         'extraAllowedContent' :'p[id];'
         +'a[data-id,data-toggle,data-target,data-title,data-mapa-saved,data-mapa,data-documentos-saved,data-documentos,lef_map_id];',
-        'removeButtons': 'Cut,Copy,Paste,Strike,Subscript,Superscript',
-        'contentsCss': '/static/narratives/css/styles.css',
+        'removeButtons': 'Cut,Copy,Paste,Strike,Subscript,Superscript,Table,CopyFormatting',
+        'contentsCss': '/static/idegeo/narratives/css/styles.css',
     },
 }
