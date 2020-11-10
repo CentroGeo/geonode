@@ -27,7 +27,7 @@
 <header class="staticHeader">
     <div class="staticContainer">
         <div class="staticLogo">
-            <a class="siteLogo" href='{% url 'home' %}'><img class="iconStatic" src="/static/blog/images/CentroGeo.png" style="height: 72px;"/></a>
+            <a class="siteLogo" href='{% url 'home' %}'><img class="iconStatic" src="/static/idegeo/blog/images/CentroGeo.png" style="height: 72px;"/></a>
         </div>
         {% if MainHeader %}
         <div class="staticLogo">
@@ -44,8 +44,8 @@
             <div class="contentNav">
                 <ul class="navMenu">
                     <li ><a href="{% url 'home' %}" itemprop="url">Inicio</a></li>
-                    <li ><a href="{% url 'blog' %}" itemprop="url">Historias</a></li>
-                    <li ><a href="{% url 'ms_public_list' %}" itemprop="url">Micrositios</a></li>
+                    {% comment %}<li ><a href="{% url 'blog' %}" itemprop="url">Historias</a></li>
+                    <li ><a href="{% url 'ms_public_list' %}" itemprop="url">Micrositios</a></li>{% endcomment %}
                     <li ><a href="{% url 'mviewer_public' %}" itemprop="url" style="border-bottom: 3px solid var(--color-theme);">Panoramas</a></li>
                     <li ><a href="{% url 'layer_interface' %}" itemprop="url">Visualizador</a></li>
                     <li ><a href="{% url 'documents_interface' %}" itemprop="url">Documentos</a></li>

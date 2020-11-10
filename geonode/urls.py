@@ -56,7 +56,8 @@ sitemaps = {
     "map": MapSitemap
 }
 
-homepage = register_url_event()(TemplateView.as_view(template_name='index.html'))
+#homepage = register_url_event()(TemplateView.as_view(template_name='index.html'))
+homepage = register_url_event()(TemplateView.as_view(template_name='indexIdegeo.html'))
 
 urlpatterns = [
     url(r'^$',

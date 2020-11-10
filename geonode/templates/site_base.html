@@ -129,8 +129,8 @@
                     {% if request.user.is_authenticated and request.user.microsite_access %}
                     <li class="dropdown"><a href="#" class="btn"><i class="fa fa-cog" aria-hidden="true"></i> Difusión (Gestión)</a>
                         <div class="dropdown-content">
-                            <a href="{% url 'blog_admin' %}" class="dd-elem">Blog</a>
-                            {% comment %}<a href="{% url 'ms_gestor_list' %}" class="dd-elem">Micrositios</a>{% endcomment %}
+                          {% comment %}<a href="{% url 'blog_admin' %}" class="dd-elem">Blog</a>
+                            <a href="{% url 'ms_gestor_list' %}" class="dd-elem">Micrositios</a>{% endcomment %}
                             <a href="{% url 'mviewer_list' %}" class="dd-elem">Panoramas</a>
                         </div>
                     </li>
@@ -165,7 +165,7 @@
                     {% if 'interactive' in request.get_full_path and 'map_composer' not in request.get_full_path %}
                     <li class="main_vert"><a href="{% url 'layer_interface' %}" class="btn">Capas</a></li>
                     <li class="main_vert"><a href="{% url 'maps_interface' %}" class="btn">Mapas</a></li>
-                    <li class="main_vert"><a href="{% url 'blog' %}" class="btn">Divulgacion</a></li>
+                    {% comment %}<li class="main_vert"><a href="{% url 'blog' %}" class="btn">Divulgacion</a></li>{% endcomment %}
                     <!--<li class="main_vert"><a href="{% url 'documents_interface' %}" class="btn">Documentos</a></li>-->
                     {% elif 'public' in request.get_full_path %}
                         {% comment %}<li class="main_vert" id="nav_ms"><a href = "{% url 'ms_public_list' %}" class="btn">Micrositios</a></li>{% endcomment %}

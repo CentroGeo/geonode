@@ -1,0 +1,132 @@
+{% extends "site_base.html" %}
+{% load i18n %}
+{% load staticfiles %}
+{% load base_tags %}
+
+{% block title %} {% trans "Welcome!" %} -  {% endblock %}
+<head>
+</head>
+{% block body_class %}home{% endblock %}
+
+{% block middle %}
+<section id="main">
+	<div class="container">
+		<div id="main-content">
+			<div class="content-nav">
+				<div class="content-nav-menu">
+					<div class="nav-menu-img"><img src="{{STATIC_URL}}idegeo/carousel/img/content-nav-menu_image.png" alt="menu image" style="visibility: hidden; opacity: 0; transform: matrix(0, 0, 0, 0, 0, 0); transform-origin: center center 0px;"/></div>
+					<div class="nav-menu-svg" style="display: none; visibility: hidden; opacity: 0;">
+						<svg version="1.1" id="menu_svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 360 360" style="enable-background:new 0 0 360 360;" xml:space="preserve">
+							<g transform="translate(0,0)">
+								<path id="st00" class="st0" d="M117,117h126v126H117V117z"/>
+								<path id="st04" class="st0" d="M117,252l126,0l100,98H17L117,252z"/>
+								<path id="st03" class="st0" d="M252,115l98-99v327l-98-99V115z"/>
+								<path id="st02" class="st0" d="M243,108l-126,0L17,10h326L243,108z"/>
+								<path id="st01" class="st0" d="M10,343V16l98,99v129L10,343z"/>
+								<path id="st00-hover" class="st1" d="M115,115h130v130H115V115L115,115z M119,119v122h122V119H119z"/>
+								<path id="st04-hover" class="st1" d="M116.18,250L12.1,352h335.8L243.82,250L116.18,250L116.18,250z M117.82,254L21.9,348h316.2l-95.92-94L117.82,254L117.82,254z"/>
+								<path id="st03-hover" class="st1" d="M250,244.82V114.18L352,11.14v336.73L250,244.82L250,244.82z M254,243.18V115.82l94-94.96v317.27L254,243.18L254,243.18z"/>
+								<path id="st02-hover" class="st1" d="M243.82,110L347.9,8H12.1l104.08,102L243.82,110L243.82,110z M242.18,106l95.92-94H21.9l95.92,94L242.18,106L242.18,106z"/>
+								<path id="st01-hover" class="st1" d="M110,244.82L8,347.86V11.14l102,103.04V244.82L110,244.82z M106,243.18V115.82L12,20.86v317.27L106,243.18L106,243.18z"/>
+							</g>
+						</svg>
+					</div>
+				</div>
+				{% with facet_type='home' %}
+   			 	{% facets as facets %}
+				<div id="item-ide" class="content-nav-item" style="display: none; visibility: hidden; opacity: 0;">
+					<div class="nav-item-dsc">
+						<div class="item-dsc-tit"><span class="dsc-tit-txt">Descubre, Visualiza y Descarga</span></div>
+						<div class="item-dsc-txt">IDEGeo está dirigido a la comunidad en general que requiera adquirir, utilizar y compartir información geoespacial a través del catálogo estandarizado.</div>
+					</div>
+				</div>
+				<div id="item-acerca" class="content-nav-item" style="display: none; visibility: hidden; opacity: 0;">
+					<div class="nav-item-img"><a href="#" class="modal-acerca"><img src="{{STATIC_URL}}idegeo/carousel/img/170301_Globo.svg" alt="acerca"/></a></div>
+					<div class="nav-item-dsc">
+						<div class="item-dsc-tit"><a href="#" class="modal-acerca">Acerca de la Plataforma Geoweb IDEGeo</a></div>
+						<div class="item-dsc-txt">A través de los servicios que presta IDEGeo puedes explorar, consultar y obtener información proveniente de diversas fuentes relacionada con diversos aspectos de México. Consulta las capas de información geoespacial, los documentos y proyectos generados por la comunidad del CentroGeo. Además, permite explorar y analizar nuestro territorio a través de los mapas interactivos.</div>
+						<div class="item-dsc-btn"><a href="#" class="btn modal-acerca">Leer Más</a></div>
+					</div>
+				</div>
+				<div id="item-capas" class="content-nav-item" style="display: none; visibility: hidden; opacity: 0;">
+					<div class="nav-item-img"><a href="#"><img src="{{STATIC_URL}}idegeo/carousel/img/content-nav-item_capa.png" alt="capas"/></a></div>
+					<div class="nav-item-dsc">
+						<div class="item-dsc-tit"><a href="#"><span class="dsc-tit-num">{{ facets.layer|default:_("No hay") }}</span>Capas</a></div>
+						<div class="item-dsc-txt">El servicio de Información de Capas provee acceso al catalogo geoespacial para buscar, visualizar y descargar información territorial sobre medio ambiente,  agricultura y ganadería, sociedad, infraestructura y servicios, entre otros temas.</div>
+						<div class="item-dsc-btn"><a href="#" class="btn">Ir a las Capas</a></div>
+					</div>
+				</div>
+				<div id="item-mapas" class="content-nav-item" style="display: none; visibility: hidden; opacity: 0;">
+					<div class="nav-item-img"><a href="#"><img src="{{STATIC_URL}}idegeo/carousel/img/content-nav-item_mapas.png" alt="mapas"/></a></div>
+					<div class="nav-item-dsc">
+						<div class="item-dsc-tit"><a href="#"><span class="dsc-tit-num">{{ facets.map|default:_("No hay") }}</span>Mapas</a></div>
+						<div class="item-dsc-txt">El servicio de Información de Mapas permite visualizar expresiones geoespaciales terminadas para conocer la dinámica territorial de una gran variedad de temáticas. Este servicio también permite interactuar con el servicio de capas para sobreponer información geoespacial adicional al mapa catalogado.</div>
+						<div class="item-dsc-btn"><a href="#" class="btn">Ir a los Mapas</a></div>
+					</div>
+				</div>
+				<div id="item-proyectos" class="content-nav-item" style="display: none; visibility: hidden; opacity: 0;">
+					<div class="nav-item-img"><a href="#"><img src="{{STATIC_URL}}idegeo/carousel/img/content-nav-item_proyectos.png" alt="proyectos"/></a></div>
+					<div class="nav-item-dsc">
+						<div class="item-dsc-tit"><a href="#"><span class="dsc-tit-num">{{ facets.project|default:_("No hay") }}</span>Proyectos</a></div>
+						<div class="item-dsc-txt">Conoce algunos de los proyectos en los que el CentroGeo ha participado y explora los productos que se han generado.</div>
+						<div class="item-dsc-btn"><a href="#" class="btn">Ir a los Proyectos</a></div>
+					</div>
+				</div>
+				<div id="item-documentos" class="content-nav-item" style="display: none; visibility: hidden; opacity: 0;">
+					<div class="nav-item-img"><a href="#"><img src="{{STATIC_URL}}idegeo/carousel/img/content-nav-item_documentos.png" alt="documentos"/></a></div>
+					<div class="nav-item-dsc">
+						<div class="item-dsc-tit"><a href="#"><span class="dsc-tit-num">{{ facets.document|default:_("No hay") }}</span>Documentos</a></div>
+						<div class="item-dsc-txt">Consulta el acervo documental y mapas estáticos generados por la comunidad del CentroGeo en donde se abordan diversos temas relacionados con el territorio de México.</div>
+						<div class="item-dsc-btn"><a href="#" class="btn">Ir a los Documentos</a></div>
+					</div>
+				</div>
+				{% endwith %}
+			</div>
+		</div>
+	</div>
+</section>
+<section id="otros-servicios" class="section">
+	<div class="container">
+		<h2 class="section-title">Otros Servicios de Información</h2>
+		<div class="section-media row">
+			<div class="col-media col-xs-6 col-sm-6 col-md-3"><a href="http://idegeo.centrogeo.org.mx/storymaps/" target="_blank">
+				<div class="col-media-image"><img src="{{STATIC_URL}}idegeo/carousel/img/otros-servicios_storymaps.jpg" alt="storymaps"/></div>
+				<div class="col-media-data">StoryMaps <span class="media-data-sub">Servicios de Información Geoespacial</span></div>
+				</a></div>
+			<div class="col-media col-xs-6 col-sm-6 col-md-3"><a href="http://adesur.centrogeo.org.mx/" target="_blank">
+				<div class="col-media-image"><img src="{{STATIC_URL}}idegeo/carousel/img/otros-servicios_plataforma-adesur.jpg" alt="plataforma-adesur"/></div>
+				<div class="col-media-data">Plataforma ADESUR <span class="media-data-sub">Alianza Estratégica para el Desarrollo Sustentable de la Región Pacífico Sur</span></div>
+				</a></div>
+			<div class="col-media col-xs-6 col-sm-6 col-md-3"><a href="http://ide.adesur.centrogeo.org.mx/" target="_blank">
+				<div class="col-media-image"><img src="{{STATIC_URL}}idegeo/carousel/img/otros-servicios_ide-adesur.jpg" alt="ide-adesur"/></div>
+				<div class="col-media-data">Plataforma Geoweb IDE ADESUR <span class="media-data-sub">Servicios de Información Geoespacial</span></div>
+				</a></div>
+			<div class="col-media col-xs-6 col-sm-6 col-md-3"><a href="http://iica.centrogeo.org.mx/" target="_blank">
+				<div class="col-media-image"><img src="{{STATIC_URL}}idegeo/carousel/img/otros-servicios_corredor-seco-centroamericano.jpg" alt="corredor-seco-centroamericano"/></div>
+				<div class="col-media-data">Corredor Seco Centroamericano <span class="media-data-sub">Plataforma Geoespacial de Divulgación</span></div>
+				</a></div>
+		</div>
+	</div>
+</section>
+{% endblock %}
+
+{% block extra_script %}
+<script src="{{ STATIC_URL }}idegeo/style_adesur/js/TweenMax.min.js"></script>
+<script src="{{ STATIC_URL }}idegeo/style_adesur/js/scripts.js"></script>
+{% if DEBUG_STATIC %}
+<script src="{{ STATIC_URL }}idegeo/lib/js/angular.js"></script>
+{% endif %}
+  <script type="text/javascript">
+    FEATURED_URL = '{% url 'api_dispatch_list' api_name='api' resource_name='featured' %}'
+    'use strict';
+    (function(){
+      var module = angular.module('featured', []);
+      module.run(function($http, $rootScope){
+        $http.get(FEATURED_URL).success(function(data){
+          $rootScope.featured = data.objects;
+        });
+      });
+    })();
+  </script>
+
+{% endblock extra_script %}
