@@ -4,7 +4,7 @@
 <link href="{{ STATIC_URL }}idegeo/style_adesur/css/main.css" rel="stylesheet" type="text/css">
 
 {% endblock %}
-{% block body_outer %}
+{% block page_header %}
 <div id="page-header" class="content">
   <div class="container">
     <div class="titulo-blk-row">
@@ -16,6 +16,8 @@
     </div>
    </div>
 </div>
+{% endblock %}
+{% block body_outer %}
 <div class="container" style="min-height: 440px;">
   {% if request.user.is_authenticated %}
   <div class="nav nav-pills btn-group">
