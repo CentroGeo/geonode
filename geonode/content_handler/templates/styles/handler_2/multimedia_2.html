@@ -1,0 +1,118 @@
+{% extends 'styles/handler_2/base.html' %}
+{% block title %}{{ SITE_NAME }} | {{menu}} {% endblock %}
+{% block extra_head %}
+		<link href="{{STATIC_URL}}content_handler/css/section_is.css" rel="stylesheet">
+{% endblock %}
+
+{% block body_class %}tem_0{{menu.id}}{% endblock %}
+{% block middle %}
+	<!-- SECTION-INTRO -->
+	<section id="section-intro" class="section-intro">
+		<div class="intro-wrapper section-mh">
+			<div class="content">
+				<div class="intro-head">
+					<div class="head-title">{{menu}}</div>
+					<!--<div class="head-subtitle">Lorem ipsum dolor sit amet consectetur adipiscing elit vivamus urna turpis porta vel convallis nec condimentum ut enim</div>-->
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- SECTION-COMPONENT -->
+	<section class="section-component">
+		<div class="section-wrapper">
+			<div class="container">
+				<!--<h2 class="section-title">Instituciones participantes</h2>-->
+				<div class="content">
+						{{menu.content|safe}}
+					<!-- COMPONENT [COM_BLOG] -->
+					<div id="com_blog" class="component com_blog">
+						<div class="blog-items">
+                            {% for item in items %}
+							{% if item.link %}
+							<div class="blog-item">
+                                {% if item.image %}
+								<div class="box-graph"><a href="{{item.link}}" target="_blank" class="box-btn"><img src="{{MEDIA_URL}}{{item.image}}" alt=""></a></div>
+                                {% endif %}
+								<div class="box-title"><a href="{{item.link}}" target="_blank" class="box-btn">{{item}}</a></div>
+								<div class="box-created">ISTMO ● {{item.created|date:"l j, F, Y"}}</div>
+								<div class="box-footer"></div>
+								<div class="box-button"><a href="{{item.link}}" target="_blank" class="btn-read-more"><button type="submit" class="btn btn-primary mb-2">Explorar</button></a></div>
+							</div>
+							{% elif item.format %}
+							<div class="blog-item">
+                                {% if item.image %}
+								<div class="box-graph"><a href="{% url 'post_detail' item.slug %}" class="box-btn"><img src="{{MEDIA_URL}}{{item.image}}" alt=""></a></div>
+                                {% endif %}
+								<div class="box-title"><a href="{% url 'post_detail' item.slug %}" class="box-btn">{{item}}</a></div>
+								<div class="box-created">ISTMO ● {{item.created|date:"l j, F, Y"}}</div>
+								<div class="box-footer"></div>
+								<div class="box-button"><a href="{% url 'post_detail' item.slug %}" class="btn-read-more"><button type="submit" class="btn btn-primary mb-2">Explorar</button></a></div>
+							</div>
+							{% elif item.url_id %}
+							<div class="blog-item">
+                                {% if item.image %}
+								<div class="box-graph"><a href="{% url 'microviewer' item.url_id %}" target="_blank" class="box-btn"><img src="{{MEDIA_URL}}{{item.image}}" alt=""></a></div>
+                                {% endif %}
+								<div class="box-title"><a href="{% url 'microviewer' item.url_id %}" target="_blank" class="box-btn">{{item}}</a></div>
+								<div class="box-created">ISTMO ● {{item.creation_date|date:"l j, F, Y"}}</div>
+								<div class="box-footer"></div>
+								<div class="box-button"><a href="{% url 'microviewer' item.url_id %}" target="_blank" class="btn-read-more"><button type="submit" class="btn btn-primary mb-2">Explorar</button></a></div>
+							</div>
+							{% elif item.url_name %}
+							<div class="blog-item">
+                                {% if item.cover_image %}
+								<div class="box-graph"><a href="{% url 'ms_index' item.url_name %}" target="_blank" class="box-btn"><img src="{{MEDIA_URL}}{{item.cover_image}}" alt=""></a></div>
+                                {% endif %}
+								<div class="box-title"><a href="{% url 'ms_index' item.url_name %}" target="_blank" class="box-btn">{{item}}</a></div>
+								<div class="box-created">ISTMO ● {{item.creation_date|date:"l j, F, Y"}}</div>
+								<div class="box-footer"></div>
+								<div class="box-button"><a href="{% url 'ms_index' item.url_name %}" target="_blank" class="btn-read-more"><button type="submit" class="btn btn-primary mb-2">Explorar</button></a></div>
+							</div>
+							{% elif item.zoom %}
+							<div class="blog-item">
+                                {% if item.new_thumb %}
+								<div class="box-graph"><a href="{% url 'visor_map' item.id %}" target="_blank" class="box-btn"><img src="{{MEDIA_URL}}{{item.new_thumb}}" alt=""></a></div>
+                                {% endif %}
+								<div class="box-title"><a href="{% url 'visor_map' item.id %}" target="_blank" class="box-btn">{{item.title}}</a></div>
+								<div class="box-created">ISTMO ● {{item.date|date:"l j, F, Y"}}</div>
+								<div class="box-footer">{{item.abstract}}</div>
+								<div class="box-button"><a href="{% url 'visor_map' item.id %}" target="_blank" class="btn-read-more"><button type="submit" class="btn btn-primary mb-2">Explorar</button></a></div>
+							</div>
+							{% else %}
+							<div class="blog-item">
+                                {% if item.doc_frontpage %}
+								<div class="box-graph"><a href="#" onclick="getDocument({{item.id}})" data-toggle="modal" data-target="#exampleModalCenter" class="box-btn"><img src="{{MEDIA_URL}}{{item.doc_frontpage}}" alt=""></a></div>
+                                {% endif %}
+								<div class="box-title"><a href="#" onclick="getDocument({{item.id}})" data-toggle="modal" data-target="#exampleModalCenter" class="box-btn">{{item}}</a></div>
+								<div class="box-created">ISTMO ● 02 de enero de 2019</div>
+								<div class="box-footer">{{item.description}}</div>
+								<div class="box-button"><a href="#" onclick="getDocument({{item.id}})" data-toggle="modal" data-target="#exampleModalCenter" class="btn-read-more"><button type="submit" class="btn btn-primary mb-2">Explorar</button></a></div>
+							</div>
+							{% endif %}
+                            {% endfor %}
+							<!-- CONTENT-PAGER -->
+							{% if items.paginator.num_pages > 1 %}
+							<div class="content-pager">
+								<nav class="pager-nav">
+									<ul class="pagination">
+                                        {% if items.has_previous %}
+										<li class="page-item"><a class="page-link" href="?page={{ items.previous_page_number }}" tabindex="-1">Anterior</a></li>
+                                        {% endif %}
+										<li class="page-item"><a class="page-link">página {{ items.number }} de {{ items.paginator.num_pages }}</a></li>
+                                        {% if items.has_next %}
+										<li class="page-item"><a class="page-link" href="?page={{ items.next_page_number }}">Siguiente</a></li>
+                                        {% endif %}
+									</ul>
+								</nav>
+							</div>
+                            {% endif %}
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+{% endblock middle %}
+{% block extra_script %}
+{% endblock extra_script %}

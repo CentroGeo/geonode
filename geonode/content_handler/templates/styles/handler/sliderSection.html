@@ -1,0 +1,31 @@
+{% if not item.has_mosaic %}
+    {% include 'styles/handler/sec_header.html' %}
+{% endif %}
+<section class="section-component">
+	<div class="slider-wrapper xtc-section-100vh" style="background-color: transparent;">
+		<div class="slider-accordion" style="max-width: 100%;">
+			<div id="sld-accordion{{item.id}}" class="accordion-slider">
+				<div class="as-mask">
+                    <div class="as-panels">
+				    	{% if item.children.all|length > 0 %}
+				    		{% for child in item.children.all|dictsort:"stack_order" %}
+								<div class="as-panel as-shadow">				    			    	
+                                    <img src="{{STATIC_URL}}rtmg2/img/blank.gif" alt="" class="as-background" data-src="{{MEDIA_URL}}{{child.image}}">
+				    			    <div class="as-layer as-closed as-white as-panel-counter" data-position="bottomLeft" data-horizontal="8" data-vertical="8">
+				    			    	{{child}}</div>
+                                    <div class="as-layer as-opened as-black as-padding" data-vertical="36%" data-show-transition="right" data-show-delay="500" data-hide-transition="left" data-hide-delay="0">
+                                    {{child}}</div>
+                                    <div class="as-layer as-opened as-panel-link" data-width="100%" data-height="100%" data-show-delay="0" data-hide-delay="0">
+				    			    <a href="{% if child.link %}{{ child.link }}{% else %}{% url 'content_multimedia' home.url_name child.slug  %}{% endif %}" {% if child.blank %}target="_blank"{% endif %}
+                                        class="panel-link">
+				    			    </a>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+		</div>
+	</div>
+</section>

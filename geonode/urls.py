@@ -277,5 +277,5 @@ urlpatterns += [
     # Toolkit spatial object analysis
     url(r'^toolkit/', include('geonode.toolkit.urls')),
     # Content Handler
-    #url('cms/', include('geonode.content_handler.urls')),
+    url(r'^cms/', include('geonode.content_handler.urls')),
 ]

@@ -1,0 +1,229 @@
+{% extends 'styles/handler_1/base_rtmg.html' %}
+{% block title %} RTMG | Inicio {% endblock %}
+{% block extra_head %}
+  <!-- EN ESTA PARTE VOY A SOBRE ESCRIBIR EL PAGINADO PARA QUE NO AFECTE A TODO EL SITIO Y SOLO EN ESTA PARTE NO SE VEA EL PAGINADO -->
+<style>
+	.grid-accordion .ga-pagination-buttons .ga-pagination-button:hover, .grid-accordion .ga-pagination-buttons .ga-pagination-button.ga-selected{
+		display: none;
+	}
+	.grid-accordion .ga-pagination-buttons .ga-pagination-button{
+		display: none !important;
+	}
+
+</style>
+
+	{% if menu.style_template == '1' %}
+	<!-- parallo -->
+	<link href="{{STATIC_URL}}content_handler/css/section_rt.css" rel="stylesheet">
+	{% elif menu.style_template == '2' %}
+<!-- bidendum -->
+	<link href="{{STATIC_URL}}content_handler/css/section_is.css" rel="stylesheet">
+	<script src="{{STATIC_URL}}content_handler/style_2/js/macy-2.5.0.min.js"></script>
+	{% elif menu.style_template == '3' %}
+<!-- editorial -->
+	<link href="{{STATIC_URL}}content_handler/css/section_editor.css" rel="stylesheet">
+	{% elif menu.style_template == '7' %}
+	<!--carrusel-enfasis-->
+	<link href="{{STATIC_URL}}content_handler/css/carrusel-enfasis.css" rel="stylesheet"/>
+	{% elif menu.style_template == '8' or menu.style_template == '9' %}
+	<!--bloque vineta-->
+	<link href="{{STATIC_URL}}content_handler/css/bloquevineta.css" rel="stylesheet"/>
+	{% endif %}
+<!-- prisma -->
+	<!-- wraper section -->
+	<link href="{{STATIC_URL}}content_handler/css/wraper_sec.css" rel="stylesheet"/>
+	<!-- wraper one section -->
+	<link href="{{STATIC_URL}}content_handler/css/wrapper_one.css" rel="stylesheet"/>
+
+{% endblock %}
+{% block middle %}
+<!-- SECTION-CONTENT -->
+<section class="section-content">
+<!-- SECTION-TITLE -->
+{% if menu.headersectionstyle %}
+	<div style="{% if menu.headersectionstyle.has_imagebackground %}
+	    background-image: url('/uploaded/{{ menu.headersectionstyle.image }}');
+	    {% if menu.headersectionstyle.image_position_fixed %}
+				background-attachment: fixed;
+			{% endif %}
+			background-position: {{ menu.headersectionstyle.image_position }};
+			{% if menu.headersectionstyle.image_repeat %}
+			background-repeat: repeat;
+			{% else %}
+			background-repeat: no-repeat;
+			{% endif %}
+	    {% endif %}
+	    ">
+	        <div style="background-color: {{ menu.headersectionstyle.background }};
+	                                            padding: 15px;
+	                                            padding-top: {{ menu.headersectionstyle.size_div  }}px;
+	                                            padding-bottom: {{ menu.headersectionstyle.size_div  }}px;
+	
+	                    {% if menu.headersectionstyle.top_border %}
+	                    		border-top: {{ menu.headersectionstyle.top_border_thickness }}px {{ menu.headersectionstyle.top_border_style }} {{ menu.headersectionstyle.top_border_color }};
+	                    	{% endif %}
+	                    	{% if menu.headersectionstyle.bottom_border %}
+	                    		border-bottom: {{ menu.headersectionstyle.bottom_border_thickness }}px {{ menu.headersectionstyle.bottom_border_style }} {{ menu.headersectionstyle.bottom_border_color }};
+	                    	{% endif %}
+	                    {% if menu.headersectionstyle.width_div %}
+	                    	width: fit-content;
+	                    	margin{% if menu.headersectionstyle.text_align == 'left' %}-right{% elif menu.headersectionstyle.text_align == 'right' %}-left{% endif %}: auto;
+	                    {% endif %}">
+	            <h2 style="color: {{ menu.headersectionstyle.font_color  }}; margin: 0;
+	                       font-size: {{ menu.headersectionstyle.size_font }}px;
+	                       text-align: {{ menu.headersectionstyle.text_align }};
+	                       {% if menu.headersectionstyle.underline %}text-decoration: underline;{% endif %}">
+
+	            {{menu}}</h2>
+	        </div>
+	    </div>
+	{% else %}
+	<div id="section-title" class="static-header"	>
+		<div class="content" style="padding: 30px 0px 30px 0px;!important">
+			<h2 class="section-title">{{menu}}</h2>
+		</div>
+	</div>
+{% endif %}
+</section>
+{% if menu.has_mosaic %}
+	{% with menu as item %}
+		{% if item.style_template == '1' %}
+		<!-- sections section -->
+			{% include "styles/handler/sections_rt.html" %}
+			 <!-- content section -->
+		{% elif item.style_template == '2' %}
+			 <!-- sections section -->
+			{% include "styles/handler/sections_is.html" %}
+		{% elif item.style_template == '3' %}
+				 <!-- sections section -->
+			{% include "styles/handler/section_editorial.html" %}
+		{% elif item.style_template == '4' %}
+				 <!-- sections section -->
+			{% include "styles/handler/wrapper_one.html" %}
+		{% elif item.style_template == '5' %}
+			{% include "styles/handler/carruselSections.html" %}
+		{% elif item.style_template == '6' %}
+			{% include "styles/handler/sliderSection.html" %}
+		{% elif item.style_template == '7' %}
+			{% include "styles/handler/carrusel-enfasis.html" %}
+		{% elif item.style_template == '8' or item.style_template == '9' %}
+			{% include "styles/handler/bloquevineta.html" %}
+		{% endif %}
+	{% endwith %}
+{% endif %}
+<!-- SECTION-CONTENT -->
+<section class="section-content">
+<div class="section-wrapper">
+	<div class="container">
+		<div class="content">
+			<div class="row">
+				<!-- ROW-CONTENT -->
+				<div class="row-block row-content" style="width:800px; margin:0 auto;font-size:18px;padding:0px;">
+					<!-- CONTENT-BOXED-->
+					{% if not menu.has_mosaic %}
+						{{menu.content|safe}}
+					{% endif %}
+												{% for item in items_listq %}
+					{% if item.link %}
+						<div class="conted-boxed">
+							<div class="box-title">{{item}}</div>
+							<div class="box-date">RTMG ● {{item.created|date:"l j, F, Y"}}</div>
+							{% if item.image %}
+							<div class="box-graph">
+								<img src="{{MEDIA_URL}}{{item.image}}" alt="{{item}}">
+							</div>
+							{% endif %}
+							<div class="box-footer"></div>
+							<div class="box-button"><a href="{{item.link}}" class="btn btn-primary">Ver más</a></div>
+						</div>
+					{% elif item.format %}
+						<div class="conted-boxed">
+							<div class="box-title">{{item}}</div>
+							<div class="box-date">RTMG ● {{item.created|date:"l j, F, Y"}}</div>
+							{% if item.image %}
+							<div class="box-graph">
+								<img src="{{MEDIA_URL}}{{item.image}}" alt="{{item}}">
+							</div>
+							{% endif %}
+							<div class="box-footer"></div>
+							<div class="box-button"><a href="{% url 'post_detail' item.slug %}" class="btn btn-primary">Ver más</a></div>
+						</div>
+					{% elif item.url_id %}
+						<div class="conted-boxed">
+							<div class="box-title">{{item}}</div>
+							<div class="box-date">RTMG ● {{item.creation_date|date:"l j, F, Y"}}</div>
+							{% if item.image %}
+							<div class="box-graph">
+								<img src="{{MEDIA_URL}}{{item.image}}" alt="{{item}}">
+							</div>
+							{% endif %}
+							<div class="box-footer"></div>
+							<div class="box-button"><a href="{% url 'microviewer' item.url_id %}" class="btn btn-primary">Ver más</a></div>
+						</div>
+					{% elif item.url_name %}
+						<div class="conted-boxed">
+							<div class="box-title">{{item}}</div>
+							<div class="box-date">RTMG ● {{item.creation_date|date:"l j, F, Y"}}</div>
+							{% if item.cover_image %}
+							<div class="box-graph">
+								<img src="{{MEDIA_URL}}{{item.cover_image}}" alt="{{item}}">
+							</div>
+							{% endif %}
+							<div class="box-footer"></div>
+							<div class="box-button"><a href="{% url 'ms_index' item.url_name %}" class="btn btn-primary">Ver más</a></div>
+						</div>
+					{% else %}
+						<div class="conted-boxed">
+							<div class="box-title">{{item}}</div>
+							<div class="box-date">RTMG ● {{item.date|date:"l j, F, Y"}}</div>
+							{% if item.doc_frontpage %}
+							<div class="box-graph">
+								<img src="{{MEDIA_URL}}{{item.doc_frontpage}}" alt="{{item}}">
+							</div>
+							{% endif %}
+							<div class="box-footer">{{item.description}}</div>
+							<div class="box-button"><a href="#" onclick="getDocument({{item.id}})" data-toggle="modal" data-target="#exampleModalCenter" class="btn btn-primary">Ver más</a></div>
+						</div>
+					{% endif %}
+												{% endfor %}
+												{% if items.paginator.num_pages > 1 %}
+					<div class="content-pager">
+						<nav class="pager-nav">
+							<ul class="pagination">
+																		{% if items.has_previous %}
+								<li class="page-item"><a class="page-link" href="?page={{ items.previous_page_number }}" tabindex="-1">Anterior</a></li>
+																		{% endif %}
+								<li class="page-item"><a class="page-link">página {{ items.number }} de {{ items.paginator.num_pages }}</a></li>
+																		{% if items.has_next %}
+								<li class="page-item"><a class="page-link" href="?page={{ items.next_page_number }}">Siguiente</a></li>
+																		{% endif %}
+							</ul>
+						</nav>
+					</div>
+												{% endif %}
+					<!--BOXED-END-->
+				</div>
+				<!-- ROW-SIDEBAR-->
+
+				<!-- ROW-END -->
+			</div>
+		</div>
+	</div>
+</div>
+</section>
+{% endblock middle %}
+{% block extra_script %}
+	{% if menu.style_template == '1' %}
+	<!-- parallo -->
+	<script src="{{STATIC_URL}}content_handler/style_1/js/jquery.gridAccordion-2.7.min.js"></script>
+	{% elif menu.style_template == '2' %}
+	<!-- bibendum -->
+	{% include 'styles/handler_1/masonryItems.js' %}
+	{% elif menu.style_template == '7' %}
+	<!--carrusel-enfasis-->
+	<script>{% include 'styles/handler/carrusel-enfasis.js' %}</script>
+	{% elif menu.style_template == '8' or menu.style_template == '9' %}
+	<!--bloque viñeta-->
+	<script>{% include 'styles/handler/bloquevineta.js' %}</script>
+	{% endif %}
+{% endblock extra_script %}

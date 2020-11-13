@@ -1,0 +1,22 @@
+{% extends 'styles/handler_3/base.html' %}
+
+{% block middle %}
+	<!-- sections section -->
+    {% for item in news %}
+        {% if not item.is_divisor %}
+            {% include "styles/handler_3/sections.html" %}
+        {% endif %}
+    {% endfor %}
+
+    <!-- section footer -->
+    {% include "styles/handler/footer.html" %}
+    <!-- SECTION-BOTTOM --> 
+    <!--
+    <section id="section-bottom">
+    	<div class="bottom-wrapper">
+    		<div class="container">
+    			<div class="bottom-copyright"><span class="xtc-nowrap">CopyRight © <span class="bottom-year">3019</span></span> <a href="https://www.centrogeo.org.mx/" target="_blank"> <span class="xtc-nowrap">Centro de Investigación en</span> <span class="xtc-nowrap">Ciencias de Información Geoespacial, A.C.</span></a> <span class="xtc-nowrap">Todos los derechos reservados.</span></div>
+    		</div>
+    	</div>
+    </section>-->
+{% endblock middle %}

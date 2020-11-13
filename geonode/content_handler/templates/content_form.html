@@ -1,0 +1,49 @@
+{% extends "site_base.html" %}
+{% load i18n %}
+{% load bootstrap_tags %}
+
+{% block title %} Contenido {% endblock %}
+
+{% block head %}
+  {% include "geonode/ext_header.html" %}
+    <link rel="stylesheet" href="{{STATIC_URL}}content_handler/css/home.css"/>
+  {{ block.super }}
+{% endblock %}
+
+{% block body_class %}content{% endblock %}
+
+{% block body_outer %}
+
+<!--HEADER-TITULO-->
+<div id="page-header" class="content">
+	<div class="container">
+		<div class="titulo-blk-row">
+      <div class="titulo-img blk-cell">
+        <i class="fa fa-connectdevelop fa-5x title-detail" title="Secciones" aria-hidden="true"></i>
+        <!-- <img src="{{STATIC_URL}}carousel/images/ico22_lineas-trabajo.png" alt=""> -->
+      </div>
+			  <div class="titulo-txt blk-cell">
+				  <h2>Crear contenido para {{home}}</h2>
+			  </div>
+		</div>
+	</div>
+</div>
+<div class="container">
+	<div class="row">
+		<div class="col-md-6" id="general">
+			<form id="formulario" method="post" enctype="multipart/form-data" action="">{% csrf_token %}
+				{{ form.media }}
+				{{form|as_bootstrap}}
+				<p><input type="submit" class="btn btn-primary" value="Confirmar"></p>
+			</form>
+		</div>
+	</div>
+</div>
+{% endblock %}
+{% block extra_script %}
+{% endblock %}
+</head>
+<body>
+
+</body>
+</html>

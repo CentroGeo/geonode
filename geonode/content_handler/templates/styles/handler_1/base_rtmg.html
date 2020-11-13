@@ -1,0 +1,240 @@
+{% load i18n avatar_tags %}
+{% load staticfiles %}
+<!doctype html>
+<html lang="es">
+<head>
+	<meta charset="utf-8">
+	<meta name="description" content="{% if header.description %}{{header.description}}{% endif %}">
+	<meta name="keywords" content="CONACYT, {% if header.title %}{{header.title}}{% else %} {{home}}{% endif %}">
+	<meta name="author" content="Centro de Investigación en Ciencias de Información Geoespacial, A.C. (CentroGeo)">
+	{% if home.cover_image %}<meta property="og:image" content="{{MEDIA_URL}}content_handler/{{home.cover_image}}" />{% endif %}
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+	<title>{% if header.title %}{{ header.title }}{% endif %}</title>
+	{% block head %}
+	<link rel="icon" href="{{STATIC_URL}}content_handler/style_1/favicon.ico">
+	<!-- ------- -->
+	<link href="{{STATIC_URL}}content_handler/style_1/css/bootstrap-4.1.3.min.css" rel="stylesheet">
+	<link href="{{STATIC_URL}}content_handler/style_1/css/drawer-3.2.2.min.css" rel="stylesheet">
+	<!-- ------- -->
+	<link href="{{STATIC_URL}}content_handler/style_1/css/unitegallery-1.7.45.css" rel="stylesheet">
+	<link href="{{STATIC_URL}}content_handler/style_1/css/unitegallery_skins/alexis/alexis.css" rel="stylesheet">
+	<link href="{{STATIC_URL}}content_handler/style_1/css/grid-accordion-2.7.min.css" rel="stylesheet">
+	<link href="{{STATIC_URL}}content_handler/style_1/css/accordion-slider-2.8.min.css" rel="stylesheet">
+	<!-- ------- -->
+	<link href="{{STATIC_URL}}content_handler/style_1/css/rtmg.css" rel="stylesheet">
+	<link href="{{STATIC_URL}}content_handler/css/narrative.css" rel="stylesheet">
+	{% block extra_head %}
+	{% endblock %}
+	{% endblock %}
+</head>
+<style>
+	:root {
+		{% if MainHeader %}
+        --color-theme: {{MainHeader.color}};
+    	{% else %}
+        --color-theme: rgb(0, 98, 96);
+    	{% endif %}
+</style>
+
+<body id="cgeo_inicio" class="tem_00 drawer drawer--top">
+<!-- BODY-WRAPPER -->
+<div id="body-wrapper">
+ 	{% include "styles/handler/header_rt.html" %}
+	{% block middle %}{% endblock middle %}
+</div>
+<!-- BODY-WRAPPER-END -->
+<!-- DRAWER-NAV -->
+<nav id="drawer-nav" class="drawer-nav" role="navigation">
+	<button type="button" class="drawer-toggle drawer-hamburger" id="burger-rts">
+		<span class="sr-only">toggle navigation</span>
+		<span class="drawer-hamburger-icon" id="burger-rt"></span>
+	</button>
+	<div class="drawer-wrapper"></div>
+</nav>
+<!-- SCRIPTS -->
+<script src="{{STATIC_URL}}content_handler/style_1/js/jquery-3.3.1.min.js"></script>
+<script src="{{STATIC_URL}}content_handler/style_1/js/bootstrap-4.1.3.bundle.min.js"></script>
+<script src="{{STATIC_URL}}content_handler/style_1/js/fontawesome-all-5.6.1.min.js"></script>
+<script src="{{STATIC_URL}}content_handler/style_1/js/TweenMax-2.0.2.min.js"></script>
+<script src="{{STATIC_URL}}content_handler/style_1/js/iscroll-5.2.0.min.js"></script>
+<script src="{{STATIC_URL}}content_handler/style_1/js/drawer-3.2.2.min.js"></script>
+<script src="{{STATIC_URL}}content_handler/style_1/js/jquery.accordionSlider-2.8.min.js"></script>
+<script src="{{STATIC_URL}}content_handler/style_1/js/jquery.gridAccordion-2.7.min.js"></script>
+<!-- ------- -->
+<script src="{{STATIC_URL}}content_handler/style_1/js/ScrollMagic-2.0.6.min.js"></script>
+<!--<script src="js/plugins/debug.addIndicators-2.0.6.min.js"></script> -->
+<script src="{{STATIC_URL}}content_handler/style_1/js/plugins/animation.gsap-2.0.6.min.js"></script>
+<!--<script src="js/plugins/ScrollToPlugin-1.9.1.min.js"></script> -->
+<!-- ------- -->
+<script src="{{STATIC_URL}}content_handler/style_1/js/unitegallery-1.7.45.min.js"></script>
+<script src="{{STATIC_URL}}content_handler/style_1/js/unitegallery_themes/compact/ug-theme-compact.js"></script>
+<script src="{{STATIC_URL}}content_handler/style_1/js/scripts_unitegallery.js"></script>
+
+<!-- ------- -->
+<!--<script src="{{STATIC_URL}}rtmg2/js/scripts_drawer.js"></script>-->
+<script type="text/javascript">
+    {% include "styles/handler/variables.js" %}
+	{% include "styles/handler_1/scripts_drawer.js" %}
+	{% include "styles/handler_1/scripts.js" %}
+</script>
+
+{% block extra_script %}{% endblock extra_script %}
+
+{% include "gtag.js" %}
+{% include "styles/handler/colors.js" %}
+
+<!-- Modal must stay outside the navbar -->
+{% if not user.is_authenticated %}
+<div class="modal fade" id="SigninModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+				<h4 class="modal-title" id="myModalLabel">{% trans "Sign in" %}</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <form class="form-signin" role="form" action="{% url "account_login" %}?next={{ request.path }}" method="post">
+            <div class="modal-body">
+              {% csrf_token %}
+              <div class="form-group">
+                <label for="id_username" class="sr-only">{% trans "Username" %}:</label>
+                <input id="id_username" class="form-control" name="username" placeholder="{% trans "Username" %}" type="text" />
+              </div>
+              <div class="form-group">
+                <label for="id_password" class="sr-only">{% trans "Password" %}:</label>
+                <input id="id_password" class="form-control" name="password" placeholder="Password" type="password" />
+              </div>
+              <label class="checkbox">
+                <input type="checkbox" /> {% trans "Remember Me" %}
+              </label>
+              <label class="checkbox">
+                Click <a href="{% url 'account_signup' %}" style="color: #089fcf;">aquí</a> para registrarte.
+              </label>
+            </div>
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-primary btn-block">{% trans "Sign in" %}</button>
+            </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% else %}
+<div class="modal fade" id="UserModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+			<div class="modal-header">
+				<h4 class="modal-title" id="myModalLabel">{% trans "Menu" %}</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            </div>
+            <div class="modal-body" style="color:var(--color-theme);">
+                <ul class="list-unstyled">
+                    <!--<li><a href="{% url "layer_upload" %}"><i class="fa fa-cloud-upload"></i> {% trans "Upload Layers" %}</a></li>-->
+                    <li class="modal-divider"></li>
+					<li>{% avatar user 20 %} {{ user.username }}</li>
+                    {% if request.user.is_authenticated and request.user.ide_access %}
+                    <li><a href="{% url 'layer_browse' %}"><i class="fa fa-cog"></i> Gestión del catálogo</a></li>
+                    {% if MainHeader %}
+                    <li><a href="{% url 'config_interface' MainHeader.id %}"><i class="fa fa-paint-brush"></i> Editar interfaz</a></li>
+                    {% else %}
+                    {% endif %}
+                    {% endif %}
+                    <li><a href="{% url 'ms_gestor_list' %}"><i class="fa fa-cubes"></i> Micrositios</a></li>
+                    <li><a href="{% url 'mviewer_list' %}"><i class="fa fa-window-maximize"></i> Panoramas</a></li>
+                    <li><a href="{% url 'content_handler_list' %}"><i class="fa fa-window-restore"></i> CMS</a></li>
+                    {% if request.user.is_superuser %}
+                    <li><a href="{% url 'blog_admin' %}"><i class="fa fa-cubes"></i> Blog</a></li>
+                    {% endif %}
+                    <hr>
+                    <li><a href="{{ user.get_absolute_url }}"><i class="fa fa-user"></i> {% trans "Profile" %}</a></li>
+                    <!--<li><a href="{% url "recent-activity" %}"><i class="fa fa-fire"></i> {% trans "Recent Activity" %}</a></li>-->
+                    <!--<li><a href="{% url "messages_inbox" %}"><i class="fa fa-inbox"></i> {% trans "Inbox" %}</a></li>-->
+                    {% if USE_NOTIFICATIONS %}
+                    {% comment %}
+                    <!--<li><a href="{% url "notification_notice_settings" %}"><i class="fa fa-bell"></i> {% trans "Notifications" %}</a></li>-->
+                    {% endcomment %}
+                    {% endif %}
+                    {% if perms.announcements.can_manage %}
+                    <li><a href="{% url "announcements_list" %}"><i class="fa fa-bullhorn"></i> {% trans "Announcements" %}</a></li>
+                    {% endif %}
+                    {% if user.is_superuser %}
+                    <li><a href="{% url "services" %}"><i class="fa fa-globe"></i> {% trans "Remote Services" %}</a></li>
+                    {% comment %}
+                    <li><a href="{% url "account_invite_user" %}"><i class="fa fa-edit"></i> {% trans "Invite User" %}</a></li>
+                    {% endcomment %}
+                    <li class="modal-divider"></li>
+                    <li><a href="{{ GEOSERVER_BASE_URL }}"><i class="fa fa-gears"></i> {% trans "GeoServer" %}</a></li>
+                    {% endif %}
+                    {% if user.is_staff %}
+                    <li><a href="{% url "admin:index" %}"><i class="fa fa-cog"></i> {% trans "Admin" %}</a></li>
+                    {% endif %}
+                    {% block extra_user_menu %}
+                    {% endblock %}
+                    <li class="modal-divider"></li>
+                    <li><a title="Help" rel="tooltip" href="/help/"><i class="fa fa-question-circle"></i> {% trans "Help" %}</a></li>
+                </ul>
+            </div>
+            <div class="modal-footer">
+                <form action="{% url "account_logout" %}" id="logout_form" method="post">
+                {% csrf_token %}
+                <a class="btn btn-warning btn-block" href="javascript:{}" onclick="document.getElementById('logout_form').submit();">{% trans "Log out" %}</a>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endif %}
+<!-- Modal Reference -->
+<div class="modal fade" id="modal-ref" role="dialog">
+    <div class="modal-dialog" style="min-width: 700px;">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Referencia</h4>
+        </div>
+        <div class="modal-body">
+          <p>Error.</p>
+        </div>
+      </div>
+    </div>
+</div>
+{% if menu.comment_section == True %}    
+	<section id="section_face" class="section" style="padding:15px 180px; background-color: #fbfbfb;text-align: inherit;">
+		<div class="container">
+			<h4 style="margin: 0px 0px 15px 0px;">Comentarios sobre el tema: {{header.title}}</h4>
+			<div class="fb-comments" data-href="{{ request.build_absolute_uri }}" data-width="1080" data-numposts="5"></div>
+			<div class="fb-like" data-href="{{ request.build_absolute_uri }}" data-layout="button_count" data-action="recommend" data-size="large" data-show-faces="true" data-share="true"></div>
+			<a class="twitter-share-button"
+			   data-size="large"
+			  href="https://twitter.com/intent/tweet?via=CentroGeo_"> 
+              <img src="/static/content_handler/css/twitter_logo.png" title="Comentar en twitter" style="width:30px;"/>
+			</a>
+		</div>
+	</section>
+{% endif %}
+<script>
+    {% for item in sections %}
+        {% if item.style_template == '1' %}
+            {% include "styles/handler/section_rt.js" %}
+        {% endif %}
+    {% endfor %}
+	let items = document.getElementsByClassName("alignC");
+	for(let i=0;i<items.length;i++){
+		items[i].style.position = 'relative';
+		items[i].style.left = 0;
+		items[i].style.marginLeft = '30px';
+		items[i].style.marginRight = '30px';
+	}
+    window.onbeforeunload = function () {
+        window.scrollTo(0, 0);
+    }
+	$(document).ready(function() {
+        $('a.btn-modal').on('click', function(e) {
+            e.preventDefault();
+            var url = $(this).attr('href');
+            $("#modal-ref .modal-body").html('<iframe width="100%" height="430" frameborder="0" scrolling="yes" allowtransparency="true" src="'+url+'"></iframe>');
+        });
+    });
+</script>
+</body>
+<!-- section footer -->
+{% include "styles/handler/footer.html" %}
+</html>

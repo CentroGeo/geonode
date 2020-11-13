@@ -1,0 +1,48 @@
+{% if forloop.counter == 1 %}
+<!-- SECTION-INTRO -->
+<section id="section-intro" class="section-intro">
+	{% if item.image_news %}
+	<div class="intro-wrapper section-100vh" style="background-image: url({{MEDIA_URL}}{{ item.image_news }});">
+	{% else %}
+	<div class="intro-wrapper section-100vh" style="background-image: url({{STATIC_URL}}content_handler/style_3/css/images/intro_background_EDIT.svg);">
+	{% endif %}
+	<div class="content" style="background: {{style.cover_color}}">
+			<div class="intro-head">
+                <div class="head-title">{{item.title}}</div>
+                {% if item.description %}
+                <div class="head-subtitle">{{item.description}}</div>
+                {% endif %}
+				{% if item.content %}
+				{{item.content|safe}}
+				{% endif %}
+				{% if item.link %}
+				<div class="section-button"><a href="{{item.link}}" class="btn btn-primary">Explorar <span class="more-line-slide more-slideX"></span></a></div>
+				{% endif %}
+			</div>
+			<!--<div class="intro-text">IDEGeo está dirigido a la comunidad en general que requiera adquirir, utilizar y compartir información geoespacial a través del catálogo estandarizado.</div>-->
+			<div class="intro-nav">
+				<div class="section-button xtoc"><a href="#xtoc-02" class="btn btn-primary">Continuar</a></div>
+				<div class="more-line-slide more-slideY"></div>
+			</div>
+		</div>
+	</div>
+</section>
+{% else %}
+<section id="xtoc-0{{forloop.counter}}" class="section-content">
+	<div class="section-wrapper" style="background-image: url({{MEDIA_URL}}{{item.image_news}})">
+		<div class="container-full" style="background: {{style.cover_color}}">
+			<div class="content">
+				<div class="row-wrapper row-rg">
+                    <h2 class="section-title">{{item}}</h2>
+                    {% if item.content %}
+                    {{item.content|safe}}
+                    {% endif %}
+                    {% if item.link %}
+					<div class="section-button"><a href="{{item.link}}" class="btn btn-primary">Explorar <span class="more-line-slide more-slideX"></span></a></div>
+                    {% endif %}
+                </div>
+			</div>
+		</div>
+	</div>
+</section>
+{% endif %}

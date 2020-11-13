@@ -1,0 +1,72 @@
+<!-- SECTION-HEAD -->
+{% if not item.has_mosaic %}
+	{% include 'styles/handler/sec_header.html' %}
+{% endif %}
+<!-- SECTION-COMPONENT -->
+<section class="section-component">
+	<div class="section-wrapper">
+		<div class="container-full">
+			<div class="content">
+				{% if item.content %}
+					<div class="container ms-nar">
+						<div class="section-txt">
+							<div class="ms-narrativ-body" style="position: sticky; padding: 45px 0px 45px 0px;">
+								{{item.content|safe|escape}}
+							</div>
+						</div>
+					</div>
+				{% endif %}
+				<!-- COMPONENT [COM_BLOG-MASONRY] -->
+				<div id="com_blog-masonry" class="{% if item.is_institution != True %} component com_blog-masonry{% endif %}">
+					<div id="blog-masonry{{item.id}}" class="{% if item.is_institution == True %}supported-items{% else %}masonry-items{% endif %}">
+						{% if item.is_institution == True %}
+							<!-- Perdon -->
+							<script>
+								let editStyle = document.getElementById("blog-masonry{{item.id}}");
+								editStyle.style.display = "flex";
+							</script>
+						{% endif %}
+						{% if item.children.all|length > 0 %}
+							{% for child in item.children.all|dictsort:"stack_order" %}
+								{% if child.link %}
+									<div class="{% if item.is_institution != True %}masonry-item{% else %}alignC{% endif %}">
+										<div class="{% if item.is_institution != True %}box-graph{% endif %}">
+											<a href="{{child.link}}" {% if child.blank %}target="_blank"{% endif %} class="box-btn">
+												<img src="{{MEDIA_URL}}{{child.image}}" alt="">
+												{% if item.is_institution != True %}
+													<div class="btn-icon"><img src="{{STATIC_URL}}portal-istmo/img/plus-flat.svg" alt=""></div>
+												{% endif %}
+											</a>
+										</div>
+										{% if item.is_institution != True %}
+											<div class="box-title"><a href="{{child.link}}" {% if child.blank %}target="_blank"{% endif %} class="box-btn">{{child}}</a></div>
+											<div class="box-created hidden">{{child.created_at}}</div>
+											{% if child.description %}
+												<div class="box-footer">{{child.description}}</div>
+											{% endif %}
+											<div class="box-button"><a href="{{child.link}}" {% if child.blank %}target="_blank"{% endif %} class="btn-read-more" id="exploration-is{{child.id}}">Explorar <i class="fas fa-angle-right"></i></a></div>
+										{% endif %}
+									</div>
+								{% else %}
+          							<div class="masonry-item">
+            						<div class="box-graph"><a href="{% url 'content_multimedia' home.url_name child.slug %}" {% if child.blank %}target="_blank"{% endif %} class="box-btn"><img src="{{MEDIA_URL}}{{child.image}}" alt="">
+              						<div class="btn-icon"><img src="{{STATIC_URL}}portal-istmo/img/plus-flat.svg" alt=""></div>
+              						</a></div>
+            						<div class="box-title"><a href="{% url 'content_multimedia' home.url_name child.slug %}" {% if child.blank %}target="_blank"{% endif %} class="box-btn">{{child}}</a></div>
+           							{% if item.is_institution != True %}
+		    							<div class="box-created hidden">{{child.created_at}}</div>
+										{% if child.description %}
+            								<div class="box-footer">{{child.description}}</div>
+										{% endif %}
+									{% endif %}
+            						<div class="box-button"><a href="{% url 'content_multimedia' home.url_name child.slug %}" {% if child.blank %}target="_blank"{% endif %} class="btn-read-more"  id="exploration-is{{child.id}}">Explorar <i class="fas fa-angle-right"></i></a></div>
+          							</div>
+								{% endif %}
+							{% endfor %}
+						{% endif %}
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>

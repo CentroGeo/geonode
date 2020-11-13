@@ -1,0 +1,85 @@
+{% extends "site_base.html" %}
+{% load i18n %}
+{% load bootstrap_tags %}
+
+{% block title %} Sección {% endblock %}
+
+{% block head %}
+    {% include "geonode/ext_header.html" %}
+    <link rel="stylesheet" href="{{STATIC_URL}}content_handler/css/home.css"/>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-colorpicker/2.3.3/css/bootstrap-colorpicker.min.css" rel="stylesheet">
+    {{ block.super }}
+{% endblock %}
+
+{% block body_class %}section{% endblock %}
+
+{% block body_outer %}
+
+<!--HEADER-TITULO-->
+<div id="page-header" class="content">
+	<div class="container">
+		<div class="titulo-blk-row">
+      <div class="titulo-img blk-cell icons">
+        <i class="fa fa-brush fa-5x title-detail" title="Secciones" aria-hidden="true"></i>
+      </div>
+			  <div class="titulo-txt blk-cell">
+				  <h2>Editar estilo de encabezado</h2>
+			  </div>
+		</div>
+	</div>
+</div>
+
+<h1 style="margin-left: 35px">Vista previa</h1>
+<div id="outDiv" style="
+		{% if subsect.headersectionstyle.has_imagebackground %}
+			background-image: url('{{MEDIA_URL}}{{ subsect.headersectionstyle.image }}');
+			{% if subsect.headersectionstyle.image_position_fixed %}
+				background-attachment: fixed;
+			{% endif %}
+			background-position: {{ subsect.headersectionstyle.image_position }};
+			{% if subsect.headersectionstyle.image_repeat %}
+			background-repeat: repeat;
+			{% else %}
+			background-repeat: no-repeat;
+			{% endif %}
+		{% endif %}">
+	<div id="innerDiv" style="background-color: {{ subsect.headersectionstyle.background }};
+	padding: 15px;
+	padding-top: {{ subsect.headersectionstyle.size_div  }}px;
+	padding-bottom: {{ subsect.headersectionstyle.size_div  }}px;
+	{% if subsect.headersectionstyle.top_border %}
+			border-top: {{ subsect.headersectionstyle.top_border_thickness }}px {{ subsect.headersectionstyle.top_border_style }} {{ subsect.headersectionstyle.top_border_color }};
+		{% endif %}
+		{% if subsect.headersectionstyle.bottom_border %}
+			border-bottom: {{ subsect.headersectionstyle.bottom_border_thickness }}px {{ subsect.headersectionstyle.bottom_border_style }} {{ subsect.headersectionstyle.bottom_border_color }};
+		{% endif %}
+	{% if subsect.headersectionstyle.width_div %}
+		width: fit-content;
+		margin{% if subsect.headersectionstyle.text_align == 'left' %}-right{% elif subsect.headersectionstyle.text_align == 'right' %}-left{% endif %}: auto;
+	{% endif %}">
+
+		<h2 id="title" style="color: {{ subsect.headersectionstyle.font_color  }}; margin: 0;
+				   font-size: {{ subsect.headersectionstyle.size_font }}px;
+				   text-align: {{ subsect.headersectionstyle.text_align }};
+				   {% if subsect.headersectionstyle.underline %}text-decoration: underline;{% endif %}">
+		{{subsect}}</h2>
+	</div>
+</div>
+<br><br>
+<div class="container">
+	<div class="row">
+		<div class="col-md-6" id="general">
+			<form id="formulario" method="post" enctype="multipart/form-data" action="">{% csrf_token %}
+				{{ form.media }}
+				{{form|as_bootstrap}}
+				<p><input type="submit" class="btn btn-primary" value="Confirmar"></p>
+			</form>
+		</div>
+	</div>
+</div>
+{% endblock %}
+
+{% block extra_script %}
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-colorpicker/2.3.3/js/bootstrap-colorpicker.min.js"></script>
+ <script>{% include 'header_style.js' %}</script>
+{% endblock %}

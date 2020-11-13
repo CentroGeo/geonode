@@ -1,0 +1,15 @@
+{% if content %}
+<!-- contenido -->
+<section class="section-component">
+	<div class="section-wrapper">
+		<div class="container">
+			{% for cont in content %}
+				<div class="content">
+						{{cont.content|safe}}
+				</div>
+			{% endfor %}
+		</div>
+	</div>
+</section>
+<!-- end contenido -->
+{% endif %}

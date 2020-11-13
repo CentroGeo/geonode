@@ -1,0 +1,25 @@
+<!-- SECTION-COMPONENT CARRUCEL -->
+<section class="section-component">
+  <div class="section-wrapper">
+    <div class="container-flat">
+      <!--<h2 class="section-title">Lorem ipsum dolor sit amet consectetur</h2>-->
+      <div class="content" style="margin: 0px;">
+
+        <!-- COMPONENT [COM_UNITEGALLERY] -->
+        <div id="com_unitegallery" class="component com_unitegallery" style="display: none;">
+          {% for item in news %}
+            {% if item.document %}
+            <a href="{{item.link}}" onclick="getDocument({{item.document}})" data-toggle="modal" data-target="#exampleModalCenter"><img src="{{MEDIA_URL}}{{item.image_news}}" alt="" data-image="{{MEDIA_URL}}{{item.image_news}}"></a>
+            {% elif 'youtube' in item.link %}
+            <img src="{{MEDIA_URL}}{{item.image_news}}" alt="" data-image="{{MEDIA_URL}}{{item.image_news}}" data-type="youtube" data-videoid="{{ item.link|slice:'32:' }}">
+            {% else %}
+            <a href="{{item.link}}" target="_blank"><img src="{{MEDIA_URL}}{{item.image_news}}" alt="" data-image="{{MEDIA_URL}}{{item.image_news}}" data-link="cucu"></a>
+            {% endif %}
+          {% endfor %}
+          <!-- SLIDER-END -->
+        </div>
+        <!-- COMPONENT-CARRUCEL-END -->
+      </div>
+    </div>
+  </div>
+</section>

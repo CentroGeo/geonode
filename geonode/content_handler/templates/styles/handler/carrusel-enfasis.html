@@ -1,0 +1,48 @@
+<section class="section-component">
+    <div class="section-wrapper">
+        <div class="container-flat">
+            <div class="content" style="margin: 0;"> 
+            {% if item.children.all|length > 0 %}
+                <!-- COMPONENT [COM_1-CARRUSEL-ENFASIS-TEXTO] -->
+                {% with item.children.all|dictsort:"stack_order"|first as image %}
+                <div id="com_1" class="component com_1" style="background-image: url({{MEDIA_URL}}{{image.image}})">
+                {% endwith %}
+                    <div class="component-wrapper">
+                        <div class="component-content">
+                            {% for child in item.children.all|dictsort:"stack_order" %}
+                                {% if forloop.counter == 1 %}
+                                <div id="content-{{ forloop.counter }}" class="content-item" data-hidden="false">
+                                {% else %}
+                                <div id="content-{{ forloop.counter }}" class="content-item" data-hidden="true">
+                                {% endif %}
+                                    <p class="item-category">{{item}}</p>
+                                    <h2 class="item-name">{{child}}</h2>
+                                    <hr class="separator">
+                                    <p class="item-content"></p>{{ child.content|safe|escape }}</p>
+                                    <hr class="separator">
+                                    {% if child.link %}
+                                        <p class="item-link"><a class="btn btn-primary" href="{{ child.link }}" {% if child.blank %}target="_blank"{% endif %}|>Explorar</a></p>
+                                    {% endif %}
+                                </div>
+                            {% endfor %}
+                        </div>
+                        <div class="component-nav">
+				    		{% for child in item.children.all|dictsort:"stack_order" %}
+                                {% if forloop.counter == 1 %}
+                                <div id="nav-{{ forloop.counter }}" class="nav-item active" data-toggle="content-{{ forloop.counter }}">
+                                {% else %}
+                                <div id="nav-{{ forloop.counter }}" class="nav-item" data-toggle="content-{{ forloop.counter }}">
+                                {% endif %}
+                                    <div class="item-image"><img src="{{MEDIA_URL}}{{child.image}}" alt=""/></div>
+                                    <div class="item-name">{{child}}</div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+                <!-- COMPONENT-END --> 
+            {% endif %}
+            </div>
+        </div>
+    </div>
+</section>

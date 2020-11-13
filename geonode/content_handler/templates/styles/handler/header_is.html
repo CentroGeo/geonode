@@ -1,0 +1,76 @@
+
+	<!-- HEADER -->
+	<header id="header">
+		<div class="header-wrapper">
+			<div class="container-full">
+				<div class="content">
+					<div class="head-logo">
+						<!--logos section-->
+							{% if header.image_1 %}
+									<div class="logo-item">
+											<a class="sitelogo" href="{% if header.link_1 %}{{header.link_1}}{% else %}#{% endif %}">
+													<img src="{{MEDIA_URL}}{{header.image_1}}"
+															 alt="{% if header.alt_1 %}{{header.alt_1}}{% else %}logo1{% endif %}"
+															 title="{% if header.alt_1 %}{{header.alt_1}}{% else %}logo1{% endif %}">
+											</a>
+									</div>
+							{% endif %}
+						 {% if header.image_2 %}
+													<div class="logo-item">
+															<a class="sitelogo" href="{% if header.link_2 %}{{header.link_2}}{% else %}#{% endif %}">
+																	<img src="{{MEDIA_URL}}{{header.image_2}}"
+																			 alt="{% if header.alt_2 %}{{header.alt_2}}{% else %}logo2{% endif %}"
+																			 title="{% if header.alt_2 %}{{header.alt_2}}{% else %}logo2{% endif %}">
+															</a>
+													</div>
+											{% endif %}
+						{% if header.image_3 %}
+													<div class="logo-item">
+															<a class="sitelogo" href="{% if header.link_3 %}{{header.link_3}}{% else %}#{% endif %}">
+																	<img src="{{MEDIA_URL}}{{header.image_3}}"
+																			 alt="{% if header.alt_3 %}{{header.alt_3}}{% else %}logo3{% endif %}"
+																			 title="{% if header.alt_3 %}{{header.alt_3}}{% else %}logo3{% endif %}">
+															</a>
+													</div>
+											{% endif %}
+						{% if header.image_4 %}
+													<div class="logo-item">
+															<a class="sitelogo" href="{% if header.link_4 %}{{header.link_4}}{% else %}#{% endif %}">
+																	<img src="{{MEDIA_URL}}{{header.image_4}}"
+																			 alt="{% if header.alt_4 %}{{header.alt_4}}{% else %}logo4{% endif %}"
+																			 title="{% if header.alt_4 %}{{header.alt_4}}{% else %}logo4{% endif %}">
+															</a>
+													</div>
+											{% endif %}
+						{% if header.image_5 %}
+													<div class="logo-item">
+															<a class="sitelogo" href="{% if header.link_5 %}{{header.link_5}}{% else %}#{% endif %}">
+																	<img src="{{MEDIA_URL}}{{header.image_5}}"
+																			 alt="{% if header.alt_5 %}{{header.alt_5}}{% else %}logo5{% endif %}"
+																			 title="{% if header.alt_5 %}{{header.alt_5}}{% else %}logo5{% endif %}">
+															</a>
+													</div>
+											{% endif %}
+						<!--end logos section-->
+					<!--<div class="logo-item"><a href="https://www.gob.mx/imt" target="_blank"><img src="{{STATIC_URL}}content_handler/style_2/img/logo/logo_imt_black.svg" alt="Logo IMT" title="Instituto Mexicano del Transporte (IMT)"></a></div>-->
+					</div>
+					<div class="head-right">
+						<div class="site-name">
+							<h1 class="name-item sitename">
+									{% if header.title %}
+											<div class="xtc-nowrap" title="{% if header.description %}{{header.description}}{%else%}{{header.title}}{% endif %}">{{header.title|linebreaksbr}}</div>
+									{% endif %}
+							</h1>
+							<h2 class="name-item sitename-sub">
+								{% if header.description %}
+										<span class="xtc-nowrap" title="{% if header.description %}{{header.description}}{%else%}{{header.title}}{% endif %}">{{header.description|truncatechars:150}}</span>
+								{% endif %}
+							</h2>
+						</div>
+					</div>
+				</div>
+				<!-- HEADER-MENU -->
+				<div class="header-menu"></div>
+			</div>
+		</div>
+	</header>

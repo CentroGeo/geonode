@@ -1,0 +1,37 @@
+{% if partner %}
+	<!-- SECTION-isntitutes -->
+	<section class="section-head" id="institute-hd">
+		<div class="section-wrapper">
+			<div class="container-full">
+				<div class="content">
+					<h2 class="section-title" id="text-institute-hd" style="text-align: center;">Instituciones participantes</h2>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- SECTION-isntitutes -->
+	<section class="section-component">
+		<div class="section-wrapper">
+			<div class="container-flat">
+				<!--<h2 class="section-title">Lorem ipsum dolor sit amet consectetur</h2>-->
+				<div class="content">
+					<!-- COMPONENT [COM_SUPPORTED] -->
+					<div id="com_supported" class="component com_supported">
+						<div class="supported-items">
+							{% for par in partner %}
+									{% if par.image %}
+											<div class="parent" style="margin:20px 30px 40px 30px">
+												<a href="{% if par.link %}{{par.link}}{% else %}#{% endif %}" target="_blank" title="{% if par.alt %}{{par.alt}}{% else %}logo{% endif %}">
+													<img src="{{MEDIA_URL}}{{par.image}}" alt="{% if par.alt %}{{par.alt}}{% else %}logo{% endif %}">
+												</a>
+											</div>
+									{% endif %}
+								{% endfor %}
+						</div>
+					</div>
+					<!-- isntitutes-END -->
+				</div>
+			</div>
+		</div>
+	</section>
+{% endif %}

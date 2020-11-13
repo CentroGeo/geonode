@@ -1,0 +1,24 @@
+{% extends 'styles/handler_2/base.html' %}
+{% block title %}{{ header.title }} | Inicio{% endblock %}
+{% block extra_head %}
+	<link href="{{STATIC_URL}}content_handler/css/section_is.css" rel="stylesheet">
+	<script src="{{STATIC_URL}}content_handler/style_2/js/macy-2.5.0.min.js"></script>
+	<link href="{{STATIC_URL}}content_handler/css/wraper_sec.css" rel="stylesheet"/>
+{% endblock %}
+{% block body_class %}tem_00 body-intro{% endblock %}
+{% block middle %}
+	<!-- slider section -->
+	{% include "styles/handler/slider.html" %}
+	<!-- sections section -->
+	{% for item in sections %}
+		{% if item.is_institution != True %}
+			{% include "styles/handler/sections_is.html" %}
+		{% else %}
+			{% include "styles/handler/section_editorial.html" %}
+		{% endif %}
+	{% endfor %}
+	<!-- institute section -->
+    {% include "styles/handler/institute.html" %}
+{% endblock middle %}
+{% block extra_script %}
+{% endblock extra_script %}

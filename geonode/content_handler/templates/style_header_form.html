@@ -1,0 +1,88 @@
+{% extends "site_base.html" %}
+{% load i18n %}
+{% load bootstrap_tags %}
+
+{% block title %} Contenido {% endblock %}
+
+{% block head %}
+    <link rel="stylesheet" href="{{STATIC_URL}}content_handler/css/home.css"/>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-colorpicker/2.3.3/css/bootstrap-colorpicker.min.css" rel="stylesheet">
+  {{ block.super }}
+{% endblock %}
+
+{% block body_class %}content{% endblock %}
+
+{% block body_outer %}
+
+<!--HEADER-TITULO-->
+<div id="page-header" class="content">
+	<div class="container">
+		<div class="titulo-blk-row">
+      <div class="titulo-img blk-cell">
+        <i class="fa fa-connectdevelop fa-5x title-detail" title="Secciones" aria-hidden="true"></i>
+        <!-- <img src="{{STATIC_URL}}carousel/images/ico22_lineas-trabajo.png" alt=""> -->
+      </div>
+			  <div class="titulo-txt blk-cell">
+				  <h2 id="titleStyle">Editar estilo de encabezado</h2>
+			  </div>
+		</div>
+	</div>
+</div>
+<div class="container">
+	<div class="row">
+		<p>NOTA: Esto modificara los colores base solo para el encabezado.</p>
+		<div class="col-md-6" id="general">
+			<form id="formulario" method="post" enctype="multipart/form-data" action="">{% csrf_token %}
+				{{ form.media }}
+				{{form|as_bootstrap}}
+				<p><input type="submit" class="btn btn-primary" value="Confirmar"></p>
+			</form>
+		</div>
+	</div>
+</div>
+{% endblock %}
+{% block extra_script %}
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-colorpicker/2.3.3/js/bootstrap-colorpicker.min.js"></script>
+<script type="text/javascript">
+	let template = '{{ home.thematic }}';
+	// color texto
+	$('#id_primary_color').closest('div').addClass('input-group colorpicker-component')
+	$('#id_primary_color').closest('div').append("<span class='input-group-addon'><i></i></span>")
+	$('#id_primary_color').closest('div').attr('id', 'primaryColor')
+	$('#primaryColor').find('.help-block').remove()
+	$('#primaryColor').colorpicker({});
+	// color de fondo
+	$('#id_second_color').closest('div').addClass('input-group colorpicker-component')
+	$('#id_second_color').closest('div').append("<span class='input-group-addon'><i></i></span>")
+	$('#id_second_color').closest('div').attr('id', 'secondColor')
+	$('#secondColor').find('.help-block').remove()
+	$('#secondColor').colorpicker({});
+	// color complementario
+	$('#id_complementary_color').closest('div').addClass('input-group colorpicker-component')
+	$('#id_complementary_color').closest('div').append("<span class='input-group-addon'><i></i></span>")
+	$('#id_complementary_color').closest('div').attr('id', 'complementaryColor')
+	$("label[for='id_complementary_color']").text('Color de encabezados')
+	$('#complementaryColor').colorpicker({});
+	// color sobre imagen
+	$('#id_cover_color').closest('div').addClass('input-group colorpicker-component')
+	$('#id_cover_color').closest('div').append("<span class='input-group-addon'><i></i></span>")
+	$('#id_cover_color').closest('div').attr('id', 'coverColor')
+	$('#coverColor').find('.help-block').remove()
+	$('#coverColor').colorpicker({});
+
+	if (template == '1' || template == '2') {
+		$('#div_id_complementary_color').hide()
+		$('#div_id_cover_color').hide()
+		$('#div_id_font').hide()
+		$('#titleStyle').html('Editar estilo de encabezado');
+	} else {
+		$("label[for='id_second_color']").text('Color de fondo para encabezados');
+		$('#titleStyle').html('Editar estilos de cms');
+	}
+</script>
+{% endblock %}
+</head>
+<body>
+
+</body>
+</html>

@@ -1,0 +1,58 @@
+{% extends 'portal-istmo/base.html' %}
+{% block title %}{{ SITE_NAME }} | {{post}}{% endblock %}
+{% block extra_head %}
+<link href="{{ STATIC_URL }}narratives/css/styles.css" rel="stylesheet">
+<link href="{{STATIC_URL}}rtmg2/css/post_styles.css" rel="stylesheet">
+{% endblock %}
+{% block body_class %}sty_01{% endblock %}
+{% block middle %}
+	<!-- SECTION-CONTENT -->
+	<section class="section-content">
+		<!-- SECTION-HEAD -->
+		<div class="section-sh">
+			<div class="content">
+				<div class="content-head">
+					<h2 class="head-title">{{post}}</h2>
+					<div class="head-subtitle"></div>
+					<div class="head-created">{{post.author}} ● 01 de enero de 2019</div>
+				</div>
+			</div>
+		</div>
+		<!-- SECTION-WRAPPER -->
+		<div class="section-wrapper">
+			<div class="container-std">
+				<div class="content">
+					{{post.post|safe|escape}}
+				</div>
+			</div>
+		</div>
+	</section>
+{% endblock middle %}
+{% block extra_script %}
+    <script>
+    $(document).ready(function() {
+        $('a.btn-modal').on('click', function(e) {
+            e.preventDefault();
+            var url = $(this).attr('href');
+            $("#modal-ref .modal-body").html('<iframe width="100%" height="430" frameborder="0" scrolling="yes" allowtransparency="true" src="'+url+'"></iframe>');
+        });
+    });
+    </script>
+    <script>
+        $(document).ready(function(){
+            //ATL de la imagen
+            $("img.imgfw").wrap('<div class="alt-wrap"/>');
+            $("img.imgfw").each(function() {
+                var alt = $(this).attr('alt');
+                if(alt.length >= 3){
+                    $(this).after('<p class="alt">' + $(this).attr('alt') + '</p>');
+                }
+            });
+            $( "iframe.iframe-nw" ).wrap( '<div class="embed-responsive embed-responsive-16by9"></div>' );
+            $( "iframe.iframe-fw" ).wrap( '<div class="embed-responsive embed-responsive-fw embed-responsive-16by9"></div>' );
+            $( ".imgfw" ).wrap( '<figure class="full-width"></figure>' );
+            $( ".imgfw" ).css('width', '100%');
+            $( ".imgfw" ).css('height', 'auto');
+        });
+    </script>
+{% endblock extra_script %}
