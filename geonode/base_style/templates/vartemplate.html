@@ -1,0 +1,23 @@
+{% if MainHeader %}
+    <header id="headeri">
+        <div class="container">
+        {% if MainHeader %}
+            <div class="header-logo-lf"><img src="/uploaded/{{ MainHeader.logo }}" style="max-height: 85px;"></a></div>
+        {% endif %}
+            <div class="header-title">
+                <h1 class="header-sitename">{{MainHeader.title}}</h1>
+                <div class="header-subtitle">{{MainHeader.subtitle}}</div>
+            </div>
+            <div class="header-logo-rg"><a href="http://www.centrogeo.org.mx/"><img src="{{STATIC_URL}}idegeo/mviewer/img/CentroGeo-CMX_Logo-V.png" alt="logo centrogeo" height="80px"></a></div>        </div>
+    </header>
+{% else %}
+    <header id="headeri">
+        <div class="container">
+            <div class="header-logo-lf"><a href="http://www.conacyt.mx/"><img src="{{STATIC_URL}}idegeo/carousel/img/header_logo-conacyt.png" alt="logo conacyt"></a></div>
+            <div class="header-title">
+                <h1 class="header-sitename">Plataforma Geoweb IDEGeo</h1>
+                <div class="header-subtitle">Servicios de Información Geoespacial</div>
+            </div>
+            <div class="header-logo-rg"><a href="http://www.centrogeo.org.mx/"><img src="{{STATIC_URL}}idegeo/mviewer/img/CentroGeo-CMX_Logo-V.png" alt="logo centrogeo" height="80px"></a></div>        </div>
+    </header>
+{% endif %}

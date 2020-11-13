@@ -490,6 +490,7 @@ INSTALLED_APPS = (
     'geonode',
 
     # Applications
+    'geonode.base_style',
     'geonode.contrib.datatables',
     'geonode.interactive',
     'geonode.interactive.intercensal',

@@ -1,0 +1,68 @@
+{% extends "site_base.html" %}
+{% load i18n %}
+{% load bootstrap_tags %}
+
+{% block title %} {{header_text}} {% endblock %}
+
+{% block head %}
+  {{ block.super }}
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-colorpicker/2.3.3/css/bootstrap-colorpicker.min.css" rel="stylesheet">
+{% endblock %}
+
+{% block body_class %}Preferencias de Interfaz{% endblock %}
+{% block page_header %}
+<!--HEADER-TITULO-->
+<div id="page-header" class="content">
+	<div class="container">
+		<div class="titulo-blk-row">
+			<div class="titulo-img blk-cell"><img src="{{STATIC_URL}}idegeo/carousel/images/ico22_lineas-trabajo.png" alt=""></div>
+			  <div class="titulo-txt blk-cell">
+				  <h2>Configuración de Interfaz</h2>
+			  </div>
+		</div>
+	</div>
+</div>
+{% endblock %}
+
+{% block body_outer %}
+
+<div class="container">
+	<div class="row">
+		<div class="col-md-6" id="general">
+			<form id="formulario" method="post" enctype="multipart/form-data" action="">{% csrf_token %}
+				{{ form.media }}
+				{{form|as_bootstrap}}
+				<p><input type="submit" class="btn btn-primary" value="Guardar"></p>
+			</form>
+		</div>
+	</div>
+</div>
+{% endblock %}
+{% block extra_script %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-colorpicker/2.3.3/js/bootstrap-colorpicker.min.js"></script>
+<script type="text/javascript">
+    $('#id_color').closest('div').addClass('input-group colorpicker-component')
+    $('#id_color').closest('div').append("<span class='input-group-addon'><i></i></span>")
+    $('#id_color').closest('div').attr('id', 'coverColor')
+    $('#coverColor').colorpicker({});
+    $('#id_color_gestion').closest('div').addClass('input-group colorpicker-component')
+    $('#id_color_gestion').closest('div').append("<span class='input-group-addon'><i></i></span>")
+    $('#id_color_gestion').closest('div').attr('id', 'gestionColor')
+    $('#gestionColor').colorpicker({});
+    $('#id_color_font').closest('div').addClass('input-group colorpicker-component')
+    $('#id_color_font').closest('div').append("<span class='input-group-addon'><i></i></span>")
+    $('#id_color_font').closest('div').attr('id', 'fontColor')
+    $('#fontColor').colorpicker({});
+</script>
+<script>
+	function hideShow() {
+		if($('#id_cms').is(':checked')) {
+			$('#div_id_cmsHome').show()
+		} else {
+			$('#div_id_cmsHome').hide()
+		}
+	}
+	hideShow();
+	$('#id_cms').change(hideShow)
+</script>
+{% endblock extra_script %}
