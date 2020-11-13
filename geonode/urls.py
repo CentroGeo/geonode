@@ -257,8 +257,7 @@ if settings.MONITORING_ENABLED:
 # IDEGEO urls
 urlpatterns += [
 
-    #path('interfaz/$', views.config_interface, name='config_interface'),
-    #path('interfaz/<id>', views.config_interface, name='config_interface'),
+    url(r'^interfaz/', include('geonode.base_style.urls')),
     #path('project/', include('project.urls')),
     #path('datatables/', include('geonode.contrib.datatables.urls')),
     #blog

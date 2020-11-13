@@ -21,6 +21,7 @@
 from django import forms
 from django.conf import settings
 from django.contrib.auth import authenticate, login, get_user_model
+from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect
 from django.urls import reverse
 import json
@@ -31,6 +32,8 @@ from geonode import get_version
 from geonode.base.templatetags.base_tags import facets
 from geonode.groups.models import GroupProfile
 
+from geonode.base.models import MainHeader
+from geonode.base.forms import InterfaceForm
 
 class AjaxLoginForm(forms.Form):
     password = forms.CharField(widget=forms.PasswordInput)
@@ -149,3 +152,16 @@ def moderator_contacted(request, inactive_user=None):
         template="account/admin_approval_sent.html",
         context={"email": user.email}
     )
+
+def config_interface(request, id=''):
+    if id != '':
+        obj = get_object_or_404(MainHeader, id=id)
+        form = InterfaceForm(request.POST or None, request.FILES or None, instance=obj)
+    else: 
+        obj = ''
+        form = InterfaceForm(request.POST or None, request.FILES or None)
+    if request.method == 'POST':
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect('../../')
+    return render(request, 'interface_data.html', {'form': form,'obj': obj})
