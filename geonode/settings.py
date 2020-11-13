@@ -499,7 +499,7 @@ INSTALLED_APPS = (
     'geonode.interactive.wms_service',
     'geonode.interactive.chats_map',
     'geonode.interactive.intersection_tool',
-    #'geonode.content_handler',
+    'geonode.content_handler',
     #'geonode.ms',
     'geonode.mviewer',
     #'geonode.blog',

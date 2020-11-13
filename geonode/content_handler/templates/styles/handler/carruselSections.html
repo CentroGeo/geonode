@@ -1,0 +1,32 @@
+<!-- SECTION-COMPONENT CARRUCEL -->
+<section class="section-component">
+  {% if not item.has_mosaic %}
+    {% include 'styles/handler/sec_header.html' %}
+  {% endif %}
+  <div class="section-wrapper">
+    <div class="container-flat">
+      <!--<h2 class="section-title">Lorem ipsum dolor sit amet consectetur</h2>-->
+      <div class="content" style="margin: 0px;">
+
+        <!-- COMPONENT [COM_UNITEGALLERY] -->
+        <div id="com_unitegallerySection" class="component com_unitegallery" style="display: none;">
+            {% if item.children.all|length > 0 %}
+                {% for child in item.children.all|dictsort:"stack_order" %}
+                  {% if child.link %}
+                    <a href="{{child.link}}" {% if child.blank %}target="_blank"{% endif %} data-toggle="modal" data-target="#exampleModalCenter">
+                        <img src="{{MEDIA_URL}}{{child.image}}" alt="" data-image="{{MEDIA_URL}}{{child.image}}">
+                    </a>
+                  {% else %}
+							      <a href="{% url 'content_multimedia' home.url_name child.slug %}" {% if child.blank %}target="_blank"{% endif %} data-toggle="modal" {% if child.blank %}target="_blank"{% endif %} >
+                        <img src="{{MEDIA_URL}}{{child.image}}" alt="" data-image="{{MEDIA_URL}}{{child.image}}">
+                    </a>
+                  {% endif %}
+                {% endfor %}
+            {% endif %}
+          <!-- SLIDER-END -->
+        </div>
+        <!-- COMPONENT-CARRUCEL-END -->
+      </div>
+    </div>
+  </div>
+</section>

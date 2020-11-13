@@ -1,0 +1,55 @@
+{% extends "site_base.html" %}
+{% load i18n %}
+{% load bootstrap_tags %}
+
+{% block title %} Sección {% endblock %}
+
+{% block head %}
+  {% include "geonode/ext_header.html" %}
+  <link rel="stylesheet" href="{{STATIC_URL}}content_handler/css/home.css"/>
+  {{ block.super }}
+{% endblock %}
+
+{% block body_class %}section{% endblock %}
+
+{% block body_outer %}
+
+<!--HEADER-TITULO-->
+<div id="page-header" class="content">
+	<div class="container">
+		<div class="titulo-blk-row">
+      <div class="titulo-img blk-cell icons">
+        <i class="fa fa-linode fa-5x title-detail" title="Secciones" aria-hidden="true"></i>
+        <!-- <img src="{{STATIC_URL}}carousel/images/ico24_narrativas.png" alt=""> -->
+      </div>
+			  <div class="titulo-txt blk-cell">
+				  <h2>Crear Sección para {{home}}</h2>
+			  </div>
+		</div>
+	</div>
+</div>
+<div class="container">
+	<div class="row">
+		<div class="col-md-6" id="general">
+			<form id="formulario" method="post" enctype="multipart/form-data" action="">{% csrf_token %}
+				{{ form.media }}
+				{{form|as_bootstrap}}
+				<p><input type="submit" class="btn btn-primary" value="Confirmar"></p>
+			</form>
+		</div>
+	</div>
+</div>
+
+{% if menu_id %}
+<div style="
+    position: absolute;
+    top: 295px;
+    right: 30%;
+    background-color: #516386;
+    padding: 7px;
+    border-radius: 4px;">
+	<a href="{% url 'header_section_style' ch_id menu_id %}" style="color: white; font-weight: 400">Editar estilo de encabezado</a>
+</div>
+{% endif %}
+{% endblock %}
+

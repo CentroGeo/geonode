@@ -1,0 +1,74 @@
+<!-- SECTION-COMPONENT -->
+<section class="section-component">
+	<div class="section-wrapper">
+		<div class="container-flat">
+			{% if item.is_institution != True %}
+				{% if not item.has_mosaic %}
+					{% include 'styles/handler/sec_header.html' %}
+				{% endif %}
+				<div class="content" style="margin-top: 0px; margin-bottom: 0px;">
+    				{% if item.content %}
+    	    			<section class="section section-gray" style="padding:0px;">
+    	      				<div class="container ms-nar">
+    	        				<div class="section-txt">
+    	        	  				<div class="ms-narrativ-body" style="min-height:500px; position: sticky;">
+    	        	        			{{item.content|safe|escape}}
+    	        	  				</div>
+    	        				</div>
+    	      				</div>
+    	    			</section>
+    				{% endif %}
+					<!-- COMPONENT [GRID-ACCORDION] -->
+					<div id="com_grid-accordion{{item.id}}" class="component grid-accordion" style="margin-bottom: 0px;">
+						<div class="ga-panels">
+							{% if item.children.all|length > 0 %}
+								{% for child in item.children.all|dictsort:"stack_order" %}
+									<div class="ga-panel">
+										<a href="{% if child.link %}{{ child.link }}{% else %}{% url 'content_multimedia' home.url_name child.slug  %}{% endif %}" {% if child.blank %}target="_blank"{% endif %}>
+											<img src="{{STATIC_URL}}rtmg2/img/blank.gif" alt="" class="ga-background" data-src="{{MEDIA_URL}}{{child.image}}">
+											<div class="ga-layer ga-tit ga-closed ga-white" data-position="bottomLeft" data-show-transition="up" data-show-delay="300" data-hide-transition="down">
+												{{child}}</div>
+											<h3 class="ga-layer ga-stt ga-opened ga-black" data-vertical="50%" data-horizontal="2%" data-width="96%" data-show-transition="left" data-show-delay="600" data-hide-transition="left">
+												{{child}}</h3>
+										</a>
+									</div>
+								{% endfor %}
+							{% endif %}
+						</div>
+					</div>
+				</div>
+			{% else %}
+				<section>
+					{% include 'styles/handler/sec_header.html' %}
+					{% if item.content %}
+						<section class="section section-gray" style="padding:0px;">
+							<div class="container ms-nar">
+								<div class="section-txt">
+									<div class="ms-narrativ-body" style="min-height:500px; position: sticky;">
+										{{item.content|safe|escape}}
+									</div>
+								</div>
+							</div>
+						</section>
+					{% endif %}
+					<div style="display: flex; margin-bottom: 20px;">
+						{% if item.children.all|length > 0 %}
+							{% for child in item.children.all|dictsort:"stack_order" %}
+								{% if child.link %}
+									<div class="alignC" style="position: relative; left: 0px; margin: auto">
+										<a href="{{child.link}}" {% if child.blank %}target="_blank"{% endif %} >
+										<img src="{{MEDIA_URL}}{{child.image}}" alt="" width="270px!important"/></a>
+									</div>
+								{% else %}
+									<div>
+										<a href="{% url 'content_multimedia' home.url_name child.slug %}" {% if child.blank %}target="_blank"{% endif %} >
+										<img src="{{MEDIA_URL}}{{child.image}}" alt="" width="270px"/></a>
+									</div class="alignC">
+								{% endif %}
+							{% endfor %}
+						{% endif %}
+					</div>
+			{% endif %}
+		</div>
+	</div>
+</section>

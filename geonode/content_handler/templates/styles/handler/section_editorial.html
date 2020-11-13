@@ -1,0 +1,90 @@
+{% if item.is_institution != True %} 
+	<section>
+		{% if not item.has_mosaic %}
+			{% include 'styles/handler/sec_header.html' %}
+		{% endif %}
+		{% if item.content %}
+			<section class="section section-gray" style="padding:0px;">
+				<div class="container ms-nar">
+					<div class="section-txt">
+						<div class="ms-narrativ-body" style="position: sticky;padding: 45px 0px 45px 0px; font-size: 18px;">
+							{{item.content|safe|escape}}
+						</div>
+					</div>
+				</div>
+			</section>
+		{% endif %}
+		<div class="posts">
+			{% if item.children.all|length > 0 %}
+				{% for child in item.children.all|dictsort:"stack_order" %}
+					{% if child.link %}
+						{% if child.image %}
+							<article>
+								<a href="{{child.link}}" {% if child.blank %}target="_blank"{% endif %} class="image">
+								<img src="{{MEDIA_URL}}{{child.image}}" alt="" /></a>
+								<h3>{{child}}</h3>
+								{% if child.description %}
+									<p>{{child.description}}</p>
+								{% endif %}
+								<ul class="actions">
+									<li>
+										<a href="{{child.link}}" class="button" {% if child.blank %}target="_blank"{% endif %}  id="more-editorial{{child.id}}"><span id="text-more-editorial{{child.id}}">Explorar</span></a>
+									</li>
+								</ul>
+							</article>
+						{% endif %}
+					{% else %}
+						{% if child.image %}
+							<article>
+								<a href="{% url 'content_multimedia' home.url_name child.slug %}" {% if child.blank %}target="_blank"{% endif %} class="image">
+								<img src="{{MEDIA_URL}}{{child.image}}" alt="" /></a>
+								<h3>{{child}}</h3>
+								{% if child.description %}
+									<p>{{child.description}}</p>
+								{% endif %}
+								<ul class="actions">
+									<li>
+										<a href="{% url 'content_multimedia' home.url_name child.slug %}"  {% if child.blank %}target="_blank"{% endif %}  class="button" id="more-editorial{{child.id}}">
+										<span id="text-more-editorial{{child.id}}">Explorar</span></a>
+									</li>
+								</ul>
+							</article>
+						{% endif %}
+					{% endif %}
+				{% endfor %}
+			{% endif %}
+		</div>
+	</section>
+{% else %}
+	<section>
+		{% include 'styles/handler/sec_header.html' %}
+		{% if item.content %}
+			<section class="section section-gray" style="padding:0px;">
+				<div class="container ms-nar">
+					<div class="section-txt">
+						<div class="ms-narrativ-body" style="min-height:500px; position: sticky;padding: 45px 0px 45px 0px;">
+							{{item.content|safe|escape}}
+						</div>
+					</div>
+				</div>
+			</section>
+		{% endif %}
+		<div style="width: fit-content; display: flex; margin: auto; margin-bottom: 40px; margin-top: 40px; ">
+			{% if item.children.all|length > 0 %}
+				{% for child in item.children.all|dictsort:"stack_order" %}
+					{% if child.link %}
+						<div class="alignC">
+							<a href="{{child.link}}" {% if child.blank %}target="_blank"{% endif %} >
+							<img src="{{MEDIA_URL}}{{child.image}}" alt="" height="80px"/></a>
+						</div>
+					{% else %}
+						<div>
+							<a href="{% url 'content_multimedia' home.url_name child.slug %}" {% if child.blank %}target="_blank"{% endif %} >
+							<img src="{{MEDIA_URL}}{{child.image}}" alt="" height="80px"/></a>
+						</div class="alignC">
+					{% endif %}
+				{% endfor %}
+			{% endif %}
+		</div>
+	</section>
+{% endif %}

@@ -1,0 +1,72 @@
+{% if not item.has_mosaic %}
+    {% include 'styles/handler/sec_header.html' %}
+{% endif %}
+{% if item.content %}
+    <section class="section section-gray" style="padding:0px;">
+        <div class="container ms-nar">
+            <div class="section-txt">
+                <div class="ms-narrativ-body" style="min-height:500px; position: sticky;">
+                    {{item.content|safe|escape}}
+                </div>
+            </div>
+        </div>
+    </section>
+{% endif %}
+{% if item.children.all|length > 0 %}
+    {% if item.is_institution != True %}
+        {% for child in item.children.all|dictsort:"stack_order" %}
+            {% if child.link %}
+                <section id="two" class="wrapper style2 alt">
+                    <div class="inner">
+                        <div class="spotlight">
+                            <div class="image">
+                                <a href="{{child.link}}" t{% if child.blank %}target="_blank"{% endif %} class="image">
+                                <img src="{{MEDIA_URL}}{{child.image}}" alt="" /></a>
+                            </div>
+                            <div class="content">
+                                <h3>{{child}}</h3>
+                                <p>{{child.description}}</p>
+                                <ul class="actions">
+                                    <li>
+                                        <a href="{% url 'content_multimedia' home.url_name child.slug %}" class="button alt" id="more-editorial{{child.id}}">
+                                        Detalle</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            {% else %}
+                <section id="two" class="wrapper style2 alt">
+                    <div class="inner">
+                        <div class="spotlight">
+                            <div class="image">
+                                <a href="{% url 'content_multimedia' home.url_name child.slug %}" {% if child.blank %}target="_blank"{% endif %} class="image">
+                                <img src="{{MEDIA_URL}}{{child.image}}" alt="" /></a>
+                            </div>
+                            <div class="content">
+                                <h3>{{child}}</h3>
+                                <p>{{child.description}}</p>
+                                <ul class="actions">
+                                    <li>
+                                        <a href="{% url 'content_multimedia' home.url_name child.slug %}" class="button alt" id="more-editorial{{child.id}}">
+                                        Detalle</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            {% endif %}
+        {% endfor %}
+    {% else %}
+        <section id="two" style="display: flex">
+            {% for child in item.children.all|dictsort:"stack_order" %}
+                <div class="image" style="margin: auto">
+                    <a href="{{child.link}}" t{% if child.blank %}target="_blank"{% endif %} class="image">
+                    <img src="{{MEDIA_URL}}{{child.image}}" alt="" width="270px" /></a>
+                </div>
+            {% endfor %}
+        </section>
+    {% endif %}
+{% endif %}

@@ -1,0 +1,129 @@
+{% if footer %}
+<footer>
+  <section id="section-bottom">
+    <div class="bottom-wrapper">
+      <div class="container">
+        <div class="bottom-copyright">
+          <div class="row">
+              {% if footer.image_1 %}
+                   <div class="col-4">
+                          <div class="head-logo">
+                              <a class="sitelogo" href="{% if footer.link_1 %}{{footer.link_1}}{% else %}#{% endif %}">
+                                  <img src="{{MEDIA_URL}}{{footer.image_1}}"
+                                       alt="{% if footer.alt_1 %}{{footer.alt_1}}{% else %}logo1{% endif %}"
+                                       title="{% if footer.alt_1 %}{{footer.alt_1}}{% else %}logo1{% endif %}"/>
+                              </a>
+                          </div>
+                  </div>
+                {% else %}
+                <div class="col-4">
+                </div>
+              {% endif %}
+                {% if footer.image_2 %}
+                       <div class="col-4">
+                          <div class="head-logo">
+                              <a class="sitelogo" href="{% if footer.link_2 %}{{footer.link_2}}{% else %}#{% endif %}">
+                                  <img src="{{MEDIA_URL}}{{footer.image_2}}"
+                                       alt="{% if footer.alt_2 %}{{footer.alt_2}}{% else %}logo2{% endif %}"
+                                       title="{% if footer.alt_2 %}{{footer.alt_2}}{% else %}logo2{% endif %}"/>
+                              </a>
+                          </div>
+                       </div>
+                {% else %}
+                <div class="col-4">
+                </div>
+              {% endif %}
+              {% if footer.contact_1 %}
+                 <div class="col-4">
+                     <div><strong>Contacto</strong></div>
+                         <ul>
+                             <li>
+                                 {% if footer.link_contanct_1 %}
+                                       <a href="{% if footer.link_contanct_1 %}{{footer.link_contanct_1}}{% else %}#{% endif %}">
+                                          <span class="xtc-nowrap">
+                                            {{footer.contact_1}}   
+                                          </span>
+                                        </a>
+                                         <span class="xtc-nowrap">
+                                          E-mail: {{footer.email_1}}
+                                          </span>
+                                 {% else %}
+                                      <span class="xtc-nowrap">
+                                        {{footer.contact_1}} {% if footer.email_1 %}  ({{footer.email_1}}){% endif %}
+                                      </span>
+                                 {% endif %}
+                             </li>
+                             {% if footer.contact_2 %}
+                                  <li>
+                                     {% if footer.link_contanct_2 %}
+                                       <a href="{% if footer.link_contanct_2 %}{{footer.link_contanct_2}}{% else %}#{% endif %}">
+                                          <span class="xtc-nowrap">
+                                            {{footer.contact_2}}   
+                                          </span>
+                                        </a>
+                                         <span class="xtc-nowrap">
+                                          E-mail: {{footer.email_2}}
+                                          </span>
+                                 {% else %}
+                                      <span class="xtc-nowrap">
+                                        {{footer.contact_2}} {% if footer.email_2 %}  ({{footer.email_2}}){% endif %}
+                                      </span>
+                                 {% endif %}
+                                 </li>
+                             {% endif %}
+                             {% if footer.contact_3 %}
+                                  <li>
+                                     {% if footer.link_contanct_3 %}
+                                       <a href="{% if footer.link_contanct_3 %}{{footer.link_contanct_3}}{% else %}#{% endif %}">
+                                          <span class="xtc-nowrap">
+                                            {{footer.contact_3}}   
+                                          </span>
+                                        </a>
+                                         <span class="xtc-nowrap">
+                                          E-mail: {{footer.email_3}}
+                                          </span>
+                                 {% else %}
+                                      <span class="xtc-nowrap">
+                                        {{footer.contact_3}} {% if footer.email_3 %}  ({{footer.email_3}}){% endif %}
+                                      </span>
+                                 {% endif %}
+                                 </li>
+                             {% endif %}
+
+                         </ul>
+
+                 </div>
+              {% endif %}
+              {% if footer.copyright %}
+                 <div class="col-12" style="padding:20px;padding-bottom: 0;">
+                     {% if footer.link_copyright %}
+                     <span class="xtc-nowrap">
+                          <a href="{{footer.link_copyright}}">
+                                <span class="xtc-nowrap">
+                                    {{footer.copyright}}
+                              </span>
+                          </a>
+                     {% else %}
+                       <span class="xtc-nowrap">
+                        {{footer.copyright}}
+                      </span>
+                     {% endif %}
+                  </div>
+              {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  {% block extra_script %}
+  <script type="text/javascript">
+   {% include 'styles/handler/color_footer.js' %}
+  </script>
+  {% endblock extra_script %}
+  {% endif %}
+</footer>
+<script>
+  let footerHeight = $('footer').height();
+  $('#body-wrapper').css({'padding-bottom': footerHeight + 'px'})
+</script>
+<!-- END -->

@@ -1,0 +1,27 @@
+{% extends "site_base.html" %}
+{% load i18n %}
+
+{% block title %}{{ head.title }} — {{ block.super }}{% endblock %}
+
+{% block body_outer %}
+<div class="container">
+  <div class="row"><br>
+    <div class="col-md-8">
+      <form action="{% url "remove_header" head.id %}" method="POST">
+        <h2>
+          {% blocktrans with head.title as section_title %}
+            ¿Esta seguro que desea eliminar el encabezado: {{ section_title }}?
+          {% endblocktrans %}
+        </h2>
+        <br>
+        {% csrf_token %}
+        <input type="hidden" value="{{ head.title }}" />
+        <div class="form-actions">
+          <input type="submit" value="{% trans "Yes, I am sure" %}" class="btn btn-danger" />
+          <a href="{{ head.get_absolute_url }}" class="btn btn-info">{% trans "No, don't remove it" %}</a>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}

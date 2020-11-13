@@ -1,0 +1,43 @@
+{% if item.headersectionstyle %}
+    <div style="
+        {% if item.headersectionstyle.has_imagebackground %}
+        background-image: url('{{MEDIA_URL}}{{ item.headersectionstyle.image }}');
+        {% if item.headersectionstyle.image_position_fixed %}
+				background-attachment: fixed;
+			{% endif %}
+			background-position: {{ item.headersectionstyle.image_position }};
+			{% if item.headersectionstyle.image_repeat %}
+			background-repeat: repeat;
+			{% else %}
+			background-repeat: no-repeat;
+			{% endif %}
+        {% endif %}
+        ">
+            <div style="background-color: {{ item.headersectionstyle.background }};
+                                                padding: 15px;
+                                                padding-top: {{ item.headersectionstyle.size_div  }}px;
+                                                padding-bottom: {{ item.headersectionstyle.size_div  }}px;
+                        
+	                    {% if item.headersectionstyle.top_border %}
+	                    		border-top: {{ item.headersectionstyle.top_border_thickness }}px {{ item.headersectionstyle.top_border_style }} {{ item.headersectionstyle.top_border_color }};
+	                    	{% endif %}
+	                    	{% if item.headersectionstyle.bottom_border %}
+	                    		border-bottom: {{ item.headersectionstyle.bottom_border_thickness }}px {{ item.headersectionstyle.bottom_border_style }} {{ item.headersectionstyle.bottom_border_color }};
+	                    	{% endif %}
+	                    {% if item.headersectionstyle.width_div %}
+	                    	width: fit-content;
+	                    	margin{% if item.headersectionstyle.text_align == 'left' %}-right{% elif item.headersectionstyle.text_align == 'right' %}-left{% endif %}: auto;
+	                    {% endif %}">
+                <h2 style="color: {{ item.headersectionstyle.font_color  }}; margin: 0;
+                           font-size: {{ item.headersectionstyle.size_font }}px;
+                           text-align: {{ item.headersectionstyle.text_align }};
+                           {% if item.headersectionstyle.underline %}text-decoration: underline;{% endif %}">
+    
+                {{item}}</h2>
+            </div>
+        </div>
+{% else %}
+    <div class="major">
+		<h2 id="section-editorial{{item.id}}">{{item}}</h2>
+	</div>
+{% endif %}

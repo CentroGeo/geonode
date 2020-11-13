@@ -1,0 +1,115 @@
+ {% extends "site_base.html" %}
+{% load i18n %}
+{% load dialogos_tags %}
+{% load pinax_ratings_tags %}
+{% load bootstrap_tags %}
+{% load base_tags %}
+{% load guardian_tags %}
+
+{% block title %}Acervo de difusión{% endblock %}
+
+{% block head %}
+{{ block.super }}
+
+<link href="{{ STATIC_URL }}bootstrap/bootstrap-responsive.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.12.1/bootstrap-table.min.css">
+<link rel="stylesheet" href="{{STATIC_URL}}content_handler/css/home.css"/>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.12.1/bootstrap-table.min.js"></script>
+{% endblock %}
+{% block body_class %}links{% endblock %}
+{% block middle %}
+{% block body_outer %}
+{% endblock %}
+<div id="page-header" class="content">
+  <div class="container">
+    <div class="titulo-blk-row">
+      <div class="titulo-img blk-cell">
+        <i class="fa fa-caret-square-o-right fa-5x title-detail" title="Instituciones participantes" aria-hidden="true"></i>
+        <!-- <img src="{{STATIC_URL}}carousel/images/ico22_lineas-trabajo.png" alt=""> -->
+      </div>
+        <div class="titulo-txt blk-cell">
+          <h2>Novedades de {{ms.name}}</h2>
+        </div>
+    </div>
+  </div>
+</div>
+<div class="container">
+    <span class="ms-close-detail">
+       <a href="{% url 'content_handler_detail' ms.id %}"><i class="fa fa-chevron-left" title="Regresar"></i></a>
+    </span>
+    <a href="{% url 'upload_main' ms.id car_sec %}" class="btn btn-primary pull-right">Agregar Novedad</a>
+    <br>
+    <table id="tabla_car"
+           data-toggle="table"
+           data-toolbar="#toolbar_dif"
+           data-minimum-count-columns="2"
+           data-pagination="true"
+           data-id-field="id"
+           data-page-list="[10, 25, 50, 100, ALL]"
+           data-show-footer="false"
+           data-response-handler="responseHandler">
+        <thead>
+            <tr>
+                <th>Titulo</th>
+                <th>Imagen</th>
+                <th>Eliminar</th>
+            </tr>
+        </thead>
+        <tbody class="ms-hide-links">
+            {% for link in carrucel %}
+            <tr id="{{link.id}}" class="tr-class-{{link.id}} sort_link" data-title="bootstrap table">
+                <td id="td-id-{{link.id}}" class="td-class-{{link.id}}" data-title="bootstrap table" class="col-md-6">
+                    <a href="{% url 'update_main' link.id ms.id %}">{{link}}</a>
+                </td>
+                <td data-text="122" class="col-md-5">
+                  {% if link.image_news %}
+                    <a href="{{link.link}}">
+                     <img src="{{MEDIA_URL}}/{{link.image_news}}" style="width:100px; height: 100px;"/>
+                    </a>
+                  {% endif %}
+                </td>
+                <td class="col-md-1">
+                    <a href="{% url 'remove_main' link.id %}"><i class="fa fa-trash" aria-hidden="true"></i></a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+        <!--end carrucel-->
+</div>
+{% endblock %}
+
+{% block extra_script %}
+<script>
+  /* Sort liks */
+  $(function () {
+    $(".ms-hide-links").sortable({
+      tolerance: 'pointer',
+      revert: 'invalid',
+      items: "> tr.sort_link",
+      placeholder: 'placeholder',
+      forcePlaceholderSize: true,
+      forceHelperSize: true,
+      axis: "y",
+      cancel: ".top-tools, .top-exp",
+      cursor: "row-resize",
+      stop: function(event, ui) {
+        var sortedIDs = $(this).sortable('toArray');
+        $.ajax({
+          url: '{% url "sort_carrucel" %}',
+          type: 'POST',
+          data: {'sorted_ids': JSON.stringify(sortedIDs),
+                 csrfmiddlewaretoken: '{{ csrf_token }}'
+                },
+          error : function(xhr,errmsg,err) {
+              console.log('Error en el servidor')
+              console.log(xhr.status + ": " + xhr.responseText);
+          }
+        });
+      }
+    });
+  });
+</script>
+{% endblock extra_script %}

@@ -1,0 +1,71 @@
+<div class="modal fade" id="modal_color" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Cambia los colores Hexadecimales del Home</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label for="exampleInputEmail1">Color primario</label>
+            <input type="text" class="form-control" id="primary" aria-describedby="emailHelp" placeholder="#FFFFFF">
+            <small id="emailHelp" class="form-text text-muted">El color debe se hexadecimal ej.(#493673)</small>
+          </div>
+          <div class="form-group">
+            <label for="exampleInputEmail1">Color secundario</label>
+            <input type="text" class="form-control" id="second" aria-describedby="emailHelp" placeholder="#FFFFFF">
+            <small id="emailHelp" class="form-text text-muted">El color debe se hexadecimal ej.(#493673)</small>
+          </div>
+          <div class="form-group">
+            <label for="exampleInputEmail1">Color complementario</label>
+            <input type="text" class="form-control" id="complementary" aria-describedby="emailHelp" placeholder="#FFFFFF">
+            <small id="emailHelp" class="form-text text-muted">El color debe se hexadecimal ej.(#493673)</small>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" onclick="save_colors_hex()">Guardar</button>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-colorpicker/2.3.3/js/bootstrap-colorpicker.min.js"></script>
+<script type="text/javascript">
+
+  $('#primary').colorpicker({});
+  $('#second').colorpicker({});
+  $('#complementary').colorpicker({});
+
+  function save_colors_hex(){
+    let primary = $("#primary").val();
+    let second = $("#second").val();
+    let complementary = $("#complementary").val();
+    let id_home = {{ms.id}};
+
+    query_data = {
+    'primary':primary,
+    'complementary':complementary,
+    'second': second,
+    'id_home':id_home
+    }
+
+    $.ajax({
+    data: {'query_data': JSON.stringify(query_data),
+    csrfmiddlewaretoken: '{{ csrf_token }}'
+    },
+    url: '{% url "hd_save_hexadecimal" %}',
+    type: 'POST',
+    success: function(data){
+      $("#modal_color").modal("hide");
+    },
+    error : function(message) {
+    console.log(message);
+    }
+    });
+
+  }
+</script>

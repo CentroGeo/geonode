@@ -1,0 +1,114 @@
+{% extends "site_base.html" %}
+{% load i18n %}
+{% load dialogos_tags %}
+{% load pinax_ratings_tags %}
+{% load bootstrap_tags %}
+{% load base_tags %}
+{% load guardian_tags %}
+
+{% block title %}Contenido{% endblock %}
+
+{% block head %}
+{{ block.super }}
+
+<link href="{{ STATIC_URL }}bootstrap/bootstrap-responsive.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.12.1/bootstrap-table.min.css">
+<link rel="stylesheet" href="{{STATIC_URL}}content_handler/css/home.css"/>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.12.1/bootstrap-table.min.js"></script>
+{% endblock %}
+{% block body_class %}content{% endblock %}
+{% block middle %}
+{% block body_outer %}
+{% endblock %}
+<div id="page-header" class="content">
+ <div class="container">
+   <div class="titulo-blk-row">
+     <div class="titulo-img blk-cell icons">
+       <i class="fa fa-connectdevelop fa-5x title-detail" title="Secciones" aria-hidden="true"></i>
+       <!-- <img src="{{STATIC_URL}}carousel/images/ico24_narrativas.png" alt=""> -->
+     </div>
+       <div class="titulo-txt blk-cell">
+         <h2>Agregar contenido para {{ms.name}}</h2>
+       </div>
+   </div>
+ </div>
+</div>
+<div class="container">
+   <span class="ms-close-detail">
+      <a href="{% url 'content_handler_detail' ms.id %}"><i class="fa fa-chevron-left" title="Regresar"></i></a>
+   </span>
+ </br>
+      <!-- contenido -->
+      <table id="tabla_dif"
+             data-toggle="table"
+             data-toolbar="#toolbar_dif"
+             data-minimum-count-columns="2"
+             data-pagination="true"
+             data-id-field="id"
+             data-page-list="[10, 25, 50, 100, ALL]"
+             data-show-footer="false"
+             data-response-handler="responseHandler">
+          <thead>
+          <tr>
+              <th colspan="2"><a href="{% url 'upload_content' ms.id %}" class="btn btn-primary btn-lg btn-block">Agregar contenido</a></th>
+          </tr>
+          </thead>
+          <tbody class="content">
+              {% for link in content %}
+              <tr id="{{link.id}}" class="tr-class-{{link.id}} sort_content" data-title="bootstrap table">
+                  <td id="td-id-{{link.id}}" class="td-class-{{link.id}}" data-title="bootstrap table" class="col-md-6">
+                      {{link.content|safe}}
+                        <span>
+                          <a href="{% url 'update_content' ms.id link.id %}">
+                            <i class="fa fa-pencil fa-1x"  title="Editar Contenido" aria-hidden="true"></i>
+                          </a>
+                        </span>
+                        <span>
+                          <a href="{% url 'remove_content' ms.id link.id %}">
+                            <i class="fa fa-trash fa-1x" title="Eliminar Contenido" aria-hidden="true"></i>
+                          </a>
+                        </span>
+                  </td>
+              </tr>
+              {% endfor %}
+          </tbody>
+      </table>
+<!-- end contenido -->
+</div>
+{% endblock %}
+
+{% block extra_script %}
+<script>
+      /* Sort sections */
+      $(function() {
+          $(".content").sortable({
+              tolerance: 'pointer',
+              revert: 'invalid',
+              items: "tr.sort_content",
+              placeholder: 'placeholder',
+              forcePlaceholderSize: true,
+              forceHelperSize: true,
+              axis: "y",
+              //cancel: ".top-tools, .top-exp",
+              cursor: "row-resize",
+              stop: function(event, ui) {
+                  var sortedIDs = $(this).sortable('toArray');
+                  $.ajax({
+                      url: '{% url "sort_content" %}',
+                      type: 'POST',
+                      data: {
+                          'sorted_ids': JSON.stringify(sortedIDs),
+                          csrfmiddlewaretoken: '{{ csrf_token }}'
+                      },
+                      error: function(xhr, errmsg, err) {
+                          console.log('Error en el servidor')
+                          console.log(xhr.status + ": " + xhr.responseText);
+                      }
+                  });
+              }
+          });
+      });
+</script>
+{% endblock extra_script %}

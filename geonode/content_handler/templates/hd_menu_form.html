@@ -1,0 +1,83 @@
+{% extends "site_base.html" %}
+{% load i18n %}
+{% load bootstrap_tags %}
+{% load static from staticfiles %}
+
+{% block title %} Menú {% endblock %}
+
+{% block head %}
+  {% include "geonode/ext_header.html" %}
+  {{ block.super }}
+
+{% endblock %}
+
+{% block body_class %}menu{% endblock %}
+
+{% block body_outer %}
+
+<!--HEADER-TITULO-->
+<div id="page-header" class="content">
+	<div class="container">
+		<div class="titulo-blk-row">
+			<div class="titulo-img blk-cell"><img src="{{STATIC_URL}}carousel/images/ico22_lineas-trabajo.png" alt=""></div>
+			  <div class="titulo-txt blk-cell">
+				  <h2>Crear Menú para {{home}}</h2>
+			  </div>
+		</div>
+	</div>
+</div>
+<div class="container">
+	<div class="row">
+		<div class="col-md-6" id="general">
+            <span class"btn">
+				{% if home.id %}
+                	<a href="{% url 'header_menu_style' home.id %}" data-toggle="tooltip" title="Editar Header del Menú" class="fa fa-pencil fa-1x"> Editar estilo de encabezado</a>
+				{% else %}
+				<a href="{% url 'header_menu_style' obj.id %}" data-toggle="tooltip" title="Editar Header del Menú" class="fa fa-pencil fa-1x"> Editar estilo de encabezado</a>
+				{% endif %}
+			</span>
+			<form id="formulario" method="post" enctype="multipart/form-data" action="">{% csrf_token %}
+				{{ form.media }}
+				{{ form | as_bootstrap }}
+				<p><input type="submit" class="btn btn-primary" value="Confirmar"></p>
+			</form>
+		</div>
+	</div>
+</div>
+<script>{% include "hd_menu_form.js"%}</script>
+
+<script type="text/javascript">
+let back = document.getElementById("div_id_custome_back").value;
+  if(back=="true"){
+    document.getElementById("div_id_content").style.display="none";
+    document.getElementById("div_id_blank").style.display="none";
+  }else{
+    document.getElementById("div_id_content").style.display="block";
+    document.getElementById("div_id_blank").style.display="block";
+  }
+
+$('#id_custome_back').change(function() {
+  if($(this).is(':checked')){
+    $('#cke_id_content').hide();
+    $('#div_id_content').hide();
+	$('#id_blank').hide();
+    $('#div_id_blank').hide();
+  }else{
+    $('#cke_id_content').show();
+    $('#div_id_content').show();
+	$('#id_blank').show();
+    $('#div_id_blank').show();
+  }
+});
+
+function onChangeMosaic() {
+	if($('#id_has_mosaic').is(':checked')) {
+		$('#div_id_style_template').show()
+	} else {
+		$('#div_id_style_template').hide()
+	}
+}
+onChangeMosaic();
+$('#id_has_mosaic').change(onChangeMosaic);
+</script>
+{% endblock %}

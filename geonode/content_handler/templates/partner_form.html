@@ -1,0 +1,93 @@
+{% extends "site_base.html" %}
+{% load i18n %}
+{% load bootstrap_tags %}
+
+{% block title %} Home {% endblock %}
+
+{% block head %}
+  {% include "geonode/ext_header.html" %}
+	<link rel="stylesheet" href="{{STATIC_URL}}content_handler/css/home.css"/>
+    <link rel="stylesheet" href="{{STATIC_URL}}content_handler/css/partner.css"/>
+  {{ block.super }}
+{% endblock %}
+
+{% block body_class %}category{% endblock %}
+
+{% block body_outer %}
+
+<!--HEADER-TITULO-->
+<div id="page-header" class="content">
+	<div class="container">
+		<div class="titulo-blk-row">
+			<div class="titulo-img blk-cell">
+        <i class="fa fa-university fa-5x title-detail" title="Instituciones participantes" aria-hidden="true"></i>
+        <!-- <img src="{{STATIC_URL}}carousel/images/ico22_lineas-trabajo.png" alt=""> -->
+      </div>
+			  <div class="titulo-txt blk-cell">
+				  <h2>Crear Institución</h2>
+			  </div>
+		</div>
+	</div>
+</div>
+<div class="container">
+	<div class="row">
+		<div class="col-md-6" id="general">
+			<form id="formulario" method="post" enctype="multipart/form-data" action="">{% csrf_token %}
+				<div class="form-group">
+					{{ form.image.errors }}
+					<label for="{{ form.image.id_for_label }}">Imagen:</label>
+					<div>{{ form.image }}</div>
+				</div>
+				<div class="form-group">
+					{{ form.link.errors }}
+					<label for="{{ form.link.id_for_label }}">URL:</label>
+					{{ form.link }}
+				</div>
+				<div class="form-group">
+					{{ form.name.errors }}
+					<label for="{{ form.name.id_for_label }}">Título:</label>
+					{{ form.name }}
+				</div>
+				<div class="form-group">
+					{{ form.stack_order.errors }}
+					<label for="{{ form.stack_order.id_for_label }}">Posición del logo:</label>
+					<div style="display: none;">{{ form.stack_order }}</div>
+				</div>
+				<ul id="sortable">
+					{% for i in institution %}
+						{% if not form.image %}
+							<li class="ui-state-default">
+								<img src="{{MEDIA_URL}}/{{ i.image }}" style="width:100px; height: 100px;"/>
+							</li>
+						{% endif %}
+						{% if form.image %}
+							{% if i.id != obj.id %}
+								<li class="ui-state-default">
+									<img src="{{MEDIA_URL}}/{{ i.image }}" style="width:100px; height: 100px;"/>
+								</li>
+							{% endif %}
+							{% if i.id == obj.id %}
+								<li class="ui-state-default" id="current">
+									<img src="{{MEDIA_URL}}/{{ i.image }}" style="width:100px; height: 100px;"/>
+								</li>
+							{% endif %}
+						{% endif %}
+					{% endfor %}
+					{% if not form.image %}
+					<li id="logo">
+						<img src="https://www.universitariorugbyclub.com/wp-content/uploads/2018/11/tulogo.png" style="width:100px; height: 100px;"/>
+					</li>
+					{% endif %}
+				</ul>
+				<p><input type="submit" class="btn btn-primary" value="Confirmar"></p>
+			</form>
+		</div>
+	</div>
+</div>
+
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script>{% include "partner_form.js" %}</script>
+{% endblock %}
+{% block extra_script %}
+{% endblock %}

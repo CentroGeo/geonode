@@ -1,0 +1,174 @@
+{% extends 'portal-istmo/base.html' %}
+{% block title %}{{ SITE_NAME }} | Buscador {% endblock %}
+{% block extra_head %}{% endblock %}
+{% block body_class %}sty_01{% endblock %}
+{% block middle %}
+	<!-- SECTION-CONTENT -->
+	<section class="section-content">
+		<!-- SECTION-TITLE -->
+		<div id="section-title" class="section-sh">
+			<div class="container">
+				<!-- SECTION-SEARCH -->
+				<nav class="navbar navbar-light bg-light">
+					<form class="form-inline" action="{% url 'portal_search' %}" method="get">
+					  <div class="form-group mx-sm-3 mb-2">
+						<label for="search" class="sr-only">Buscar</label>
+						<input type="text" class="form-control" name="q" id="search" placeholder="Buscar">
+					  </div>
+					  <button type="submit" class="btn btn-primary mb-2">Buscar</button>
+					</form>
+				</nav>
+			</div>
+		</div>
+	</section>
+	{% if items|length == 0 and search %}
+	<section class="section-content">
+		<!-- SECTION-TITLE -->
+		<div id="section-title" class="section-sh">
+			<div class="container">
+				<h2 class="section-title">No se encontraron resultados con la palabra: {{search}}</h2>
+			</div>
+		</div>
+	</section>
+	{% endif %}
+
+	<!-- SECTION-CONTENT -->
+	<section class="section-content">
+		<div class="section-wrapper">
+			<div class="container">
+				<div class="content">
+					<!--<h2 class="section-title">Lorem ipsum dolor sit amet consectetur adipiscing elit</h2>-->
+					<div class="row">
+						<!-- ROW-CONTENT -->
+						<div class="row-block row-content col-md-12 col-lg-8">
+							<!--<h2>Lorem ipsum dolor sit amet consectetur adipiscing elit</h2>-->
+							<!-- CONTENT-BOXED-->
+                            {% for item in items %}
+							{% if item.link %}
+								<div class="conted-boxed">
+									<div class="box-title">{{item}}</div>
+									<div class="box-date">ISTMO ● {{item.created|date:"l j, F, Y"}}</div>
+									{% if item.image %}
+									<div class="box-graph">
+										<img src="{{MEDIA_URL}}{{item.image}}" alt="{{item}}">
+									</div>
+									{% endif %}
+									<div class="box-footer"></div>
+									<div class="box-button"><a href="{{item.link}}" target="_blank" class="btn btn-primary">Explorar</a></div>
+								</div>
+							{% elif item.format %}
+								<div class="conted-boxed">
+									<div class="box-title">{{item}}</div>
+									<div class="box-date">ISTMO ● {{item.created|date:"l j, F, Y"}}</div>
+									{% if item.image %}
+									<div class="box-graph">
+										<img src="{{MEDIA_URL}}{{item.image}}" alt="{{item}}">
+									</div>
+									{% endif %}
+									<div class="box-footer"></div>
+									<div class="box-button"><a href="{% url 'post_detail' item.slug %}" class="btn btn-primary">Explorar</a></div>
+								</div>
+							{% elif item.url_id %}
+								<div class="conted-boxed">
+									<div class="box-title">{{item}}</div>
+									<div class="box-date">ISTMO ● {{item.creation_date|date:"l j, F, Y"}}</div>
+									{% if item.image %}
+									<div class="box-graph">
+										<img src="{{MEDIA_URL}}{{item.image}}" alt="{{item}}">
+									</div>
+									{% endif %}
+									<div class="box-footer"></div>
+									<div class="box-button"><a href="{% url 'microviewer' item.url_id %}" target="_blank" class="btn btn-primary">Explorar</a></div>
+								</div>
+							{% elif item.url %}
+								<div class="conted-boxed">
+									<div class="box-title">{{item}}</div>
+									<div class="box-date">ISTMO ● {{item.creation_date|date:"l j, F, Y"}}</div>
+									{% if item.image %}
+									<div class="box-graph">
+										<img src="{{MEDIA_URL}}{{item.image}}" alt="{{item}}">
+									</div>
+									{% endif %}
+									<div class="box-footer"></div>
+									<div class="box-button"><a href="{{item.url}}" target="_blank" class="btn btn-primary">Explorar</a></div>
+								</div>
+							{% elif item.url_name %}
+								<div class="conted-boxed">
+									<div class="box-title">{{item}}</div>
+									<div class="box-date">ISTMO ● {{item.creation_date|date:"l j, F, Y"}}</div>
+									{% if item.cover_image %}
+									<div class="box-graph">
+										<img src="{{MEDIA_URL}}{{item.cover_image}}" alt="{{item}}">
+									</div>
+									{% endif %}
+									<div class="box-footer"></div>
+									<div class="box-button"><a href="{% url 'ms_index' item.url_name %}" target="_blank" class="btn btn-primary">Explorar</a></div>
+								</div>
+							{% elif item.zoom %}
+								<div class="conted-boxed">
+									<div class="box-title">{{item.title}}</div>
+									<div class="box-date">ISTMO ● {{item.date|date:"l j, F, Y"}}</div>
+									{% if item.new_thumb %}
+									<div class="box-graph">
+										<img src="{{MEDIA_URL}}{{item.new_thumb}}" alt="{{item}}">
+									</div>
+									{% endif %}
+									<div class="box-footer">{{item.abstract}}</div>
+									<div class="box-button"><a href="{% url 'visor_map' item.id %}" target="_blank" class="btn btn-primary">Explorar</a></div>
+								</div>
+							{% else %}
+								<div class="conted-boxed">
+									<div class="box-title">{{item}}</div>
+									<div class="box-date">ISTMO ● {{item.date|date:"l j, F, Y"}}</div>
+									{% if item.doc_frontpage %}
+									<div class="box-graph">
+										<img src="{{MEDIA_URL}}{{item.doc_frontpage}}" alt="{{item}}">
+									</div>
+									{% endif %}
+									<div class="box-footer">{{item.description}}</div>
+									<div class="box-button"><a href="#" onclick="getDocument({{item.id}})" data-toggle="modal" data-target="#exampleModalCenter" class="btn btn-primary">Explorar</a></div>
+								</div>
+							{% endif %}
+                            {% endfor %}
+                            {% if items.paginator.num_pages > 1 %}
+							<div class="content-pager">
+								<nav class="pager-nav">
+									<ul class="pagination">
+                                        {% if items.has_previous %}
+										<li class="page-item"><a class="page-link" id="previousPage" href="?page={{ items.previous_page_number }}" tabindex="-1">Anterior</a></li>
+                                        {% endif %}
+										<li class="page-item"><a class="page-link">página {{ items.number }} de {{ items.paginator.num_pages }}</a></li>
+                                        {% if items.has_next %}
+										<li class="page-item"><a class="page-link" id="nextPage" href="?page={{ items.next_page_number }}">Siguiente</a></li>
+                                        {% endif %}
+									</ul>
+								</nav>
+							</div>
+                            {% endif %}
+							<!--BOXED-END-->
+						</div>
+						<!-- ROW-SIDEBAR-->
+						<div class="row-block row-sidebar col-md-12 col-lg-4">
+						</div>
+						<!-- ROW-END -->
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+{% endblock middle %}
+{% block extra_script %}
+	<script>
+        var urlencode ="{{request.GET.urlencode}}";
+        urlencode = urlencode.replace(/&amp;/g, "&");
+        urlencode = '?'+urlencode.split("&page")[0]+'&page=';
+        $( document ).ready(function() {
+            {% if items.has_previous %}
+            $('#previousPage').attr("href",urlencode+'{{ items.previous_page_number }}');
+            {% endif %}
+            {% if items.has_next %}
+            $('#nextPage').attr("href",urlencode+'{{ items.next_page_number }}');
+            {% endif %}
+        });
+    </script>
+{% endblock extra_script %}

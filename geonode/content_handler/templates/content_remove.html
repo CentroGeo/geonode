@@ -1,0 +1,27 @@
+{% extends "site_base.html" %}
+{% load i18n %}
+
+{% block title %}Delete — {{ block.super }}{% endblock %}
+
+{% block body_outer %}
+<div class="container">
+  <div class="row"><br>
+    <div class="col-md-8">
+      <form action="{% url "remove_content" home content.id %}" method="POST">
+        <h2>
+          {% blocktrans with content.content|safe as section_title %}
+            ¿Esta seguro que desea eliminar el contenido: {{ section_title }}?
+          {% endblocktrans %}
+        </h2>
+        <br>
+        {% csrf_token %}
+        <input type="hidden" value="{{ content.content }}" />
+        <div class="form-actions">
+          <input type="submit" value="{% trans "Yes, I am sure" %}" class="btn btn-danger" />
+          <a href="{{ content.get_absolute_url }}" class="btn btn-info">{% trans "No, don't remove it" %}</a>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}

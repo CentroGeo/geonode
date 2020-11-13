@@ -1,0 +1,77 @@
+<!-- HEADER -->
+<header id="header">
+  <div class="header-wrapper">
+    <div class="container-full">
+      <div class="content" style="justify-content: center;">
+        <!--logos section-->
+          {% if header.image_1 %}
+              <div class="head-logo">
+                  <a class="sitelogo" href="{% if header.link_1 %}{{header.link_1}}{% else %}#{% endif %}">
+                      <img src="{{MEDIA_URL}}{{header.image_1}}"
+                           alt="{% if header.alt_1 %}{{header.alt_1}}{% else %}logo1{% endif %}"
+                           title="{% if header.alt_1 %}{{header.alt_1}}{% else %}logo1{% endif %}"/>
+                  </a>
+              </div>
+          {% endif %}
+          {% if header.image_2 %}
+                      <div class="head-logo">
+                          <a class="sitelogo" href="{% if header.link_2 %}{{header.link_2}}{% else %}#{% endif %}">
+                              <img src="{{MEDIA_URL}}{{header.image_2}}"
+                                   alt="{% if header.alt_2 %}{{header.alt_2}}{% else %}logo2{% endif %}"
+                                   title="{% if header.alt_2 %}{{header.alt_2}}{% else %}logo2{% endif %}"/>
+                          </a>
+                      </div>
+          {% endif %}
+          {% if header.image_3 %}
+                      <div class="head-logo">
+                          <a class="sitelogo" href="{% if header.link_3 %}{{header.link_3}}{% else %}#{% endif %}">
+                              <img src="{{MEDIA_URL}}{{header.image_3}}"
+                                   alt="{% if header.alt_3 %}{{header.alt_3}}{% else %}logo3{% endif %}"
+                                   title="{% if header.alt_3 %}{{header.alt_3}}{% else %}logo3{% endif %}"/>
+                          </a>
+                      </div>
+          {% endif %}
+          {% if header.image_4 %}
+                      <div class="head-logo">
+                          <a class="sitelogo" href="{% if header.link_4 %}{{header.link_4}}{% else %}#{% endif %}">
+                              <img src="{{MEDIA_URL}}{{header.image_4}}"
+                                   alt="{% if header.alt_4 %}{{header.alt_4}}{% else %}logo4{% endif %}"
+                                   title="{% if header.alt_4 %}{{header.alt_4}}{% else %}logo4{% endif %}"/>
+                          </a>
+                      </div>
+          {% endif %}
+          {% if header.image_5 %}
+                      <div class="head-logo">
+                          <a class="sitelogo" href="{% if header.link_5 %}{{header.link_5}}{% else %}#{% endif %}">
+                              <img src="{{MEDIA_URL}}{{header.image_5}}"
+                                   alt="{% if header.alt_5 %}{{header.alt_5}}{% else %}logo5{% endif %}"
+                                   title="{% if header.alt_5 %}{{header.alt_5}}{% else %}logo5{% endif %}"/>
+                          </a>
+                      </div>
+          {% endif %}
+          <!--end logos section-->
+          <div class="head-name">
+          <h1 class="name-item sitename">
+              {% if header.title %}
+                  <span class="xtc-break" id="text-title-header" title="{% if header.description %}{{header.description}}{%else%}{{header.title}}{% endif %}">{{header.title}}</span>
+              {% endif %}
+          </h1>
+          <!--<h2 class="name-item sitename-sub"><span class="xtc-nowrap">Lorem ipsum dolor sit amet consectetur</span></h2> -->
+          </div>
+      </div>
+      <div class="header-menu"></div>
+        <!-- HEADER-TOOLS -->
+    {% if header.is_login %}
+    <div id="header-tools" class="header-tools">
+        {% if user.is_authenticated %}
+        <i data-toggle="modal" data-target="#UserModal" class="fas fa-user"  title="Buscar"></i>
+        {% else %}
+        <i data-toggle="modal" data-target="#SigninModal" class="fas fa-user"  title="Buscar"></i>
+        {% endif %}
+    </div>
+    {% endif %}
+    </div>
+  </div>
+</header>
+<div id="fb-root"></div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/es_LA/sdk.js#xfbml=1&version=v6.0"></script>

@@ -1,0 +1,72 @@
+from django.conf.urls import include, url
+from django.urls import path
+from django.views.generic import TemplateView
+
+from . import views
+
+
+js_info_dict = {
+    'packages': ('geonode.content_handler',),
+}
+
+urlpatterns = [
+    # home handler
+    url(r'^$', views.content_handler_list, name='content_handler_list'),
+    url(r'^(?P<msurlname>[^/]+)$', views.handler_home, name='handler_home'),
+    url(r'^detail/(?P<ch_id>\d+)$', views.content_handler_detail, name='content_handler_detail'),
+    url(r'^upload_handler/$', views.upload_handler, name='upload_handler'),
+    url(r'^update_handler/(?P<ch_id>\d+)$', views.update_handler, name='update_handler'),
+    url(r'^header_section_style/(?P<ch_id>\d+)/(?P<menu_id>\d+)$', views.header_section_style, name='header_section_style'),
+    url(r'^header_menu_style/(?P<ch_id>\d+)/(?P<menu_id>\d+)$', views.header_menu_style, name='header_menu_style'),
+    url(r'^header_menu_style/(?P<menu_id>\d+)$', views.header_menu_style, name='header_menu_style'),
+    url(r'^rm_handler/(?P<ch_id>\d+)$', views.remove_handler, name='remove_handler'),
+    url(r'^upload_header/(?P<ch_id>\d+)$', views.upload_header, name='upload_header'),
+    url(r'^update_header/(?P<ch_id>\d+)/(?P<h_id>\d+)$', views.update_header, name='update_header'),
+    url(r'^rm_header/(?P<h_id>\d+)$', views.remove_header, name='remove_header'),
+    url(r'^main_list/(?P<ch_id>\d+)$', views.main_list, name='main_list'),
+    url(r'^upload_main/(?P<ch_id>\d+)/(?P<section_id>\d+)$', views.upload_main, name='upload_main'),
+    url(r'^update_main/(?P<main_id>\d+)/(?P<ch_id>\d+)$', views.update_main, name='update_main'),
+    url(r'^rm_main/(?P<main_id>\d+)$', views.remove_main, name='remove_main'),
+    url(r'^upload_menu/(?P<ch_id>\d+)$', views.upload_menu, name='upload_menu'),
+    url(r'^update_menu/(?P<ch_id>\d+)/(?P<menu_id>\d+)$', views.update_menu, name='update_menu'),
+    url(r'^rm_menu/(?P<ch_id>\d+)/(?P<menu_id>\d+)$', views.remove_menu, name='remove_menu'),
+    url(r'^upload_submenu/(?P<ch_id>\d+)/(?P<menu_id>\d+)$', views.upload_submenu, name='upload_submenu'),
+    url(r'^upload_section/(?P<ch_id>\d+)$', views.upload_section, name='upload_section'),
+    url(r'^upload_subsection/(?P<ch_id>\d+)/(?P<menu_id>\d+)$', views.upload_subsection, name='upload_subsection'),
+    url(r'^sort_carrucel/$', views.sort_carrucel, name='sort_carrucel'),
+    url(r'^sort_sections_handler/$', views.sort_sections_handler, name='sort_sections_handler'),
+    url(r'^multimedia/(?P<msurlname>[^/]+)/(?P<slug>[\w-]+)$', views.content_multimedia, name='content_multimedia'),
+    url(r'^upload_content/(?P<ch_id>\d+)$', views.upload_content, name='upload_content'),
+    url(r'^update_content/(?P<ch_id>\d+)/(?P<content_id>\d+)$', views.update_content, name='update_content'),
+    url(r'^rm_content/(?P<ch_id>\d+)/(?P<content_id>\d+)$', views.remove_content, name='remove_content'),
+    url(r'^save_thmatizing/$', views.hd_save_thmatizing, name='hd_save_thmatizing'),
+    url(r'^grays_managment/$', views.hd_grays_managment, name='hd_grays_managment'),
+    url(r'^save_color/$', views.hd_save_color, name='hd_save_color'),
+    url(r'^publish/$', views.hd_publish, name='hd_publish'),
+    url(r'^publish_managment/(?P<ch_id>\d+)$', views.hd_publish_managment, name='hd_publish_managment'),
+    url(r'^update_section/(?P<ch_id>\d+)/(?P<menu_id>\d+)$', views.update_section, name='update_section'),
+    url(r'^upload_partner/(?P<ch_id>\d+)$', views.upload_partner, name='upload_partner'),
+    url(r'^update_partner/(?P<ch_id>\d+)/(?P<partner_id>\d+)$', views.update_partner, name='update_partner'),
+    url(r'^upload_institution/(?P<ch_id>\d+)/(?P<menu_id>\d+)$',views.upload_institution, name='upload_institution'),
+    url(r'^remove_partner/(?P<ch_id>\d+)/(?P<partner_id>\d+)$', views.remove_partner, name='remove_partner'),
+    url(r'^sort_partner/$', views.sort_partner, name='sort_partner'),
+    url(r'^section_list/(?P<ch_id>\d+)$', views.section_list, name='section_list'),
+    url(r'^content_list/(?P<ch_id>\d+)$', views.hd_content_list, name='hd_content_list'),
+    url(r'^sort_content/$', views.sort_content, name='sort_content'),
+    url(r'^upload_menu_parent/(?P<ch_id>\d+)$', views.upload_menu_parent, name='upload_menu_parent'),
+    url(r'^upload_section_content/(?P<ch_id>\d+)$', views.upload_section_content, name='upload_section_content'),
+    url(r'^add_divider/(?P<ch_id>\d+)$', views.add_divider, name='add_divider'),
+    url(r'^update_section_content/(?P<ch_id>\d+)/(?P<menu_id>\d+)$', views.update_section_content, name='update_section_content'),
+    url(r'^update_block/(?P<ch_id>\d+)/(?P<menu_id>\d+)$', views.update_block, name='update_block'),
+    # url(r'^search_area/$', views.search_area, name='search_area'),
+    url(r'^save_section_type/$', views.hd_save_section_type, name='hd_save_section_type'),
+    url(r'^save_hexadecimal/$', views.hd_save_hexadecimal, name='hd_save_hexadecimal'),
+    url(r'^hexadecimal/$', views.hd_hexadecimal, name='hd_hexadecimal'),
+    url(r'^upload_style_header/(?P<ch_id>\d+)/(?P<header_id>\d+)$', views.upload_style_header, name='upload_style_header'),
+    url(r'^update_style_header/(?P<ch_id>\d+)/(?P<id_style>\d+)$', views.update_style_header, name='update_style_header'),
+    url(r'^upload_footer/(?P<ch_id>\d+)$', views.upload_footer, name='upload_footer'),
+    url(r'^update_footer/(?P<ch_id>\d+)/(?P<foo_id>\d+)$', views.update_footer, name='update_footer'),
+    url(r'^rm_footer/(?P<foo_id>\d+)$', views.remove_footer, name='remove_footer'),
+    url(r'^upload_style_footer/(?P<ch_id>\d+)/(?P<foo_id>\d+)$', views.upload_style_footer, name='upload_style_footer'),
+    url(r'^update_style_footer/(?P<ch_id>\d+)/(?P<id_style>\d+)$', views.update_style_footer, name='update_style_footer'),
+]

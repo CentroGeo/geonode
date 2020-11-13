@@ -1,0 +1,355 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="description" content="CentroGeo: Plataforma Geoweb IDEGeo">
+<meta name="keywords" content="CONACYT, CentroGeo, Plataforma Geoweb, Geoweb, Servicios de Información Geoespacial, Geoespacial">
+<meta name="author" content="Centro de Investigación en Ciencias de Información Geoespacial, A.C. (CentroGeo)">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+<title>{% block title %}{{ SITE_NAME }}{% endblock %}</title>
+<link rel="icon" href="favicon.ico">
+<!-- ------- -->
+<link href="{{STATIC_URL}}content_handler/style_3/css/bootstrap-4.1.3.min.css" rel="stylesheet">
+<link href="{{STATIC_URL}}content_handler/style_3/css/drawer-3.2.2.min.css" rel="stylesheet">
+<link href="{{STATIC_URL}}content_handler/style_3/css/jquery-confirm-3.3.4.min.css" rel="stylesheet">
+<link href="{{STATIC_URL}}content_handler/style_1/css/unitegallery-1.7.45.css" rel="stylesheet">
+<link href="{{STATIC_URL}}content_handler/style_1/css/unitegallery_skins/alexis/alexis.css" rel="stylesheet">
+<script src="{{STATIC_URL}}content_handler/style_3/js/jquery-3.3.1.min.js"></script> 
+<!-- ------- -->
+<style>
+	:root {
+		{% if style.complementary_color %}
+		--headColor: {{style.complementary_color}};
+		{% else %}
+		--headColor: rgb(255,255,255);
+		{% endif %}
+		{% if style.primary_color %}
+		--textColor: {{style.primary_color}};
+		{% else %}
+		--textColor: rgba(0, 0, 0, 1.00);
+		{% endif %}
+		{% if style.second_color %}
+		--mainColor: {{style.second_color}};
+		{% else %}
+		--mainColor: rgba(237, 209, 29, 1.00);
+		{% endif %}
+	}
+</style>
+{% if menu.style_template == '1' %}
+	<!-- parallo -->
+	<link href="{{STATIC_URL}}content_handler/css/section_rt.css" rel="stylesheet">
+	{% elif menu.style_template == '2' %}
+<!-- bidendum -->
+	<link href="{{STATIC_URL}}content_handler/css/section_is.css" rel="stylesheet">
+	<script src="{{STATIC_URL}}content_handler/style_2/js/macy-2.5.0.min.js"></script>
+	{% elif menu.style_template == '3' %}
+<!-- editorial -->
+	<link href="{{STATIC_URL}}content_handler/css/section_editor.css" rel="stylesheet">
+	{% elif menu.style_template == '7' %}
+	<!--carrusel-enfasis-->
+	<link href="{{STATIC_URL}}content_handler/css/carrusel-enfasis.css" rel="stylesheet"/>
+	{% elif menu.style_template == '8' or menu.style_template == '9' %}
+	<!--bloque vineta-->
+	<link href="{{STATIC_URL}}content_handler/css/bloquevineta.css" rel="stylesheet"/>
+	{% endif %}
+<!-- prisma -->
+	<!-- wraper section -->
+	<link href="{{STATIC_URL}}content_handler/css/wraper_sec.css" rel="stylesheet"/>
+	<!-- wraper one section -->
+	<link href="{{STATIC_URL}}content_handler/css/wrapper_one.css" rel="stylesheet"/>
+	<link href="{{STATIC_URL}}content_handler/style_3/css/accordion-slider-2.7.min.css" rel="stylesheet">
+<link href="{{STATIC_URL}}content_handler/style_3/css/styles.css" rel="stylesheet">
+</head>
+
+
+
+
+<body id="cgeo_tema" class="tem_04 drawer drawer--top">
+
+<!-- BODY-WRAPPER -->
+<div id="body-wrapper"> 
+	
+	<!-- HEADER -->
+	<header id="header">
+		<div class="header-wrapper">
+			<div class="container-full">
+				<div class="content">
+					<div class="head-logo"><a class="sitelogo" href="/cms/{{home.url_name}}"><img src="{{MEDIA_URL}}{{ header.image_1 }}" alt="{{ header.alt_1 }}" title="{{ header.alt_1 }}"></a></div>
+					<div class="head-name">
+						<h1 class="name-item sitename"><span class="xtc-nowrap">{{header.title}}</span></h1>
+					</div>
+				</div>
+			</div>
+		</div>
+	</header>
+	
+	<!-- SECTION-INTRO -->
+	<section id="section-intro" class="section-intro">
+		<div class="intro-wrapper section-mh" {% if style.background %}style="background-image: url({{MEDIA_URL}}{{ style.background }});"{% endif %}>
+			<div class="content">
+				<div class="intro-head">
+                    <div class="head-title">{{menu}}</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	{% if menu.has_mosaic %}
+	{% with menu as item %}
+	{% if item.style_template == '1' %}
+	<!-- sections section -->
+		{% include "styles/handler/sections_rt.html" %}
+		 <!-- content section -->
+	{% elif item.style_template == '2' %}
+		 <!-- sections section -->
+		{% include "styles/handler/sections_is.html" %}
+	{% elif item.style_template == '3' %}
+			 <!-- sections section -->
+		{% include "styles/handler/section_editorial.html" %}
+	{% elif item.style_template == '4' %}
+			 <!-- sections section -->
+		{% include "styles/handler/wrapper_one.html" %}
+	{% elif item.style_template == '5' %}
+		{% include "styles/handler/carruselSections.html" %}
+	{% elif item.style_template == '6' %}
+		{% include "styles/handler/sliderSection.html" %}
+	{% elif item.style_template == '7' %}
+		{% include "styles/handler/carrusel-enfasis.html" %}
+	{% elif item.style_template == '8' or item.style_template == '9' %}
+		{% include "styles/handler/bloquevineta.html" %}
+	{% endif %}
+	{% endwith %}
+	{% endif %}
+	
+	{% if not menu.has_mosaic %}
+	<!-- SECTION-CONTENT -->
+	<section class="section-content">
+		<div class="section-wrapper">
+			<div class="container-std">
+				<div class="content"> 
+					<!--<h2 class="section-title">Lorem ipsum dolor sit amet consectetur</h2>-->
+                    {{menu.content|safe}}
+				</div>
+			</div>
+		</div>
+	</section>
+	{% endif %}
+	
+	
+	
+    <!-- section footer -->
+    {% include "styles/handler/footer.html" %}
+	
+	<!-- END --> 
+</div>
+<!-- BODY-WRAPPER-END --> 
+
+<!-- HEADER-NAV -->
+<nav id="header-nav" class="header-nav" role="navigation"></nav>
+<!-- DRAWER-NAV -->
+<nav id="drawer-nav" class="drawer-nav" role="navigation">
+	<button type="button" class="drawer-toggle drawer-hamburger"><span class="sr-only">toggle navigation</span><span class="drawer-hamburger-icon"></span></button>
+	<div class="drawer-wrapper"></div>
+</nav>
+
+<!-- SCRIPTS --> 
+<script src="{{STATIC_URL}}content_handler/style_3/js/bootstrap-4.1.3.bundle.min.js"></script> 
+<script src="{{STATIC_URL}}content_handler/style_3/js/fontawesome-all-5.6.1.min.js"></script> 
+<script src="{{STATIC_URL}}content_handler/style_3/js/TweenMax-2.0.2.min.js"></script> 
+<script src="{{STATIC_URL}}content_handler/style_3/js/iscroll-5.2.0.min.js"></script> 
+<script src="{{STATIC_URL}}content_handler/style_3/js/drawer-3.2.2.min.js"></script> 
+<script src="{{STATIC_URL}}content_handler/style_3/js/jquery-confirm-3.3.4.min.js"></script> 
+<!-- ------- --> 
+<script src="{{STATIC_URL}}content_handler/style_3/js/ScrollMagic-2.0.6.min.js"></script> 
+<!--<script src="js/plugins/debug.addIndicators-2.0.6.min.js"></script> --> 
+<script src="{{STATIC_URL}}content_handler/style_3/js/plugins/animation.gsap-2.0.6.min.js"></script> 
+<!--<script src="js/plugins/ScrollToPlugin-1.9.1.min.js"></script> --> 
+<!-- ------- --> 
+<script>
+    {% include 'styles/handler_3/scripts_nav.js' %}</script> 
+<script src="{{STATIC_URL}}content_handler/style_3/js/scripts.js"></script>
+<script src="{{STATIC_URL}}content_handler/style_1/js/unitegallery-1.7.45.min.js"></script>
+<script src="{{STATIC_URL}}content_handler/style_1/js/unitegallery_themes/compact/ug-theme-compact.js"></script>
+
+{% if menu.style_template == '1' %}
+<!-- parallo -->
+<script src="{{STATIC_URL}}content_handler/style_1/js/jquery.gridAccordion-2.7.min.js"></script>
+{% elif menu.style_template == '2' %}
+<!-- bibendum -->
+{% include 'styles/handler_1/masonryItems.js' %}
+{% elif menu.style_template == '7' %}
+<!--carrusel-enfasis-->
+<script>{% include 'styles/handler/carrusel-enfasis.js' %}</script>
+{% elif menu.style_template == '8' or menu.style_template == '9' %}
+<!--bloque viñeta-->
+<script>{% include 'styles/handler/bloquevineta.js' %}</script>
+{% endif %}
+<script src="{{STATIC_URL}}content_handler/style_3/js/accordion-slider-2.7.min.js"></script>
+<script>
+	{% if menu.style_template == '6' %}
+	$('#sld-accordion{{menu.id}}').accordionSlider({
+                    width: '100%',
+                    height: 420,
+                    responsive: true,
+                    responsiveMode: 'auto',
+    //              responsiveMode: 'custom',
+                    orientation: 'horizontal',
+                    openedPanelSize: 'max',
+                    maxOpenedPanelSize: 780,
+    //              maxOpenedPanelSize: '80%',
+                    openPanelOn: 'hover',
+                    closePanelsOnMouseOut: true,
+                    openPanelDuration: 600,
+                    closePanelDuration: 600,
+    //              aspectRatio: 1.0,
+                    visiblePanels: 5,
+                    autoplay: false,
+                    mouseWheel: false,
+                    breakpoints: {
+                        752: {
+                            width: '100%',
+                            height: 640,
+                            responsiveMode: 'custom',
+                            orientation: 'vertical',
+                            closePanelsOnMouseOut: false,
+    //                      openPanelOn: 'click',
+                            aspectRatio: 1.0,
+                            visiblePanels: 5
+                        }
+                    }
+				});	
+	{% elif menu.style_template == '1' %}
+	$('#com_grid-accordion{{menu.id}}').gridAccordion({
+                width: '100%',
+                height: 640,
+                responsive: true,
+                responsiveMode: 'custom',
+                orientation: 'horizontal',
+                columns: 5,
+                rows: 2,
+                openedPanelWidth: 'auto',
+                openedPanelHeight: 'auto',
+                maxOpenedPanelWidth: '70%',
+                maxOpenedPanelHeight: '70%',
+                openPanelOn: 'hover',
+                closePanelsOnMouseOut: true,
+                mouseDelay: 200,
+                panelDistance: 20,
+                openPanelDuration: 600,
+                closePanelDuration: 600,
+                shadow: false,
+                autoplay: false,
+                mouseWheel: false,
+                breakpoints: {
+                    1199: {
+                        columns: 5,
+                        rows: 1
+                    },
+                    991: {
+                        columns: 4,
+                        rows: 3
+                    },
+                    767: {
+                        columns: 3,
+                        rows: 3
+                    },
+                    575: {
+                        columns: 2,
+                        rows: 4,
+                        height: 760,
+                        orientation: 'vertical'
+                    }
+                }
+			});
+	{% elif menu.style_template == '5' %}
+	$('#com_unitegallerySection{{menu.id}}').unitegallery({
+        gallery_theme: 'compact',
+        // THEME-OPTIONS
+        theme_panel_position: 'bottom',
+        theme_hide_panel_under_width: 480,
+        // GALLERY-OPTIONS
+        gallery_width: 1280,
+        gallery_height: 600,
+        gallery_min_width: 400,
+        gallery_min_height: 300,
+        gallery_skin: 'alexis',
+        gallery_images_preload_type: 'minimal',
+        gallery_autoplay: true,
+        gallery_play_interval: 8000,
+        gallery_pause_on_mouseover: true,
+        gallery_control_thumbs_mousewheel: false,
+        gallery_control_keyboard: true,
+        gallery_carousel: true,
+        gallery_preserve_ratio: true,
+        gallery_debug_errors: false,
+        gallery_background_color: '#000000',
+        // SLIDER-OPTIONS
+        slider_transition: 'fade',
+        slider_transition_speed: 600,
+        slider_transition_easing: 'easeInOutQuad',
+        slider_control_swipe: true,
+        slider_control_zoom: false,
+        slider_zoom_max_ratio: 6,
+        slider_loader_type: 1,
+        slider_loader_color: 'white',
+        slider_enable_arrows: false,
+        slider_enable_progress_indicator: true,
+        slider_progress_indicator_type: 'bar',
+        slider_progress_indicator_align_hor: 'left',
+        slider_progress_indicator_align_vert: 'bottom',
+        slider_progress_indicator_offset_hor: 0,
+        slider_progress_indicator_offset_vert: 0,
+        slider_progressbar_color: '#EDD11D',
+        slider_progressbar_opacity: 0.60,
+        slider_progressbar_line_width: 4,
+        slider_enable_play_button: true,
+        slider_play_button_skin: '',
+        slider_play_button_align_hor: 'right',
+        slider_play_button_align_vert: 'bottom',
+        slider_play_button_offset_hor: 10,
+        slider_play_button_offset_vert: 10,
+        slider_enable_fullscreen_button: false,
+        slider_enable_zoom_panel: false,
+        slider_enable_text_panel: false,
+        // THUMBS-OPTIONS
+        thumb_width: 120,
+        thumb_height: 50,
+        thumb_fixed_size: true,
+        thumb_border_effect: true,
+        thumb_border_width: 0,
+        thumb_border_color: '#000000',
+        thumb_over_border_width: 0,
+        thumb_over_border_color: '#D9D9D9',
+        thumb_selected_border_width: 1,
+        thumb_selected_border_color: '#D9D9D9',
+        thumb_color_overlay_effect: true,
+        thumb_overlay_color: '#000000',
+        thumb_overlay_opacity: 0.6,
+        thumb_overlay_reverse: false,
+        // STRIPT-THUMBS-PANEL-OPTIONS
+        strippanel_padding_top: 5,
+        strippanel_padding_bottom: 5,
+        strippanel_padding_left: 0,
+        strippanel_padding_right: 0,
+        strippanel_enable_buttons: true,
+        strippanel_buttons_skin: '',
+        strippanel_padding_buttons: 2,
+        strippanel_buttons_role: 'scroll_strip',
+        strippanel_enable_handle: false,
+        strippanel_background_color: '#000000',
+        strip_thumbs_align: 'left',
+        strip_space_between_thumbs: 5,
+        strip_thumb_touch_sensetivity: 15,
+        strip_scroll_to_thumb_duration: 500,
+        strip_scroll_to_thumb_easing: 'easeOutCubic',
+        strip_control_avia: false,
+        strip_control_touch: true,
+
+		theme_autoplay: true,				//autoplay videos at start.  true / false. Don't working on mobiles.
+    });
+    {% endif %}
+    $('#section-bottom').attr('style','');
+    $('.section-component').attr('style','margin-bottom: ' + $('#section-bottom').height() + 'px');
+</script>
+</body>
+</html>

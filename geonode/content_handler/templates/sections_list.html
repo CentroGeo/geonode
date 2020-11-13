@@ -1,0 +1,318 @@
+{% extends "site_base.html" %}
+{% load i18n %}
+{% load dialogos_tags %}
+{% load pinax_ratings_tags %}
+{% load bootstrap_tags %}
+{% load base_tags %}
+{% load guardian_tags %}
+
+{% block title %}Secciones{% endblock %}
+
+{% block head %}
+{{ block.super }}
+<link href="{{ STATIC_URL }}bootstrap/bootstrap-responsive.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.17.1/dist/bootstrap-table.min.css">
+<link rel="stylesheet" href="{{STATIC_URL}}content_handler/css/home.css"/>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+
+<style>
+  .section_type_cb {
+    background-color: #516386;
+    color: #fff;
+    margin-bottom: 1em;
+    padding: .25em;
+    border: 0;
+    border-bottom: 2px solid currentcolor;
+    border-radius: 5px;
+  }
+</style>
+{% endblock %}
+
+{% block body_class %}sections{% endblock %}
+
+{% block middle %}
+{% block body_outer %}
+{% endblock %}
+<div id="page-header" class="content">
+    <div class="container">
+        <div class="titulo-blk-row">
+            <div class="titulo-img blk-cell icons">
+                <i class="fa fa-linode fa-5x title-detail" title="Secciones" aria-hidden="true"></i>
+            </div>
+            <div class="titulo-txt blk-cell">
+                <h2>Secciones de {{ms.name}}</h2>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container">
+   <span class="ms-close-detail">
+      <a href="{% url 'content_handler_detail' ms.id %}"><i class="fa fa-chevron-left" title="Regresar"></i></a>
+   </span>
+    <!--section-->
+    <div class="btn-group pull-right">
+        <button type="button" class="btn btn-primary">Agregar Secciones</button>
+        <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+            <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu" role="menu">
+            <li title="Sección con un solo contenido."><a href="{% url 'upload_section_content' ms.id %}">Contenido único</a></li>
+            <li title="Sección que puede contener varios bloques o contenidos"><a href="{% url 'upload_section' ms.id %}">Mosaico/Anidado</a></li>
+            <li title="Agrega institución participante"><a href="{% url 'upload_partner' ms.id %}">Institucion Participante</a></li>
+            <li title="Agregar divisor"><a href="{% url 'add_divider' ms.id %}">Divisor</a></li>
+        </ul>
+    </div>
+    <br><br>
+    <table id="tabla_dif"
+           data-toggle="table"
+           data-toolbar="#toolbar_dif"
+           data-minimum-count-columns="2"
+           data-pagination="true"
+           data-id-field="id"
+           data-page-list="[10, 25, 50, 100, ALL]"
+           data-show-footer="false"
+           data-response-handler="responseHandler">
+        <thead>
+            <tr>
+                <th>Tipo</th>
+                <th>Tema</th>
+                <th>Contenido</th>
+            </tr>
+        </thead>
+        <tbody class="ms-hide-menu">
+        {% for link in sections %}
+        <tr id="{{link.id}}" class="tr-class-{{link.id}} sort_menu" data-title="bootstrap table">
+            <td>
+                {% if not link.content %}
+                    {% if link.is_divisor == True %}
+                        Divisor
+                    {% else %}
+                        {% if link.is_institution == True %}
+                        Instituciones participantes
+                        {% else %}
+                        Mosaico/anidado
+                        {% endif %}
+                    {% endif %}
+                {% else %}
+                    Contenido único
+                {% endif %}
+            </td>
+            <td id="td-id-{{link.id}}" class="td-class-{{link.id}}" data-title="bootstrap table" class="col-md-6">
+                <a href="{% url 'update_main' link.id ms.id %}">{{link}}</a>
+                {% if link.content %}
+                <span>
+                    <a href="{% url 'update_section_content' ms.id link.id %}">
+                      <i class="fa fa-pencil fa-1x"  title="Editar sección" aria-hidden="true"></i>
+                    </a>
+                </span>
+                <span>
+                     <a href="{% url 'remove_menu' ms.id link.id %}">
+                       <i class="fa fa-trash fa-1x" title="Eliminar sección" aria-hidden="true"></i>
+                     </a>
+                </span>
+                {% else %}
+                <span>
+                    {% if link.is_institution != True and link.is_divisor != True %}
+                     <a href="{% url 'upload_subsection' ms.id link.id %}">
+                       <i class="fa fa-plus fa-1x"  title="Agregar bloques a la sección {{link.name}}" aria-hidden="true"></i>
+                     </a>
+                    {% elif link.is_institution == True %}
+                     <a href="{% url 'upload_institution' ms.id link.id %}">
+                       <i class="fa fa-plus fa-1x"  title="Agregar instituciones" aria-hidden="true"></i>
+                     </a>
+                    {% endif %}
+                </span>
+                <span>
+                    {% if link.is_institution != True and link.is_divisor != True %}
+                     <a href="{% url 'update_section' ms.id link.id %}">
+                       <i class="fa fa-pencil fa-1x"  title="Editar sección" aria-hidden="true"></i>
+                     </a>
+                    {% else %}
+                        <a href="{% url 'update_section' ms.id link.id %}">
+                          <i class="fa fa-pencil fa-1x"  title="Editar sección" aria-hidden="true"></i>
+                        </a>
+                    {% endif %}
+                </span>
+                <span>
+                     <a href="{% url 'remove_menu' ms.id link.id %}">
+                       <i class="fa fa-trash fa-1x" title="Eliminar sección" aria-hidden="true"></i>
+                     </a>
+                </span>
+                <br><br>
+
+                {% endif %}
+            </td>
+            <td data-text="122" class="col-md-5">
+                <table width="100%">
+                    <tbody class="submenu">
+                    {% for child in link.children.all|dictsort:"stack_order" %}
+                    <tr id="{{child.id}}" class="sort_submenu">
+                        <td width="50%">
+                            <div>
+                                {{child}}
+                            </div>
+                        </td>
+                        <td width="40%">
+                            {% if child.image %}
+                            <a href="{{child.link}}">
+                                <img src="{{MEDIA_URL}}/{{child.image}}" style="width:100px; height: 100px;"/>
+                            </a>
+                            {% endif %}
+                        </td>
+                        <td width="10%">
+                            <span>
+                             <a href="{% url 'update_block' ms.id child.id %}" data-toggle="tooltip" title="Editar Sub Menú" class="fa fa-pencil fa-1x"></a>
+                            </span>
+                            <span>
+                                <a href="{% url 'remove_menu' ms.id child.id %}" title="Eliminar Sub Menú" class="fa fa-trash fa-1x"></a>
+                            </span>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <table id="tabla_car"
+      data-toggle="table"
+      data-toolbar="#toolbar_dif"
+      data-minimum-count-columns="2"
+      data-pagination="true"
+      data-id-field="id"
+      data-page-list="[10, 25, 50, 100, ALL]"
+      data-show-footer="false"
+      data-response-handler="responseHandler">
+        <thead>
+        <tr>
+            <th>Institución</th>
+            <th>URL</th>
+            <th>Logo</th>
+            <th>Edición</th>
+        </tr>
+        </thead>
+        <tbody class="ms-hide-links">
+            {% for link in partner %}
+            <tr id="{{link.id}}" class="tr-class-{{link.id}} sort_link" data-title="bootstrap table">
+               <td id="td-id-{{link.id}}" class="td-class-{{link.id}}" data-title="bootstrap table" class="col-md-6">
+                   <a href="{% url 'update_partner' ms.id link.id %}">{{link.alt}}</a>
+               </td>
+               <td id="td-id-{{link.id}}" class="td-class-{{link.id}}" data-title="bootstrap table" class="col-md-6">
+                   <a href="{% url 'update_partner' ms.id link.id %}">{{link.link}}</a>
+               </td>
+               <td data-text="122" class="col-md-5">
+                 {% if link.image %}
+                   <a href="{% url 'update_partner' ms.id link.id %}">
+                    <img src="{{MEDIA_URL}}/{{link.image}}" style="width:100px; height: 100px;"/>
+                   </a>
+                 {% endif %}
+               </td>
+               <td class="col-md-1">
+                   <a href="{% url 'remove_partner' ms.id link.id %}"><i class="fa fa-trash" aria-hidden="true"></i></a>
+               </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <!--end section-->
+</div>
+{% endblock %}
+
+{% block extra_script %}
+<script>
+/* Sort sections */
+$(function() {
+  $(".submenu").sortable({
+      tolerance: 'pointer',
+      revert: 'invalid',
+      items: "tr.sort_submenu",
+      placeholder: 'placeholder',
+      forcePlaceholderSize: true,
+      forceHelperSize: true,
+      axis: "y",
+      //cancel: ".top-tools, .top-exp",
+      cursor: "row-resize",
+      stop: function(event, ui) {
+          var sortedIDs = $(this).sortable('toArray');
+          $.ajax({
+              url: '{% url "sort_sections_handler" %}',
+              type: 'POST',
+              data: {
+                  'sorted_ids': JSON.stringify(sortedIDs),
+                  csrfmiddlewaretoken: '{{ csrf_token }}'
+              },
+              error: function(xhr, errmsg, err) {
+                  console.log('Error en el servidor')
+                  console.log(xhr.status + ": " + xhr.responseText);
+              }
+          });
+      }
+  });
+});
+
+$(function() {
+  $(".ms-hide-menu").sortable({
+      tolerance: 'pointer',
+      revert: 'invalid',
+      items: "tr.sort_menu",
+      placeholder: 'placeholder',
+      forcePlaceholderSize: true,
+      forceHelperSize: true,
+      axis: "y",
+      //cancel: ".top-tools, .top-exp",
+      cursor: "row-resize",
+      stop: function(event, ui) {
+          var sortedIDs = $(this).sortable('toArray');
+          $.ajax({
+              url: '{% url "sort_sections_handler" %}',
+              type: 'POST',
+              data: {
+                  'sorted_ids': JSON.stringify(sortedIDs),
+                  csrfmiddlewaretoken: '{{ csrf_token }}'
+              },
+              error: function(xhr, errmsg, err) {
+                  console.log('Error en el servidor')
+                  console.log(xhr.status + ": " + xhr.responseText);
+              }
+          });
+      }
+  });
+});
+
+$(function () {
+   $(".ms-hide-links").sortable({
+     tolerance: 'pointer',
+     revert: 'invalid',
+     items: "> tr.sort_link",
+     placeholder: 'placeholder',
+     forcePlaceholderSize: true,
+     forceHelperSize: true,
+     axis: "y",
+     cancel: ".top-tools, .top-exp",
+     cursor: "row-resize",
+     stop: function(event, ui) {
+       var sortedIDs = $(this).sortable('toArray');
+       $.ajax({
+         url: '{% url "sort_partner" %}',
+         type: 'POST',
+         data: {'sorted_ids': JSON.stringify(sortedIDs),
+                csrfmiddlewaretoken: '{{ csrf_token }}'
+               },
+         error : function(xhr,errmsg,err) {
+             console.log('Error en el servidor')
+             console.log(xhr.status + ": " + xhr.responseText);
+         }
+       });
+     }
+   });
+ });
+
+var them = "{{ms.thematic|safe}}";
+if (them==1) {
+{% include "styles/handler_1/thematics.js" %}
+}
+</script>
+{% endblock extra_script %}
