@@ -43,6 +43,7 @@ from geonode.utils import check_ogc_backend
 from geonode.monitoring import register_url_event
 from geonode.messaging.urls import urlpatterns as msg_urls
 from .people.views import CustomSignupView
+from .base_style.views import index
 
 admin.autodiscover()
 
@@ -57,7 +58,7 @@ sitemaps = {
 }
 
 #homepage = register_url_event()(TemplateView.as_view(template_name='index.html'))
-homepage = register_url_event()(TemplateView.as_view(template_name='indexIdegeo.html'))
+homepage = index
 
 urlpatterns = [
     url(r'^$',

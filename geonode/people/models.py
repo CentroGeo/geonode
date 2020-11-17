@@ -60,7 +60,12 @@ class ProfileUserManager(UserManager):
 
 
 class Profile(AbstractUser):
+    """user microsite"""
+    microsite_access = models.BooleanField('microsite access', default=False,
+                                   help_text='Indica si el usuario tiene permisos para crear microsiios')
     """Fully featured Geonode user"""
+    ide_access = models.BooleanField('ide access', default=False,
+                                   help_text='Indica si el usuario tiene acceso a la gestion de la ide')
 
     organization = models.CharField(
         _('Organization Name'),

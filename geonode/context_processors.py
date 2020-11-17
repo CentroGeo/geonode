@@ -25,6 +25,7 @@ from django.contrib.sites.models import Site
 
 from geonode.notifications_helper import has_notifications
 from geonode.base.models import Configuration
+from geonode.base_style.models import MainHeader
 
 
 def resource_urls(request):
@@ -185,3 +186,10 @@ def resource_urls(request):
     )
 
     return defaults
+
+def categories_processor(request):
+    head = MainHeader.objects.all()
+    headStyle = ''
+    for i in head:
+        headStyle = i
+    return {'MainHeader': headStyle}

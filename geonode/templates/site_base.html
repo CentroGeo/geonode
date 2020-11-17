@@ -92,15 +92,29 @@
     {% block header %}
 <div id="home-container">
     <!--TOP-NAV-->
+    {% if MainHeader %}
     <header id="headeri">
-        <div class="container">
-            <div class="header-logo-lf"><a href="http://www.conacyt.mx/"><img src="{{STATIC_URL}}idegeo/carousel/img/header_logo-conacyt.png" alt="logo conacyt"></a></div>
-            <div class="header-title">
-                <h1 class="header-sitename">Servicios de Información Geoespacial</h1>
-                <div class="header-subtitle">Plataforma GeoWeb IDEGEO</div>
-            </div>
-            <div class="header-logo-rg"><a href="http://www.centrogeo.org.mx/"><img src="{{STATIC_URL}}idegeo/mviewer/img/CentroGeo-CMX_Logo-V.png" alt="logo centrogeo" height="80px"></a></div>        </div>
+      <div class="container">
+      {% if MainHeader %}
+          <div class="header-logo-lf"><img src="/uploaded/{{ MainHeader.logo }}" style="max-height: 85px;"></a></div>
+      {% endif %}
+          <div class="header-title">
+              <h1 class="header-sitename">{{MainHeader.title}}</h1>
+              <div class="header-subtitle">{{MainHeader.subtitle}}</div>
+          </div>
+          <div class="header-logo-rg"><a href="http://www.centrogeo.org.mx/"><img src="{{STATIC_URL}}idegeo/mviewer/img/CentroGeo-CMX_Logo-V.png" alt="logo centrogeo" height="80px"></a></div>        </div>
     </header>
+    {% else %}
+      <header id="headeri">
+          <div class="container">
+              <div class="header-logo-lf"><a href="http://www.conacyt.mx/"><img src="{{STATIC_URL}}idegeo/carousel/img/header_logo-conacyt.png" alt="logo conacyt"></a></div>
+              <div class="header-title">
+                  <h1 class="header-sitename">Plataforma Geoweb IDEGeo</h1>
+                  <div class="header-subtitle">Servicios de Información Geoespacial</div>
+              </div>
+              <div class="header-logo-rg"><a href="http://www.centrogeo.org.mx/"><img src="{{STATIC_URL}}idegeo/mviewer/img/CentroGeo-CMX_Logo-V.png" alt="logo centrogeo" height="80px"></a></div>        </div>
+      </header>
+    {% endif %}
     <!--fin-->
     <!--MAIN-NAV-->
     {% url 'home' as home_url %}
@@ -114,9 +128,9 @@
                         <div class="dropdown-content">
                             <a href="{% url "layer_browse" %}" class="dd-elem">Vectoriales</a>
                             <a href="{% url 'maps_browse' %}" class="dd-elem">Mapas</a>
-                            <a href = "{% url "tables_browse" %}" class="dd-elem">Tabulares</a>
+                            {% comment %}<a href = "{% url "tables_browse" %}" class="dd-elem">Tabulares</a>
                             <a href = "{% url 'project_browse' %}" class="dd-elem">Proyectos</a>
-                            <a href = "{% url 'document_browse' %}" class="dd-elem">Documentos</a>
+                            <a href = "{% url 'document_browse' %}" class="dd-elem">Documentos</a>{% endcomment %}
                             <a href="{% url 'profile_browse' %}" class="dd-elem">Usuarios</a>
                             {% if MainHeader %}
                                 <a href="{% url 'config_interface' MainHeader.id %}" class="dd-elem">Editar interfaz</a>
@@ -174,9 +188,9 @@
                       {% if request.user.ide_access and 'mviewer' not in request.get_full_path and 'ms' not in request.get_full_path %}
                         <li class="main_vert"><a href="{% url 'layer_browse' %}" class="btn">Vectoriales</a></li>
                         <li class="main_vert" id="nav_maps"><a href="{% url 'maps_browse' %}" class="btn">Mapas</a></li>
-                        <li class="main_vert"><a href = "{% url 'tables_browse' %}" class="btn">Tabulares</a></li>
+                        {% comment %}<li class="main_vert"><a href = "{% url 'tables_browse' %}" class="btn">Tabulares</a></li>
                         <li class="main_vert" id="nav_projects"><a href = "{% url 'project_browse' %}" class="btn">Proyectos</a></li>
-                        <li class="main_vert" id="nav_documents"><a href = "{% url 'document_browse' %}" class="btn">Documentos</a></li>
+                        <li class="main_vert" id="nav_documents"><a href = "{% url 'document_browse' %}" class="btn">Documentos</a></li>{% endcomment %}
                         <li class="main_vert" id="nav_people"><a href="{% url 'profile_browse' %}" class="btn">Usuarios</a></li>
                         <li class="main_vert" id="nav_groups"><a href="{% url 'group_list' %}" class="btn">Grupos</a></li>
                       {% elif request.user.microsite_access %}
