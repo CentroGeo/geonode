@@ -461,12 +461,12 @@ function custom_famr(geometry, id_layerids, type, layer){
           $('#ejecute-distribution').html("<div style='padding: 25px;'>Producción pecuaria</div>");
 
           var table_distribution = "";
-          table_distribution = "<table class='tb-ag'><tr><td class='tb-ag' style='width:50%'>Reses y vacas<div class='cricle-base'><img src='{{STATIC_URL}}soa_toolkit/img/ac/purple_bullet.png' width='100px;' alt='pv'/><span class='circles-ac'>"+data_info_beef[0]+"</span></div><td>"
-          +"<td class='tb-ag' style='width:50%'>Cerdos<div class='cricle-base'><img src='{{STATIC_URL}}soa_toolkit/img/ac/purple_bullet.png' width='100px;' title='Fertilizantes químicos (HA)' alt='pv'/><span class='circles-ac'>"+data_info_pig[0]+"</span></div></td></tr></table>"
-          +"<table class='tb-ag'><tr><td class='tb-ag' style='width:50%'>Aves<div class='cricle-base'><img src='{{STATIC_URL}}soa_toolkit/img/ac/purple_bullet.png' width='100px;' alt='pv'/><span class='circles-ac'>"+data_info_bird[0]+"</span></div><td>"
-          +"<td class='tb-ag' style='width:50%'>Borregos<div class='cricle-base'><img src='{{STATIC_URL}}soa_toolkit/img/ac/purple_bullet.png' width='100px;' title='Fertilizantes químicos (HA)' alt='pv'/><span class='circles-ac'>"+data_info_distribution[0]+"</span></div></td></tr></table>"
-          +"<table class='tb-ag'><tr><td class='tb-ag' style='width:50%'>Chivos<div class='cricle-base'><img src='{{STATIC_URL}}soa_toolkit/img/ac/purple_bullet.png' width='100px;' alt='pv'/><span class='circles-ac'>"+data_info_distribution[1]+"</span></div><td>"
-          +"<td class='tb-ag' style='width:50%'>Colmenas<div class='cricle-base'><img src='{{STATIC_URL}}soa_toolkit/img/ac/purple_bullet.png' width='100px;' title='Fertilizantes químicos (HA)' alt='pv'/><span class='circles-ac'>"+data_info_distribution[2]+"</span></div></td></tr></table>";
+          table_distribution = "<table class='tb-ag'><tr><td class='tb-ag' style='width:50%'>Reses y vacas<div class='cricle-base'><img src='{{STATIC_URL}}idegeo/soa_toolkit/img/ac/purple_bullet.png' width='100px;' alt='pv'/><span class='circles-ac'>"+data_info_beef[0]+"</span></div><td>"
+          +"<td class='tb-ag' style='width:50%'>Cerdos<div class='cricle-base'><img src='{{STATIC_URL}}idegeo/soa_toolkit/img/ac/purple_bullet.png' width='100px;' title='Fertilizantes químicos (HA)' alt='pv'/><span class='circles-ac'>"+data_info_pig[0]+"</span></div></td></tr></table>"
+          +"<table class='tb-ag'><tr><td class='tb-ag' style='width:50%'>Aves<div class='cricle-base'><img src='{{STATIC_URL}}idegeo/soa_toolkit/img/ac/purple_bullet.png' width='100px;' alt='pv'/><span class='circles-ac'>"+data_info_bird[0]+"</span></div><td>"
+          +"<td class='tb-ag' style='width:50%'>Borregos<div class='cricle-base'><img src='{{STATIC_URL}}idegeo/soa_toolkit/img/ac/purple_bullet.png' width='100px;' title='Fertilizantes químicos (HA)' alt='pv'/><span class='circles-ac'>"+data_info_distribution[0]+"</span></div></td></tr></table>"
+          +"<table class='tb-ag'><tr><td class='tb-ag' style='width:50%'>Chivos<div class='cricle-base'><img src='{{STATIC_URL}}idegeo/soa_toolkit/img/ac/purple_bullet.png' width='100px;' alt='pv'/><span class='circles-ac'>"+data_info_distribution[1]+"</span></div><td>"
+          +"<td class='tb-ag' style='width:50%'>Colmenas<div class='cricle-base'><img src='{{STATIC_URL}}idegeo/soa_toolkit/img/ac/purple_bullet.png' width='100px;' title='Fertilizantes químicos (HA)' alt='pv'/><span class='circles-ac'>"+data_info_distribution[2]+"</span></div></td></tr></table>";
 
 
            $('#ejecute-distribution').append(table_distribution);
@@ -474,9 +474,9 @@ function custom_famr(geometry, id_layerids, type, layer){
            $('#ejecute-distribution-production').html("");
            $('#ejecute-distribution-production').append("<div style='padding: 25px;'>Producción</div>");
            var table_distribution_prod = "";
-           table_distribution_prod = "<table class='tb-ag'><tr><td class='tb-ag' style='width:50%'>Litros diarios (Leche vaca)<div class='cricle-base'><img src='{{STATIC_URL}}soa_toolkit/img/ac/purple_bullet.png' width='100px;' alt='pv'/><span class='circles-ac'>"+data_info_beef[1]+"</span></div><td>"
-           +"<td class='tb-ag' style='width:50%'>Huevo por día<div class='cricle-base'><img src='{{STATIC_URL}}soa_toolkit/img/ac/purple_bullet.png' width='100px;' title='Fertilizantes químicos (HA)' alt='pv'/><span class='circles-ac'>"+data_info_bird[1]+"</span></div></td></tr></table>"
-           +"<table class='tb-ag'><tr><td class='tb-ag-last'>Litros diarios (Leche chivo)</td></tr><tr><td class='tb-ag'><span class='cricle-base'><img src='{{STATIC_URL}}soa_toolkit/img/ac/purple_bullet.png' width='100px;' alt='pv'/><span class='circles-ac-only'>"+data_info_distribution[3]+"</span></span></td></tr></table>";
+           table_distribution_prod = "<table class='tb-ag'><tr><td class='tb-ag' style='width:50%'>Litros diarios (Leche vaca)<div class='cricle-base'><img src='{{STATIC_URL}}idegeo/soa_toolkit/img/ac/purple_bullet.png' width='100px;' alt='pv'/><span class='circles-ac'>"+data_info_beef[1]+"</span></div><td>"
+           +"<td class='tb-ag' style='width:50%'>Huevo por día<div class='cricle-base'><img src='{{STATIC_URL}}idegeo/soa_toolkit/img/ac/purple_bullet.png' width='100px;' title='Fertilizantes químicos (HA)' alt='pv'/><span class='circles-ac'>"+data_info_bird[1]+"</span></div></td></tr></table>"
+           +"<table class='tb-ag'><tr><td class='tb-ag-last'>Litros diarios (Leche chivo)</td></tr><tr><td class='tb-ag'><span class='cricle-base'><img src='{{STATIC_URL}}idegeo/soa_toolkit/img/ac/purple_bullet.png' width='100px;' alt='pv'/><span class='circles-ac-only'>"+data_info_distribution[3]+"</span></span></td></tr></table>";
             $('#ejecute-distribution-production').append(table_distribution_prod);
 
            setBasics(data[2]);
@@ -498,10 +498,10 @@ function setBasicPeople(data, id, title){
     $(id).html("<div style='padding: 25px;'>"+title+"</div>");
   }
   var table = "";
-  table = "<div class='people'>Hombres (< 18 años)</br><img src='{{STATIC_URL}}soa_toolkit/img/ac/boy.png' width='80px;' alt='Hombres (< 18 años)' title='Hombres (< 18 años)'/></br>"+data[0]+"</div>"
-  +"<div class='people'></br>Mujeres (< 18 años)</br><img src='{{STATIC_URL}}soa_toolkit/img/ac/girl.png' width='80px;' title='Fertilizantes químicos (HA)' alt='Mujeres (< 18 años)' title='Mujeres (< 18 años)'/></br>"+data[1]+"</div>"
-  +"<div class='people'></br>Hombres (> 18 años)</br><img src='{{STATIC_URL}}soa_toolkit/img/ac/man.png' width='80px;' alt='Hombres (> 18 años)' title='Hombres (> 18 años)'/></br>"+data[2]+"</div>"
-+"<div class='people'></br>Mujeres (> 18 años)</br><img src='{{STATIC_URL}}soa_toolkit/img/ac/woman.png' width='80px;' title='Fertilizantes químicos (HA)' alt='Mujeres (> 18 años)' title='Mujeres (> 18 años)'/></br>"+data[3]+"</div>"
+  table = "<div class='people'>Hombres (< 18 años)</br><img src='{{STATIC_URL}}idegeo/soa_toolkit/img/ac/boy.png' width='80px;' alt='Hombres (< 18 años)' title='Hombres (< 18 años)'/></br>"+data[0]+"</div>"
+  +"<div class='people'></br>Mujeres (< 18 años)</br><img src='{{STATIC_URL}}idegeo/soa_toolkit/img/ac/girl.png' width='80px;' title='Fertilizantes químicos (HA)' alt='Mujeres (< 18 años)' title='Mujeres (< 18 años)'/></br>"+data[1]+"</div>"
+  +"<div class='people'></br>Hombres (> 18 años)</br><img src='{{STATIC_URL}}idegeo/soa_toolkit/img/ac/man.png' width='80px;' alt='Hombres (> 18 años)' title='Hombres (> 18 años)'/></br>"+data[2]+"</div>"
++"<div class='people'></br>Mujeres (> 18 años)</br><img src='{{STATIC_URL}}idegeo/soa_toolkit/img/ac/woman.png' width='80px;' title='Fertilizantes químicos (HA)' alt='Mujeres (> 18 años)' title='Mujeres (> 18 años)'/></br>"+data[3]+"</div>"
 
    $(id).append(table);
 }
@@ -517,13 +517,13 @@ function setBasicSurface(data, id, title){
    i = i +1;
    if (data[delimiter_crops]!=null) {
      if(i % 2 == 0) {
-       table = table+"<td class='tb-ag' style='width:50%'>"+delimiter_crops+"<div class='cricle-base'><img src='{{STATIC_URL}}soa_toolkit/img/ac/purple_bullet.png' width='100px;' title='Fertilizantes químicos (HA)' alt='pv'/><span class='circles-ac'>"+data[delimiter_crops].toFixed(1)+"</span></div></td></tr></table>";
+       table = table+"<td class='tb-ag' style='width:50%'>"+delimiter_crops+"<div class='cricle-base'><img src='{{STATIC_URL}}idegeo/soa_toolkit/img/ac/purple_bullet.png' width='100px;' title='Fertilizantes químicos (HA)' alt='pv'/><span class='circles-ac'>"+data[delimiter_crops].toFixed(1)+"</span></div></td></tr></table>";
      }
      else {
        if (size==i) {
-         table = table+"<table class='tb-ag'><tr><td class='tb-ag-last'>"+delimiter_crops+"</td></tr><tr><td class='tb-ag'><span class='cricle-base'><img src='{{STATIC_URL}}soa_toolkit/img/ac/purple_bullet.png' width='100px;' alt='pv'/><span class='circles-ac-only'>"+data[delimiter_crops].toFixed(1)+"</span></span></td></tr></table>";
+         table = table+"<table class='tb-ag'><tr><td class='tb-ag-last'>"+delimiter_crops+"</td></tr><tr><td class='tb-ag'><span class='cricle-base'><img src='{{STATIC_URL}}idegeo/soa_toolkit/img/ac/purple_bullet.png' width='100px;' alt='pv'/><span class='circles-ac-only'>"+data[delimiter_crops].toFixed(1)+"</span></span></td></tr></table>";
        }else {
-         table = table+"<table class='tb-ag'><tr><td class='tb-ag' style='width:50%'>"+delimiter_crops+"<div class='cricle-base'><img src='{{STATIC_URL}}soa_toolkit/img/ac/purple_bullet.png' width='100px;' alt='pv'/><span class='circles-ac'>"+data[delimiter_crops].toFixed(1)+"</span></div><td>";
+         table = table+"<table class='tb-ag'><tr><td class='tb-ag' style='width:50%'>"+delimiter_crops+"<div class='cricle-base'><img src='{{STATIC_URL}}idegeo/soa_toolkit/img/ac/purple_bullet.png' width='100px;' alt='pv'/><span class='circles-ac'>"+data[delimiter_crops].toFixed(1)+"</span></div><td>";
        }
      }
    }
@@ -539,13 +539,13 @@ function setBasicInteger(data, id, title){
  for (var delimiter_crops in data) {
    i = i +1;
    if(i % 2 == 0) {
-     table = table+"<td class='tb-ag' style='width:50%'>"+delimiter_crops+"<div class='cricle-base'><img src='{{STATIC_URL}}soa_toolkit/img/ac/purple_bullet.png' width='100px;' title='Fertilizantes químicos (HA)' alt='pv'/><span class='circles-ac'>"+data[delimiter_crops]+"</span></div></td></tr></table>";
+     table = table+"<td class='tb-ag' style='width:50%'>"+delimiter_crops+"<div class='cricle-base'><img src='{{STATIC_URL}}idegeo/soa_toolkit/img/ac/purple_bullet.png' width='100px;' title='Fertilizantes químicos (HA)' alt='pv'/><span class='circles-ac'>"+data[delimiter_crops]+"</span></div></td></tr></table>";
     }
     else {
        if (size==i) {
-         table = table+"<table class='tb-ag'><tr><td class='tb-ag-last'>"+delimiter_crops+"</td></tr><tr><td class='tb-ag'><span class='cricle-base'><img src='{{STATIC_URL}}soa_toolkit/img/ac/purple_bullet.png' width='100px;' alt='pv'/><span class='circles-ac-only'>"+data[delimiter_crops]+"</span></span></td></tr></table>";
+         table = table+"<table class='tb-ag'><tr><td class='tb-ag-last'>"+delimiter_crops+"</td></tr><tr><td class='tb-ag'><span class='cricle-base'><img src='{{STATIC_URL}}idegeo/soa_toolkit/img/ac/purple_bullet.png' width='100px;' alt='pv'/><span class='circles-ac-only'>"+data[delimiter_crops]+"</span></span></td></tr></table>";
        }else {
-         table = table+"<table class='tb-ag'><tr><td class='tb-ag' style='width:50%'>"+delimiter_crops+"<div class='cricle-base'><img src='{{STATIC_URL}}soa_toolkit/img/ac/purple_bullet.png' width='100px;' alt='pv'/><span class='circles-ac'>"+data[delimiter_crops]+"</span></div><td>";
+         table = table+"<table class='tb-ag'><tr><td class='tb-ag' style='width:50%'>"+delimiter_crops+"<div class='cricle-base'><img src='{{STATIC_URL}}idegeo/soa_toolkit/img/ac/purple_bullet.png' width='100px;' alt='pv'/><span class='circles-ac'>"+data[delimiter_crops]+"</span></div><td>";
        }
     }
   }
@@ -561,23 +561,23 @@ function setBasicForeing(data, id, title){
     i = i +1;
     if(i % 2 == 0) {
       if (delimiter_crops=="Extranjero" || delimiter_crops=="Total Nacional") {
-        table = table+"<td class='tb-ag' style='width:50%'>"+delimiter_crops+"<div class='cricle-base'><img src='{{STATIC_URL}}soa_toolkit/img/ac/blue_bullet.png' width='100px;' title='Fertilizantes químicos (HA)' alt='pv'/><span class='circles-ac'>"+data[delimiter_crops]+"</span></div></td></tr></table>";
+        table = table+"<td class='tb-ag' style='width:50%'>"+delimiter_crops+"<div class='cricle-base'><img src='{{STATIC_URL}}idegeo/soa_toolkit/img/ac/blue_bullet.png' width='100px;' title='Fertilizantes químicos (HA)' alt='pv'/><span class='circles-ac'>"+data[delimiter_crops]+"</span></div></td></tr></table>";
       }else {
-        table = table+"<td class='tb-ag' style='width:50%'>"+delimiter_crops+"<div class='cricle-base'><img src='{{STATIC_URL}}soa_toolkit/img/ac/purple_bullet.png' width='100px;' title='Fertilizantes químicos (HA)' alt='pv'/><span class='circles-ac'>"+data[delimiter_crops]+"</span></div></td></tr></table>";
+        table = table+"<td class='tb-ag' style='width:50%'>"+delimiter_crops+"<div class='cricle-base'><img src='{{STATIC_URL}}idegeo/soa_toolkit/img/ac/purple_bullet.png' width='100px;' title='Fertilizantes químicos (HA)' alt='pv'/><span class='circles-ac'>"+data[delimiter_crops]+"</span></div></td></tr></table>";
       }
      }
      else {
         if (size==i) {
           if (delimiter_crops=="Extranjero" || delimiter_crops=="Total Nacional") {
-            table = table+"<table class='tb-ag'><tr><td class='tb-ag-last'>"+delimiter_crops+"</td></tr><tr><td class='tb-ag'><span class='cricle-base'><img src='{{STATIC_URL}}soa_toolkit/img/ac/blue_bullet.png' width='100px;' alt='pv'/><span class='circles-ac-only'>"+data[delimiter_crops]+"</span></span></td></tr></table>";
+            table = table+"<table class='tb-ag'><tr><td class='tb-ag-last'>"+delimiter_crops+"</td></tr><tr><td class='tb-ag'><span class='cricle-base'><img src='{{STATIC_URL}}idegeo/soa_toolkit/img/ac/blue_bullet.png' width='100px;' alt='pv'/><span class='circles-ac-only'>"+data[delimiter_crops]+"</span></span></td></tr></table>";
           }else {
-            table = table+"<table class='tb-ag'><tr><td class='tb-ag-last'>"+delimiter_crops+"</td></tr><tr><td class='tb-ag'><span class='cricle-base'><img src='{{STATIC_URL}}soa_toolkit/img/ac/purple_bullet.png' width='100px;' alt='pv'/><span class='circles-ac-only'>"+data[delimiter_crops]+"</span></span></td></tr></table>";
+            table = table+"<table class='tb-ag'><tr><td class='tb-ag-last'>"+delimiter_crops+"</td></tr><tr><td class='tb-ag'><span class='cricle-base'><img src='{{STATIC_URL}}idegeo/soa_toolkit/img/ac/purple_bullet.png' width='100px;' alt='pv'/><span class='circles-ac-only'>"+data[delimiter_crops]+"</span></span></td></tr></table>";
           }
         }else {
           if (delimiter_crops=="Extranjero" || delimiter_crops=="Total Nacional") {
-            table = table+"<table class='tb-ag'><tr><td class='tb-ag' style='width:50%'>"+delimiter_crops+"<div class='cricle-base'><img src='{{STATIC_URL}}soa_toolkit/img/ac/blue_bullet.png' width='100px;' alt='pv'/><span class='circles-ac'>"+data[delimiter_crops]+"</span></div><td>";
+            table = table+"<table class='tb-ag'><tr><td class='tb-ag' style='width:50%'>"+delimiter_crops+"<div class='cricle-base'><img src='{{STATIC_URL}}idegeo/soa_toolkit/img/ac/blue_bullet.png' width='100px;' alt='pv'/><span class='circles-ac'>"+data[delimiter_crops]+"</span></div><td>";
           }else {
-            table = table+"<table class='tb-ag'><tr><td class='tb-ag' style='width:50%'>"+delimiter_crops+"<div class='cricle-base'><img src='{{STATIC_URL}}soa_toolkit/img/ac/purple_bullet.png' width='100px;' alt='pv'/><span class='circles-ac'>"+data[delimiter_crops]+"</span></div><td>";
+            table = table+"<table class='tb-ag'><tr><td class='tb-ag' style='width:50%'>"+delimiter_crops+"<div class='cricle-base'><img src='{{STATIC_URL}}idegeo/soa_toolkit/img/ac/purple_bullet.png' width='100px;' alt='pv'/><span class='circles-ac'>"+data[delimiter_crops]+"</span></div><td>";
           }
         }
      }

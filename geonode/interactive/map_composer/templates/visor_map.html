@@ -11,17 +11,17 @@
    {{ block.super }}
   <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,700,300|Shadows+Into+Light+Two" rel="stylesheet" type="text/css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.0.3/leaflet.css" />
-  <link href="{{ STATIC_URL }}layers/css/base_layers_interface.css" rel="stylesheet" type="text/css">
-  <link rel="stylesheet" href="{{ STATIC_URL }}layers/css/getfeature_popup.css" />
-  <link rel="stylesheet" href="{{ STATIC_URL }}coordinates/Leaflet.Coordinates-0.1.5.css">
-  <link rel="stylesheet" href="{{ STATIC_URL }}zoombox/L.Control.ZoomBox.css" />
+  <link href="{{ STATIC_URL }}idegeo/layers/css/base_layers_interface.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="{{ STATIC_URL }}idegeo/layers/css/getfeature_popup.css" />
+  <link rel="stylesheet" href="{{ STATIC_URL }}idegeo/coordinates/Leaflet.Coordinates-0.1.5.css">
+  <link rel="stylesheet" href="{{ STATIC_URL }}idegeo/zoombox/L.Control.ZoomBox.css" />
   <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/spectrum/1.8.0/spectrum.min.css">
   <link rel="stylesheet" href="//unpkg.com/leaflet-gesture-handling/dist/leaflet-gesture-handling.min.css" type="text/css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.0.3/leaflet.js"></script>
  <script src="https://cdnjs.cloudflare.com/ajax/libs/esri-leaflet/2.0.7/esri-leaflet.js"></script>
-  <script type="text/javascript" src="{{ STATIC_URL }}coordinates/Leaflet.Coordinates-0.1.5.min.js"></script>
-  <script src="{{ STATIC_URL }}zoombox/L.Control.ZoomBox.min.js"></script>
-  <script type="text/javascript" src="{{ STATIC_URL }}colorbrewer/js/colorbrewer_schemes.js"></script>
+  <script type="text/javascript" src="{{ STATIC_URL }}idegeo/coordinates/Leaflet.Coordinates-0.1.5.min.js"></script>
+  <script src="{{ STATIC_URL }}idegeo/zoombox/L.Control.ZoomBox.min.js"></script>
+  <script type="text/javascript" src="{{ STATIC_URL }}idegeo/colorbrewer/js/colorbrewer_schemes.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.6.0/clipboard.min.js"></script>
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB6ZJwb2cqgW1YXsmXGT1I-0ujia5UREAg" async defer></script>
   <script src='https://unpkg.com/leaflet.gridlayer.googlemutant@latest/Leaflet.GoogleMutant.js'></script>
@@ -174,7 +174,7 @@
           <div class="layerContainerLabel translatable" data-id="m2c" style="direction: ltr;">Categorías</div>
           <div id="cat_container" class="layerMenuTopLevelGroupContainer"></div>
           <div id="cat_load" style="position:relative;top:100px;left:50%;">
-              <img src='{{STATIC_URL}}geonode/img/loading.gif'/>
+              <img src='{{STATIC_URL}}idegeo/geonode/img/loading.gif'/>
               <br><label style="font-size: 12px; position:relative;right:21px;">Cargando</label>
           </div>
         </div>
@@ -212,7 +212,7 @@
           <div id="wmsLayers" style="height:440px;overflow-y:auto; overflow-x: hidden; display:none;"></div>
           <p id="notFoundUrlMsg" class="fadeMsg" style="font-size:12px; margin:0; padding:0;">No se encontró el servicio</p>
           <div id="wmsLoad" style="position:relative;top:100px;left:50%;display:none;">
-              <img src='{{STATIC_URL}}geonode/img/loading.gif'/>
+              <img src='{{STATIC_URL}}idegeo/geonode/img/loading.gif'/>
               <br><label style="font-size: 12px; position:relative;right:21px;">Cargando</label>
           </div>
         </div>
@@ -325,7 +325,7 @@
 {% endblock %}
 
 {% block extra_script %}
-  <script src='{{ STATIC_URL }}map_interface/js/jquery.quicksearch.js'></script>
+  <script src='{{ STATIC_URL }}idegeo/map_interface/js/jquery.quicksearch.js'></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/spectrum/1.8.0/spectrum.min.js"></script>
 {% include "L.TileLayer.BetterWMS.js" %}
 <script>{% include "basemap.js" %}</script>

@@ -171,7 +171,7 @@ h1 {
  .header_bg {
  background-color: #4a2704;
  padding:20px 0;
- background-image: url('/static/blog/images/fondo_header.png'), linear-gradient(86deg, var(--color-theme) 0%, #353535 100%);
+ background-image: url('/static/idegeo/blog/images/fondo_header.png'), linear-gradient(86deg, var(--color-theme) 0%, #353535 100%);
  background-repeat: no-repeat;
  background-position: 50%;
  background-size: cover;
@@ -181,7 +181,7 @@ h1 {
  .header_bg_postblog {
  background-color: #4a2704;
  padding:0px 0;
- background-image: url('/static/blog/images/backgrounds/blog-bg-texture.png'), linear-gradient(86deg, var(--color-theme) 0%, #353535 100%);
+ background-image: url('/static/idegeo/blog/images/backgrounds/blog-bg-texture.png'), linear-gradient(86deg, var(--color-theme) 0%, #353535 100%);
  background-repeat: no-repeat;
  background-position: top;
  background-size: cover;

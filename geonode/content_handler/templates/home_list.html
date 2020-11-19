@@ -182,7 +182,7 @@
         combo_thems += "<option value='7'>template_yellow-green</option></select>";
       }
 
-      //  console.log('<img src="{{STATIC_URL}}ms/images/ms_site_'+id_color+'.png" title="'+color_theme+'">');
+      //  console.log('<img src="{{STATIC_URL}}idegeo/ms/images/ms_site_'+id_color+'.png" title="'+color_theme+'">');
       //  console.log("#theme_ms_"+id_ms+"");
       $("#theme_ms_"+id_ms).html("<span>Tema:</span><span class='ms_themes_cb'> "+combo_thems+" </span>");
       $("#thematic_ms_"+id_ms).html("<span>Visualización:</span><span class='ms_themes_cb'> "+combo_thematic+" </span>");
@@ -190,7 +190,7 @@
 
 
 
-      //$("#img_"+id_ms+"_theme").html('<img src="{{STATIC_URL}}ms/images/ms_site_'+id_color+'.png" title="'+color_theme+'">');
+      //$("#img_"+id_ms+"_theme").html('<img src="{{STATIC_URL}}idegeo/ms/images/ms_site_'+id_color+'.png" title="'+color_theme+'">');
   {% endfor %}
 
   $(".img_theme").mouseenter(function() {

@@ -10,7 +10,7 @@
 <meta property="og:title"              content="Exportaciones e importaciones - CentroGeo CONACYT" />
 <meta property="og:description"        content="Exportaciones e importaciones del atlas de complejidad económica de 2004 a 2014" />
 <meta property="og:image"              content="http://idegeo.centrogeo.org.mx/uploaded/images/balanza-comercial.jpg" />
-  <link rel="stylesheet" href="{{ STATIC_URL }}apps/destination_exp/css/main.css" />
+  <link rel="stylesheet" href="{{ STATIC_URL }}idegeo/apps/destination_exp/css/main.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.0.3/leaflet.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/leaflet.esri.geocoder/2.1.0/esri-leaflet-geocoder.css">
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
@@ -24,8 +24,8 @@
   src="https://code.jquery.com/jquery-1.11.3.min.js"
   integrity="sha256-7LkWEzqTdpEfELxcZZlS6wAx5Ff13zZ83lYO2/ujj7g="
   crossorigin="anonymous"></script>
-<script src="{{ STATIC_URL }}apps/destination_exp/js/jquery.scrolly.min.js"></script>
-<script src="{{ STATIC_URL }}apps/destination_exp/js/main.js"></script>
+<script src="{{ STATIC_URL }}idegeo/apps/destination_exp/js/jquery.scrolly.min.js"></script>
+<script src="{{ STATIC_URL }}idegeo/apps/destination_exp/js/main.js"></script>
   <script src='//api.tiles.mapbox.com/mapbox.js/plugins/leaflet-omnivore/v0.3.1/leaflet-omnivore.min.js'></script>
   <style>
 #map {
@@ -75,7 +75,7 @@
   <body style="background-color:#E2DFEC;">
     <div class="background-reading">
        <div id="wait" style="position:absolute;top:48%;left:48%;">
-          <img width="50" src='{{STATIC_URL}}geonode/img/throbber_12.gif' title="Loading.."/>
+          <img width="50" src='{{STATIC_URL}}idegeo/geonode/img/throbber_12.gif' title="Loading.."/>
       </div>
     </div>
     <div id="page-wrapper">
@@ -383,8 +383,8 @@
 </section>
 
 <!-- d3 scripts -->
-<script src="{{ STATIC_URL }}apps/destination_exp/js/d3.v3.min.js"></script>
-<script src="{{ STATIC_URL }}apps/destination_exp/js/jquery-3.3.1.min.js"></script>
+<script src="{{ STATIC_URL }}idegeo/apps/destination_exp/js/d3.v3.min.js"></script>
+<script src="{{ STATIC_URL }}idegeo/apps/destination_exp/js/jquery-3.3.1.min.js"></script>
 <script>{% include "budget-sankey.js" %}</script>
 
   </section>

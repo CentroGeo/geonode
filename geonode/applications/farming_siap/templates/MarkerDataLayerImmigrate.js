@@ -153,12 +153,12 @@
 
         // Create a lookup of airports by code.  NOTE:  this is easy, but non-optimal, particularly with a large dataset
         // Ideally, the lookup would have already been created on the server or created and imported directly
-        $.getScript('{{ STATIC_URL }}apps/farming/data/centrosImmigrate.js', function( data, textStatus, jqxhr ) {
+        $.getScript('{{ STATIC_URL }}idegeo/apps/farming/data/centrosImmigrate.js', function( data, textStatus, jqxhr ) {
           var airportsLookup = L.GeometryUtils.arrayToMap(centros, 'code');
 
             // Sort flight data in descending order by the number of flights.  This will ensure that thicker lines get displayed
             // below thinner lines
-          $.getScript('{{ STATIC_URL }}apps/farming/data/orgDesEUImmmigrate.js', function( data, textStatus, jqxhr ) {
+          $.getScript('{{ STATIC_URL }}idegeo/apps/farming/data/orgDesEUImmmigrate.js', function( data, textStatus, jqxhr ) {
             origendest = origendest.filter(function (el) {
               return el.tipo === activos;
             });
@@ -246,10 +246,10 @@
                 .addTo(map);
 
             
-            topo_edo_mun = omnivore.topojson('{{ STATIC_URL }}apps/farming/data/edos_eu.topojson', null, customLayerEdo)
+            topo_edo_mun = omnivore.topojson('{{ STATIC_URL }}idegeo/apps/farming/data/edos_eu.topojson', null, customLayerEdo)
                 .addTo(map);
 
-            topo_edo_con = omnivore.topojson('{{ STATIC_URL }}apps/farming/data/condados.topojson', null, customLayerEu)
+            topo_edo_con = omnivore.topojson('{{ STATIC_URL }}idegeo/apps/farming/data/condados.topojson', null, customLayerEu)
                 .addTo(map);
 
 

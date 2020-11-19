@@ -34,7 +34,7 @@
 											<a href="{{child.link}}" {% if child.blank %}target="_blank"{% endif %} class="box-btn">
 												<img src="{{MEDIA_URL}}{{child.image}}" alt="">
 												{% if item.is_institution != True %}
-													<div class="btn-icon"><img src="{{STATIC_URL}}portal-istmo/img/plus-flat.svg" alt=""></div>
+													<div class="btn-icon"><img src="{{STATIC_URL}}idegeo/portal-istmo/img/plus-flat.svg" alt=""></div>
 												{% endif %}
 											</a>
 										</div>
@@ -50,7 +50,7 @@
 								{% else %}
           							<div class="masonry-item">
             						<div class="box-graph"><a href="{% url 'content_multimedia' home.url_name child.slug %}" {% if child.blank %}target="_blank"{% endif %} class="box-btn"><img src="{{MEDIA_URL}}{{child.image}}" alt="">
-              						<div class="btn-icon"><img src="{{STATIC_URL}}portal-istmo/img/plus-flat.svg" alt=""></div>
+              						<div class="btn-icon"><img src="{{STATIC_URL}}idegeo/portal-istmo/img/plus-flat.svg" alt=""></div>
               						</a></div>
             						<div class="box-title"><a href="{% url 'content_multimedia' home.url_name child.slug %}" {% if child.blank %}target="_blank"{% endif %} class="box-btn">{{child}}</a></div>
            							{% if item.is_institution != True %}

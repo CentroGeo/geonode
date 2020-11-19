@@ -35,11 +35,11 @@
         
 
         <link href="{% static "idegeo/geonode/css/base.css" %}" rel="stylesheet" />  
-        <link href="{{ STATIC_URL }}idegeo/geonode/css/ext-compatibility.css?v={{ VERSION }}" rel="stylesheet" />
-        <!--<link href="{{ STATIC_URL }}idegeo/style_adesur/css/assets.min_custom.css" rel="stylesheet"/>-->
-        <link href="{{ STATIC_URL }}idegeo/style_adesur/css/idegeo.mod.css" rel="stylesheet" />
-        <link href="{{ STATIC_URL }}idegeo/carousel/css/tooltipster.css" rel="stylesheet" />
-        <link href="{{ STATIC_URL }}idegeo/carousel/css/layerslider.css" rel="stylesheet" type="text/css">
+        <link href="{{ STATIC_URL}}idegeo/geonode/css/ext-compatibility.css?v={{ VERSION }}" rel="stylesheet" />
+        <!--<link href="{{ STATIC_URL}}idegeo/style_adesur/css/assets.min_custom.css" rel="stylesheet"/>-->
+        <link href="{{ STATIC_URL}}idegeo/style_adesur/css/idegeo.mod.css" rel="stylesheet" />
+        <link href="{{ STATIC_URL}}idegeo/carousel/css/tooltipster.css" rel="stylesheet" />
+        <link href="{{ STATIC_URL}}idegeo/carousel/css/layerslider.css" rel="stylesheet" type="text/css">
         <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
         <!-- TERMINAN ESTILOS PERSONALIZADOS  -->
         <style type="text/css">[ng\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide:not(.ng-hide-animate){display:none !important;}</style>
@@ -143,15 +143,15 @@
                     {% if request.user.is_authenticated and request.user.microsite_access %}
                     <li class="dropdown"><a href="#" class="btn"><i class="fa fa-cog" aria-hidden="true"></i> Difusión (Gestión)</a>
                         <div class="dropdown-content">
-                          {% comment %}<a href="{% url 'blog_admin' %}" class="dd-elem">Blog</a>
-                            <a href="{% url 'ms_gestor_list' %}" class="dd-elem">Micrositios</a>{% endcomment %}
+                            <a href="{% url 'blog_admin' %}" class="dd-elem">Blog</a>
+                            <a href="{% url 'ms_gestor_list' %}" class="dd-elem">Micrositios</a>
                             <a href="{% url 'mviewer_list' %}" class="dd-elem">Panoramas</a>
                         </div>
                     </li>
                     {% endif %}
                     <li class="dropdown"><a href="#" class="btn"><i class="fa fa-newspaper-o" aria-hidden="true"></i> Difusión</a>
                         <div class="dropdown-content">
-                            {% comment %}<a href="{% url 'ms_public_list' %}" class="dd-elem">Micrositios</a>{% endcomment %}
+                            <a href="{% url 'ms_public_list' %}" class="dd-elem">Micrositios</a>
                             <a href="{% url 'mviewer_public' %}" class="dd-elem">Panoramas</a>
                         </div>
                     </li>
@@ -179,10 +179,10 @@
                     {% if 'interactive' in request.get_full_path and 'map_composer' not in request.get_full_path %}
                     <li class="main_vert"><a href="{% url 'layer_interface' %}" class="btn">Capas</a></li>
                     <li class="main_vert"><a href="{% url 'maps_interface' %}" class="btn">Mapas</a></li>
-                    {% comment %}<li class="main_vert"><a href="{% url 'blog' %}" class="btn">Divulgacion</a></li>{% endcomment %}
+                    <li class="main_vert"><a href="{% url 'blog' %}" class="btn">Divulgacion</a></li>
                     <!--<li class="main_vert"><a href="{% url 'documents_interface' %}" class="btn">Documentos</a></li>-->
                     {% elif 'public' in request.get_full_path %}
-                        {% comment %}<li class="main_vert" id="nav_ms"><a href = "{% url 'ms_public_list' %}" class="btn">Micrositios</a></li>{% endcomment %}
+                        <li class="main_vert" id="nav_ms"><a href = "{% url 'ms_public_list' %}" class="btn">Micrositios</a></li>
                         <li class="main_vert" id="nav_mviewer"><a href = "{% url 'mviewer_public' %}" class="btn">Panoramas</a></li>
                     {% elif request.user.is_authenticated %}
                       {% if request.user.ide_access and 'mviewer' not in request.get_full_path and 'ms' not in request.get_full_path %}
@@ -194,7 +194,7 @@
                         <li class="main_vert" id="nav_people"><a href="{% url 'profile_browse' %}" class="btn">Usuarios</a></li>
                         <li class="main_vert" id="nav_groups"><a href="{% url 'group_list' %}" class="btn">Grupos</a></li>
                       {% elif request.user.microsite_access %}
-                        {% comment %}<li class="main_vert" id="nav_ms"><a href = "{% url 'ms_gestor_list' %}" class="btn"><i class="fa fa-cog"></i>Micrositios</a></li>{% endcomment %}
+                        <li class="main_vert" id="nav_ms"><a href = "{% url 'ms_gestor_list' %}" class="btn"><i class="fa fa-cog"></i>Micrositios</a></li>
                         <li class="main_vert" id="nav_mviewer"><a href = "{% url 'mviewer_list' %}" class="btn"><i class="fa fa-cog"></i>Panoramas</a></li>
                         {% comment %}
                         <li class="main_vert" id="nav_ms"><a href = "{% url 'content_handler_list' %}" class="btn"><i class="fa fa-cog"></i>CMS</a></li>
@@ -270,7 +270,7 @@
     <div class="container">
         <div class="bottom-nav-logos col-md-8">
             <div class="nav-logos"><a href="http://www.conacyt.mx/" target="_blank" title="www.conacyt.mx"><span class="mm-footer-logo">
-                    <img src="{{ STATIC_URL }}idegeo/carousel/img/logo-conacyt_footer.png" alt="logo-conacyt"></span><span class="mm-footer-name">Consejo Nacional de Ciencia y Tecnología</span></a></div>
+                    <img src="{{ STATIC_URL}}idegeo/carousel/img/logo-conacyt_footer.png" alt="logo-conacyt"></span><span class="mm-footer-name">Consejo Nacional de Ciencia y Tecnología</span></a></div>
         </div>
         <div class="bottom-nav-menu col-md-4">
             <ul class="nav-menu">
@@ -282,7 +282,7 @@
             </ul>
             <div class="bottom-nav-commons">
                 <div class="nav-commons"><a href="http://creativecommons.org/licenses/by-nc-sa/2.5/mx/deed.es_ES" target="_blank" rel="license" title="Esta obra está bajo una licencia de Creative Commons Reconocimiento-NoComercial-CompartirIgual 2.5 México.">
-                    <img style="border: 0px none;" src="{{ STATIC_URL }}idegeo/carousel/img/cc_by-nc-sa.png" alt="cc by-nc-sa"></a></div>
+                    <img style="border: 0px none;" src="{{ STATIC_URL}}idegeo/carousel/img/cc_by-nc-sa.png" alt="cc by-nc-sa"></a></div>
             </div>
         </div>
     </div>
@@ -356,14 +356,12 @@
                     <li><a href="{% url 'config_interface' %}"><i class="fa fa-paint-brush"></i> Generar estilos de interfaz</a></li>
                     {% endif %}
                     {% endif %}
-                    {% comment %}
                     <li><a href="{% url 'ms_gestor_list' %}"><i class="fa fa-cubes"></i> Micrositios</a></li>
-                    {% endcomment %}
                     <li><a href="{% url 'mviewer_list' %}"><i class="fa fa-window-maximize"></i> Panoramas</a></li>
                     {% comment %}
                     <li><a href="{% url 'content_handler_list' %}"><i class="fa fa-window-restore"></i> CMS</a></li>
-                    <li><a href="{% url 'blog_admin' %}"><i class="fa fa-th-large" aria-hidden="true"></i> Blog</a></li>
                     {% endcomment %}
+                    <li><a href="{% url 'blog_admin' %}"><i class="fa fa-th-large" aria-hidden="true"></i> Blog</a></li>
                     <hr>
                     <li><a href="{{ user.get_absolute_url }}"><i class="fa fa-user"></i> {% trans "Profile" %}</a></li>
                     <!--<li><a href="{% url "recent-activity" %}"><i class="fa fa-fire"></i> {% trans "Recent Activity" %}</a></li>-->
@@ -401,11 +399,11 @@
 {% endif %}
 <!-- End of Modal -->
 <!-- End of Modal -->
-<script type="text/javascript" src="{{ STATIC_URL }}idegeo/carousel/js/jquery.min.js"></script>
-<script type="text/javascript" src="{{ STATIC_URL }}idegeo/carousel/js/layerslider.transitions.js"></script>
-<script type="text/javascript" src="{{ STATIC_URL }}idegeo/carousel/js/layerslider.kreaturamedia.jquery.js"></script>
-<script  type="text/javascript" src="{{ STATIC_URL }}idegeo/carousel/js/layerslider.scripts.js"></script>
-<script  type="text/javascript" src="{{ STATIC_URL }}idegeo/carousel/js/jquery.tooltipster.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL}}idegeo/carousel/js/jquery.min.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL}}idegeo/carousel/js/layerslider.transitions.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL}}idegeo/carousel/js/layerslider.kreaturamedia.jquery.js"></script>
+<script  type="text/javascript" src="{{ STATIC_URL}}idegeo/carousel/js/layerslider.scripts.js"></script>
+<script  type="text/javascript" src="{{ STATIC_URL}}idegeo/carousel/js/jquery.tooltipster.js"></script>
 
     {% if DEBUG_STATIC %}
     <script src="{% static "idegeo/lib/js/jquery.js" %}"></script>

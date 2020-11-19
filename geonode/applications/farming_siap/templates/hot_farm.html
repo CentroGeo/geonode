@@ -13,18 +13,18 @@
 <!--Leaflet 0.7.7 -->
 <script type="text/javascript" src="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/d3/3.4.11/d3.min.js"></script>
-<script src="{{ STATIC_URL }}apps/farming/js/groupedlayercontrol.js"></script>
+<script src="{{ STATIC_URL }}idegeo/apps/farming/js/groupedlayercontrol.js"></script>
 
 <script type="text/javascript" src="http://maps.stamen.com/js/tile.stamen.js?v1.3.0"></script>
-<script src="{{ STATIC_URL }}apps/farming/js/DateFormat.js"></script>
-<script type="text/javascript" src="{{ STATIC_URL }}apps/farming/js/iso8601.js"></script>
+<script src="{{ STATIC_URL }}idegeo/apps/farming/js/DateFormat.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}idegeo/apps/farming/js/iso8601.js"></script>
 
-<!-- <script type="text/javascript" src="{{ STATIC_URL }}apps/farming/js/Leaflet.TimeDimension/leaflet.timedimension.js"></script>
-<script type="text/javascript" src="{{ STATIC_URL }}apps/farming/js/Leaflet.TimeDimension/leaflet.timedimension.util.js"></script>
-<script type="text/javascript" src="{{ STATIC_URL }}apps/farming/js/Leaflet.TimeDimension/leaflet.timedimension.layer.js"></script>
-<script type="text/javascript" src="{{ STATIC_URL }}apps/farming/js/Leaflet.TimeDimension/leaflet.timedimension.layer.geojson.js"></script>
-<script type="text/javascript" src="{{ STATIC_URL }}apps/farming/js/Leaflet.TimeDimension/leaflet.timedimension.player.js"></script>
-<script type="text/javascript" src="{{ STATIC_URL }}apps/farming/js/Leaflet.TimeDimension/leaflet.timedimension.control.js"></script> -->
+<!-- <script type="text/javascript" src="{{ STATIC_URL }}idegeo/apps/farming/js/Leaflet.TimeDimension/leaflet.timedimension.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}idegeo/apps/farming/js/Leaflet.TimeDimension/leaflet.timedimension.util.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}idegeo/apps/farming/js/Leaflet.TimeDimension/leaflet.timedimension.layer.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}idegeo/apps/farming/js/Leaflet.TimeDimension/leaflet.timedimension.layer.geojson.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}idegeo/apps/farming/js/Leaflet.TimeDimension/leaflet.timedimension.player.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}idegeo/apps/farming/js/Leaflet.TimeDimension/leaflet.timedimension.control.js"></script> -->
 
 <script type="text/javascript" src="https://cdn.rawgit.com/nezasa/iso8601-js-period/master/iso8601.min.js"></script>
 <script type="text/javascript" src="https://cdn.rawgit.com/socib/Leaflet.TimeDimension/master/dist/leaflet.timedimension.min.js"></script>
@@ -33,21 +33,21 @@
 <link rel="stylesheet" href="https://cdn.rawgit.com/socib/Leaflet.TimeDimension/master/dist/leaflet.timedimension.control.min.css" />
 
 
-<script type="text/javascript" src="{{ STATIC_URL }}apps/farming/js/jquery.timer.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}idegeo/apps/farming/js/jquery.timer.js"></script>
 
-<script type="text/javascript" src="{{ STATIC_URL }}apps/farming/js/heatmap.js"></script>
-<script type="text/javascript" src="{{ STATIC_URL }}apps/farming/js/leaflet-heatmap.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}idegeo/apps/farming/js/heatmap.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}idegeo/apps/farming/js/leaflet-heatmap.js"></script>
 
  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.3/leaflet.css" />
 <!--Our d3 graph-->
-<script type="text/javascript" src="{{ STATIC_URL }}apps/farming/js/d3-custom.js"></script>
-<script type="text/javascript" src="{{ STATIC_URL }}apps/farming/js/anim2.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}idegeo/apps/farming/js/d3-custom.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}idegeo/apps/farming/js/anim2.js"></script>
 <!--Our datapicker custom-->
-<script type="text/javascript" src="{{ STATIC_URL }}apps/farming/js/data-picker-custom.js"></script>
-<script type="text/javascript" src="{{ STATIC_URL }}apps/farming/js/dom-drag.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}idegeo/apps/farming/js/data-picker-custom.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}idegeo/apps/farming/js/dom-drag.js"></script>
 <!-- our styles -->
-<link rel="stylesheet" href="{{ STATIC_URL }}apps/farming/css/style.css" />
-<link rel="stylesheet" href="{{ STATIC_URL }}apps/farming/css/dates.css" />
+<link rel="stylesheet" href="{{ STATIC_URL }}idegeo/apps/farming/css/style.css" />
+<link rel="stylesheet" href="{{ STATIC_URL }}idegeo/apps/farming/css/dates.css" />
 </head>
 <body>
 <div id='map'></div>
@@ -261,7 +261,7 @@ L.TimeDimension.Layer.HeatMap = L.TimeDimension.Layer.extend({
 					finishDateF = finishDateFTemp.toString();
 				}
         console.log("here");
-		$.getJSON('{{STATIC_URL}}apps/farming/data/escuelas.json',{lapseTime: lapseIndex,mes_q: formatDateMonth, type: type, dateEnd: finishDateFTemp
+		$.getJSON('{{STATIC_URL}}idegeo/apps/farming/data/escuelas.json',{lapseTime: lapseIndex,mes_q: formatDateMonth, type: type, dateEnd: finishDateFTemp
       || 'null', dateStart: initialDateF || 'null', isMinDateBd:isMinDateBd},(function(data) {
         console.log(data);
 			console.log("******************************************");//Start Method main with data

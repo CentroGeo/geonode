@@ -201,16 +201,16 @@
              <div class="logos">
             <div class="logos-l">
                 <a href="http://www.conacyt.mx/" title="Consejo Nacional de Ciencia y Tecnología">
-                    <img class="log" src="{{ STATIC_URL }}style_sci/img/logo-conacyt_header.png" alt="www.conacyt.mx" width="
+                    <img class="log" src="{{ STATIC_URL }}idegeo/style_sci/img/logo-conacyt_header.png" alt="www.conacyt.mx" width="
                     80px" />
                 </a>
                 <a href="http://www.centrogeo.org.mx/" target="_blank">
-                    <img class="log" src="{{ STATIC_URL }}carousel/img/CentroGeoLogo.png" alt="Logo CentroGeo" width="80px"/>
+                    <img class="log" src="{{ STATIC_URL }}idegeo/carousel/img/CentroGeoLogo.png" alt="Logo CentroGeo" width="80px"/>
                 </a>
             </div>
             <div class="logos-r">
                 <a href="https://www.ciesas.edu.mx/" title="Centro de Investigaciones y Estudios Superiores en Antropología Social (CIESAS) ">
-                    <img class="log" src="{{ STATIC_URL }}apps/farming/img/ciesas-logo.png" width="100px" height="80px" alt="www.ciesas.edu.mx"/>
+                    <img class="log" src="{{ STATIC_URL }}idegeo/apps/farming/img/ciesas-logo.png" width="100px" height="80px" alt="www.ciesas.edu.mx"/>
                 </a>
             </div>
             </div>
@@ -387,12 +387,12 @@
 
         // Create a lookup of airports by code.  NOTE:  this is easy, but non-optimal, particularly with a large dataset
         // Ideally, the lookup would have already been created on the server or created and imported directly
-        $.getScript('{{ STATIC_URL }}apps/farming/data/centros.js', function( data, textStatus, jqxhr ) {
+        $.getScript('{{ STATIC_URL }}idegeo/apps/farming/data/centros.js', function( data, textStatus, jqxhr ) {
           var airportsLookup = L.GeometryUtils.arrayToMap(centros, 'code');
 
             // Sort flight data in descending order by the number of flights.  This will ensure that thicker lines get displayed
             // below thinner lines
-          $.getScript('{{ STATIC_URL }}apps/farming/data/origendestino.js', function( data, textStatus, jqxhr ) {
+          $.getScript('{{ STATIC_URL }}idegeo/apps/farming/data/origendestino.js', function( data, textStatus, jqxhr ) {
             origendest = origendest.filter(function (el) {
               return el.tipo === activos;
             });
@@ -480,10 +480,10 @@
                 .addTo(map);
 
             
-            topo_edo_mun = omnivore.topojson('{{ STATIC_URL }}apps/farming/data/edos_eu.topojson', null, customLayerEdo)
+            topo_edo_mun = omnivore.topojson('{{ STATIC_URL }}idegeo/apps/farming/data/edos_eu.topojson', null, customLayerEdo)
                 .addTo(map);
 
-            topo_edo_con = omnivore.topojson('{{ STATIC_URL }}apps/farming/data/condados.topojson', null, customLayerEu)
+            topo_edo_con = omnivore.topojson('{{ STATIC_URL }}idegeo/apps/farming/data/condados.topojson', null, customLayerEu)
                 .addTo(map);
 
 

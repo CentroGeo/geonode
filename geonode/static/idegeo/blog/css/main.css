@@ -3298,7 +3298,7 @@ ol {
 .l-page .c-page-header,
 .l-page .l-page-header {
     background-color: #a96927f5;
-    background-image: url("/static/blog/images/components/layout/header-bg-texture.png"), linear-gradient(86deg, rgba(250, 183, 46, 1) 0%, rgba(201, 14, 57, 0.7) 100%);
+    background-image: url("/static/idegeo/blog/images/components/layout/header-bg-texture.png"), linear-gradient(86deg, rgba(250, 183, 46, 1) 0%, rgba(201, 14, 57, 0.7) 100%);
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
@@ -3317,7 +3317,7 @@ ol {
 .l-page .c-page-header.-admin,
 .l-page .l-page-header.-admin {
     background-color: #A5177E;
-    background-image: url("/static/blog/images/components/layout/header-bg-texture.png"), linear-gradient(86deg, #950851 0%, #A5177E 100%)
+    background-image: url("/static/idegeo/blog/images/components/layout/header-bg-texture.png"), linear-gradient(86deg, #950851 0%, #A5177E 100%)
 }
 
 .l-page .c-page-header .page-header-content,
@@ -3428,7 +3428,7 @@ ol {
 .l-header {
     position: relative;
     background-color: #a96927f5;
-    background-image: url("/static/blog/images/fondo_header.png"), linear-gradient(86deg, rgb(73, 38, 4) 0%, rgba(169, 105, 39, 0.9607843137254902) 100%);
+    background-image: url("/static/idegeo/blog/images/fondo_header.png"), linear-gradient(86deg, rgb(73, 38, 4) 0%, rgba(169, 105, 39, 0.9607843137254902) 100%);
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
@@ -6687,7 +6687,7 @@ body.toastr-confirm-active {
     height: 75px;
     box-shadow: 0 1px 1px rgba(0, 0, 0, 0.15);
     background-color: #a96927f5;
-    background-image: url("/static/blog/images/components/layout/header-bg-texture.png"), linear-gradient(86deg, rgba(195, 45, 123, 0.8) 0%, rgba(201, 14, 57, 0.7) 100%);
+    background-image: url("/static/idegeo/blog/images/components/layout/header-bg-texture.png"), linear-gradient(86deg, rgba(195, 45, 123, 0.8) 0%, rgba(201, 14, 57, 0.7) 100%);
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
@@ -9438,7 +9438,7 @@ body.toastr-confirm-active {
 
 .c-globe {
     background-color: white;
-    background-image: linear-gradient(to right, rgba(0, 0, 0, 0.5) 0%, transparent 53%), url("/static/blog/images/components/vis/galaxy.jpg");
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0.5) 0%, transparent 53%), url("/static/idegeo/blog/images/components/vis/galaxy.jpg");
     background-repeat: no-repeat;
     background-position: left top;
     background-size: cover
@@ -9860,7 +9860,7 @@ body.toastr-confirm-active {
     cursor: ew-resize;
     pointer-events: auto;
     border: 1px solid #ddd;
-    background-image: url("/static/blog/images/map/side-by-side-range-icon.png");
+    background-image: url("/static/idegeo/blog/images/map/side-by-side-range-icon.png");
     background-position: 50% 50%;
     background-repeat: no-repeat;
     background-size: 40px 40px
@@ -9876,7 +9876,7 @@ body.toastr-confirm-active {
     cursor: ew-resize;
     pointer-events: auto;
     border: 1px solid #ddd;
-    background-image: url("/static/blog/images/map/side-by-side-range-icon.png");
+    background-image: url("/static/idegeo/blog/images/map/side-by-side-range-icon.png");
     background-position: 50% 50%;
     background-repeat: no-repeat;
     background-size: 40px 40px
@@ -9892,7 +9892,7 @@ body.toastr-confirm-active {
     cursor: ew-resize;
     pointer-events: auto;
     border: 1px solid #ddd;
-    background-image: url("/static/blog/images/map/side-by-side-range-icon.png");
+    background-image: url("/static/idegeo/blog/images/map/side-by-side-range-icon.png");
     background-position: 50% 50%;
     background-repeat: no-repeat;
     background-size: 40px 40px
@@ -20944,7 +20944,7 @@ fieldset.c-we-field>div:last-of-type {
 
 .c-banner.-use-background {
     background-size: cover;
-    background-image: url("/static/blog/images/backgrounds/image_header.jpg");
+    background-image: url("/static/idegeo/blog/images/backgrounds/image_header.jpg");
     background-position: top center
 }
 
@@ -21181,7 +21181,7 @@ fieldset.c-we-field>div:last-of-type {
 }
 
 .c-page-explore-detail .c-page-section.pulse-banner-section .pulse-banner .pulse-banner-container {
-    background-image: url("/static/blog/images/pages/app/bg-banner-planetPulse.jpg");
+    background-image: url("/static/idegeo/blog/images/pages/app/bg-banner-planetPulse.jpg");
     width: 100%;
     height: 280px;
     border-radius: 4px;
@@ -21236,7 +21236,7 @@ fieldset.c-we-field>div:last-of-type {
     width: 100%;
     height: 390px;
     overflow: hidden;
-    background-image: url("/static/blog/images/backgrounds/home_istmo.png");
+    background-image: url("/static/idegeo/blog/images/backgrounds/home_istmo.png");
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover
@@ -21408,7 +21408,7 @@ fieldset.c-we-field>div:last-of-type {
 }
 
 .p-submit-insight .c-banner.partners {
-    background-image: url("/static/blog/images/backgrounds/partners-02@2x.jpg");
+    background-image: url("/static/idegeo/blog/images/backgrounds/partners-02@2x.jpg");
     background-position: top center
 }
 
@@ -21466,11 +21466,11 @@ fieldset.c-we-field>div:last-of-type {
 }
 
 .p-get-involved .c-card-static.insights {
-    background: url("/static/blog/images/backgrounds/jellyfish.jpg")
+    background: url("/static/idegeo/blog/images/backgrounds/jellyfish.jpg")
 }
 
 .p-get-involved .c-card-static.contribute {
-    background: #a96927f5 url("/static/blog/images/components/layout/header-bg-texture.png") no-repeat center
+    background: #a96927f5 url("/static/idegeo/blog/images/components/layout/header-bg-texture.png") no-repeat center
 }
 
 .p-get-involved .c-card-static.join {
@@ -21478,7 +21478,7 @@ fieldset.c-we-field>div:last-of-type {
 }
 
 .p-get-involved .c-card-static.develop {
-    background: url("/static/blog/images/backgrounds/develop_app.jpg")
+    background: url("/static/idegeo/blog/images/backgrounds/develop_app.jpg")
 }
 
 .p-develop-app .c-banner.intro {
@@ -21487,12 +21487,12 @@ fieldset.c-we-field>div:last-of-type {
 }
 
 .p-develop-app .c-banner.partners {
-    background-image: url("/static/blog/images/backgrounds/partners-02@2x.jpg");
+    background-image: url("/static/idegeo/blog/images/backgrounds/partners-02@2x.jpg");
     background-position: top center
 }
 
 .p-apps .c-banner {
-    background-image: url("/static/blog/images/backgrounds/partners-02@2x.jpg");
+    background-image: url("/static/idegeo/blog/images/backgrounds/partners-02@2x.jpg");
     background-position: top center
 }
 
@@ -21591,7 +21591,7 @@ fieldset.c-we-field>div:last-of-type {
     flex-direction: column;
     width: 100vw;
     height: 100vh;
-    background-image: url("/static/blog/images/splash/coral-modal-bg-mobile.jpg");
+    background-image: url("/static/idegeo/blog/images/splash/coral-modal-bg-mobile.jpg");
     background-position: center bottom;
     background-repeat: no-repeat;
     background-size: cover;

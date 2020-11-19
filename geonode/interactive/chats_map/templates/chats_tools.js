@@ -506,7 +506,7 @@ $('#response_to_btn').click(function(){
 				 url: '{% url "save_chat_response" %}',
 				 type: 'POST',
 				 success : function(data) {
-					 $('#'+id_comment+'_rply').html('<span class="user_comments_row">'+data[1]+'</span> <span class="img_delete_comments_row" id="'+data[0]+'dlt"><img src="{{STATIC_URL}}style_adesur/img/delete30.png" title="Eliminar comentario" class="img_delete_comments_gnr_row"/></span><div class="response_rply"> '+data[2]+'</div>');
+					 $('#'+id_comment+'_rply').html('<span class="user_comments_row">'+data[1]+'</span> <span class="img_delete_comments_row" id="'+data[0]+'dlt"><img src="{{STATIC_URL}}idegeo/style_adesur/img/delete30.png" title="Eliminar comentario" class="img_delete_comments_gnr_row"/></span><div class="response_rply"> '+data[2]+'</div>');
 					 $('#response_chat_map_modal').modal('toggle');
 				 },
 				 error : function(message) {

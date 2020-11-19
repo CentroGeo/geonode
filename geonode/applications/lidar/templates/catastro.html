@@ -4,11 +4,11 @@
 <meta charset="UTF-8">
 <title>index</title>
 <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
-<link rel="stylesheet" type="text/css" href="{{STATIC_URL}}apps/catastro/Qgis2threejs.css">
-<script src="{{STATIC_URL}}apps/catastro/threejs/three.min.js"></script>
-<script src="{{STATIC_URL}}apps/catastro/threejs/OrbitControls.js"></script>
+<link rel="stylesheet" type="text/css" href="{{STATIC_URL}}idegeo/apps/catastro/Qgis2threejs.css">
+<script src="{{STATIC_URL}}idegeo/apps/catastro/threejs/three.min.js"></script>
+<script src="{{STATIC_URL}}idegeo/apps/catastro/threejs/OrbitControls.js"></script>
 
-<script src="{{STATIC_URL}}apps/catastro/Qgis2threejs.js"></script>
+<script src="{{STATIC_URL}}idegeo/apps/catastro/Qgis2threejs.js"></script>
 </head>
 <body>
 <div id="view">
@@ -87,11 +87,11 @@
 
 <!-- header and footer -->
 <div id="header">
-    <img src="{{STATIC_URL}}apps/catastro/leyenda.PNG"/>
+    <img src="{{STATIC_URL}}idegeo/apps/catastro/leyenda.PNG"/>
 </div>
 <div id="footer">
   <span id="infobtn">
-    <img src="{{STATIC_URL}}apps/catastro/Qgis2threejs.png">
+    <img src="{{STATIC_URL}}idegeo/apps/catastro/Qgis2threejs.png">
   </span>
 </div>
 
@@ -106,7 +106,7 @@ var app = Q3D.application,
 app.init(container);           // initialize application
 
 // load the scene
-app.loadJSONFile("{{STATIC_URL}}apps/catastro/data/index/scene.json", function () {
+app.loadJSONFile("{{STATIC_URL}}idegeo/apps/catastro/data/index/scene.json", function () {
   app.start();
 
   // North arrow inset

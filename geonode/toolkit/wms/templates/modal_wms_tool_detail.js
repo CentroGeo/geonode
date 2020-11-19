@@ -1,6 +1,6 @@
-<script type="text/javascript" src="{{ STATIC_URL }}carousel/js/jquery.min.js"></script>
-<script type="text/javascript" src="{{ STATIC_URL }}soa_toolkit/js/jquery.multi-select.js"></script>
-<script type="text/javascript" src="{{ STATIC_URL }}soa_toolkit/css/multi-select.css"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}idegeo/carousel/js/jquery.min.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}idegeo/soa_toolkit/js/jquery.multi-select.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}idegeo/soa_toolkit/css/multi-select.css"></script>
 
 <script type="text/javascript">
 

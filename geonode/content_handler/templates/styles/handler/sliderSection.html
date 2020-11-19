@@ -10,7 +10,7 @@
 				    	{% if item.children.all|length > 0 %}
 				    		{% for child in item.children.all|dictsort:"stack_order" %}
 								<div class="as-panel as-shadow">				    			    	
-                                    <img src="{{STATIC_URL}}rtmg2/img/blank.gif" alt="" class="as-background" data-src="{{MEDIA_URL}}{{child.image}}">
+                                    <img src="{{STATIC_URL}}idegeo/rtmg2/img/blank.gif" alt="" class="as-background" data-src="{{MEDIA_URL}}{{child.image}}">
 				    			    <div class="as-layer as-closed as-white as-panel-counter" data-position="bottomLeft" data-horizontal="8" data-vertical="8">
 				    			    	{{child}}</div>
                                     <div class="as-layer as-opened as-black as-padding" data-vertical="36%" data-show-transition="right" data-show-delay="500" data-hide-transition="left" data-hide-delay="0">

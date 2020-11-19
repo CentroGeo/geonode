@@ -9,10 +9,10 @@
   <meta property="og:type"               content="article" />
   <meta property="og:title"              content="Producción Agricola SIAP 2003-2017 - CentroGeo CONACYT" />
   <meta property="og:description"        content="Producción Agricola SIAP 2003-2017" />
-  <meta property="og:image"              content="{{STATIC_URL}}apps/farming/img/infosiap.jpg" />
-  <!--<link rel="stylesheet" href="{{ STATIC_URL }}apps/destination_exp/css/main.css" />-->
-   <link rel="stylesheet" href="{{ STATIC_URL }}apps/farming/css/farming.css" />
-   <link rel="stylesheet" href="{{ STATIC_URL }}apps/farming/css/bootstrap-slider.css" />
+  <meta property="og:image"              content="{{STATIC_URL}}idegeo/apps/farming/img/infosiap.jpg" />
+  <!--<link rel="stylesheet" href="{{ STATIC_URL }}idegeo/apps/destination_exp/css/main.css" />-->
+   <link rel="stylesheet" href="{{ STATIC_URL }}idegeo/apps/farming/css/farming.css" />
+   <link rel="stylesheet" href="{{ STATIC_URL }}idegeo/apps/farming/css/bootstrap-slider.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.0.3/leaflet.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/leaflet.esri.geocoder/2.1.0/esri-leaflet-geocoder.css">
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
@@ -26,11 +26,11 @@
       <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
       <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> -->
       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-      <script src="{{ STATIC_URL }}apps/destination_exp/js/d3.v3.min.js"></script>
+      <script src="{{ STATIC_URL }}idegeo/apps/destination_exp/js/d3.v3.min.js"></script>
 <!-- <script src="https://d3js.org/d3.v4.min.js"></script> -->
-      <script src="{{ STATIC_URL }}apps/destination_exp/js/jquery.scrolly.min.js"></script>
+      <script src="{{ STATIC_URL }}idegeo/apps/destination_exp/js/jquery.scrolly.min.js"></script>
       <script src='//api.tiles.mapbox.com/mapbox.js/plugins/leaflet-omnivore/v0.3.1/leaflet-omnivore.min.js'></script>
-      <script src="{{ STATIC_URL }}apps/farming/js/bootstrap-slider.js"></script>
+      <script src="{{ STATIC_URL }}idegeo/apps/farming/js/bootstrap-slider.js"></script>
       <!-- <script src="https://d3js.org/d3.v4.min.js"></script> -->
       <script src="http://vizjs.org/viz.v1.1.0.min.js"></script>
       <!--Do responsive charts-->
@@ -123,7 +123,7 @@ line{
     </div>
     <div id="waitingfor">
        <div id="waiting" style="position:absolute;top:48%;left:48%; display: none;">
-          <img width="50" src='{{STATIC_URL}}geonode/img/throbber_12.gif' title="Loading.."/>
+          <img width="50" src='{{STATIC_URL}}idegeo/geonode/img/throbber_12.gif' title="Loading.."/>
       </div>
     </div>
         <article id="main">
@@ -454,14 +454,14 @@ line{
                         <td class='tb-ag' style='width:50%'>
                           Superficie sembrada: 
                           <div class='cricle-base' >
-                            <img src='{{STATIC_URL}}soa_toolkit/img/ac/blue_bullet.png' width='37%;' height='70%;' title='Superficie sembrada' alt='pv'/>
+                            <img src='{{STATIC_URL}}idegeo/soa_toolkit/img/ac/blue_bullet.png' width='37%;' height='70%;' title='Superficie sembrada' alt='pv'/>
                             <span id='sembrada' class="circles"></span>
                           </div>
                         </td>
                          <td class='tb-ag' style='width:50%'>
                           Superficie cosechada:
                           <div class='cricle-base' >
-                            <img src='{{STATIC_URL}}soa_toolkit/img/ac/blue_bullet.png' width='37%;'  height='70%;' title='Superficie cosechada' alt='pv'/>
+                            <img src='{{STATIC_URL}}idegeo/soa_toolkit/img/ac/blue_bullet.png' width='37%;'  height='70%;' title='Superficie cosechada' alt='pv'/>
                             <span id='cosechada' class="circles"></span>
                           </div>
                         </td>
@@ -470,14 +470,14 @@ line{
                         <td class='tb-ag' style='width:50%'>
                           Superficie siniestrada:
                             <div class='cricle-base' >
-                              <img src='{{STATIC_URL}}soa_toolkit/img/ac/blue_bullet.png' width='37%;' height='70%;' title='Superficie siniestrada' alt='pv'/>
+                              <img src='{{STATIC_URL}}idegeo/soa_toolkit/img/ac/blue_bullet.png' width='37%;' height='70%;' title='Superficie siniestrada' alt='pv'/>
                               <span id='siniestrada' class="circles"></span>
                           </div>
                         </td>
                          <td class='tb-ag' style='width:50%'>
                           Volumen:
                            <div class='cricle-base' >
-                              <img src='{{STATIC_URL}}soa_toolkit/img/ac/blue_bullet.png' width='37%;' height='70%;' title='Volumen' alt='pv'/>
+                              <img src='{{STATIC_URL}}idegeo/soa_toolkit/img/ac/blue_bullet.png' width='37%;' height='70%;' title='Volumen' alt='pv'/>
                               <span id='volumen' class="circles"></span>
                           </div>
                         </td>
@@ -486,14 +486,14 @@ line{
                         <td class='tb-ag' style='width:50%'>
                           Valor de la producción:
                           <div class='cricle-base' >
-                              <img src='{{STATIC_URL}}soa_toolkit/img/ac/blue_bullet.png' width='37%;' height='70%;' title='Valor de la producción' alt='pv'/>
+                              <img src='{{STATIC_URL}}idegeo/soa_toolkit/img/ac/blue_bullet.png' width='37%;' height='70%;' title='Valor de la producción' alt='pv'/>
                               <span id='valor' class="circles"></span>
                           </div>
                         </td>
                           <td class='tb-ag' style='width:50%'>
                           Rendimiento:
                           <div class='cricle-base' >
-                              <img src='{{STATIC_URL}}soa_toolkit/img/ac/blue_bullet.png' width='37%;' height='70%;' title='Rendimiento' alt='pv'/>
+                              <img src='{{STATIC_URL}}idegeo/soa_toolkit/img/ac/blue_bullet.png' width='37%;' height='70%;' title='Rendimiento' alt='pv'/>
                               <span id='rendimiento' class="circles"></span>
                           </div>
                         </td>
@@ -502,14 +502,14 @@ line{
                          <td class='tb-ag' style='width:50%'>
                           Unidad:
                            <div class='cricle-base' >
-                              <img src='{{STATIC_URL}}soa_toolkit/img/ac/purple_bullet.png' width='37%;' height='70%;' title='Unidad' alt='pv'/>
+                              <img src='{{STATIC_URL}}idegeo/soa_toolkit/img/ac/purple_bullet.png' width='37%;' height='70%;' title='Unidad' alt='pv'/>
                               <span id='unidad' class="circles"></span>
                           </div>
                         </td>
                         <td class='tb-ag' style='width:50%'>
                           Precio:
                            <div class='cricle-base' >
-                              <img src='{{STATIC_URL}}soa_toolkit/img/ac/blue_bullet.png' width='37%;' height='70%;' title='Precio' alt='pv'/>
+                              <img src='{{STATIC_URL}}idegeo/soa_toolkit/img/ac/blue_bullet.png' width='37%;' height='70%;' title='Precio' alt='pv'/>
                               <span id='precio' class="circles"></span>
                           </div>
                         </td>
