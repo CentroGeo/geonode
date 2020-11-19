@@ -25,7 +25,7 @@
 								{% for child in item.children.all|dictsort:"stack_order" %}
 									<div class="ga-panel">
 										<a href="{% if child.link %}{{ child.link }}{% else %}{% url 'content_multimedia' home.url_name child.slug  %}{% endif %}" {% if child.blank %}target="_blank"{% endif %}>
-											<img src="{{STATIC_URL}}rtmg2/img/blank.gif" alt="" class="ga-background" data-src="{{MEDIA_URL}}{{child.image}}">
+											<img src="{{STATIC_URL}}idegeo/rtmg2/img/blank.gif" alt="" class="ga-background" data-src="{{MEDIA_URL}}{{child.image}}">
 											<div class="ga-layer ga-tit ga-closed ga-white" data-position="bottomLeft" data-show-transition="up" data-show-delay="300" data-hide-transition="down">
 												{{child}}</div>
 											<h3 class="ga-layer ga-stt ga-opened ga-black" data-vertical="50%" data-horizontal="2%" data-width="96%" data-show-transition="left" data-show-delay="600" data-hide-transition="left">

@@ -72,20 +72,20 @@ if(typeof(header_background) != "undefined"){
       //cambiamos el color del fondo header de rtmg
       document.getElementById("header").style.backgroundColor=primary_color;
       if (id_color==0||id_color==11||id_color==14) {
-        document.getElementById("header").style.backgroundImage = "url({{STATIC_URL}}content_handler/style_1/img/intro_background2.png)";
+        document.getElementById("header").style.backgroundImage = "url({{STATIC_URL}}idegeo/content_handler/style_1/img/intro_background2.png)";
       }
       if (id_color==12||id_color==13) {
-        document.getElementById("header").style.backgroundImage = "url({{STATIC_URL}}content_handler/style_1/img/intro_background1.png)";
+        document.getElementById("header").style.backgroundImage = "url({{STATIC_URL}}idegeo/content_handler/style_1/img/intro_background1.png)";
       }
     }
     if(document.getElementById("description-header")){
       //cambiamos el color de fondo de header de rtmg
       document.getElementById("description-header").style.backgroundColor=primary_color;
       if (id_color==0||id_color==11||id_color==14) {
-        document.getElementById("description-header").style.backgroundImage = "url({{STATIC_URL}}content_handler/style_1/img/intro_background2.png)";
+        document.getElementById("description-header").style.backgroundImage = "url({{STATIC_URL}}idegeo/content_handler/style_1/img/intro_background2.png)";
       }
       if (id_color==12||id_color==13) {
-        document.getElementById("description-header").style.backgroundImage = "url({{STATIC_URL}}content_handler/style_1/img/intro_background1.png)";
+        document.getElementById("description-header").style.backgroundImage = "url({{STATIC_URL}}idegeo/content_handler/style_1/img/intro_background1.png)";
       }
     }
 }

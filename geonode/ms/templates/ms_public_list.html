@@ -1,0 +1,103 @@
+{% extends "site_base.html" %}
+{% load i18n avatar_tags %}
+{% load dialogos_tags %}
+{% load pinax_ratings_tags %}
+{% load bootstrap_tags %}
+{% load base_tags %}
+{% load guardian_tags %}
+
+{% block title %}Micrositios{% endblock %}
+
+{% block head %}
+   {{ block.super }}
+<link href="{{ STATIC_URL }}idegeo/style_adesur/css/main.css" rel="stylesheet" type="text/css">
+<link href="{{ STATIC_URL }}idegeo/bootstrap/bootstrap-responsive.css" rel="stylesheet" type="text/css">
+<link rel='stylesheet' id='avia-grid-css' href='{{ STATIC_URL }}idegeo/blog/css/grid.css' type='text/css' media='all' />
+<link rel='stylesheet' id='avia-layout-css' href='{{ STATIC_URL }}idegeo/blog/css/layout.css' type='text/css' media='all' />
+<link rel='stylesheet' id='avia-dynamic-css' href='{{ STATIC_URL }}idegeo/blog/css/resource_watch_theme.css' type='text/css' media='all' />
+<link rel='stylesheet' id='avia-custom-css' href='{{ STATIC_URL }}idegeo/blog/css/custom.css' type='text/css' media='all' />
+<link rel='stylesheet' id='avia-base-css' href='{{ STATIC_URL }}idegeo/blog/css/base.css' type='text/css' media='all' />
+<link rel='stylesheet' id='avia-style-css' href='{{ STATIC_URL }}idegeo/blog/css/style2.css' type='text/css' media='all' />
+<link href="https://fonts.googleapis.com/css2?family=Comfortaa&display=swap" rel="stylesheet">
+
+
+{% endblock %}
+{% block page_header %}
+<header class="staticHeader">
+    <div class="staticContainer">
+        <div class="staticLogo">
+            <a class="siteLogo" href='{% url 'home' %}'><img class="iconStatic" src="/static/idegeo/blog/images/CentroGeo.png" style="height: 72px;"/></a>
+        </div>
+        {% if MainHeader %}
+        <div class="staticLogo">
+            <a class="siteLogo" href='{% url 'home' %}'><img class="iconStatic" src="/uploaded/{{ MainHeader.logo }}" style="height: 72px;"/></a>
+        </div>
+        {% endif %}
+        <div class="staticTitle">
+            <h1 class="sitename">
+                <span class="xtc-break">Servicios de Información Geoespacial</span>
+            </h1>
+			</div>
+        </div>
+        <div class="headerMenu">
+            <div class="contentNav">
+                <ul class="navMenu">
+                    <li ><a href="{% url 'home' %}" itemprop="url">Inicio</a></li>
+                    <li ><a href="{% url 'blog' %}" itemprop="url">Historias</a></li>
+                    <li ><a href="{% url 'ms_public_list' %}" itemprop="url" style="border-bottom: 3px solid var(--color-theme);">Micrositios</a></li>
+                    <li ><a href="{% url 'mviewer_public' %}" itemprop="url">Panoramas</a></li>
+                    <li ><a href="{% url 'layer_interface' %}" itemprop="url">Visualizador</a></li>
+                    <li ><a href="{% url 'documents_interface' %}" itemprop="url">Documentos</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div id="headerTool">
+    <li id="menu-item" class="logged-out-menu menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-top-level menu-item-top-level-7"><a href="#" data-toggle="modal" data-target="#UserModal" itemprop="url"><span class="avia-bullet"></span><span class="avia-menu-text"></span><span class="avia-menu-fx"><span class="avia-arrow-wrap"><span class="avia-arrow"></span></span></span></a>
+    <ul class="subMenu">
+        {% if user.is_authenticated %}
+        <i data-toggle="modal" data-target="#UserModal" class="fa fa-user" title="{{ user.username }}"></i>
+        {% else %}
+        <i data-toggle="modal" data-target="#SigninModal" class="fa fa-user"  title="Inicia Sesión"></i>
+        {% endif %}
+    </ul>
+</div>
+</header>
+{% endblock %}
+
+{% block body_outer %}
+<div class="container" style="min-height: 40px; padding: 25px 0px 0px 0px; max-width: calc(100% - 320px);; margin: 0px 160px;">
+    <div style="height:65px; margin-top:30px">
+        <h2 style="font-size: 30px;font-family: 'Comfortaa', cursive;float:left;"><i class="fa fa-cubes" aria-hidden="true"></i> Micrositios</h2>
+        <div class="nav nav-pills" style="float:right;">
+            <div class="btn-group input-group" style="width:200px;">
+                <input name="text_search_input_l" id="text_search_input_l" type="text" placeholder="Buscar" class="form-control ng-pristine ng-valid ng-touched" autocomplete="off">
+                <span class="input-group-btn">
+                    <button class="btn btn-primary" type="submit" id="text_search_btn_l"><i class="fa fa-filter"></i></button>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="com_mosaic-flat" class="component mosaicFlat" style="margin: -15px 132px;">
+	{% for ms in items %}
+	    <div class="mosaicItem">
+            <a href="{% url 'ms_index' ms.url_name %}" >
+	    	    <div class="mosImage" style="background-image: url({{MEDIA_URL}}{{ms.cover_image}});"></div>
+	    	    <div class="mosTitle">{{ms|truncatechars:55}}</div>
+	    	</a>
+        </div>
+        {% empty%}
+              <h2>Aún no hay Micrositios</h2>
+	{% endfor %}
+</div>
+    {% endblock %}
+
+
+{% block extra_script %}
+<script src="{{ STATIC_URL }}idegeo/interactive/js/jquery.mixitup.js" type="text/javascript"></script>
+<script src='{{ STATIC_URL }}idegeo/map_interface/js/jquery.quicksearch.js'></script>
+<script src="{{STATIC_URL}}idegeo/geonode/js/colorbox/jquery.colorbox.js"></script>
+<link rel="stylesheet" href="{{STATIC_URL}}idegeo/geonode/css/colorbox/colorbox.css" />
+{% include "documents2.js" %}
+{% endblock extra_script %}

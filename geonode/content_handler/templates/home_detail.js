@@ -29,7 +29,7 @@ $('#grays').prop('checked', true);
 var color_theme = tmp_color[id_color];
 var thematic_ms = tmp_thematic[id_thematic];
 // var combo_thems = "<select id='ms_theme_cb_"+id_ms+"'' class='ms_themes_cb'><option value='0'>template_dark-blue</option>";
-var combo_thems = "<select class='ms_themes_palet' id='palet_ms'><option value='0' data-image='{{STATIC_URL}}ms/images/Blues.png' ></option>"; //<option value="Blues" data-image="{{STATIC_URL}}ms/images/Blues.png"></option>";
+var combo_thems = "<select class='ms_themes_palet' id='palet_ms'><option value='0' data-image='{{STATIC_URL}}idegeo/ms/images/Blues.png' ></option>"; //<option value="Blues" data-image="{{STATIC_URL}}idegeo/ms/images/Blues.png"></option>";
 var combo_thematic = "<select id='ms_thematic_cb_"+id_ms+"'' class='ms_thematic_cb'>";
 
 for(let i=0;i<tmp_thematic.length;i++) {
@@ -41,56 +41,56 @@ for(let i=0;i<tmp_thematic.length;i++) {
 }
 
 //OPCIONES DE TONOS DE PALETAS
-if(id_color==1){combo_thems += "<option value='1' data-image='{{STATIC_URL}}ms/images/Greensi.png' selected></option>";}
-else{combo_thems += "<option value='1' data-image='{{STATIC_URL}}ms/images/Greensi.png'></option>";
+if(id_color==1){combo_thems += "<option value='1' data-image='{{STATIC_URL}}idegeo/ms/images/Greensi.png' selected></option>";}
+else{combo_thems += "<option value='1' data-image='{{STATIC_URL}}idegeo/ms/images/Greensi.png'></option>";
 }
-if(id_color==2){combo_thems += "<option value='2'  data-image='{{STATIC_URL}}ms/images/Greys.png' selected></option>";}
-else{combo_thems += "<option value='2' data-image='{{STATIC_URL}}ms/images/Greys.png'></option>";
+if(id_color==2){combo_thems += "<option value='2'  data-image='{{STATIC_URL}}idegeo/ms/images/Greys.png' selected></option>";}
+else{combo_thems += "<option value='2' data-image='{{STATIC_URL}}idegeo/ms/images/Greys.png'></option>";
 }
-if(id_color==3){combo_thems += "<option value='3' data-image='{{STATIC_URL}}ms/images/Oranges.png' selected></option>";}
-else{combo_thems += "<option value='3' data-image='{{STATIC_URL}}ms/images/Oranges.png'></option>";
+if(id_color==3){combo_thems += "<option value='3' data-image='{{STATIC_URL}}idegeo/ms/images/Oranges.png' selected></option>";}
+else{combo_thems += "<option value='3' data-image='{{STATIC_URL}}idegeo/ms/images/Oranges.png'></option>";
 }
-if(id_color==4){combo_thems += "<option value='4' data-image='{{STATIC_URL}}ms/images/Purples.png' selected></option>";}
-else{combo_thems += "<option value='4'data-image='{{STATIC_URL}}ms/images/Purples.png'></option>";
+if(id_color==4){combo_thems += "<option value='4' data-image='{{STATIC_URL}}idegeo/ms/images/Purples.png' selected></option>";}
+else{combo_thems += "<option value='4'data-image='{{STATIC_URL}}idegeo/ms/images/Purples.png'></option>";
 }
-if(id_color==5){combo_thems += "<option value='5' data-image='{{STATIC_URL}}ms/images/Reds.png' selected></option>";}
-else{combo_thems += "<option value='5' data-image='{{STATIC_URL}}ms/images/Reds.png'></option>";
+if(id_color==5){combo_thems += "<option value='5' data-image='{{STATIC_URL}}idegeo/ms/images/Reds.png' selected></option>";}
+else{combo_thems += "<option value='5' data-image='{{STATIC_URL}}idegeo/ms/images/Reds.png'></option>";
 }
-if(id_color==6){combo_thems += "<option value='6' data-image='{{STATIC_URL}}ms/images/BuGn.png' selected></option>";}
-else{combo_thems += "<option value='6' data-image='{{STATIC_URL}}ms/images/BuGn.png'></option>";
+if(id_color==6){combo_thems += "<option value='6' data-image='{{STATIC_URL}}idegeo/ms/images/BuGn.png' selected></option>";}
+else{combo_thems += "<option value='6' data-image='{{STATIC_URL}}idegeo/ms/images/BuGn.png'></option>";
 }
-if(id_color==7){combo_thems += "<option value='7' data-image='{{STATIC_URL}}ms/images/BuPu.png' selected></option>";}
-else{combo_thems += "<option value='7' data-image='{{STATIC_URL}}ms/images/BuPu.png' ></option>";
+if(id_color==7){combo_thems += "<option value='7' data-image='{{STATIC_URL}}idegeo/ms/images/BuPu.png' selected></option>";}
+else{combo_thems += "<option value='7' data-image='{{STATIC_URL}}idegeo/ms/images/BuPu.png' ></option>";
 }
-if(id_color==8){combo_thems += "<option value='8' data-image='{{STATIC_URL}}ms/images/GnBu.png' selected></option>";}
-else{combo_thems += "<option value='8' data-image='{{STATIC_URL}}ms/images/GnBu.png'></option>";
+if(id_color==8){combo_thems += "<option value='8' data-image='{{STATIC_URL}}idegeo/ms/images/GnBu.png' selected></option>";}
+else{combo_thems += "<option value='8' data-image='{{STATIC_URL}}idegeo/ms/images/GnBu.png'></option>";
 }
-if(id_color==9){combo_thems += "<option value='9' data-image='{{STATIC_URL}}ms/images/OrRd.png' selected></option>";}
-else{combo_thems += "<option value='9' data-image='{{STATIC_URL}}ms/images/OrRd.png'></option>";
+if(id_color==9){combo_thems += "<option value='9' data-image='{{STATIC_URL}}idegeo/ms/images/OrRd.png' selected></option>";}
+else{combo_thems += "<option value='9' data-image='{{STATIC_URL}}idegeo/ms/images/OrRd.png'></option>";
 }
-if(id_color==10){combo_thems += "<option value='10' data-image='{{STATIC_URL}}ms/images/PuBuGn.png' selected></option>";}
-else{combo_thems += "<option value='10' data-image='{{STATIC_URL}}ms/images/PuBuGn.png' ></option>";
+if(id_color==10){combo_thems += "<option value='10' data-image='{{STATIC_URL}}idegeo/ms/images/PuBuGn.png' selected></option>";}
+else{combo_thems += "<option value='10' data-image='{{STATIC_URL}}idegeo/ms/images/PuBuGn.png' ></option>";
 }
-if(id_color==11){combo_thems += "<option value='11' data-image='{{STATIC_URL}}ms/images/PuBu.png' selected></option>";}
-else{combo_thems += "<option value='11' data-image='{{STATIC_URL}}ms/images/PuBu.png' ></option>";
+if(id_color==11){combo_thems += "<option value='11' data-image='{{STATIC_URL}}idegeo/ms/images/PuBu.png' selected></option>";}
+else{combo_thems += "<option value='11' data-image='{{STATIC_URL}}idegeo/ms/images/PuBu.png' ></option>";
 }
-if(id_color==12){combo_thems += "<option value='12' data-image='{{STATIC_URL}}ms/images/PuRd.png' selected></option>";}
-else{combo_thems += "<option value='12' data-image='{{STATIC_URL}}ms/images/PuRd.png' ></option>";
+if(id_color==12){combo_thems += "<option value='12' data-image='{{STATIC_URL}}idegeo/ms/images/PuRd.png' selected></option>";}
+else{combo_thems += "<option value='12' data-image='{{STATIC_URL}}idegeo/ms/images/PuRd.png' ></option>";
 }
-if(id_color==13){combo_thems += "<option value='13' data-image='{{STATIC_URL}}ms/images/RdPu.png' selected></option>";}
-else{combo_thems += "<option value='13' data-image='{{STATIC_URL}}ms/images/RdPu.png' ></option>";
+if(id_color==13){combo_thems += "<option value='13' data-image='{{STATIC_URL}}idegeo/ms/images/RdPu.png' selected></option>";}
+else{combo_thems += "<option value='13' data-image='{{STATIC_URL}}idegeo/ms/images/RdPu.png' ></option>";
 }
-if(id_color==14){combo_thems += "<option value='14' data-image='{{STATIC_URL}}ms/images/YlGnBu.png' selected></option>";}
-else{combo_thems += "<option value='14' data-image='{{STATIC_URL}}ms/images/YlGnBu.png'></option>";
+if(id_color==14){combo_thems += "<option value='14' data-image='{{STATIC_URL}}idegeo/ms/images/YlGnBu.png' selected></option>";}
+else{combo_thems += "<option value='14' data-image='{{STATIC_URL}}idegeo/ms/images/YlGnBu.png'></option>";
 }
-if(id_color==15){combo_thems += "<option value='15' data-image='{{STATIC_URL}}ms/images/YlGn.png' selected></option>";}
-else{combo_thems += "<option value='15' data-image='{{STATIC_URL}}ms/images/YlGn.png' ></option>";
+if(id_color==15){combo_thems += "<option value='15' data-image='{{STATIC_URL}}idegeo/ms/images/YlGn.png' selected></option>";}
+else{combo_thems += "<option value='15' data-image='{{STATIC_URL}}idegeo/ms/images/YlGn.png' ></option>";
 }
-if(id_color==16){combo_thems += "<option value='16' data-image='{{STATIC_URL}}ms/images/YlOrBr.png' selected></option>";}
-else{combo_thems += "<option value='16' data-image='{{STATIC_URL}}ms/images/YlOrBr.png' ></option>";
+if(id_color==16){combo_thems += "<option value='16' data-image='{{STATIC_URL}}idegeo/ms/images/YlOrBr.png' selected></option>";}
+else{combo_thems += "<option value='16' data-image='{{STATIC_URL}}idegeo/ms/images/YlOrBr.png' ></option>";
 }
-if(id_color==17){combo_thems += "<option value='17' data-image='{{STATIC_URL}}ms/images/YlOrRd.png' selected></option>";}
-else{combo_thems += "<option value='17' data-image='{{STATIC_URL}}ms/images/YlOrRd.png'></option>";
+if(id_color==17){combo_thems += "<option value='17' data-image='{{STATIC_URL}}idegeo/ms/images/YlOrRd.png' selected></option>";}
+else{combo_thems += "<option value='17' data-image='{{STATIC_URL}}idegeo/ms/images/YlOrRd.png'></option>";
 }
 combo_thems += "</select>";
 

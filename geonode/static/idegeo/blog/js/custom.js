@@ -5,7 +5,7 @@ $( document ).ready(function() {
 
     //$('body').find('#header_main .logo a').append('<div class="brand-beta">beta</div>');
 
-    const searchTemplate = '<div class="c-search"><form action="/search"><img class="search-icon" src="/static/blog/images/search.svg" /><input placeholder="Search" name="term"/><div class="close"><img class="close-icon" src="/static/blog/images/cross.svg" /></div></form></div>';
+    const searchTemplate = '<div class="c-search"><form action="/search"><img class="search-icon" src="/static/idegeo/blog/images/search.svg" /><input placeholder="Search" name="term"/><div class="close"><img class="close-icon" src="/static/idegeo/blog/images/cross.svg" /></div></form></div>';
     const initSearch = function() {
       header.append(searchTemplate);
     }

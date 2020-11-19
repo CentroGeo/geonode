@@ -357,16 +357,16 @@ function markerOnClick(e){
 							var chat_comment_response_user = '<div class="body_comments_reply_hide" id="{{rpl.id}}hide_dlu"><img src="{% avatar_url rpl.user_reply %}" class="avatar_comment_reply_row" alt="No avatar" /><span class="user_comments_row"> {{ rpl.user_reply }}</span><span class="date_comments"> -{{ rpl.creation_date|date:"j F" }}</span>';
 								{% if user.is_authenticated %}
 								{% if user.is_staff %}
-										$('.comments-chat').append(''+chat_comment_response_user+'<span class="img_delete_comments_row" id="{{rpl.id}}dlt"><img src="{{STATIC_URL}}style_adesur/img/delete30.png" title="Eliminar comentario" class="img_delete_comments_gnr_row"/></span>');
+										$('.comments-chat').append(''+chat_comment_response_user+'<span class="img_delete_comments_row" id="{{rpl.id}}dlt"><img src="{{STATIC_URL}}idegeo/style_adesur/img/delete30.png" title="Eliminar comentario" class="img_delete_comments_gnr_row"/></span>');
 										{% else %}
 											{% if user.id == rpl.user_reply.id %}
-												$('.comments-chat').append(''+chat_comment_response_user+'<span class="img_delete_comments_row" id="{{rpl.id}}dlt"><img src="{{STATIC_URL}}style_adesur/img/delete30.png" title="Eliminar comentario" class="img_delete_comments_gnr_row"/></span>');
+												$('.comments-chat').append(''+chat_comment_response_user+'<span class="img_delete_comments_row" id="{{rpl.id}}dlt"><img src="{{STATIC_URL}}idegeo/style_adesur/img/delete30.png" title="Eliminar comentario" class="img_delete_comments_gnr_row"/></span>');
 											{% else %}
 												$('.comments-chat').append(''+chat_comment_response_user+'');
 											{% endif %}
 										{% endif %}
 										{% else %}
-													$('.comments-chat').append(''+chat_comment_response_user+'<span class="img_delete_comments_row" id="{{rpl.id}}dlt"><img src="{{STATIC_URL}}style_adesur/img/delete30.png" title="Eliminar comentario" class="img_delete_comments_gnr_row"/></span>');
+													$('.comments-chat').append(''+chat_comment_response_user+'<span class="img_delete_comments_row" id="{{rpl.id}}dlt"><img src="{{STATIC_URL}}idegeo/style_adesur/img/delete30.png" title="Eliminar comentario" class="img_delete_comments_gnr_row"/></span>');
 									{% endif %}
 
 								var chat_comment_response_comment = '<span class="response_rply_hide" id="{{rpl.id}}hide_dlc">{{ rpl.comments|escape|linebreaks }}</span>';
@@ -381,16 +381,16 @@ function markerOnClick(e){
 							var chat_comment_response_user = '<div class="body_comments_reply"><img src="{% avatar_url rpl.user_reply %}" class="avatar_comment_reply_row" alt="No avatar" /><span class="user_comments_row"> {{ rpl.user_reply }}</span><span class="date_comments"> -{{ rpl.creation_date|date:"j F" }}</span>';
 								{% if user.is_authenticated %}
 								{% if user.is_staff %}
-										$('.comments-chat').append(''+chat_comment_response_user+'<span class="img_delete_comments_row" id="{{rpl.id}}dlt"><img src="{{STATIC_URL}}style_adesur/img/delete30.png" title="Eliminar comentario" class="img_delete_comments_gnr_row"/></span>');
+										$('.comments-chat').append(''+chat_comment_response_user+'<span class="img_delete_comments_row" id="{{rpl.id}}dlt"><img src="{{STATIC_URL}}idegeo/style_adesur/img/delete30.png" title="Eliminar comentario" class="img_delete_comments_gnr_row"/></span>');
 										{% else %}
 											{% if user.id == rpl.user_reply.id %}
-												$('.comments-chat').append(''+chat_comment_response_user+'<span class="img_delete_comments_row" id="{{rpl.id}}dlt"><img src="{{STATIC_URL}}style_adesur/img/delete30.png" title="Eliminar comentario" class="img_delete_comments_gnr_row"/></span>');
+												$('.comments-chat').append(''+chat_comment_response_user+'<span class="img_delete_comments_row" id="{{rpl.id}}dlt"><img src="{{STATIC_URL}}idegeo/style_adesur/img/delete30.png" title="Eliminar comentario" class="img_delete_comments_gnr_row"/></span>');
 											{% else %}
 												$('.comments-chat').append(''+chat_comment_response_user+'');
 											{% endif %}
 										{% endif %}
 										{% else %}
-													$('.comments-chat').append(''+chat_comment_response_user+'<span class="img_delete_comments_row" id="{{rpl.id}}dlt"><img src="{{STATIC_URL}}style_adesur/img/delete30.png" title="Eliminar comentario" class="img_delete_comments_gnr_row"/></span>');
+													$('.comments-chat').append(''+chat_comment_response_user+'<span class="img_delete_comments_row" id="{{rpl.id}}dlt"><img src="{{STATIC_URL}}idegeo/style_adesur/img/delete30.png" title="Eliminar comentario" class="img_delete_comments_gnr_row"/></span>');
 									{% endif %}
 
 								var chat_comment_response_comment = '<span class="response_rply">{{ rpl.comments|escape|linebreaks }}</span>';
@@ -701,7 +701,7 @@ $('#response_to_btn').click(function(){
 				 url: '{% url "save_chat_response" %}',
 				 type: 'POST',
 				 success : function(data) {
-					 $('#'+id_comment+'_rply').html('<span class="user_comments_row">'+data[1]+'</span> <span class="img_delete_comments_row" id="'+data[0]+'dlt"><img src="{{STATIC_URL}}style_adesur/img/delete30.png" title="Eliminar comentario" class="img_delete_comments_gnr_row"/></span><div class="response_rply"> '+data[2]+'</div>');
+					 $('#'+id_comment+'_rply').html('<span class="user_comments_row">'+data[1]+'</span> <span class="img_delete_comments_row" id="'+data[0]+'dlt"><img src="{{STATIC_URL}}idegeo/style_adesur/img/delete30.png" title="Eliminar comentario" class="img_delete_comments_gnr_row"/></span><div class="response_rply"> '+data[2]+'</div>');
 					 $('#response_chat_map_modal').modal('toggle');
 				 },
 				 error : function(message) {

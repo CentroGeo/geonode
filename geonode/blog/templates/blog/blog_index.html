@@ -1,0 +1,142 @@
+{% extends "blog/blog_base.html" %}
+{% block extra_head %}
+    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL}}idegeo/blog/css/main.css" class="next-head" />
+{% endblock extra_head %}
+{% block body %}
+<section>
+    <div class="l-container">
+        <div>
+            <div class="row" style="margin-bottom: 0px;">
+                <div class="column small-12 medium-12">
+                    <h2 style="font-size: 30px;font-family: 'Comfortaa', cursive;margin-bottom: 0px;margin-top: 50px;"><i class="fa fa-th-large" aria-hidden="true"></i> Historias</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section>
+    <div class="l-container" style="margin-bottom: 35px;">
+        <div class="c-blog-latest-posts insight-cards">
+            <div class="row" style="margin-bottom: 0px;">
+                <div class="column small-12 medium-8">
+                    {% for post in posts|slice:":1" %}
+                    <div onclick="location.href='{% if post.format == 'link' %}{{ post.link}}{% else %}{% url 'blog_post' post.slug %}{% endif %}';" class="c-card-static -alt -clickable" style="background:url({{MEDIA_URL}}{{post.image}});background-size:cover" role="link" tabindex="0">
+                        <div class="darkTitle">
+                            <!-- <h4>{{post.created|date:"l j, F, Y"}}</h4> -->
+                            <h3 style="font-family: 'Comfortaa', cursive;">{{post}}</h3></div>
+                        <div class="footer">
+                            <div class="source" style="font-family: 'Comfortaa', cursive;"><span style="background-image:url({{ STATIC_URL}}idegeo/carousel/img/Grupo.png)"></span>
+                                {% if post.author %}
+                                    <div class="source-name">De <a href="#" target="_blank">{{post.author}}</a></div>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+                <div class="column small-12 medium-4">
+                    <div class="dual">
+                        {% for post in posts|slice:":3" %}
+                        {% if forloop.counter0 > 0 %}
+                        <div onclick="location.href='{% if post.format == 'link' %}{{ post.link }}{% else %}{% url 'blog_post' post.slug %}{% endif %}';" class="c-card-static -alt -clickable" style="background:url({{MEDIA_URL}}{{post.image}});background-size:cover" role="link" tabindex="0">
+                            <div class="darkTitle">
+                            <!-- <h4>{{post.created|date:"l j, F, Y"}}</h4> -->
+                            <h3 style="font-family: 'Comfortaa', cursive;">{{post}}</h3></div>
+                            <div class="footer">
+                                <div class="source" style="font-family: 'Comfortaa', cursive;"><span style="background-image:url({{ STATIC_URL}}idegeo/carousel/img/Grupo.png)"></span>
+                                    {% if post.author %}
+                                        <div class="source-name">De <a href="#" target="_blank">{{post.author}}</a></div>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                        {% endif %}
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="l-container" style="padding:0px;">
+        <div id="moreStories" class="c-blog-latest-posts insight-cards" style="min-height:250px">
+            <div class="row" style="margin-bottom: 0px;">
+            {% for post in posts|slice:":12" %}
+            {% if forloop.counter0 > 2 %}
+                <div class="column small-12 medium-4" style="padding:0px 10px; margin-top: -30px;">
+                    <div class="dual">
+                        <div onclick="location.href='{% if post.format == 'link' %}{{ post.link }}{% else %}{% url 'blog_post' post.slug %}{% endif %}';" class="c-card-static -alt -clickable" style="background:url({{MEDIA_URL}}{{post.image}});background-size:cover" role="link" tabindex="0">
+                            <div class="darkTitle">
+                            <!-- <h4>{{post.created|date:"l j, F, Y"}}</h4> -->
+                            <h3 style="font-family: 'Comfortaa', cursive;">{{post}}</h3></div>
+                            <div class="footer">
+                                <div class="source" style="font-family: 'Comfortaa', cursive;"><span style="background-image:url({{ STATIC_URL}}idegeo/carousel/img/Grupo.png)"></span>
+                                    {% if post.author %}
+                                        <div class="source-name">De <a href="#" target="_blank">{{post.author}}</a></div>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+            {% endif %}
+            {% endfor %}
+            </div>
+        </div>  
+        {% for post in posts %}
+        {% if forloop.counter0 == 3 %}    
+        <div class="-text-center">
+            <div class="row">
+                <div class="column small-12 medium-12">
+                    <div class=" buttons">
+                            <button style="border: none;" class="c-button -secondary join-us-button"></button><a id="showHistories" class="c-btn -primary" style="font-family: 'Comfortaa', cursive;">Más historias</a></div>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+        {% endfor %}
+    </div>
+</section>
+<section>
+    <div class="l-container">
+        <div>
+            <div class="row" style="margin-bottom: 0px;">
+                <div class="column small-12 medium-8">
+                    <h2 style="font-size: 30px;font-family: 'Comfortaa', cursive; margin-bottom: 25px;margin-top: 0px;"><i class="fa fa-sitemap"></i> Temas</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="l-section -secondary" style="padding: 0px;">
+    <div class="l-container">
+        <div class="topics-container">
+            <div class="row">
+                <div class="column small-12">
+                    <div class="c-topics-thumbnail-list">
+                        <div class="row l-row -equal-height">
+                            {% for topic in topics %}
+                            <div class="column small-12 medium-6 large-3">
+                                {% if topic.slug %}                                    
+                                    <button tabindex="0" onclick="location.href='{% url  'blog_topic_detail' topic.slug %}';" class="thumbnail-list-item" style="background-image:url({{MEDIA_URL}}{{topic.image}})">
+                                        <div style="box-sizing: inherit;font-family: 'Comfortaa', cursive;" class="content" for="topic-cities">{{topic}}</div>
+                                    </button>
+                                {% endif %}
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<script type="text/javascript">
+  $('#moreStories').hide();
+  $('#showHistories').click(function() {
+    $('#moreStories').show();
+    $('#showHistories').hide();
+  });
+</script>
+{% endblock %}
+{% block extra_script %}
+{% endblock extra_script %}

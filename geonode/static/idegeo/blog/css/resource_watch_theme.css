@@ -8,7 +8,7 @@ h1 {
 .header_bg {
 background-color: #a96927f5;
 padding:20px 0;
-background-image: url('/static/blog/images/header-bg-texture.png'), linear-gradient(86deg, rgba(250, 183, 46, 1) 0%, rgba(201,14,57,0.7) 100%);
+background-image: url('/static/idegeo/blog/images/header-bg-texture.png'), linear-gradient(86deg, rgba(250, 183, 46, 1) 0%, rgba(201,14,57,0.7) 100%);
 background-repeat: no-repeat;
 background-position: 50%;
 background-size: cover;
@@ -18,7 +18,7 @@ height: 75px;
 .header_bg_postblog {
 background-color: #a96927f5;
 padding:0px 0;
-background-image: url('/static/blog/images/blog-bg-texture.png'), linear-gradient(86deg, rgba(250, 183, 46, 1) 0%, rgba(201,14,57,0.7) 100%);
+background-image: url('/static/idegeo/blog/images/blog-bg-texture.png'), linear-gradient(86deg, rgba(250, 183, 46, 1) 0%, rgba(201,14,57,0.7) 100%);
 background-repeat: no-repeat;
 background-position: top;
 background-size: cover;
@@ -396,7 +396,7 @@ p.wp-caption-text { line-height: 20px !important; padding:0px;}
 span.language_flag {
 display: none;
 }
-.container {width:100%;} .container .av-content-small.units {width:73%; }
+.container {width:100%; max-width: unset;} .container .av-content-small.units {width:73%; }
 			
 			  .responsive .boxed#top , .responsive.html_boxed.html_header_sticky #header, 
 			  .responsive.html_boxed.html_header_transparency #header{ width: 1061px; max-width:90%; }

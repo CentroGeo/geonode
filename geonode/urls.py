@@ -262,7 +262,7 @@ urlpatterns += [
     #path('project/', include('project.urls')),
     #path('datatables/', include('geonode.contrib.datatables.urls')),
     #blog
-    #path('blog/', include('geonode.blog.urls')),
+    url(r'^blog/', include('geonode.blog.urls')),
     # meta
     #path('lang\.js/', TemplateView.as_view(template_name='lang.js', content_type='text/javascript'),
     #                       name='lang'),
@@ -272,7 +272,7 @@ urlpatterns += [
     #url('references/', include('geonode.references.urls')),
 
     # Micro Site
-    #url('ms/', include('geonode.ms.urls')),
+    url(r'^ms/', include('geonode.ms.urls')),
     # Micro Viewer
     url(r'^mviewer/', include('geonode.mviewer.urls')),
     # Toolkit spatial object analysis

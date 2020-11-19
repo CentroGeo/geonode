@@ -92,7 +92,7 @@ function legend_hot(id_lay, title) {
    <i data-toggle="tooltip" title="Herramientas" class="vtools fa fa-chevron-left" data-id="lh4"></i></div></div>\
    <div class="thumb">\
    <a class="thumbnail2" href="#" data-target="#image-gallery">Min \
-   <img src="{{STATIC_URL}}soa_toolkit/img/legend_hot.png" style="vertical-align: middle; height:20px; width:180px;"/>\
+   <img src="{{STATIC_URL}}idegeo/soa_toolkit/img/legend_hot.png" style="vertical-align: middle; height:20px; width:180px;"/>\
     Max</a></div>\
     <div id="sld-st1l5r1" class="no-sort slidecontainer" style="display:none;">\
     <input type="range" min="1" max="100" value="100" class="slider" id="1">\
