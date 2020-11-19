@@ -45,6 +45,8 @@ from geonode.messaging.urls import urlpatterns as msg_urls
 from .people.views import CustomSignupView
 from .base_style.views import index
 
+from django.urls import path
+
 admin.autodiscover()
 
 js_info_dict = {
@@ -262,7 +264,7 @@ urlpatterns += [
     #path('project/', include('project.urls')),
     #path('datatables/', include('geonode.contrib.datatables.urls')),
     #blog
-    url(r'^blog/', include('geonode.blog.urls')),
+    path('blog/', include('geonode.blog.urls')),
     # meta
     #path('lang\.js/', TemplateView.as_view(template_name='lang.js', content_type='text/javascript'),
     #                       name='lang'),
@@ -272,7 +274,7 @@ urlpatterns += [
     #url('references/', include('geonode.references.urls')),
 
     # Micro Site
-    url(r'^ms/', include('geonode.ms.urls')),
+    path('ms/', include('geonode.ms.urls')),
     # Micro Viewer
     url(r'^mviewer/', include('geonode.mviewer.urls')),
     # Toolkit spatial object analysis
