@@ -1,0 +1,190 @@
+@charset "utf-8";
+/*******************************************************
+    Jssor Slider - https://www.jssor.com/
+*******************************************************/
+/* LOADING-009-SPIN */
+.jssorl-009-spin img {
+    animation-name: jssorl-009-spin;
+    animation-duration:1.6s;
+    animation-iteration-count:infinite;
+    animation-timing-function:linear;
+}
+@keyframes jssorl-009-spin {
+    from {transform:rotate(0deg);}
+    to {transform:rotate(360deg);}
+}
+/* THUMBNAILS-101-NAV */
+.jssort101 .p {position:absolute;top:0px;left:0px;background:#000000;}
+.jssort101 .p .t {position:absolute;top:0px;left:0px;width:100%;height:100%;border: 1px solid rgba(255,255,255,0.00);box-sizing:border-box;opacity:0.40;}
+.jssort101 .p .cv {position:relative;top:0px;left:0px;width:100%;height:100%;opacity:0.20;z-index:1;}
+.jssort101 .p.pav .t {border-color:rgba(255,255,255,0.80);}
+.jssort101 .p.pav .t, .jssort101 .p:hover .t {opacity:1.00;}
+.jssort101 .p.pav .cv, .jssort101 .p:hover .cv {background-color:rgba(0,0,0,1.00);opacity:0.00;}
+/*BULLET-057-NAV */
+.jssorb057 .i {position:absolute;border: 2px solid rgba(237,209,29,1.00);border-radius:7px;background-color:rgba(237,209,29,0.00);box-sizing:border-box;cursor:default;}
+.jssorb057 .i:hover, .jssorb057 .iav {background-color:rgba(237,209,29,1.00);}
+/* ARROWS-106-NAV */
+.jssora106 {display:block;position:absolute;cursor:pointer;}
+.jssora106 .cv, .jssora106.jssora106ds {opacity:0.40;}
+.jssora106:hover .cv {opacity:0.80;}
+.jssora106.jssora106ds {pointer-events:none;}
+/*******************************************************
+    COMPONENT [COM_SLIDER-THUMBNAV]
+*******************************************************/
+.section-component .com_slider-thumbnav {
+    visibility: hidden;
+    position: relative;
+    width: 980px;
+    height: 462px; /*480*/
+    top: 0px;
+    left: 0px;
+    margin: 0px auto;
+    padding: 0px;
+    overflow: hidden;
+}
+/* -------------------------------------------------- */
+.section-component .com_slider-thumbnav .jssorl-009-spin {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0px;
+    left: 0px;
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.70);
+}
+.section-component .com_slider-thumbnav .jssorl-009-spin img {
+    display: initial;
+    position: relative;
+    width: 38px;
+    height: 38px;
+    top: 50%;
+    margin-top: -19px;
+}
+/* -------------------------------------------------- */
+.section-component .com_slider-thumbnav .jssors-slides {
+    position: relative;
+    width: 980px;
+    height: 380px;
+    top: 0px;
+    left: 0px;
+    cursor: default;
+    overflow: hidden;
+}
+/* -------------------------------------------------- */
+.section-component .com_slider-thumbnav .jssort101 {
+    position: absolute;
+    width: 980px;
+    height: 82px; /*100*/
+    left: 0px;
+    bottom: 0px;
+    background-color: #000000;
+}
+.section-component .com_slider-thumbnav .jssort101 .p {
+    width: 192px; /*190*/
+    height: 76px; /*90*/
+}
+/* -------------------------------------------------- */
+.section-component .com_slider-thumbnav .jssora106 {
+    width: 56px;
+    height: 56px;
+    top: 162px;
+}
+.section-component .com_slider-thumbnav .jssora106[data-u="arrowleft"] {
+    left: 20px;
+}
+.section-component .com_slider-thumbnav .jssora106[data-u="arrowright"] {
+    right: 20px;
+}
+.section-component .com_slider-thumbnav .jssora106 .cv {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0px;
+    left: 0px;
+}
+/*******************************************************
+    COMPONENT [COM_SLIDER-THUMB]
+*******************************************************/
+.section-component .com_slider-thumb {
+    position: relative;
+    margin: 0px auto;
+    top: 0px;
+    left: 0px;
+    width: 2100px;
+    height: 118px;
+    margin-bottom: 110px;
+    /*overflow: hidden;*/
+    visibility: hidden;
+}
+/* -------------------------------------------------- */
+.section-component .com_slider-thumb .jssorl-009-spin {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0px;
+    left: 0px;
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.70);
+}
+.section-component .com_slider-thumb .jssorl-009-spin img {
+    display: initial;
+    position: relative;
+    width: 38px;
+    height: 38px;
+    top: 50%;
+    margin-top: -19px;
+}
+/* -------------------------------------------------- */
+.section-component .com_slider-thumb .jssors-slides {
+    position: relative;
+    left: 0px;
+    top: 0px;
+    width: 2100px;
+    height: 118px;
+    cursor: default;
+    overflow: hidden;
+}
+/* -------------------------------------------------- */
+.section-component .com_slider-thumb .jssorb057 {
+    position: absolute;
+    bottom: -50px;
+    right: 12px;
+}
+.section-component .com_slider-thumb .jssorb057 .i {
+    width: 36px;
+    height: 18px;
+    margin: 0px;
+    padding: 0px;
+    -webkit-border-radius: 7px;
+    -moz-border-radius: 7px;
+    border-radius: 7px;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    /** TRANSITION **/
+    -webkit-transition: all 0.15s ease-in-out;
+    -moz-transition: all 0.15s ease-in-out;
+    -ms-transition: all 0.15s ease-in-out;
+    -o-transition: all 0.15s ease-in-out;
+    transition: all 0.15s ease-in-out;
+}
+/* -------------------------------------------------- */
+.section-component .com_slider-thumb .jssora106 {
+    width: 50px;
+    height: 50px;
+    top: 0px;
+}
+.section-component .com_slider-thumb .jssora106[data-u="arrowleft"] {
+    left: 20px;
+}
+.section-component .com_slider-thumb .jssora106[data-u="arrowright"] {
+    right: 20px;
+}
+.section-component .com_slider-thumb .jssora106 .cv {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0px;
+    left: 0px;
+}
+/* -------------------------------------------------- */

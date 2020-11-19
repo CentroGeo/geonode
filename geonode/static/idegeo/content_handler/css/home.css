@@ -1,0 +1,24 @@
+.close_hd {
+    /*float: right; esto en adesur se ve mal*/
+    width: 119px;
+    height: 78px;
+    font-size: 21px;
+    font-weight: 700;
+    line-height: 1;
+    color: #000;
+    text-shadow: 0 1px 0 #fff;
+    opacity: .2;
+    filter: alpha(opacity=20);
+}
+.close_hd:hover, .close_hd:focus {
+	cursor: pointer;
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+    opacity: .5;
+    filter: alpha(opacity=50);
+
+}
+.title-detail{
+color: #fff;
+}

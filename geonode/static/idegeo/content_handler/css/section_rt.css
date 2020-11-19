@@ -1,0 +1,36 @@
+.ga-horizontal .ga-panels,
+.ga-mask {
+    height: 100%
+}
+.ga-mask,
+.ga-vertical .ga-panels {
+    width: 100%
+}
+.ga-mask,
+.ga-no-js,
+.ga-panel {
+    overflow: hidden
+}
+.grid-accordion {
+    position: relative;
+    margin-left: auto;
+    margin-right: auto
+}
+.ga-background-opened,
+.ga-layer,
+.ga-mask,
+.ga-panel,
+.ga-panels {
+    position: absolute
+}
+
+.ga-black {
+    color: #FFF;
+    background: #000;
+    background: rgba(0, 0, 0, .7)
+}
+.ga-white {
+    color: #000;
+    background: #fff;
+    background: rgba(255, 255, 255, .7)
+}

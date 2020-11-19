@@ -14,26 +14,26 @@
 
 	{% if menu.style_template == '1' %}
 	<!-- parallo -->
-	<link href="{{STATIC_URL}}content_handler/css/section_rt.css" rel="stylesheet">
+	<link href="{{STATIC_URL}}idegeo/content_handler/css/section_rt.css" rel="stylesheet">
 	{% elif menu.style_template == '2' %}
 <!-- bidendum -->
-	<link href="{{STATIC_URL}}content_handler/css/section_is.css" rel="stylesheet">
-	<script src="{{STATIC_URL}}content_handler/style_2/js/macy-2.5.0.min.js"></script>
+	<link href="{{STATIC_URL}}idegeo/content_handler/css/section_is.css" rel="stylesheet">
+	<script src="{{STATIC_URL}}idegeo/content_handler/style_2/js/macy-2.5.0.min.js"></script>
 	{% elif menu.style_template == '3' %}
 <!-- editorial -->
-	<link href="{{STATIC_URL}}content_handler/css/section_editor.css" rel="stylesheet">
+	<link href="{{STATIC_URL}}idegeo/content_handler/css/section_editor.css" rel="stylesheet">
 	{% elif menu.style_template == '7' %}
 	<!--carrusel-enfasis-->
-	<link href="{{STATIC_URL}}content_handler/css/carrusel-enfasis.css" rel="stylesheet"/>
+	<link href="{{STATIC_URL}}idegeo/content_handler/css/carrusel-enfasis.css" rel="stylesheet"/>
 	{% elif menu.style_template == '8' or menu.style_template == '9' %}
 	<!--bloque vineta-->
-	<link href="{{STATIC_URL}}content_handler/css/bloquevineta.css" rel="stylesheet"/>
+	<link href="{{STATIC_URL}}idegeo/content_handler/css/bloquevineta.css" rel="stylesheet"/>
 	{% endif %}
 <!-- prisma -->
 	<!-- wraper section -->
-	<link href="{{STATIC_URL}}content_handler/css/wraper_sec.css" rel="stylesheet"/>
+	<link href="{{STATIC_URL}}idegeo/content_handler/css/wraper_sec.css" rel="stylesheet"/>
 	<!-- wraper one section -->
-	<link href="{{STATIC_URL}}content_handler/css/wrapper_one.css" rel="stylesheet"/>
+	<link href="{{STATIC_URL}}idegeo/content_handler/css/wrapper_one.css" rel="stylesheet"/>
 
 {% endblock %}
 {% block middle %}
@@ -215,7 +215,7 @@
 {% block extra_script %}
 	{% if menu.style_template == '1' %}
 	<!-- parallo -->
-	<script src="{{STATIC_URL}}content_handler/style_1/js/jquery.gridAccordion-2.7.min.js"></script>
+	<script src="{{STATIC_URL}}idegeo/content_handler/style_1/js/jquery.gridAccordion-2.7.min.js"></script>
 	{% elif menu.style_template == '2' %}
 	<!-- bibendum -->
 	{% include 'styles/handler_1/masonryItems.js' %}

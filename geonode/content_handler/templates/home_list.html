@@ -1,4 +1,3 @@
-
 {% load i18n %}
 {% load dialogos_tags %}
 {% load pinax_ratings_tags %}
@@ -9,9 +8,9 @@
 {% block title %}Homes{% endblock %}
 
 {% block head %}
-<link href="{{ STATIC_URL }}style_adesur/css/main.css" rel="stylesheet" type="text/css">
-<link href="{{ STATIC_URL }}bootstrap/bootstrap-responsive.css" rel="stylesheet" type="text/css">
-  <link rel="stylesheet" href="{{STATIC_URL}}content_handler/css/home.css"/>
+<link href="{{ STATIC_URL }}idegeo/style_adesur/css/main.css" rel="stylesheet" type="text/css">
+<link href="{{ STATIC_URL }}idegeo/bootstrap/bootstrap-responsive.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="{{STATIC_URL}}idegeo/content_handler/css/home.css"/>
 {% endblock %}
 {% block body_outer %}
 <div id="page-header" class="content">
@@ -19,7 +18,7 @@
     <div class="titulo-blk-row">
       <div class="titulo-img blk-cell">
         <i class="fa fa-home fa-5x title-detail" title="Content" aria-hidden="true"></i>
-        <!-- <img src="{{STATIC_URL}}carousel/images/ico22_lineas-trabajo.png" alt=""> -->
+        <!-- <img src="{{STATIC_URL}}idegeo/carousel/images/ico22_lineas-trabajo.png" alt=""> -->
       </div>
         <div class="titulo-txt blk-cell">
           <h2>Manejador de contenidos</h2>
@@ -114,14 +113,10 @@
 
 
 {% block extra_script %}
-<script src="{{ STATIC_URL }}interactive/js/jquery.mixitup.js" type="text/javascript"></script>
-<script src='{{ STATIC_URL }}map_interface/js/jquery.quicksearch.js'></script>
-<script src="{{STATIC_URL}}geonode/js/colorbox/jquery.colorbox.js"></script>
-<link rel="stylesheet" href="{{STATIC_URL}}geonode/css/colorbox/colorbox.css" />
-<script type="text/javascript">
-  $(".iframe").colorbox({iframe:true, width:"90%", height:"90%"});
-
-  $(document).ready(function(){
+<script src="{{ STATIC_URL }}idegeo/interactive/js/jquery.mixitup.js" type="text/javascript"></script>
+<script src='{{ STATIC_URL }}idegeo/map_interface/js/jquery.quicksearch.js'></script>
+<script src="{{STATIC_URL}}idegeo/geonode/js/colorbox/jquery.colorbox.js"></script>
+<link rel="stylesheet" href="{{STATIC_URL}}idegeo/geonode/css/colorbox/colorbox.css" />
 
   var tmp_color = ['template_dark-blue','template_blue','template_dark-green','template_green','template_orange','template_white-purple','template_yellow-green'];
   var tmp_thematic = ['Circulos','Red', 'Circulos Lineales'];
@@ -220,6 +215,7 @@
         'id_ms':id_ms,
         'id_color': id_color
       }
+      {% comment %}
       $.ajax({
         data: {'query_data': JSON.stringify(query_data),
              csrfmiddlewaretoken: '{{ csrf_token }}'
@@ -234,6 +230,7 @@
                 console.log(message);
              }
         });
+        {% endcomment %}
   });
 $(".ms_thematic_cb").change(function(){
       var id_ms_compuest = $(this).attr('id');
@@ -247,6 +244,7 @@ $(".ms_thematic_cb").change(function(){
         'id_ms':id_ms,
         'id_tematics': id_tematics
       }
+      {% comment %}
       $.ajax({
         data: {'query_data': JSON.stringify(query_data),
              csrfmiddlewaretoken: '{{ csrf_token }}'
@@ -262,6 +260,7 @@ $(".ms_thematic_cb").change(function(){
                 console.log(message);
              }
         });
+        {% endcomment %}
   });
 });
 

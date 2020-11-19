@@ -182,7 +182,6 @@
      width:16px;
      height:16px;
      margin-top:-8px;
-     background:url(../../images/msdropdown/skin1/dd_arrow.gif) no-repeat;
  }
  .dd .ddArrow:hover {
      background-position:0 100%;
@@ -190,7 +189,6 @@
  .dd .ddTitle {
      width: 182px;
      color:#000;
-     background:#e2e2e4 url(../../images/msdropdown/skin1/title-bg.gif) repeat-x left top;
  }
  .dd .ddTitle .ddTitleText {
      padding:5px 20px 5px 5px;

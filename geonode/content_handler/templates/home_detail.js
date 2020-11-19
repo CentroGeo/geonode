@@ -29,7 +29,7 @@ $('#grays').prop('checked', true);
 var color_theme = tmp_color[id_color];
 var thematic_ms = tmp_thematic[id_thematic];
 // var combo_thems = "<select id='ms_theme_cb_"+id_ms+"'' class='ms_themes_cb'><option value='0'>template_dark-blue</option>";
-var combo_thems = "<select class='ms_themes_palet' id='palet_ms'><option value='0' data-image='{{STATIC_URL}}ms/images/Blues.png' ></option>"; //<option value="Blues" data-image="{{STATIC_URL}}ms/images/Blues.png"></option>";
+var combo_thems = "<select class='ms_themes_palet' id='palet_ms'><option value='0' data-image='{{STATIC_URL}}idegeo/ms/images/Blues.png' ></option>"; //<option value="Blues" data-image="{{STATIC_URL}}idegeo/ms/images/Blues.png"></option>";
 var combo_thematic = "<select id='ms_thematic_cb_"+id_ms+"'' class='ms_thematic_cb'>";
 
 for(let i=0;i<tmp_thematic.length;i++) {
@@ -41,56 +41,56 @@ for(let i=0;i<tmp_thematic.length;i++) {
 }
 
 //OPCIONES DE TONOS DE PALETAS
-if(id_color==1){combo_thems += "<option value='1' data-image='{{STATIC_URL}}ms/images/Greensi.png' selected></option>";}
-else{combo_thems += "<option value='1' data-image='{{STATIC_URL}}ms/images/Greensi.png'></option>";
+if(id_color==1){combo_thems += "<option value='1' data-image='{{STATIC_URL}}idegeo/ms/images/Greensi.png' selected></option>";}
+else{combo_thems += "<option value='1' data-image='{{STATIC_URL}}idegeo/ms/images/Greensi.png'></option>";
 }
-if(id_color==2){combo_thems += "<option value='2'  data-image='{{STATIC_URL}}ms/images/Greys.png' selected></option>";}
-else{combo_thems += "<option value='2' data-image='{{STATIC_URL}}ms/images/Greys.png'></option>";
+if(id_color==2){combo_thems += "<option value='2'  data-image='{{STATIC_URL}}idegeo/ms/images/Greys.png' selected></option>";}
+else{combo_thems += "<option value='2' data-image='{{STATIC_URL}}idegeo/ms/images/Greys.png'></option>";
 }
-if(id_color==3){combo_thems += "<option value='3' data-image='{{STATIC_URL}}ms/images/Oranges.png' selected></option>";}
-else{combo_thems += "<option value='3' data-image='{{STATIC_URL}}ms/images/Oranges.png'></option>";
+if(id_color==3){combo_thems += "<option value='3' data-image='{{STATIC_URL}}idegeo/ms/images/Oranges.png' selected></option>";}
+else{combo_thems += "<option value='3' data-image='{{STATIC_URL}}idegeo/ms/images/Oranges.png'></option>";
 }
-if(id_color==4){combo_thems += "<option value='4' data-image='{{STATIC_URL}}ms/images/Purples.png' selected></option>";}
-else{combo_thems += "<option value='4'data-image='{{STATIC_URL}}ms/images/Purples.png'></option>";
+if(id_color==4){combo_thems += "<option value='4' data-image='{{STATIC_URL}}idegeo/ms/images/Purples.png' selected></option>";}
+else{combo_thems += "<option value='4'data-image='{{STATIC_URL}}idegeo/ms/images/Purples.png'></option>";
 }
-if(id_color==5){combo_thems += "<option value='5' data-image='{{STATIC_URL}}ms/images/Reds.png' selected></option>";}
-else{combo_thems += "<option value='5' data-image='{{STATIC_URL}}ms/images/Reds.png'></option>";
+if(id_color==5){combo_thems += "<option value='5' data-image='{{STATIC_URL}}idegeo/ms/images/Reds.png' selected></option>";}
+else{combo_thems += "<option value='5' data-image='{{STATIC_URL}}idegeo/ms/images/Reds.png'></option>";
 }
-if(id_color==6){combo_thems += "<option value='6' data-image='{{STATIC_URL}}ms/images/BuGn.png' selected></option>";}
-else{combo_thems += "<option value='6' data-image='{{STATIC_URL}}ms/images/BuGn.png'></option>";
+if(id_color==6){combo_thems += "<option value='6' data-image='{{STATIC_URL}}idegeo/ms/images/BuGn.png' selected></option>";}
+else{combo_thems += "<option value='6' data-image='{{STATIC_URL}}idegeo/ms/images/BuGn.png'></option>";
 }
-if(id_color==7){combo_thems += "<option value='7' data-image='{{STATIC_URL}}ms/images/BuPu.png' selected></option>";}
-else{combo_thems += "<option value='7' data-image='{{STATIC_URL}}ms/images/BuPu.png' ></option>";
+if(id_color==7){combo_thems += "<option value='7' data-image='{{STATIC_URL}}idegeo/ms/images/BuPu.png' selected></option>";}
+else{combo_thems += "<option value='7' data-image='{{STATIC_URL}}idegeo/ms/images/BuPu.png' ></option>";
 }
-if(id_color==8){combo_thems += "<option value='8' data-image='{{STATIC_URL}}ms/images/GnBu.png' selected></option>";}
-else{combo_thems += "<option value='8' data-image='{{STATIC_URL}}ms/images/GnBu.png'></option>";
+if(id_color==8){combo_thems += "<option value='8' data-image='{{STATIC_URL}}idegeo/ms/images/GnBu.png' selected></option>";}
+else{combo_thems += "<option value='8' data-image='{{STATIC_URL}}idegeo/ms/images/GnBu.png'></option>";
 }
-if(id_color==9){combo_thems += "<option value='9' data-image='{{STATIC_URL}}ms/images/OrRd.png' selected></option>";}
-else{combo_thems += "<option value='9' data-image='{{STATIC_URL}}ms/images/OrRd.png'></option>";
+if(id_color==9){combo_thems += "<option value='9' data-image='{{STATIC_URL}}idegeo/ms/images/OrRd.png' selected></option>";}
+else{combo_thems += "<option value='9' data-image='{{STATIC_URL}}idegeo/ms/images/OrRd.png'></option>";
 }
-if(id_color==10){combo_thems += "<option value='10' data-image='{{STATIC_URL}}ms/images/PuBuGn.png' selected></option>";}
-else{combo_thems += "<option value='10' data-image='{{STATIC_URL}}ms/images/PuBuGn.png' ></option>";
+if(id_color==10){combo_thems += "<option value='10' data-image='{{STATIC_URL}}idegeo/ms/images/PuBuGn.png' selected></option>";}
+else{combo_thems += "<option value='10' data-image='{{STATIC_URL}}idegeo/ms/images/PuBuGn.png' ></option>";
 }
-if(id_color==11){combo_thems += "<option value='11' data-image='{{STATIC_URL}}ms/images/PuBu.png' selected></option>";}
-else{combo_thems += "<option value='11' data-image='{{STATIC_URL}}ms/images/PuBu.png' ></option>";
+if(id_color==11){combo_thems += "<option value='11' data-image='{{STATIC_URL}}idegeo/ms/images/PuBu.png' selected></option>";}
+else{combo_thems += "<option value='11' data-image='{{STATIC_URL}}idegeo/ms/images/PuBu.png' ></option>";
 }
-if(id_color==12){combo_thems += "<option value='12' data-image='{{STATIC_URL}}ms/images/PuRd.png' selected></option>";}
-else{combo_thems += "<option value='12' data-image='{{STATIC_URL}}ms/images/PuRd.png' ></option>";
+if(id_color==12){combo_thems += "<option value='12' data-image='{{STATIC_URL}}idegeo/ms/images/PuRd.png' selected></option>";}
+else{combo_thems += "<option value='12' data-image='{{STATIC_URL}}idegeo/ms/images/PuRd.png' ></option>";
 }
-if(id_color==13){combo_thems += "<option value='13' data-image='{{STATIC_URL}}ms/images/RdPu.png' selected></option>";}
-else{combo_thems += "<option value='13' data-image='{{STATIC_URL}}ms/images/RdPu.png' ></option>";
+if(id_color==13){combo_thems += "<option value='13' data-image='{{STATIC_URL}}idegeo/ms/images/RdPu.png' selected></option>";}
+else{combo_thems += "<option value='13' data-image='{{STATIC_URL}}idegeo/ms/images/RdPu.png' ></option>";
 }
-if(id_color==14){combo_thems += "<option value='14' data-image='{{STATIC_URL}}ms/images/YlGnBu.png' selected></option>";}
-else{combo_thems += "<option value='14' data-image='{{STATIC_URL}}ms/images/YlGnBu.png'></option>";
+if(id_color==14){combo_thems += "<option value='14' data-image='{{STATIC_URL}}idegeo/ms/images/YlGnBu.png' selected></option>";}
+else{combo_thems += "<option value='14' data-image='{{STATIC_URL}}idegeo/ms/images/YlGnBu.png'></option>";
 }
-if(id_color==15){combo_thems += "<option value='15' data-image='{{STATIC_URL}}ms/images/YlGn.png' selected></option>";}
-else{combo_thems += "<option value='15' data-image='{{STATIC_URL}}ms/images/YlGn.png' ></option>";
+if(id_color==15){combo_thems += "<option value='15' data-image='{{STATIC_URL}}idegeo/ms/images/YlGn.png' selected></option>";}
+else{combo_thems += "<option value='15' data-image='{{STATIC_URL}}idegeo/ms/images/YlGn.png' ></option>";
 }
-if(id_color==16){combo_thems += "<option value='16' data-image='{{STATIC_URL}}ms/images/YlOrBr.png' selected></option>";}
-else{combo_thems += "<option value='16' data-image='{{STATIC_URL}}ms/images/YlOrBr.png' ></option>";
+if(id_color==16){combo_thems += "<option value='16' data-image='{{STATIC_URL}}idegeo/ms/images/YlOrBr.png' selected></option>";}
+else{combo_thems += "<option value='16' data-image='{{STATIC_URL}}idegeo/ms/images/YlOrBr.png' ></option>";
 }
-if(id_color==17){combo_thems += "<option value='17' data-image='{{STATIC_URL}}ms/images/YlOrRd.png' selected></option>";}
-else{combo_thems += "<option value='17' data-image='{{STATIC_URL}}ms/images/YlOrRd.png'></option>";
+if(id_color==17){combo_thems += "<option value='17' data-image='{{STATIC_URL}}idegeo/ms/images/YlOrRd.png' selected></option>";}
+else{combo_thems += "<option value='17' data-image='{{STATIC_URL}}idegeo/ms/images/YlOrRd.png'></option>";
 }
 combo_thems += "</select>";
 
@@ -291,25 +291,27 @@ query_data = {
 'id_ms':id_ms,
 'cat': cat
 }
-$.ajax({
-data: {'query_data': JSON.stringify(query_data),
-csrfmiddlewaretoken: '{{ csrf_token }}'
-},
-url: '{% url "ms_search_narrative" %}',
-type: 'POST',
-success : function(cats) {
-$(".ms-tbody-cat").html("");
-for (i = 0; i < cats.length; i++) {
-var site_edit = cats[i][4]+"ms_update_narrative/"+cats[i][3]+"/"+id_ms+"";
-var site_meta = cats[i][4]+"ms_update_narrative_meta/"+cats[i][3]+"/"+id_ms+"";
-var site_delete = cats[i][4]+"remove_nar/"+cats[i][3]+"/"+id_ms+"";
-$(".ms-tbody-cat").append('<tr class="ms-hide-nar-other"><td colspan="3">'+cats[i][0]+'</td><td>'+cats[i][1]+'</td><td>'+cats[i][2]+'</td><td><span class="edit-nar" id="'+site_meta+'"><i class="fa fa-bars fa-1x" title="Editar Metadato" aria-hidden="true"></i></span></td><td><span class="edit-meta" id="'+site_edit+'"><i class="fa fa-file-text-o fa-1x" title="Editar Narrativa" aria-hidden="true"></i></span></td><td><span class="delete-nar" id="'+site_delete+'"><i class="fa fa-trash fa-1x" title="Eliminar Narrativa" aria-hidden="true"></i></span></td></tr>');
-}
-},
-error : function(message) {
-console.log(message);
-}
-});
+{% comment %}
+//$.ajax({
+//data: {'query_data': JSON.stringify(query_data),
+//csrfmiddlewaretoken: '{{ csrf_token }}'
+//},
+//url: '{% url "ms_search_narrative" %}',
+//type: 'POST',
+//success : function(cats) {
+//$(".ms-tbody-cat").html("");
+//for (i = 0; i < cats.length; i++) {
+//var site_edit = cats[i][4]+"ms_update_narrative/"+cats[i][3]+"/"+id_ms+"";
+//var site_meta = cats[i][4]+"ms_update_narrative_meta/"+cats[i][3]+"/"+id_ms+"";
+//var site_delete = cats[i][4]+"remove_nar/"+cats[i][3]+"/"+id_ms+"";
+//$(".ms-tbody-cat").append('<tr class="ms-hide-nar-other"><td colspan="3">'+cats[i][0]+'</td><td>'+cats[i][1]+'</td><td>'+cats[i][2]+'</td><td><span class="edit-nar" id="'+site_meta+'"><i class="fa fa-bars fa-1x" title="Editar Metadato" aria-hidden="true"></i></span></td><td><span class="edit-meta" id="'+site_edit+'"><i class="fa fa-file-text-o fa-1x" title="Editar Narrativa" aria-hidden="true"></i></span></td><td><span class="delete-nar" id="'+site_delete+'"><i class="fa fa-trash fa-1x" title="Eliminar Narrativa" aria-hidden="true"></i></span></td></tr>');
+//}
+//},
+//error : function(message) {
+//console.log(message);
+//}
+//});
+{% endcomment %}
 });
 
 $('.ms-cat-parent-cb').change(function(){
@@ -321,32 +323,34 @@ query_data = {
 'id_ms':id_ms,
 'cat': cat
 }
-$.ajax({
-data: {'query_data': JSON.stringify(query_data),
-csrfmiddlewaretoken: '{{ csrf_token }}'
-},
-url: '{% url "ms_search_cat" %}',
-type: 'POST',
-success : function(data) {
-var categories = data;
-$(".ms-tbody-cat-padre").html("");
-for (i = 0; i < categories.length; i++) {
-var cat_name = categories[i][0];
-var cat_father = categories[i][1];
-var cat_desc = categories[i][2];
-var cat_id = categories[i][3];
-var cat_site = categories[i][4];
-
-var site_add_cat = ""+cat_site+"up_cat_to_cat/"+cat_id+"/"+id_ms+"";
-var site_edit = ""+cat_site+"update_cat_ms/"+id_ms+"/"+cat_id+"";
-var site_delete = ""+cat_site+"remove_cat/"+cat_id+"/"+id_ms+"";
-$(".ms-tbody-cat-padre").append('<tr class="ms-hide-nar-other"><td colspan="2">'+cat_name+'</td><td>'+cat_father+'</td><td><span class="add-cat" id="'+site_add_cat+'"><i class="fa fa-plus fa-1x" title="Agregar una categoria a '+cat_name+'" aria-hidden="true"></i></span></td><td><span class="edit-cat" id="'+site_edit+'"><i class="fa fa-pencil fa-1x" title="Editar Categoria" aria-hidden="true"></i></span></td><td><span class="delete-cat" id="'+site_delete+'"><i class="fa fa-trash fa-1x" title="Eliminar Categoria" aria-hidden="true"></i></span></td></tr>');
-}
-},
-error : function(message) {
-console.log(message);
-}
-});
+{% comment %}
+//$.ajax({
+//data: {'query_data': JSON.stringify(query_data),
+//csrfmiddlewaretoken: '{{ csrf_token }}'
+//},
+//url: '{% url "ms_search_cat" %}',
+//type: 'POST',
+//success : function(data) {
+//var categories = data;
+//$(".ms-tbody-cat-padre").html("");
+//for (i = 0; i < categories.length; i++) {
+//var cat_name = categories[i][0];
+//var cat_father = categories[i][1];
+//var cat_desc = categories[i][2];
+//var cat_id = categories[i][3];
+//var cat_site = categories[i][4];
+//
+//var site_add_cat = ""+cat_site+"up_cat_to_cat/"+cat_id+"/"+id_ms+"";
+//var site_edit = ""+cat_site+"update_cat_ms/"+id_ms+"/"+cat_id+"";
+//var site_delete = ""+cat_site+"remove_cat/"+cat_id+"/"+id_ms+"";
+//$(".ms-tbody-cat-padre").append('<tr class="ms-hide-nar-other"><td colspan="2">'+cat_name+'</td><td>'+cat_father+'</td><td><span class="add-cat" id="'+site_add_cat+'"><i class="fa fa-plus fa-1x" title="Agregar una categoria a '+cat_name+'" aria-hidden="true"></i></span></td><td><span class="edit-cat" id="'+site_edit+'"><i class="fa fa-pencil fa-1x" title="Editar Categoria" aria-hidden="true"></i></span></td><td><span class="delete-cat" id="'+site_delete+'"><i class="fa fa-trash fa-1x" title="Eliminar Categoria" aria-hidden="true"></i></span></td></tr>');
+//}
+//},
+//error : function(message) {
+//console.log(message);
+//}
+//});
+{% endcomment%}
 });
 
 $('.ms-tbody-cat').on("click","span.edit-nar", function(e){

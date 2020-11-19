@@ -1,0 +1,6 @@
+ #sortable {
+    display: flex;
+}
+#sortable li {
+    margin: 10px;
+}

@@ -12,7 +12,7 @@
                         <div id="block-1" class="block-item" data-aspect="{% if forloop.counter|divisibleby:2  %}dark{% else %}clear{% endif %}" 
                             {% if forloop.counter|divisibleby:2  %}data-direction="right" {% else %} data-direction="left"{% endif %}>
                             <div class="block-data item-data" {% if child.link %}data-link="{{ child.link }}"{% endif %} data-target="_blank">
-                                <div class="item-image" style="background-image: url({{MEDIA_URL}}{{child.image}})"><img src="{{STATIC_URL}}content_handler/css/image_ratio.png" alt=""/></div>
+                                <div class="item-image" style="background-image: url({{MEDIA_URL}}{{child.image}})"><img src="{{STATIC_URL}}idegeo/content_handler/css/image_ratio.png" alt=""/></div>
                                 <div class="item-head">
                                     <div class="item-category">{{item}}</div>
                                     <div class="item-name">{{child}}</div>
@@ -24,7 +24,7 @@
                         <div id="block-1" class="block-item" data-aspect="{% if forloop.counter|divisibleby:2  %}clear{% else %}dark{% endif %}" 
                             {% if forloop.counter|divisibleby:2  %}data-direction="left" {% else %} data-direction="right"{% endif %}>
                             <div class="block-data item-data" {% if child.link %}data-link="{{ child.link }}"{% endif %} data-target="_blank">
-                                <div class="item-image" style="background-image: url({{MEDIA_URL}}{{child.image}})"><img src="{{STATIC_URL}}content_handler/css/image_ratio.png" alt=""/></div>
+                                <div class="item-image" style="background-image: url({{MEDIA_URL}}{{child.image}})"><img src="{{STATIC_URL}}idegeo/content_handler/css/image_ratio.png" alt=""/></div>
                                 <div class="item-head">
                                     <div class="item-category">{{item}}</div>
                                     <div class="item-name">{{child}}</div>

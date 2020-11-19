@@ -929,7 +929,7 @@ function onEachFeatureBusiness(feature, layer) {
         click: zoomToFeatureBusiness
     });
 }
-// var pt = omnivore.topojson('{{STATIC_URL}}ms/23/data/acapulco/ocupados/centrosmercado.json');
+// var pt = omnivore.topojson('{{STATIC_URL}}idegeo/ms/23/data/acapulco/ocupados/centrosmercado.json');
 // function style(geometry) {
 //   return {
 //     fillColor: '#e31a1c',
