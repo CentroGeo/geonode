@@ -20,7 +20,7 @@
 	});
   
   $('.catTag').click( function(){
-    $('.tag').toggle( "slide" );
+    $('.tag').toggle( "slide5" );
     $('.cat').toggle( "slide" );
     $('#catTag').html($(this).attr('name')+'<span class="caret"></span>');
     $('.catTag.active').css('display','block');
