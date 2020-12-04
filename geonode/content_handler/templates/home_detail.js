@@ -291,25 +291,27 @@ query_data = {
 'id_ms':id_ms,
 'cat': cat
 }
-$.ajax({
-data: {'query_data': JSON.stringify(query_data),
-csrfmiddlewaretoken: '{{ csrf_token }}'
-},
-url: '{% url "ms_search_narrative" %}',
-type: 'POST',
-success : function(cats) {
-$(".ms-tbody-cat").html("");
-for (i = 0; i < cats.length; i++) {
-var site_edit = cats[i][4]+"ms_update_narrative/"+cats[i][3]+"/"+id_ms+"";
-var site_meta = cats[i][4]+"ms_update_narrative_meta/"+cats[i][3]+"/"+id_ms+"";
-var site_delete = cats[i][4]+"remove_nar/"+cats[i][3]+"/"+id_ms+"";
-$(".ms-tbody-cat").append('<tr class="ms-hide-nar-other"><td colspan="3">'+cats[i][0]+'</td><td>'+cats[i][1]+'</td><td>'+cats[i][2]+'</td><td><span class="edit-nar" id="'+site_meta+'"><i class="fa fa-bars fa-1x" title="Editar Metadato" aria-hidden="true"></i></span></td><td><span class="edit-meta" id="'+site_edit+'"><i class="fa fa-file-text-o fa-1x" title="Editar Narrativa" aria-hidden="true"></i></span></td><td><span class="delete-nar" id="'+site_delete+'"><i class="fa fa-trash fa-1x" title="Eliminar Narrativa" aria-hidden="true"></i></span></td></tr>');
-}
-},
-error : function(message) {
-console.log(message);
-}
-});
+{% comment %}
+//$.ajax({
+//data: {'query_data': JSON.stringify(query_data),
+//csrfmiddlewaretoken: '{{ csrf_token }}'
+//},
+//url: '{% url "ms_search_narrative" %}',
+//type: 'POST',
+//success : function(cats) {
+//$(".ms-tbody-cat").html("");
+//for (i = 0; i < cats.length; i++) {
+//var site_edit = cats[i][4]+"ms_update_narrative/"+cats[i][3]+"/"+id_ms+"";
+//var site_meta = cats[i][4]+"ms_update_narrative_meta/"+cats[i][3]+"/"+id_ms+"";
+//var site_delete = cats[i][4]+"remove_nar/"+cats[i][3]+"/"+id_ms+"";
+//$(".ms-tbody-cat").append('<tr class="ms-hide-nar-other"><td colspan="3">'+cats[i][0]+'</td><td>'+cats[i][1]+'</td><td>'+cats[i][2]+'</td><td><span class="edit-nar" id="'+site_meta+'"><i class="fa fa-bars fa-1x" title="Editar Metadato" aria-hidden="true"></i></span></td><td><span class="edit-meta" id="'+site_edit+'"><i class="fa fa-file-text-o fa-1x" title="Editar Narrativa" aria-hidden="true"></i></span></td><td><span class="delete-nar" id="'+site_delete+'"><i class="fa fa-trash fa-1x" title="Eliminar Narrativa" aria-hidden="true"></i></span></td></tr>');
+//}
+//},
+//error : function(message) {
+//console.log(message);
+//}
+//});
+{% endcomment %}
 });
 
 $('.ms-cat-parent-cb').change(function(){
@@ -321,32 +323,34 @@ query_data = {
 'id_ms':id_ms,
 'cat': cat
 }
-$.ajax({
-data: {'query_data': JSON.stringify(query_data),
-csrfmiddlewaretoken: '{{ csrf_token }}'
-},
-url: '{% url "ms_search_cat" %}',
-type: 'POST',
-success : function(data) {
-var categories = data;
-$(".ms-tbody-cat-padre").html("");
-for (i = 0; i < categories.length; i++) {
-var cat_name = categories[i][0];
-var cat_father = categories[i][1];
-var cat_desc = categories[i][2];
-var cat_id = categories[i][3];
-var cat_site = categories[i][4];
-
-var site_add_cat = ""+cat_site+"up_cat_to_cat/"+cat_id+"/"+id_ms+"";
-var site_edit = ""+cat_site+"update_cat_ms/"+id_ms+"/"+cat_id+"";
-var site_delete = ""+cat_site+"remove_cat/"+cat_id+"/"+id_ms+"";
-$(".ms-tbody-cat-padre").append('<tr class="ms-hide-nar-other"><td colspan="2">'+cat_name+'</td><td>'+cat_father+'</td><td><span class="add-cat" id="'+site_add_cat+'"><i class="fa fa-plus fa-1x" title="Agregar una categoria a '+cat_name+'" aria-hidden="true"></i></span></td><td><span class="edit-cat" id="'+site_edit+'"><i class="fa fa-pencil fa-1x" title="Editar Categoria" aria-hidden="true"></i></span></td><td><span class="delete-cat" id="'+site_delete+'"><i class="fa fa-trash fa-1x" title="Eliminar Categoria" aria-hidden="true"></i></span></td></tr>');
-}
-},
-error : function(message) {
-console.log(message);
-}
-});
+{% comment %}
+//$.ajax({
+//data: {'query_data': JSON.stringify(query_data),
+//csrfmiddlewaretoken: '{{ csrf_token }}'
+//},
+//url: '{% url "ms_search_cat" %}',
+//type: 'POST',
+//success : function(data) {
+//var categories = data;
+//$(".ms-tbody-cat-padre").html("");
+//for (i = 0; i < categories.length; i++) {
+//var cat_name = categories[i][0];
+//var cat_father = categories[i][1];
+//var cat_desc = categories[i][2];
+//var cat_id = categories[i][3];
+//var cat_site = categories[i][4];
+//
+//var site_add_cat = ""+cat_site+"up_cat_to_cat/"+cat_id+"/"+id_ms+"";
+//var site_edit = ""+cat_site+"update_cat_ms/"+id_ms+"/"+cat_id+"";
+//var site_delete = ""+cat_site+"remove_cat/"+cat_id+"/"+id_ms+"";
+//$(".ms-tbody-cat-padre").append('<tr class="ms-hide-nar-other"><td colspan="2">'+cat_name+'</td><td>'+cat_father+'</td><td><span class="add-cat" id="'+site_add_cat+'"><i class="fa fa-plus fa-1x" title="Agregar una categoria a '+cat_name+'" aria-hidden="true"></i></span></td><td><span class="edit-cat" id="'+site_edit+'"><i class="fa fa-pencil fa-1x" title="Editar Categoria" aria-hidden="true"></i></span></td><td><span class="delete-cat" id="'+site_delete+'"><i class="fa fa-trash fa-1x" title="Eliminar Categoria" aria-hidden="true"></i></span></td></tr>');
+//}
+//},
+//error : function(message) {
+//console.log(message);
+//}
+//});
+{% endcomment%}
 });
 
 $('.ms-tbody-cat').on("click","span.edit-nar", function(e){

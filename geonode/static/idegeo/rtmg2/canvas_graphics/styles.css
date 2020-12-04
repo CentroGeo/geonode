@@ -1,0 +1,122 @@
+@charset "utf-8";
+/*
+@import url("https://fonts.googleapis.com/css?family=Nunito:600,700");
+@import url("https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700");
+*/
+/*****************************************************************
+    REGION-TRANSFRONTERIZA-MEXICO-GUATEMALA
+*****************************************************************/
+html {
+    height: 100%;
+    font-size: 16px;
+    font-family: sans-serif;
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+}
+html * {
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+html, body {
+    height: 100%;
+    margin: 0px;
+}
+body, td, th {
+    font-family: "Open Sans", sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.5em;
+    color: #000000;
+    text-transform: none;
+}
+body {
+    margin: 0px;
+    padding: 0px;
+    background-color: #FFFFFF;
+    overflow-x: hidden !important;
+}
+* {
+    outline: none !important;
+}
+/*******************************************************
+    BODY-WRAPPER
+*******************************************************/
+#body-wrapper {
+    margin: 0px;
+    padding: 0px;
+    background-color: transparent;
+    cursor: default;
+}
+/*******************************************************
+    SECTION
+*******************************************************/
+section {
+    position: relative;
+    margin: 0px;
+    padding: 60px 0px;
+    border-bottom: 1px dotted rgba(0, 0, 0, 0.20);
+    background-color: rgba(255, 255, 255, 0.00);
+    overflow: hidden !important;
+}
+section:before,
+section:after {
+    display: table;
+    content: " ";
+}
+section:after {
+    clear: both;
+}
+/*******************************************************
+    SECTION-COMPONENT
+*******************************************************/
+.section-component {
+    margin: 0px;
+    padding: 0px;
+}
+.section-component .component-wrapper {
+    position: relative;
+    margin: 0px;
+    padding: 0px;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    background-size: cover;
+    background-color: rgba(255, 255, 255, 1.00);
+    overflow: hidden;
+}
+.section-component .component-wrapper .component-inner {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    position: relative;
+    margin: 40px 0px;
+    padding: 0px;
+    overflow: hidden !important;
+}
+/*******************************************************
+    SECTION-COMPONENT [CANVAS]
+*******************************************************/
+#canvas_wrapper {
+    max-width: 480px !important;
+    margin: 60px auto;
+    padding: 0px;
+}
+#animation_container {
+    margin: 0px auto;
+    padding: 0px;
+}
+#animation_container:before,
+#animation_container:after {
+    display: table;
+    content: " ";
+}
+#animation_container:after {
+    clear: both;
+}
+#animation_container #canvas,
+#animation_container #dom_overlay_container {
+    margin: 0px;
+    padding: 0px;
+}
+/* -------------------------------------------------- */

@@ -1,4 +1,4 @@
-
+{% extends "site_base.html" %}
 {% load i18n %}
 {% load dialogos_tags %}
 {% load pinax_ratings_tags %}
@@ -12,8 +12,10 @@
 <link href="{{ STATIC_URL }}idegeo/style_adesur/css/main.css" rel="stylesheet" type="text/css">
 <link href="{{ STATIC_URL }}idegeo/bootstrap/bootstrap-responsive.css" rel="stylesheet" type="text/css">
   <link rel="stylesheet" href="{{STATIC_URL}}idegeo/content_handler/css/home.css"/>
+<link href="/static/idegeo/style_adesur/css/idegeo.mod.css" rel="stylesheet">
+{{ block.super }}
 {% endblock %}
-{% block body_outer %}
+{% block page_header %}
 <div id="page-header" class="content">
   <div class="container">
     <div class="titulo-blk-row">
@@ -27,6 +29,8 @@
     </div>
   </div>
 </div>
+{% endblock %}
+{% block body_outer %}
 <div class="container" style="min-height: 440px;">
   <div class="nav nav-pills btn-group">
     {% if request.user.is_authenticated %}
@@ -118,10 +122,7 @@
 <script src='{{ STATIC_URL }}idegeo/map_interface/js/jquery.quicksearch.js'></script>
 <script src="{{STATIC_URL}}idegeo/geonode/js/colorbox/jquery.colorbox.js"></script>
 <link rel="stylesheet" href="{{STATIC_URL}}idegeo/geonode/css/colorbox/colorbox.css" />
-<script type="text/javascript">
-  $(".iframe").colorbox({iframe:true, width:"90%", height:"90%"});
-
-  $(document).ready(function(){
+<script>
 
   var tmp_color = ['template_dark-blue','template_blue','template_dark-green','template_green','template_orange','template_white-purple','template_yellow-green'];
   var tmp_thematic = ['Circulos','Red', 'Circulos Lineales'];
@@ -187,15 +188,12 @@
         combo_thems += "<option value='7'>template_yellow-green</option></select>";
       }
 
-      //  console.log('<img src="{{STATIC_URL}}idegeo/ms/images/ms_site_'+id_color+'.png" title="'+color_theme+'">');
-      //  console.log("#theme_ms_"+id_ms+"");
       $("#theme_ms_"+id_ms).html("<span>Tema:</span><span class='ms_themes_cb'> "+combo_thems+" </span>");
       $("#thematic_ms_"+id_ms).html("<span>Visualización:</span><span class='ms_themes_cb'> "+combo_thematic+" </span>");
       $("#img_"+id_ms+"_theme").html('<iframe src="{{site}}{{ms.url_name}}" width="590" height="800"/>');
 
 
 
-      //$("#img_"+id_ms+"_theme").html('<img src="{{STATIC_URL}}idegeo/ms/images/ms_site_'+id_color+'.png" title="'+color_theme+'">');
   {% endfor %}
 
   $(".img_theme").mouseenter(function() {
@@ -263,7 +261,6 @@ $(".ms_thematic_cb").change(function(){
              }
         });
   });
-});
 
 </script>
 {% include "documents.js" %}

@@ -137,11 +137,15 @@
                     {% else %}
                     {% endif %}
                     {% endif %}
+                    {% comment %}
                     <li><a href="{% url 'ms_gestor_list' %}"><i class="fa fa-cubes"></i> Micrositios</a></li>
+                    {% endcomment %}
                     <li><a href="{% url 'mviewer_list' %}"><i class="fa fa-window-maximize"></i> Panoramas</a></li>
                     <li><a href="{% url 'content_handler_list' %}"><i class="fa fa-window-restore"></i> CMS</a></li>
                     {% if request.user.is_superuser %}
+                    {% comment %}
                     <li><a href="{% url 'blog_admin' %}"><i class="fa fa-cubes"></i> Blog</a></li>
+                    {% endcomment %}
                     {% endif %}
                     <hr>
                     <li><a href="{{ user.get_absolute_url }}"><i class="fa fa-user"></i> {% trans "Profile" %}</a></li>

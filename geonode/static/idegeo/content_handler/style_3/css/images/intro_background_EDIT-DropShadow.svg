@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 800 800" style="enable-background:new 0 0 800 800;" xml:space="preserve">
+<style type="text/css">
+	.st1{fill-rule:evenodd;clip-rule:evenodd;fill:#E09C07;filter:url(#dropShadow);}
+    .st2{fill-rule:evenodd;clip-rule:evenodd;fill:#AA0000;filter:url(#dropShadow);}
+</style>
+<filter id="dropShadow">
+    <feGaussianBlur in="SourceAlpha" stdDeviation="3"/>
+    <feOffset dx="2" dy="2"/>
+    <feComponentTransfer>
+        <feFuncA type="linear" slope="0.40"/>
+    </feComponentTransfer>
+    <feMerge>
+        <feMergeNode/>
+        <feMergeNode in="SourceGraphic"/>
+    </feMerge>
+</filter>
+<path class="st2" d="M500,260c0,132.548-107.452,240-240,240S20,392.548,20,260S127.452,20,260,20S500,127.452,500,260z"/>
+<path class="st1" d="M329,193c-93-30-108.554,171.16-155,132c-51-43,97-135-98-106c-54.716,8.137,11.056-135.579,95-147C318,52,420.493,222.514,329,193z M263,135.5c0,14.636-18.587,41.133-53,60.5c-38.141,21.465-82-15-90-60.5c-2.534-14.414,32.512-39.5,72-39.5S263,120.864,263,135.5z"/>
+</svg>

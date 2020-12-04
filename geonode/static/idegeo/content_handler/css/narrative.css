@@ -1,0 +1,123 @@
+.ms-narrativ-body, .section-txt {
+	width:750px;
+	margin: 0 auto;
+}
+.ms-nar {
+	/*background-color: white;*/
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+.ms-narrativ-body p, .section-txt p {
+	font-family: medium-content-serif-font,Georgia,Cambria,"Times New Roman",Times,serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 21px;
+    line-height: 1.58;
+    letter-spacing: -.003em;
+    color: #333;
+}
+.narTitle, .narCite, .narStitle, .narStext{
+    margin-top: 15px;
+}
+p.narTitle {
+	margin-top: 20px;
+    --x-height-multiplier: 0.363;
+    --baseline-multiplier: 0.157;
+    font-family: sans-serif;
+    font-weight: 600;
+    font-style: normal;
+    font-size: 25px;
+    margin-left: -2px;
+    line-height: 1.15;
+    letter-spacing: -.02em;
+    color: #404040;
+}
+p.narStitle {
+	margin-top: 15px;
+    --x-height-multiplier: 0.363;
+    --baseline-multiplier: 0.157;
+    font-family: sans-serif;
+    letter-spacing: -.02em;
+    font-weight: 600;
+    font-style: normal;
+    font-size: 18px;
+    margin-left: -1.2px;
+    line-height: 1.5;
+    letter-spacing: -.018em;
+    color: #404040;
+}
+p.narStext {
+    font-family: sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 16px;
+    line-height: 1.58;
+    letter-spacing: -.003em;
+    color: #404040;
+}
+p.narCite {
+  	--x-height-multiplier: 0.363;
+    --baseline-multiplier: 0.157;
+    font-family: sans-serif;
+    letter-spacing: -.02em;
+    font-weight: 300;
+    font-style: normal;
+    font-feature-settings: "liga" on,"lnum" on;
+    -moz-font-feature-settings: "liga" on,"lnum" on;
+    -webkit-font-feature-settings: "liga" on,"lnum" on;
+    font-size: 13px;
+    line-height: 1.4;
+    color: rgba(0,0,0,.6);
+    letter-spacing: 0;
+}
+.ms-narrativ-body img {
+    display: block;
+	margin: auto !important;
+	max-width: 100%;
+    height: auto !important;
+}
+.ms-narrativ-body ul, .section-txt ul {
+	margin-top: 29px;
+}
+.ms-narrativ-body li, .section-txt li {
+	--x-height-multiplier: 0.35;
+    --baseline-multiplier: 0.179;
+    font-family: medium-content-serif-font,Georgia,Cambria,"Times New Roman",Times,serif;
+    letter-spacing: .01rem;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 21px;
+    line-height: 1.58;
+    letter-spacing: -.003em;
+    margin-left: 30px;
+    margin-bottom: 14px;
+    margin-top: 0px;
+}
+.ms-narrativ-body .fa-cloud-download::before, .section-txt .fa-cloud-download::before {
+	padding-right: 8px;
+}
+.full-width {
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+}
+
+.embed-responsive {
+    width: 950px;
+    margin-left: -100px;
+    height: 500px;
+}
+
+.right-ms{
+		background: white;
+		position: absolute;
+		right: 10px;
+		top: 5px;
+		box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    padding: 12px 16px;
+    z-index: 1;
+		/*border: 3px solid #333;*/
+}
