@@ -5,7 +5,10 @@ import uuid
 import logging
 import psycopg2
 from decimal import Decimal
-from csvkit import sql, table, convert
+from csvkit import convert
+import agate
+import agatesql
+from sqlalchemy import create_engine, dialects
 
 from django.db.models import signals
 from django.conf import settings
@@ -76,8 +79,15 @@ def process_csv_file(instance, delimiter=",", no_header_row=False):
         f = open(csv_filename, 'rb')
 
     try:
-        csv_table = table.Table.from_csv(f,name=table_name, no_header_row=no_header_row,
-                                         delimiter=delimiter)
+        #csv_table = table.Table.from_csv(f,name=table_name, no_header_row=no_header_row,
+        #                                 delimiter=delimiter)
+        
+        csv_table = agate.Table.from_csv(
+                f,
+                column_types=column_types,
+                delimiter=delimiter,
+                header=(not no_header_row)
+            )
     except UnicodeDecodeError as e:
         f.close()
         pass
@@ -88,8 +98,15 @@ def process_csv_file(instance, delimiter=",", no_header_row=False):
     if csv_table is None:
         f = open(csv_filename, 'rb')
         try:
-            csv_table = table.Table.from_csv(f,name=table_name, no_header_row=no_header_row,
-                                             delimiter=delimiter, encoding='LATIN1')
+            #csv_table = table.Table.from_csv(f,name=table_name, no_header_row=no_header_row,
+            #                                 delimiter=delimiter, encoding='LATIN1')
+
+            csv_table = agate.Table.from_csv(
+                    f,
+                    column_types=column_types,
+                    delimiter=delimiter,
+                    header=(not no_header_row)
+                )
         except UnicodeDecodeError:
             instance.delete()
             return None, "El conjunto de caracteres seleccionados es incorrecto, vuelva intentarlo"
@@ -110,9 +127,15 @@ def process_csv_file(instance, delimiter=",", no_header_row=False):
 
     # Create Database Table
     try:
-        sql_table = sql.make_table(csv_table,table_name)
-        create_table_sql = sql.make_create_table_statement(sql_table, dialect="postgresql")
-        instance.create_table_sql = create_table_sql
+        #sql_table = sql.make_table(csv_table,table_name)
+        #create_table_sql = sql.make_create_table_statement(sql_table, dialect="postgresql")
+        table.to_sql(
+            connection,
+            table_name
+            )
+        statement = table.to_sql_create_statement(table_name,dialect="postgresql")
+        #instance.create_table_sql = create_table_sql
+        instance.create_table_sql = statement
         instance.save()
     except:
         instance.delete()
@@ -147,7 +170,7 @@ def process_csv_file(instance, delimiter=",", no_header_row=False):
     # Copy Data to postgres
     connection_string = "postgresql://%s:%s@%s:%s/%s" % (db['USER'], db['PASSWORD'], db['HOST'], db['PORT'], db['NAME'])
     try:
-        engine, metadata = sql.get_connection(connection_string)
+        engine = create_engine(connection_string)
     except ImportError:
         return None, str(sys.exc_info()[0])
 
@@ -187,8 +210,15 @@ def process_custom_csv_file(instance, table_type, delimiter=",", no_header_row=F
         f = open(csv_filename, 'rb')
 
     try:
-        csv_table = table.Table.from_csv(f, name=table_name, no_header_row=no_header_row,
-                                         delimiter=delimiter)
+        #csv_table = table.Table.from_csv(f, name=table_name, no_header_row=no_header_row,
+        #                                 delimiter=delimiter)
+
+        csv_table = agate.Table.from_csv(
+                f,
+                column_types=column_types,
+                delimiter=delimiter,
+                header=(not no_header_row)
+            )
     except UnicodeDecodeError as e:
         f.close()
         pass
@@ -200,8 +230,16 @@ def process_custom_csv_file(instance, table_type, delimiter=",", no_header_row=F
     if csv_table is None:
         f = open(csv_filename, 'rb')
         try:
-            csv_table = table.Table.from_csv(f, name=table_name, no_header_row=no_header_row,
-                                             delimiter=delimiter, encoding='LATIN1')
+            #csv_table = table.Table.from_csv(f, name=table_name, no_header_row=no_header_row,
+            #                                 delimiter=delimiter, encoding='LATIN1')
+
+            csv_table = agate.Table.from_csv(
+                    f,
+                    column_types=column_types,
+                    delimiter=delimiter,
+                    encoding='LATIN1',
+                    header=(not no_header_row)
+                )
             encoding = 'LATIN1'
         except UnicodeDecodeError:
             instance.delete()
@@ -231,9 +269,14 @@ def process_custom_csv_file(instance, table_type, delimiter=",", no_header_row=F
 
     # Create Database Table
     try:
-        sql_table = sql.make_table(csv_table, table_name, db_schema='public')
-        create_table_sql = sql.make_create_table_statement(sql_table, dialect="postgresql")
-        instance.create_table_sql = create_table_sql
+        #sql_table = sql.make_table(csv_table,table_name)
+        #create_table_sql = sql.make_create_table_statement(sql_table, dialect="postgresql")
+        table.to_sql(
+            connection,
+            table_name
+            )
+        statement = table.to_sql_create_statement(table_name,dialect="postgresql")
+        #instance.create_table_sql = create_table_sql
         instance.charset = encoding
         instance.save()
     except:
@@ -269,7 +312,7 @@ def process_custom_csv_file(instance, table_type, delimiter=",", no_header_row=F
     # Copy Data to postgres
     connection_string = "postgresql://%s:%s@%s:%s/%s" % (db['USER'], db['PASSWORD'], 'localhost', 5432, db['NAME'])
     try:
-        engine, metadata = sql.get_connection(connection_string)
+        engine = create_engine(connection_string)
     except ImportError:
         return None, str(sys.exc_info()[0])
 
