@@ -2,7 +2,7 @@ from dal import autocomplete
 
 from django.forms import ModelForm
 from django import forms
-from geonode.mviewer.models import MViewer, Topic, LayerIds, LayeridMarker
+from geonode.mviewer.models import MViewer, Topic, LayerIds, LayeridMarker, MviewerHeader, TopicText, TopicTextItems
 
 
 class MViewerForm(ModelForm):
@@ -64,3 +64,19 @@ class MarkerIconForm(ModelForm):
     class Meta:
         model = LayeridMarker
         fields = ('icon',)
+
+class MviewerHeaderForm(ModelForm):
+    class Meta:
+        model = MviewerHeader
+        exclude = ['mviewer']
+
+
+class TopicTextForm(ModelForm):
+    class Meta:
+        model = TopicText
+        exclude = ['mviewer','stack_order']
+
+class TopicTextItemForm(ModelForm):
+    class Meta:
+        model = TopicTextItems
+        exclude = ['topic_text','stack_order'] 

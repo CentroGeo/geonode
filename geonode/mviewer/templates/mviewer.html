@@ -8,244 +8,382 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{{mviewer.name}}</title>
 
-    <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,700,300|Shadows+Into+Light+Two" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700,300|Shadows+Into+Light+Two" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.4/dist/leaflet.css"
-    integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA=="
-    crossorigin=""/>
-    <link href="{{ STATIC_URL}}idegeo/mviewer/css/mviewer_base.css" rel="stylesheet" type="text/css">
-    <link href="{{ STATIC_URL}}idegeo/mviewer/css/mviewer.css" rel="stylesheet" type="text/css">
-    <link rel="stylesheet" href="{{ STATIC_URL}}idegeo/layers/css/getfeature_popup.css" />
-    <link rel="stylesheet" href="{{ STATIC_URL}}idegeo/map_interface/css/d3.slider.css" />
+          crossorigin=""
+          integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA=="/>
+    <link href="//unpkg.com/leaflet-gesture-handling/dist/leaflet-gesture-handling.min.css" rel="stylesheet" type="text/css">
+    <link href="https://rawgit.com/MarcChasse/leaflet.ScaleFactor/master/leaflet.scalefactor.min.css" rel="stylesheet" type="text/css">
+    <link href="{{ STATIC_URL }}idegeo/coordinates/L.Control.BetterScale.css" rel="stylesheet" type="text/css"/>
+    <link href="{{ STATIC_URL }}idegeo/mviewer/css/mviewer_base.css" rel="stylesheet" type="text/css">
+    <link href="{{ STATIC_URL }}idegeo/mviewer/css/mviewer.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="{{ STATIC_URL }}idegeo/layers/css/getfeature_popup.css" />
+    <link rel="stylesheet" href="{{ STATIC_URL }}idegeo/map_interface/css/d3.slider.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/1.0.2/leaflet.draw.css" />
-    <link rel="stylesheet" href="{{ STATIC_URL}}idegeo/coordinates/Leaflet.Coordinates-0.1.5.css">
-    <link rel="stylesheet" href="{{ STATIC_URL}}idegeo/zoombox/L.Control.ZoomBox.css" />
+    <link rel="stylesheet" href="{{ STATIC_URL }}idegeo/coordinates/Leaflet.Coordinates-0.1.5.css">
+    <link rel="stylesheet" href="{{ STATIC_URL }}idegeo/zoombox/L.Control.ZoomBox.css" />
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/spectrum/1.8.0/spectrum.min.css">
-    <link rel="stylesheet" href="{{ STATIC_URL}}idegeo/lib/leaflet/easyPrint.css"/>
+    <link rel="stylesheet" href="{{ STATIC_URL }}idegeo/lib/leaflet/easyPrint.css"/>
     <link rel="stylesheet" type="text/css" href="{{STATIC_URL}}idegeo//charts/charts.css" />
-    <link href="{{ STATIC_URL}}idegeo/font-awesome-4.6.3/css/font-awesome.min.css" rel="stylesheet"/>
+    <link href="{{ STATIC_URL }}idegeo/font-awesome-4.6.3/css/font-awesome.min.css" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300&display=swap" rel="stylesheet">
     <!--<link href="https://cdn.jsdelivr.net/npm/leaflet.beautifymarker@1.1.1/leaflet-beautify-marker-icon.css" rel="stylesheet"/>-->
     <link href="{{STATIC_URL}}idegeo/mviewer/css/leaflet-beautify-marker-icon.css" rel="stylesheet"/>
     <!--en caso de que se active el panel podemos cargar el css para el panel vertical-->
     {% if mviewer.is_vertical != False %}
-        <link href="{{STATIC_URL}}idegeo/mviewer/css/panel.css" rel="stylesheet"/>
-        <link href="{{STATIC_URL}}idegeo/mviewer/css/accordion-menu.css" rel="stylesheet"/>
+    <link href="{{STATIC_URL}}idegeo/mviewer/css/panel.css" rel="stylesheet"/>
+    <link href="{{STATIC_URL}}idegeo/mviewer/css/accordion-menu.css" rel="stylesheet"/>
+    {% endif %}
+    {% if mviewer_header %}
+    <link href="{{ STATIC_URL }}idegeo/mviewer/css/customeHeader.css" rel="stylesheet" type="text/css" />
     {% endif %}
 
     <script src="https://unpkg.com/leaflet@1.3.4/dist/leaflet-src.js"
-    integrity="sha512-+ZaXMZ7sjFMiCigvm8WjllFy6g3aou3+GZngAtugLzrmPFKFK7yjSri0XnElvCTu/PrifAYQuxZTybAEkA8VOA=="
-    crossorigin=""></script>
+            crossorigin=""
+            integrity="sha512-+ZaXMZ7sjFMiCigvm8WjllFy6g3aou3+GZngAtugLzrmPFKFK7yjSri0XnElvCTu/PrifAYQuxZTybAEkA8VOA=="></script>
+    <script src="//unpkg.com/leaflet-gesture-handling"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/esri-leaflet/2.0.7/esri-leaflet.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/1.0.2/leaflet.draw.js"></script>
-    <script type="text/javascript" src="{{ STATIC_URL}}idegeo/coordinates/Leaflet.Coordinates-0.1.5.min.js"></script>
-    <script src="{{ STATIC_URL}}idegeo/zoombox/L.Control.ZoomBox.min.js"></script>
-    <script type="text/javascript" src="{{ STATIC_URL}}idegeo/colorbrewer/js/colorbrewer_schemes.js"></script>
-    <script src="{{ STATIC_URL}}idegeo/lib/leaflet/leaflet.easyPrint.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}idegeo/coordinates/Leaflet.Coordinates-0.1.5.min.js"></script>
+    <script src="{{ STATIC_URL }}idegeo/zoombox/L.Control.ZoomBox.min.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}idegeo/colorbrewer/js/colorbrewer_schemes.js"></script>
+    <script src="{{ STATIC_URL }}idegeo/lib/leaflet/leaflet.easyPrint.js"></script>
     <script src='//api.tiles.mapbox.com/mapbox.js/plugins/leaflet-omnivore/v0.3.1/leaflet-omnivore.min.js'></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB6ZJwb2cqgW1YXsmXGT1I-0ujia5UREAg&libraries=places" async defer></script>
     <script src='https://unpkg.com/leaflet.gridlayer.googlemutant@latest/Leaflet.GoogleMutant.js'></script>
-    <script type="text/javascript" src="{{ STATIC_URL}}idegeo/charts/areaChart.json"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}idegeo/charts/areaChart.json"></script>
     <script src='https://npmcdn.com/@turf/turf/turf.min.js'></script>
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <!--<script src="https://cdn.jsdelivr.net/npm/leaflet.beautifymarker@1.1.1/leaflet-beautify-marker-icon.js"></script>-->
     <script src="{{STATIC_URL}}idegeo/mviewer/js/leaflet-beautify-marker-icon.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/leaflet.beautifymarker@1.1.1/leaflet-beautify-marker.js"></script>
+    <script src="{{ STATIC_URL }}idegeo/coordinates/L.Control.BetterScale.js"></script>
 </head>
-
+<style>
+	:root {
+        {% if mviewer_header.title_font %}
+        --mainFont: '{{ mviewer_header.title_font }}', sans-serif;
+        {% else %}
+        --mainFont: 'Merriweather Sans', sans-serif;
+        {% endif %}
+  }
+</style>
 <body>
-  <header id="header" class="layout-header">
+{% if mviewer_header %}
+<header id="header">
+    <div class="header-wrapper">
+        <div class="header-row row-top-custome" style="background-color:{{mviewer_header.header_color}};">
+            <div class="custome-container">
+                {% if mviewer_header.logo_1 %}
+                <a href="{{mviewer_header.link_1}}" style="height: 40px;">
+                    <img class="d-inline-block align-top logo-custome" height="40" src="{{MEDIA_URL}}{{mviewer_header.logo_1}}" title="{{mviewer_header.alt_1}}">
+                </a>
+                {% endif %}
+                {% if mviewer_header.logo_2 %}
+                <a href="{{mviewer_header.link_2}}" style="height: 40px;">
+                    <img class="d-inline-block align-top logo-custome" height="40" src="{{MEDIA_URL}}{{mviewer_header.logo_2}}" title="{{mviewer_header.alt_2}}">
+                </a>
+                {% endif %}
+                {% if mviewer_header.logo_3 %}
+                <a href="{{mviewer_header.link_3}}" style="height: 40px;">
+                    <img class="d-inline-block align-top logo-custome" height="40" src="{{MEDIA_URL}}{{mviewer_header.logo_3}}" title="{{mviewer_header.alt_3}}">
+                </a>
+                {% endif %}
+                {% if mviewer_header.logo_4 %}
+                <a href="{{mviewer_header.link_4}}" style="height: 40px;">
+                    <img class="d-inline-block align-top logo-custome" height="40" src="{{MEDIA_URL}}{{mviewer_header.logo_4}}" title="{{mviewer_header.alt_4}}">
+                </a>
+                {% endif %}
+                {% if mviewer_header.logo_5 %}
+                <a href="{{mviewer_header.link_5}}" style="height: 40px;">
+                    <img class="d-inline-block align-top logo-custome" height="40" src="{{MEDIA_URL}}{{mviewer_header.logo_5}}" title="{{mviewer_header.alt_5}}">
+                </a>
+                {% endif %}
+            </div>
+            <div class="header-sitename-custome">
+                <h1 class="sitename" style="margin: 18px 0px; color:{{mviewer_header.title_color}}; font-size:{{mviewer_header.title_sieze}}px; font-family:var(--mainFont);width: max-content;">
+                    <span class="xtc-nowrap">{{mviewer_header.title}}</span>
+                </h1>
+            </div>
+            <li class="fa fa-low-vision headerMask" style="display:none;"> Máscara</li>
+        </div>
+    </div>
+</header>
+{% if mviewer.is_vertical == False %}
+{% if mviewer.no_topics == False %}
+<div class="layout-header-bottom" style="top: 60px;">
+    <nav class="layers-menu" id="layers-menu"><div class="noselect">
+        <ul class="categories-list">
+            {% for top in topics %}
+            {% if forloop.counter < 8 %}
+            <li class="forest-change" id="t{{forloop.counter}}">
+                <span class="category-name">{{top.name}} <i class="category-num" id="forest_clearing-category-num">2</i></span>
+                <div class="layers-nav">
+                    <div class="layers-nav-header" id="nav-head{{top.id}}">
+                        <div class="category-icon"></div>
+                        <span class="category-name">{{top.name}}</span>
+                    </div>
+                    <ul class="layers-list scroll-thin-dark">
+                        <div class="layer-group" id="umd-group">
+                            <span class="group-name" data-color="#f69">Capas</span>
+                            {% for lay in top.layerids_set.all|dictsort:"stack_order" %}
+                            {% for l in lays %}
+                            {% if l.id == lay.layer_id %}
+                            <li class="layer selected" data-layer="loss">
+                                  <span class="onoffswitch" id="st{{top.id}}l{{l.id}}r{{lay.stack_order}}" data-typename="{{l.typename}}" data-href="{{l.ows_url}}"
+                                        data-title="{{l.title}}" data-info="{{l.abstract}}" data-date="{{l.date}}" data-topid="{{top.id}}" data-layid="{{l.id}}"
+                                        data-style="{{lay.style}}" data-defstyle="{{lay.default_style}}" data-regid="{{lay.id}}" data-x0="{{l.bbox_x0}}" data-y0="{{l.bbox_y0}}"
+                                        data-x1="{{l.bbox_x1}}" data-y1="{{l.bbox_y1}}"><span></span>
+                                  </span>
+                                <span class="layer-title">{% if lay.style != lay.default_style %}{{lay.style}}{% else %}{{lay.title}}{% endif %}
+                                      <a href="#" class="inf-icon" title="Info"><i class="fa fa-info-circle" data-id="st{{top.id}}l{{l.id}}r{{lay.stack_order}}"></i></a>
+                                  </span>
+                                <span class="layer-info">{{l.abstract|truncatechars:60}}</span>
+                            </li>
+                            {% endif %}
+                            {% endfor %}
+                            {% endfor %}
+                        </div>
+                    </ul>
+                </div>
+            </li>
+            {% endif %}
+            {% endfor %}
+            {% if mviewer.sentinel %}
+            <li class="sentinel" id="tsent">
+                <span class="category-name">Sentinel <i class="category-num" id="">2</i></span>
+                <div class="layers-nav">
+                    <div class="layers-nav-header" id="nav-head1">
+                        <div class="category-icon"></div>
+                        <span class="category-name">Sentinel</span>
+                    </div>
+                    <ul class="layers-list scroll-thin-dark">
+                        <div class="layer-group" id="sent-layers">
+                            <span class="group-name" data-color="#f69">Capas</span>
+                            {% for k, v in sentinel.items %}
+                            <li class="layer" data-layer="loss">
+                                  <span class="onoffSentinel" id="sent{{forloop.counter}}" data-typename="{{k}}" data-href="https://services.sentinel-hub.com/ogc/wms/bcf0243c-2d9f-4a9a-9035-7812aa9d8d0c" data-title="{{v.nombre}}">
+                                      <img class="icon" crossorigin="Anonymous" src="/static/mviewer/img/{{k}}.jpeg">
+                                  </span>
+                                <span class="layer-title">{{v.nombre}}
+                                    <!--                                      <a href="#" class="inf-icon" title="Info"><i class="fa fa-info-circle" data-id=""></i></a>-->
+                                  </span>
+                                <span class="layer-info">{{v.descr}}</span>
+                            </li>
+                            {% endfor %}
+                        </div>
+                    </ul>
+                </div>
+            </li>
+            {% endif %}
+        </ul>
+    </div>
+    </nav>
+</div>
+{% endif %}
+{% endif %}
+{% else %}
+<header class="layout-header" id="header">
     <div class="header-title">
         <div class="header-sitename">{{mviewer.name}}</div>
         <div class="header-tools"><li class="fa fa-low-vision" style="display:none"> Máscara</li></div>
     </div>
     <div class="layout-header-bottom">
         <!--<div class="inner">-->
-            <!--<div class="header-logo-left-mviwer">-->
-             <!--<a href="http://www.centrogeo.org.mx/">-->
-             <!--<img src="{{STATIC_URL}}idegeo/mviewer/img/logo_geo_black.jpeg" width="190px;" title="CentroGeo" alt="logo centroGeo"></a>-->
+        <!--<div class="header-logo-left-mviwer">-->
+        <!--<a href="http://www.centrogeo.org.mx/">-->
+        <!--<img src="{{STATIC_URL}}idegeo/mviewer/img/logo_geo_black.jpeg" width="190px;" title="CentroGeo" alt="logo centroGeo"></a>-->
         <!--</div>-->
         {% if mviewer.is_vertical == False %}
-          <nav id="layers-menu" class="layers-menu"><div class="noselect">
-              <ul class="categories-list">
+        <nav class="layers-menu" id="layers-menu"><div class="noselect">
+            <ul class="categories-list">
                 {% for top in topics %}
-                  {% if forloop.counter < 8 %}
-                    <li class="forest-change" id="t{{forloop.counter}}">
-                      <span class="category-name">{{top.name}} <i id="forest_clearing-category-num" class="category-num">2</i></span>
-                      <div class="layers-nav">
+                {% if forloop.counter < 8 %}
+                <li class="forest-change" id="t{{forloop.counter}}">
+                    <span class="category-name">{{top.name}} <i class="category-num" id="forest_clearing-category-num">2</i></span>
+                    <div class="layers-nav">
                         <div class="layers-nav-header" id="nav-head{{top.id}}">
-                          <div class="category-icon"></div>
-                          <span class="category-name">{{top.name}}</span>
+                            <div class="category-icon"></div>
+                            <span class="category-name">{{top.name}}</span>
                         </div>
                         <ul class="layers-list scroll-thin-dark">
-                          <div id="umd-group" class="layer-group">
-                            <span class="group-name" data-color="#f69">Capas</span>
-                            {% for lay in top.layerids_set.all|dictsort:"stack_order" %}
-                            {% for l in lays %}
-                              {% if l.id == lay.layer_id %}
+                            <div class="layer-group" id="umd-group">
+                                <span class="group-name" data-color="#f69">Capas</span>
+                                {% for lay in top.layerids_set.all|dictsort:"stack_order" %}
+                                {% for l in lays %}
+                                {% if l.id == lay.layer_id %}
                                 <li class="layer selected" data-layer="loss">
                                   <span class="onoffswitch" id="st{{top.id}}l{{l.id}}r{{lay.stack_order}}" data-typename="{{l.typename}}" data-href="{{l.ows_url}}"
                                         data-title="{{l.title}}" data-info="{{l.abstract}}" data-date="{{l.date}}" data-topid="{{top.id}}" data-layid="{{l.id}}"
                                         data-style="{{lay.style}}" data-defstyle="{{lay.default_style}}" data-regid="{{lay.id}}" data-x0="{{l.bbox_x0}}" data-y0="{{l.bbox_y0}}"
                                         data-x1="{{l.bbox_x1}}" data-y1="{{l.bbox_y1}}"><span></span>
                                   </span>
-                                  <span class="layer-title">{% if lay.style != lay.default_style %}{{lay.style}}{% else %}{{lay.title}}{% endif %}
+                                    <span class="layer-title">{% if lay.style != lay.default_style %}{{lay.style}}{% else %}{{lay.title}}{% endif %}
                                       <a href="#" class="inf-icon" title="Info"><i class="fa fa-info-circle" data-id="st{{top.id}}l{{l.id}}r{{lay.stack_order}}"></i></a>
                                   </span>
-                                  <span class="layer-info">{{l.abstract|truncatechars:60}}</span>
+                                    <span class="layer-info">{{l.abstract|truncatechars:60}}</span>
                                 </li>
-                              {% endif %}
-                            {% endfor %}
-                            {% endfor %}
-                          </div>
+                                {% endif %}
+                                {% endfor %}
+                                {% endfor %}
+                            </div>
                         </ul>
-                      </div>
-                    </li>
-                  {% endif %}
+                    </div>
+                </li>
+                {% endif %}
                 {% endfor %}
                 {% if mviewer.sentinel %}
-                    <li class="sentinel" id="tsent">
-                      <span class="category-name">Sentinel <i id="" class="category-num">2</i></span>
-                      <div class="layers-nav">
+                <li class="sentinel" id="tsent">
+                    <span class="category-name">Sentinel <i class="category-num" id="">2</i></span>
+                    <div class="layers-nav">
                         <div class="layers-nav-header" id="nav-head1">
-                          <div class="category-icon"></div>
-                          <span class="category-name">Sentinel</span>
+                            <div class="category-icon"></div>
+                            <span class="category-name">Sentinel</span>
                         </div>
                         <ul class="layers-list scroll-thin-dark">
-                          <div id="sent-layers" class="layer-group">
-                            <span class="group-name" data-color="#f69">Capas</span>
-                            {% for k, v in sentinel.items %}
+                            <div class="layer-group" id="sent-layers">
+                                <span class="group-name" data-color="#f69">Capas</span>
+                                {% for k, v in sentinel.items %}
                                 <li class="layer" data-layer="loss">
-                                  <span class="onoffSentinel" id="sent{{forloop.counter}}" data-typename="{{k}}" data-href="https://services.sentinel-hub.com/ogc/wms/3263b609-c862-4d92-a166-babfde1ee375" data-title="{{v.nombre}}">
+                                  <span class="onoffSentinel" id="sent{{forloop.counter}}" data-typename="{{k}}" data-href="https://services.sentinel-hub.com/ogc/wms/bcf0243c-2d9f-4a9a-9035-7812aa9d8d0c" data-title="{{v.nombre}}">
                                       <img class="icon" crossorigin="Anonymous" src="/static/mviewer/img/{{k}}.jpeg">
                                   </span>
-                                  <span class="layer-title">{{v.nombre}}
-<!--                                      <a href="#" class="inf-icon" title="Info"><i class="fa fa-info-circle" data-id=""></i></a>-->
+                                    <span class="layer-title">{{v.nombre}}
+                                        <!--                                      <a href="#" class="inf-icon" title="Info"><i class="fa fa-info-circle" data-id=""></i></a>-->
                                   </span>
-                                  <span class="layer-info">{{v.descr}}</span>
+                                    <span class="layer-info">{{v.descr}}</span>
                                 </li>
-                            {% endfor %}
-                          </div>
+                                {% endfor %}
+                            </div>
                         </ul>
-                      </div>
-                    </li>
+                    </div>
+                </li>
                 {% endif %}
-              </ul>
-            </div>
-          </nav>
-        {% endif %}
+            </ul>
         </div>
-
+        </nav>
+        {% endif %}
     </div>
-  </header>
+    </div>
+</header>
+{% endif %}
 
-
-  <div id="wrapper">
+<div id="wrapper">
+    {% if mviewer_header %}
+    <div id="map" style="top:60px !important"></div>
+    {% else %}
     <div id="map"></div>
-<!--si el panel esta activo entonces esta funcionalidad en donde se diseña el panel se activa-->
-{% if mviewer.is_vertical != False %}
- <!--Panel izquierdo-->
+    {% endif %}
+
+    <!--si el panel esta activo entonces esta funcionalidad en donde se diseña el panel se activa-->
+    {% if mviewer.is_vertical != False %}
+    <!--Panel izquierdo-->
     <div class="layerMenu translateLayerListRight animationTransition" id="panel_mviever">
         <div id="accordion" class="scrollbar-panel">
-                    <ul class="force-panel">
+            <ul class="force-panel">
+                <li>
+                    <div>Categorías</div>
+                    <ul>
+                        {% for top in topics %}
+                        {% if forloop.counter < 19 %}
                         <li>
-                            <div>Categorías</div>
+                            <div class="category-sub top-{{forloop.counter}}">{{top.name}}</div>
                             <ul>
-                                {% for top in topics %}
-                                  {% if forloop.counter < 19 %}
-                                <li>
-                                    <div class="category-sub top-{{forloop.counter}}">{{top.name}}</div>
-                                    <ul>
-                                        {% for lay in top.layerids_set.all|dictsort:"stack_order" %}
-                                            {% for l in lays %}
-                                              {% if l.id == lay.layer_id %}
-                                                    <li class="layer selected" data-layer="loss">
-                                                      <span class="onoffswitch" id="st{{top.id}}l{{l.id}}r{{lay.stack_order}}" data-typename="{{l.typename}}" data-href="{{l.ows_url}}"
-                                                            data-title="{{l.title}}" data-info="{{l.abstract}}" data-date="{{l.date}}" data-topid="{{top.id}}" data-layid="{{l.id}}"
-                                                            data-style="{{lay.style}}" data-defstyle="{{lay.default_style}}" data-regid="{{lay.id}}" data-x0="{{l.bbox_x0}}" data-y0="{{l.bbox_y0}}"
-                                                            data-x1="{{l.bbox_x1}}" data-y1="{{l.bbox_y1}}"><span></span>
-                                                      </span>
-                                                      <span class="layer-title">{% if lay.style != lay.default_style %}{{lay.style}}{% else %}{{lay.abstract|truncatechars:60}}{% endif %}<!--title-->
-                                                          <a href="#" class="inf-icon" title="Info"><i class="fa fa-info-circle" data-id="st{{top.id}}l{{l.id}}r{{lay.stack_order}}"></i></a>
-                                                      </span>
-                                                      <span class="layer-info" title="{{l.title}}">{{l.title|truncatechars:45}}</span><!--abstract-->
-                                                    </li>
-                                              {% endif %}
-                                            {% endfor %}
-                                        {% endfor %}
-                                    </ul>
-                                 </li>
-                                  {% endif %}
+                                {% for lay in top.layerids_set.all|dictsort:"stack_order" %}
+                                {% for l in lays %}
+                                {% if l.id == lay.layer_id %}
+                                <li class="layer selected" data-layer="loss">
+                                          <span class="onoffswitch" data-date="{{l.date}}" data-defstyle="{{lay.default_style}}" data-href="{{l.ows_url}}"
+                                                data-info="{{l.abstract}}" data-layid="{{l.id}}" data-regid="{{lay.id}}" data-style="{{lay.style}}" data-title="{{l.title}}"
+                                                data-topid="{{top.id}}" data-typename="{{l.typename}}" data-x0="{{l.bbox_x0}}" data-x1="{{l.bbox_x1}}" data-y0="{{l.bbox_y0}}"
+                                                data-y1="{{l.bbox_y1}}" id="st{{top.id}}l{{l.id}}r{{lay.stack_order}}"><span></span>
+                                          </span>
+                                    <span class="layer-title">{% if lay.style != lay.default_style %}{{lay.style}}{% else %}{{lay.abstract|truncatechars:60}}{% endif %}<!--title-->
+                                              <a class="inf-icon" href="#" title="Info"><i class="fa fa-info-circle" data-id="st{{top.id}}l{{l.id}}r{{lay.stack_order}}"></i></a>
+                                          </span>
+                                    <span class="layer-info" title="{{l.title}}">{{l.title|truncatechars:45}}</span><!--abstract-->
+                                </li>
+                                {% endif %}
+                                {% endfor %}
                                 {% endfor %}
                             </ul>
                         </li>
-                         <li>
-                            <div>Simbología</div>
-                            <ul>
-                                <li>
-                                    <ul class="scrollbar-inner" id="style-1">
-                                        <li class="force-overflow-pan">
-                                          <ul class="layers"></ul>
-                                        </li>
-                                    </ul>
-                                 </li>
+                        {% endif %}
+                        {% endfor %}
+                    </ul>
+                </li>
+                <li>
+                    <div>Simbología</div>
+                    <ul>
+                        <li>
+                            <ul class="scrollbar-inner" id="style-1">
+                                <li class="force-overflow-pan">
+                                    <ul class="layers"></ul>
+                                </li>
                             </ul>
                         </li>
                     </ul>
+                </li>
+            </ul>
         </div>
     </div>
-       <!--Panel izquierdo end-->
-{% endif %}
+    {% endif %}
+    <!--Panel izquierdo end-->
     <div id="module-legend" class="module scroll-thin-dark module-legend module-toggle">
         <ul class="categories">
             <li class="category closed">
-                  <span data-category_slug="forest_clearing-global" class="category-name js-toggle-category" style="color: #707d92; border-color: #707d92;">
-                    <div class="container-title">MIS CAPAS</div>
-                  </span>
-              <ul class="layers"></ul>
+              <span class="category-name js-toggle-category" data-category_slug="forest_clearing-global" style="color: #707d92; border-color: #707d92;">
+                <div class="container-title">MIS CAPAS</div>
+              </span>
+                <ul class="layers"></ul>
             </li>
         </ul>
 
         <div id="button-box-embed-legend" class="button-box-embed-legend">
-          <a id="link-embed-legend" target="_blank" href="#" class="btn green uppercase full-width">View on GFW</a>
+            <a class="btn green uppercase full-width" href="#" id="link-embed-legend" target="_blank">View on GFW</a>
         </div>
     </div>
 
     <div id="logo_nav" class="logo_nav">
-        <img src="{{STATIC_URL}}idegeo/mviewer/img/CentroGeo-CMX_Logo-H1.png" width="190px;" title="CentroGeo">
+        <img src="{{STATIC_URL}}idegeo/mviewer/img/CentroGeo-CMX_Logo-H1.png" title="CentroGeo" width="140px;">
+        <img src="{{STATIC_URL}}idegeo/mviewer/img/geoint_logo.png" title="GeoInt" width="50px;">
+        <img src="{{STATIC_URL}}idegeo/mviewer/img/logo_idegeo.png" title="IDEGEO" width="90px;">
     </div>
 
     <div id="module-tabs" class="module module-tabs module-toggle" style="display:block">
-         <header>
-             <nav class="noselect">
-                 <ul class="tab-list">
-                     <li id="basemaps-tab-button" class="tab inactive" data-tab="basemaps-tab" style="text-align: center;">
-                         <span class="tooltipmap">Mapa Base</span><i class="fa fa-globe" aria-hidden="true"></i>
-                     </li>
-                     <li id="analysis-tab-button" class="tab inactive" data-tab="analysis-tab" style="text-align: center; display:none;">
-                         <span class="tooltipmap">Herramientas</span><i class="fa fa-wrench" aria-hidden="true"></i>
-                     </li>
-                     <li id="info-tab-button" class="tab inactive" data-tab="info-tab" style="text-align: center; display:none;">
-                         <span class="tooltipmap">Descripción</span><i class="fa fa-file-text" aria-hidden="true"></i>
-                     </li>
-                     <li id="markers-tab-button" class="tab inactive" data-tab="markers-tab" style="text-align: center; display:none;">
-                         <span class="tooltipmap">+ Info</span><i class="fa fa-info-circle" aria-hidden="true"></i>
-                     </li>
-                 </ul>
-             </nav>
-         </header>
-         <div class="content active">
-             <ul>
-                 <li id="basemaps-tab" class="tab-content">
-                 <div class="tab-basemaps">
-                     <ul class="maptype-list scroll-thin-dark"></ul>
-                 </div>
-                 </li>
-                 <li id="analysis-tab" class="tab-content">
-                     {% include "main_tool_menu.html" %}
-                 </li>
-                 <li id="desc-tab" class="tab-content"></li>
-             </ul>
-         </div>
+        <header>
+            <nav class="noselect">
+                <ul class="tab-list">
+                    <li class="tab inactive" data-tab="basemaps-tab" id="basemaps-tab-button" style="text-align: center;">
+                        <span class="tooltipmap">Mapa Base</span><i aria-hidden="true" class="fa fa-globe"></i>
+                    </li>
+                    <li class="tab inactive" data-tab="analysis-tab" id="analysis-tab-button" style="text-align: center; display:none;">
+                        <span class="tooltipmap">Herramientas</span><i aria-hidden="true" class="fa fa-wrench"></i>
+                    </li>
+                    <li class="tab inactive" data-tab="info-tab" id="info-tab-button" style="text-align: center; display:none;">
+                        <span class="tooltipmap">Descripción</span><i aria-hidden="true" class="fa fa-file-text"></i>
+                    </li>
+                    <li class="tab inactive" data-tab="markers-tab" id="markers-tab-button" style="text-align: center; display:none;">
+                        <span class="tooltipmap">+ Info</span><i aria-hidden="true" class="fa fa-info-circle"></i>
+                    </li>
+                </ul>
+            </nav>
+        </header>
+        <div class="content active">
+            <ul>
+                <li class="tab-content" id="basemaps-tab">
+                    <div class="tab-basemaps">
+                        <ul class="maptype-list scroll-thin-dark"></ul>
+                    </div>
+                </li>
+                <li class="tab-content" id="analysis-tab">
+                    {% include "main_tool_menu.html" %}
+                </li>
+                <li class="tab-content" id="desc-tab"></li>
+            </ul>
+        </div>
     </div>
     <div class="arrow-left" title="Mostrar Analisis"><i class="fa fa-chevron-left fa-1x" aria-hidden="true"></i></div>
     <!-- Modal para info -->
@@ -253,48 +391,49 @@
         <div class="modal-backdrop"></div>
 
         <div class="modal-window">
-          <a href="#" class="modal-close"><i class="fa fa-times fa-lg"></i></a>
-          <div class="modal-wrapper scroll-dark has-footer">
-            <div class="modal-content">
-              <div class="modal-source">
-                <h2 id="lay-tit" class="modal-title"></h2>
-                <h3 id="lay-date" class="modal-subtitle"></h3>
-                <div class="modal-overview">
-                  <h3>Resumen</h3>
-                  <p id="lay-abst"></p>
+            <a class="modal-close" href="#"><i class="fa fa-times fa-lg"></i></a>
+            <div class="modal-wrapper scroll-dark has-footer">
+                <div class="modal-content">
+                    <div class="modal-source">
+                        <h2 class="modal-title" id="lay-tit"></h2>
+                        <h3 class="modal-subtitle" id="lay-date"></h3>
+                        <div class="modal-overview">
+                            <h3>Resumen</h3>
+                            <p id="lay-abst"></p>
+                        </div>
+                    </div>
                 </div>
-              </div>
+                <div class="modal-footer">
+                    <div class="m-btncontainer is-center">
+                        <a class="btn little green uppercase" href="#" id="down-meta" target="_blank">Descargar metadato</a>
+                        <a class="btn little green uppercase" href="#" id="down-shp" style="display:none" target="_blank">Descargar capa</a>
+                    </div>
+                </div>
             </div>
-            <div class="modal-footer">
-              <div class="m-btncontainer is-center">
-                  <a href="#" id="down-meta" class="btn little green uppercase" target="_blank">Descargar metadato</a>
-                  <a href="#" id="down-shp" target="_blank" class="btn little green uppercase" style="display:none">Descargar capa</a>
-              </div>
-            </div>
-          </div>
         </div>
     </div>
     <div class="background-reading">
-       <div id="wait" style="position:absolute;top:48%;left:48%;">
-          <img src='{{STATIC_URL}}idegeo/geonode/img/loading.gif' title="Loading.."/>
-      </div>
+        <div id="wait" style="position:absolute;top:48%;left:48%;">
+            <img src='{{STATIC_URL}}idegeo/geonode/img/loading.gif' title="Loading.."/>
+        </div>
     </div>
     <div class="background-reading-sub-ajax">
-       <div id="waiting" style="display:none;position:absolute;top:48%;left:48%;">
-          <img src='{{STATIC_URL}}idegeo/geonode/img/loading.gif' title="Loading.."/>
-      </div>
+        <div id="waiting" style="display:none;position:absolute;top:48%;left:48%;">
+            <img src='{{STATIC_URL}}idegeo/geonode/img/loading.gif' title="Loading.."/>
+        </div>
     </div>
-    {% include "FullBlackModal.html" %}
-    {% include "mviewer_description_modal.html" %}
-    {% include "HalfwayModal.html" %}
-    {% include "census_modal.html" %}
-    {% include "dowload_modal_layer.html" %}
-   <!--en caso de que se active el panel podemos cargar el js para el panel vertical-->
-{% if mviewer.is_vertical != False %}
-    {% include "panel.js" %}
-    <script src="{{ STATIC_URL}}idegeo/mviewer/js/acordion.js"></script>
-{% endif %}
-  </div>
+        {% include "FullBlackModal.html" %}
+        {% include "mviewer_description_modal.html" %}
+        {% include "HalfwayModal.html" %}
+        {% include "census_modal.html" %}
+        {% include "dowload_modal_layer.html" %}
+        <!--en caso de que se active el panel podemos cargar el js para el panel vertical-->
+        {% if mviewer.is_vertical != False %}
+        {% include "panel.js" %}
+        <script src="{{ STATIC_URL }}idegeo/mviewer/js/acordion.js"></script>
+        {% endif %}
+</div>
+<script src="https://rawgit.com/MarcChasse/leaflet.ScaleFactor/master/leaflet.scalefactor.min.js"></script>
 {% include "L.TileLayer.BetterWMS.js" %}
 <script>{% include "basemap.js" %}</script>
 {% include "variables_toolsoa.js" %}

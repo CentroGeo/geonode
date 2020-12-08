@@ -1,0 +1,30 @@
+{% extends "mviewer_base.html" %}
+{% load i18n %}
+{% load bootstrap_tags %}
+
+{% block title %} Temática de texto {% endblock %}
+
+{% block body_outer %}
+<div id="page-header" class="content">
+  <div class="container">
+    <div class="titulo-blk-row">
+      <div class="titulo-img blk-cell"><img src="{{STATIC_URL}}carousel/images/ico11_capas.png" alt=""></div>
+        <div class="titulo-txt blk-cell">
+          <h2>Elemento de temática</h2>
+        </div>
+    </div>
+  </div>
+</div>
+<div class="container">
+	<div class="cont_meta">
+		<a href="{% url 'mviewer_detail' mvid %}" class="btn btn-primary pull-right">Regresar</a>
+		<div class="col-md-6" id="general">
+			<form id="formulario" method="post" enctype="multipart/form-data" action="">{% csrf_token %}
+				{{ form.media }}
+				{{form|as_bootstrap}}
+				<p><input type="submit" class="btn btn-primary" value="Confirmar"></p>
+			</form>
+		</div>
+	</div>
+</div>
+{% endblock %}

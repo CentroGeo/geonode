@@ -8,22 +8,42 @@
     <title>{{mviewer.name}}</title>
     <!--BASE CSS-->
     {% if mviewer.icon_title %}
-      <link rel="stylesheet" type="text/css" href="{{ STATIC_URL}}idegeo/mviewer/css/commonAlt.css" />
+      {% if mviewer.template_style == 'Alternativo_1' %}
+        <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}idegeo/mviewer/css/commonAlt.css" />
+      {% elif mviewer.template_style == 'Alternativo_3' %}
+        <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}idegeo/mviewer/css/clearCommonAltitle.css" />
+      {% endif %}
     {% else %}
-      <link rel="stylesheet" type="text/css" href="{{ STATIC_URL}}idegeo/mviewer/css/commonAltitle.css" />
+      {% if mviewer.template_style == 'Alternativo_2' %}
+      <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}idegeo/mviewer/css/commonAltitle.css" />
+      {% elif mviewer.template_style == 'Alternativo_4' %}
+      <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}idegeo/mviewer/css/clearCommonAlt.css" />
+      {% endif %}
+    {% endif %}
+    {% if mviewer_header %}
+      {% if mviewer.template_style == 'Alternativo_3' or mviewer.template_style == 'Alternativo_4' %}
+        <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}idegeo/mviewer/css/customeHeaderWhite.css" />
+      {% else %}
+        <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}idegeo/mviewer/css/customeHeader.css" />
+      {% endif %}
     {% endif %}
     <link rel="stylesheet" href="{{ STATIC_URL}}idegeo/lib/leaflet/easyPrint.css"/>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.4/dist/leaflet.css"
       integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA=="
       crossorigin=""/>
+    <link href="//unpkg.com/leaflet-gesture-handling/dist/leaflet-gesture-handling.min.css" rel="stylesheet" type="text/css">
+    <link href="https://rawgit.com/MarcChasse/leaflet.ScaleFactor/master/leaflet.scalefactor.min.css" rel="stylesheet" type="text/css">
+    <link href="{{ STATIC_URL }}coordinates/L.Control.BetterScale.css" rel="stylesheet" type="text/css"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/1.0.2/leaflet.draw.css" />
     <link rel="stylesheet" href="{{ STATIC_URL}}idegeo/coordinates/Leaflet.Coordinates-0.1.5.css">
     <link href="{{STATIC_URL}}idegeo/mviewer/css/leaflet-beautify-marker-icon.css" rel="stylesheet"/>
     <link rel="stylesheet" href="/static/idegeo/zoombox/L.Control.ZoomBox.css" />
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 
     <script src="https://unpkg.com/leaflet@1.3.4/dist/leaflet-src.js"
       integrity="sha512-+ZaXMZ7sjFMiCigvm8WjllFy6g3aou3+GZngAtugLzrmPFKFK7yjSri0XnElvCTu/PrifAYQuxZTybAEkA8VOA=="
       crossorigin=""></script>
+    <script src="//unpkg.com/leaflet-gesture-handling"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/esri-leaflet/2.0.7/esri-leaflet.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/1.0.2/leaflet.draw.js"></script>
     <script type="text/javascript" src="{{ STATIC_URL}}idegeo/coordinates/Leaflet.Coordinates-0.1.5.min.js"></script>
@@ -36,20 +56,101 @@
     <script src="https://cdn.jsdelivr.net/npm/leaflet.beautifymarker@1.1.1/leaflet-beautify-marker.js"></script>
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300&display=swap" rel="stylesheet">
+    <script src="{{ STATIC_URL }}idegeo/coordinates/L.Control.BetterScale.js"></script>
 
+    <style>
+      :root {
+            {% if mviewer_header.title_font %}
+            --mainFont: '{{ mviewer_header.title_font }}', sans-serif;
+            {% else %}
+            --mainFont: 'Merriweather Sans', sans-serif;
+            {% endif %}
+      }
+      .leaflet-control {
+        display:ne !important;
+      }
+      {% if mviewer.template_style == 'Alternativo_3' or mviewer.template_style == 'Alternativo_4'%}
+      .invertIcon {
+        filter: invert(1);
+      }
+      .invertIcon p {
+        filter: invert(1);
+      }
+      .leaflet-control-scalefactor {
+        color:#000;
+        background-color: #fff;
+      }
+      {% else %}
+      .leaflet-control-scalefactor {
+        color:#fff;
+        background-color: #000;
+      }
+      {% endif %}
+    </style>
 
 </head>
-
 <!-- HEADER -->
-<header id="header">
-	<div class="header-wrapper">
-		<div class="header-row row-top">
-			<div class="header-sitename">
-				<h1 class="sitename"><span class="xtc-nowrap">{{mviewer.name}}</span></h1>
-			</div>
-		</div>
-	</div>
-</header>       
+{% if mviewer_header %}
+  <header id="header">
+  	<div class="header-wrapper">
+  		<div class="header-row row-top-custome" style="background-color:{{mviewer_header.header_color}};">
+      <div class="custome-container">
+        {% if mviewer_header.logo_1 %}
+          <a href="{{mviewer_header.link_1}}" style="height: 40px;">
+            <img class="d-inline-block align-top logo-custome" src="{{MEDIA_URL}}{{mviewer_header.logo_1}}" height="40" title="{{mviewer_header.alt_1}}">
+          </a>
+        {% endif %}
+        {% if mviewer_header.logo_2 %}
+          <a href="{{mviewer_header.link_2}}" style="height: 40px;">
+            <img class="d-inline-block align-top logo-custome" src="{{MEDIA_URL}}{{mviewer_header.logo_2}}" height="40" title="{{mviewer_header.alt_2}}">
+          </a>
+        {% endif %}
+        {% if mviewer_header.logo_3 %}
+          <a href="{{mviewer_header.link_3}}" style="height: 40px;">
+            <img class="d-inline-block align-top logo-custome" src="{{MEDIA_URL}}{{mviewer_header.logo_3}}" height="40" title="{{mviewer_header.alt_3}}">
+          </a>
+        {% endif %}
+        {% if mviewer_header.logo_4 %}
+          <a href="{{mviewer_header.link_4}}" style="height: 40px;">
+            <img class="d-inline-block align-top logo-custome" src="{{MEDIA_URL}}{{mviewer_header.logo_4}}" height="40" title="{{mviewer_header.alt_4}}">
+          </a>
+        {% endif %}
+        {% if mviewer_header.logo_5 %}
+          <a href="{{mviewer_header.link_5}}" style="height: 40px;">
+            <img class="d-inline-block align-top logo-custome" src="{{MEDIA_URL}}{{mviewer_header.logo_5}}" height="40" title="{{mviewer_header.alt_5}}">
+          </a>
+        {% endif %}
+      </div>
+  			<div class="header-sitename-custome">
+  				<h1 class="sitename" style="margin: 18px 0px; color:{{mviewer_header.title_color}}; font-size:{{mviewer_header.title_sieze}}px; font-family:var(--mainFont);">
+            <span class="xtc-nowrap">{{mviewer_header.title}}</span>
+          </h1>
+  			</div>
+        <li class="fa fa-low-vision headerMask" style="display:none;"> Máscara</li>
+        {% if mviewer.extra_info %}
+          <li id="moreInfoIcon" class="fa fa-info-circle headerInfo landingShow" ></li>
+        {% endif %}
+  		</div>
+  	</div>
+  </header> 
+{% else %}
+  <header id="header">
+  	<div class="header-wrapper">
+  		<div class="header-row row-top">
+      <img class="d-inline-block align-top" src="{{STATIC_URL}}idegeo/mviewer/img/logo-sct-blanco.png" height="40" title="">
+  			<div class="header-sitename">
+  				<h1 class="sitename"><span class="xtc-nowrap">{{mviewer.name}}</span></h1>
+  			</div>
+        <li class="fa fa-low-vision headerMask" style="display:none;"> Máscara</li>
+        {% if mviewer.extra_info %}
+          <li id="moreInfoIcon" class="fa fa-info-circle headerInfo landingShow" ></li>
+        {% endif %}
+  		</div>
+  	</div>
+  </header> 
+{% endif %}        
 <!-- MAP-WRAPPER -->
 <section id="map-wrapper">
   		<!-- Loading <div id="loadingDiv"></div> -->
@@ -91,6 +192,36 @@
             {% endif %}
           {% endfor %}
           </div>
+          <div class="textTopics panelIcons scroll-thin-dark-thinner">
+            {% for top in mviewer.textopics.all|dictsort:"stack_order" %}
+            {% if top.custome_icon %}
+            <div id="m{{ top.id }}" class="panelIconTextTopic tooltip-rg" data-toggle="tooltip-rg"  data-placement="left" title="{{top.name}}" data-topic="context">
+              <img src="{{MEDIA_URL}}{{top.custome_icon}}" style="width:25px; height:25px;">
+              <p class="iconText">{{top.name}}</p>
+            </div>
+            {% else %}
+            {% if top.icon %}
+              <div id="m{{ top.id }}" class="panelIconTextTopic tooltip-rg" data-toggle="tooltip-rg"  data-placement="left" title="{{top.name}}" data-topic="context">
+                  <i class="fa fa-{{ top.icon }} fa-1x" aria-hidden="true"></i>
+                  <p class="iconText">{{top.name}}</p>
+              </div>
+              {% counter push %}
+            {% else %}
+              {% if push %}
+              <div id="m{{ top.id }}" class="panelIconTextTopic tooltip-rg" data-toggle="tooltip-rg" data-placement="left" title="{{top.name}}" data-topic="context">
+              <img src="{{ forloop.counter | subtract:push | file_exists }}" class="invertIcon" style="width: 25px; vertical-align: middle;">
+              <p class="iconText">{{top.name}}</p>
+              </div>
+              {% else %}
+              <div id="m{{ top.id }}" class="panelIconTextTopic tooltip-rg invertIcon" data-toggle="tooltip-rg" data-placement="left" title="{{top.name}}" data-topic="context"><img src="{{ forloop.counter | file_exists }}" style="width: 25px; vertical-align: middle;">
+              <p class="iconText">{{top.name}}</p>
+              </div>
+              {% endif %}
+            {% endif %}
+          {% endif %}
+            {% endfor %}
+          </div>
+        </div>
   			</div>
   		</div>
   <!-- Popup Left Panel -->
@@ -144,6 +275,56 @@
       </div>
     </div>
   </div>
+
+      <!-- Logos Section-->
+      <div id="logo_nav" class="logo_nav">
+        <img src="{{STATIC_URL}}idegeo/mviewer/img/CentroGeo-CMX_Logo-H1.png" title="CentroGeo" width="140px;">
+        <img src="{{STATIC_URL}}idegeo/mviewer/img/geoint_logo.png" title="GeoInt" width="50px;">
+        <img src="{{STATIC_URL}}idegeo/mviewer/img/logo_idegeo.png" title="IDEGEO" width="90px;">
+  </div>
+
+    <!-- TextTopics Left Panel -->
+  <div class="tematicT">
+    <div class="layerMenu translateLayerListRight animationTransition">
+      <div id="accordion" class="scrollbar-panel">
+        {% for top in mviewer.textopics.all|dictsort:"stack_order" %}
+    		<div id="panelTitle" class="options-title"></div>
+            <div id="textTopicTematic{{ top.id }}"class="textTopicContainer hidden scroll-thin-dark" style="overflow-y:auto;">
+            <div id="btn-panelHidden-lf-{{ top.id }}" class="btn-panelHidden btn-panel-lf-bottom" title="Ocultar Temática" style="transform: scale(1, -1); background-color: rgba(0, 0, 0, 0.0);"></div>
+    		  	<div id="panelTitle{{ top.id }}" class="options-title"></div>
+            {% if top.custome_icon %}
+              <div class="category-sub top-{{top.id}}">
+                <img src="{{MEDIA_URL}}{{top.custome_icon}}" style="width:25px; height:25px;"> {{top.name}}
+              </div>
+            {% else %}
+              {% if top.icon %}
+                <div class="category-sub top-{{top.id}}">
+                    <i class="fa fa-{{ top.icon }} fa-1x" aria-hidden="true"></i>    {{top.name}}
+                </div>
+                {% counter count %}
+              {% else%}
+                {% if count %}
+                  <div class="category-sub top-{{top.id}}"><img src="{{ forloop.counter | subtract:count | file_exists }}" class="invertIcon" style="width: 23px;">   {{top.name}}</div>
+                {% else %}
+                  <div class="category-sub top-{{top.id}}"><img src="{{ forloop.counter | file_exists }}" class="invertIcon" style="width: 23px;">   {{top.name}}</div>
+                {% endif %}
+              {% endif %}
+             {% endif %}           
+              <ul class="noDots">
+                {% for i in top.items.all|dictsort:"stack_order" %}
+                  <li id="item-{{i.id}}" class="topicItem">
+                    <p class="layer-title">{{i}}</p>     
+                    <i id="icon-{{i.id}}" title="Descripción" class="fa fa-info itool iPositionTopic"></i>
+                    <div id="data-{{i.id}}" class="hidden" data-title="{{i}}" data-content="{{i.contents}}"></div>           
+                  </li>
+                {% endfor %}
+              </ul>
+            </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+
   
     <!-- Modal para info -->
   <div id="sourceModal" class="modal modal-hide hidden is-active">
@@ -225,6 +406,39 @@
   </div>
 </section>
 
+<div id="textInfoModal" class="hidden">
+  <span><i class="fa fa-times fa-lg"></i></span>
+  <div class="container">
+    <div id="titleInfo" style="font-size: 22px;font-weight: 500;">
+      {% if mviewer_header %}
+        {{mviewer_header.title}}
+      {% else %}
+        {{mviewer.name}}
+      {% endif %}
+    </div>
+    <div id="containerTopic" class="scroll-thin-dark ">
+      {{ mviewer.extra_info|safe|escape }}
+    </div>
+  </div>
+</div>
+
+<div id="textMarkerModal" class="hidden">
+  <span><i class="fa fa-times fa-lg"></i></span>
+  <div class="container">
+    <div id="titleTopic">
+     Descripción marcador
+    </div>
+    <div id="containerTopic" class="scroll-thin-dark">
+      <div class="markerInfoContainer">
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="modalBackground" class="hidden"></div>
+
+
+<script src="https://rawgit.com/MarcChasse/leaflet.ScaleFactor/master/leaflet.scalefactor.min.js"></script>
 {% include "L.TileLayer.BetterWMS.js" %}
 <script>{% include "basemap.js" %}</script>
 {% include "variables_toolsoa.js" %}

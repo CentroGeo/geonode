@@ -8,6 +8,7 @@ var layer_mask;
 var swt_id;
 var regid;
 var showContainer;
+var showTextContainer;
 var itemSelected = 'leyenda';
 var classId = 'leyenda';
 let colors_inner = new Array();
@@ -20,7 +21,11 @@ var map = L.map('map', {
     zoom: 6,
     animate: true,
     layers: [baseMap],
+    {% if mviewer.limited_zoom %}
+    minZoom: {{mviewer.custome_zoom}},
+    {% else %}
     minZoom: 4,
+    {% endif %}
     zoomControl: false,
     attributionControl: false
   });
@@ -37,27 +42,33 @@ $.each(basemapsDict, function(k, v){
   $(".maptype-list").append(html);
 });
 
+if(!jQuery.isEmptyObject({{layer_mask|safe}})) {
+  layer_mask = {{layer_mask|safe}};
+  $('.fa-low-vision').show();
+}
+
 /* Basemap initial selectedf */
 $('.'+{{basemap|safe}}).addClass('selected');
 $('.'+{{basemap|safe}} + '> i').attr('class', 'fas fa-check-circle');
 
-  {% if mviewer.description %}
-  $('#description').removeClass('hidden');
+{% if mviewer.description %}
+$('#description').removeClass('hidden');
 
-  $('#' + itemSelected).removeClass('selected');
-  itemSelected = 'description';
-  $('#description').toggleClass('selected');
+$('#' + itemSelected).removeClass('selected');
+itemSelected = 'description';
+$('#description').toggleClass('selected');
 
-  $('.topicTitle'+'.'+classId).addClass('hidden');
-  $('.topics.scroll-thin-dark'+'.'+classId).addClass('hidden');
-  classId =  'description';
-  $('.topicTitle'+'.'+classId).removeClass('hidden');
-  $('.topics.scroll-thin-dark'+'.'+classId).removeClass('hidden');
+$('.topicTitle'+'.'+classId).addClass('hidden');
+$('.topics.scroll-thin-dark'+'.'+classId).addClass('hidden');
+classId =  'description';
+$('.topicTitle'+'.'+classId).removeClass('hidden');
+$('.topics.scroll-thin-dark'+'.'+classId).removeClass('hidden');
 
-  $('#rightPanel').attr('style','width: 660px!important')
-  $('.btn-panelHidden.leyenda').attr('style','right: 670px!important')
-  $('.btn-panelHidden.description').attr('style','right: 670px!important')
-  $('.btn-panelHidden.mapa').attr('style','right: 670px!important')
+$('#rightPanel').attr('style','width: 660px!important')
+$('.btn-panelHidden.leyenda').attr('style','right: 670px!important')
+$('.btn-panelHidden.description').attr('style','right: 670px!important')
+$('.btn-panelHidden.mapa').attr('style','right: 670px!important')
+$('.leaflet-right').attr('style','margin-right: 680px !important;')
 {% endif %}
 
 // Basemaps event
@@ -72,6 +83,11 @@ $(".tab-basemaps").on('click', '.maptype', function() {
   map.removeLayer(baseMap);
   baseMap = basemapsDict[val][0];
 });
+
+/* Scale control */
+L.control.betterscale({metric: true, position:'bottomright'}).addTo(map);
+L.control.scalefactor({position:'bottomright'}).addTo(map);
+
 
 /* zoom */
 L.control.zoom({
@@ -256,7 +272,13 @@ L.control.attribution({
   function layer_legend(dataId, leaflet_id, title, typename, ows_url, style, default_style) {
     var lgd_title = ((style != default_style) ? style : title);
     let dataInfo = '';
-    var imglegend = ows_url+'?request=GetLegendGraphic&format=image%2Fpng&width=20&height=20&layer='+typename+'&style='+style+'&transparent=true&LEGEND_OPTIONS=fontColor:ffffff;fontSize:11;';
+    var imglegend = ows_url+'?request=GetLegendGraphic&format=image%2Fpng&width=20&height=20&layer='+typename+'&style='+style+'&transparent=true' +
+                  {% if mviewer.template_style == 'Alternativo_1' or mviewer.template_style == 'Alternativo_2'%} 
+                  '&LEGEND_OPTIONS=fontColor:#ffffff;' + 
+                  {% else %}
+                  '&LEGEND_OPTIONS=fontColor:#000;' + 
+                  {% endif %}
+                  'fontSize:11;';
     var theLegend = '<li id="l'+ dataId +'" class="legend layer-info-container" leaflet-id="'+leaflet_id
                      + '"><span class="layer-name -alerts"><div class="checkbox">'
                      + '<i class="fas fa-check-square" data-topic="structure" data-layer='+ leaflet_id+'></i></div><div id="cap'+ dataId +'" class="l-title" style="width:230px;">'+lgd_title+'</div>'
@@ -277,6 +299,48 @@ L.control.attribution({
     /*Code for app toolkit spatial objects analysis  */
     up.set_layer(typename, title);
  }
+
+ //Se integra funcionalidad "Máscara" en panoramas Alternativo//
+
+ $('.fa-low-vision').click(function() {
+  if(mask){
+    if($(this).hasClass('active')) {
+        map.removeLayer(mask);
+        $(this).removeClass('active');
+    } else {
+        map.addLayer(mask);
+        $(this).addClass('active');
+    }
+  } else {
+    var black_screen = {"type":"FeatureCollection","features":[
+    {"type":"Feature","geometry":{"type":"Polygon","coordinates":[[[-180,90],
+    [180,90],[180,-90],[-180,-90],[-180,90]]]},"properties":{"id":1}}
+    ]};
+
+    var gjson_layer=jQuery.parseJSON(layer_mask['gjson_layer']);
+    var poly1 = gjson_layer.features[0].geometry;
+    var poly2 = black_screen.features[0].geometry;
+
+    var bbx_layer=L.geoJSON(poly1);
+    map.fitBounds(bbx_layer.getBounds());
+
+    var difference = turf.difference(poly2, poly1);
+    var diff_pol = {"type":"FeatureCollection","features":[difference]};
+
+    mask = L.geoJson(diff_pol,  {
+      style: function (feature) {
+          return  {
+              weight: 0.9,
+              opacity: 0.7,
+              color: 'black',
+              dashArray: '',
+              fillOpacity: 0.8,
+              };
+      }
+    }).addTo(map);
+    $(this).addClass('active');
+  }
+});
 
 
  $('#btn-panelHidden-rg').click(function() {
@@ -316,6 +380,9 @@ $('.panelIcon').click(function() {
   } else {
     $('#btn-panelHidden-lf').removeClass('hidden');
   }
+  $('.textTopicContainer').addClass('hidden');
+  let panelWidth = $('#panelIcons').outerWidth();
+  $('#logo_nav').attr('style','left: ' + (panelWidth + 15) + 'px;!important')
 
 $('containerTematic' + id).removeClass('hidden'); 
 
@@ -323,6 +390,7 @@ if($('#containerTematic' + id).hasClass('hidden')) {
   $('.leaflet-control-zoom').attr('style','margin-left: 80px !important');
 } else {
   $('.leaflet-control-zoom').attr('style','margin-left: 510px !important');
+  $('#logo_nav').attr('style','margin-left: 435px !important');
 }
 });
 
@@ -330,6 +398,7 @@ $('.btn-r').click(function() {
   $('#' + itemSelected).removeClass('selected');
   itemSelected = $(this).attr('id');
   $(this).toggleClass('selected');
+  $('.leaflet-right').attr('style','margin-right: 360px !important;');
   if($('#rightPanel').hasClass('hiddePanel')) {
     $('#description').toggleClass('panelToggle');
     $('#mapa').toggleClass('panelToggle');
@@ -350,6 +419,7 @@ $('.btn-r').click(function() {
     $('.btn-panelHidden.leyenda').attr('style','right: 670px!important')
     $('.btn-panelHidden.description').attr('style','right: 670px!important')
     $('.btn-panelHidden.mapa').attr('style','right: 670px!important')
+    $('.leaflet-right').attr('style','margin-right: 680px !important;')
   } else {
     $('#rightPanel').attr('style','')
     $('.btn-panelHidden.leyenda').attr('style','')
@@ -479,6 +549,11 @@ $(".layers").on("click", ".fa-info", function() {
   modal_info(swt_id);
 });
 
+$(".layer").on("click", ".fa-info", function() {
+  var swt_id = $(this).siblings('span').attr('id')
+  modal_info(swt_id);
+});
+
 $(".layer-title").on("click", ".fa-info", function() {
   var swt_id = $(this).attr('data-id');
   modal_info(swt_id);
@@ -543,3 +618,73 @@ $(function () {
         $('#narrative-nav-maker').addClass('hidden');
     }
 };
+
+$('.panelIconTextTopic').click(function(e) {
+  e.stopPropagation();
+  let id = $(this).attr('id').split('m')[1];
+
+  $('#textTopicTematic' + showTextContainer).addClass('hidden');
+  showTextContainer = id;
+  $('#textTopicTematic' + id).toggleClass('hidden');
+  let leftAttributeContainer = $('#textTopicTematic' + id).css('left').split('p')[0];
+  let widthContainer = $('#textTopicTematic' + id).outerWidth();
+  $('#logo_nav').attr('style','left: ' + (parseInt(leftAttributeContainer)  + widthContainer + 15) + 'px!important')
+  $('#btn-panelHidden-lf').addClass('hidden');
+  $('#' + showContainer).addClass('hidden');
+  if($('#' + showContainer).hasClass('hidden')) {
+    $('.leaflet-control-zoom').attr('style','margin-left: 85px !important');
+  }
+
+});
+$('.btn-panel-lf-bottom').on('click', function () {
+  let id = $(this).attr('id').split('-')[3];
+  showTextContainer = id;
+  $('#textTopicTematic' + showTextContainer).addClass('hidden');
+  $('#logo_nav').attr('style','left: 75px;!important');
+  let panelWidth = $('#panelIcons').outerWidth();
+  $('#logo_nav').attr('style','left: ' + (panelWidth + 15) + 'px;!important')
+})
+$(".topicItem").on("click", function() {
+  let id = $(this).attr('id').split('-')[1];
+  var dataInfo = $('#data-'+id).attr('data-content');
+  var dataTitle = $('#data-'+id).attr('data-title');
+  $('#titleTopic').html(dataTitle);
+  $('#containerTopic').html(dataInfo);
+  $('#textTopicModal').removeClass('hidden');
+  $('#modalBackground').removeClass('hidden');
+});
+$('#textTopicModal').on('click', 'span', function () {
+  $('#textTopicModal').addClass('hidden');
+  $('#modalBackground').addClass('hidden');
+});
+$('#modalBackground').on('click', function () {
+  $('#textTopicModal').addClass('hidden');
+  $('#modalBackground').addClass('hidden');
+  $('#textInfoModal').addClass('hidden');
+  $('#textMarkerModal').addClass('hidden');
+});
+//Funcionalidad del modal para Información adicional
+function showExtraInfo(){
+  $('#textInfoModal').removeClass('hidden');
+  $('#modalBackground').removeClass('hidden');
+}
+{% if mviewer.landing_info %}
+  showExtraInfo();
+{% endif %}
+$('#moreInfoIcon').on('click', function () {
+  if (!$("#textTopicModal").hasClass('hidden')) {
+    $("#textTopicModal").addClass('hidden');
+  };
+  showExtraInfo();
+});
+$('#textInfoModal').on('click', 'span', function () {
+  $('#textInfoModal').addClass('hidden');
+  $('#modalBackground').addClass('hidden');
+});
+//Ajuste de funcionalidad para la informacionde los Marcadores
+$('#textMarkerModal').on('click', 'span', function () {
+  $('#textMarkerModal').addClass('hidden');
+  $('#modalBackground').addClass('hidden');
+});
+//Se esconden herramientas 
+$('.leaflet-draw-toolbar').attr('style','display: none !important;')

@@ -30,10 +30,10 @@ body,
 td,
 th {
     font-family: var(--mainFont);
-    font-size: 15px;
+    font-size: 20px;
     font-weight: 300;
     line-height: 1.4em;
-    color: #FFFFFF;
+    color: #232323;
     text-transform: none;
 }
 body {
@@ -170,7 +170,7 @@ span.xtc-break {
     -webkit-border-radius: 8px;
     -moz-border-radius: 8px;
     border-radius: 8px;
-    background-color: rgba(0, 0, 0, 0.10);
+    background-color: rgba(61, 61, 61, 43%);
 }
 .scroll-thin-dark::-webkit-scrollbar-thumb {
     -webkit-border-radius: 8px;
@@ -363,7 +363,7 @@ span.xtc-break {
     -webkit-border-radius: 0px;
     -moz-border-radius: 0px;
     border-radius: 0px;
-    background-color: rgba(0, 0, 0, 0.70);
+    background-color: rgba(228, 228, 228, 0.63);
     cursor: pointer;
     overflow: hidden;
     z-index: 9999;
@@ -394,7 +394,7 @@ span.xtc-break {
     transition: all 0.3s ease-in-out;
 }
 .btn-panelHidden:hover {
-    background-color: rgba(202, 202, 202, 0.4);
+    background-color: rgb(202, 202, 202);
 }
 .btn-panelHidden:hover:after {
     opacity: 1.00;
@@ -404,7 +404,7 @@ span.xtc-break {
 .btn-panelHidden.btn-panel-lf {
     /*height: 54px;*/
     top: 13px;
-    left: 475px;
+    left: 437px;
     text-align: center;
     padding: 3px;
     height: 40px;
@@ -412,7 +412,7 @@ span.xtc-break {
 }
 
 .btn-panelHidden.btn-panel-lf:after {
-    content: url("images/fa-arrow-alt-from-left_white.svg");
+    content: url("images/fa-arrow-alt-from-left_black.svg");
 }
 /* -------------------------------------------------- */
 .btn-panelHidden.btn-panel-rg {
@@ -423,7 +423,7 @@ span.xtc-break {
 
 }
 .btn-panelHidden.btn-panel-rg:after {
-    content: url(images/fa-arrow-alt-from-right_white.svg);
+    content: url(images/fa-arrow-alt-from-right_black.svg);
 }
 .btn-panelHidden.leyenda {
     top: 5px;
@@ -500,7 +500,7 @@ span.xtc-break {
     padding: 3px;
 }
 .btn-r.selected {
-    background-color: rgba(160, 159, 159, 0.541);
+    background-color: rgb(255, 255, 255);
 }
 /* -----------------------------------------------------
     HIDE-PANEL
@@ -609,7 +609,6 @@ section .section-wrapper {
     left: 0px;
     margin: 0px;
     padding: 0px;
-    background-color: rgba(0, 0, 0, 0.50);
     z-index: 2;
 }
 #header:before,
@@ -634,7 +633,7 @@ section .section-wrapper {
     height: 50px;
     margin: 0px;
     padding: 0px 70px 0px 20px;
-    background-color: rgba(48, 48, 48, 1.00);
+    background-color: rgba(255, 255, 255, 88%);
     background-position: top center;
     /** FLEX **/
     display: -webkit-flex;
@@ -710,7 +709,7 @@ section .section-wrapper {
     font-size: 24px;
     font-weight: 300;
     letter-spacing: -0.02em;
-    color: rgba(255, 255, 255, 0.80);
+    color: rgba(43, 43, 43, 80%);
     line-height: 1.4em;
     text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2);
 }
@@ -848,21 +847,18 @@ section .section-wrapper {
 ----------------------------------------------------- */
 #leftPanel .panelIcons {
     position: absolute;
-    width: 5.75rem;
+    width: 50px;
     flex-basis: 50px;
     height: 100%;
     margin: 0px;
     padding: 10px 0px;
-    font-size: 20px;
-    line-height: 45px;
+    font-size: 26px;
+    line-height: 50px;
     text-align: center;
-    justify-content: center;
-    color: #fff;
-    background-color: rgba(0, 0, 0, 0.70);
+    color: #1d1d1d;
+    background-color: rgba(255, 255, 255, 88%);
     overflow: hidden;
     z-index: 10;
-    word-break: break-word
-    word-wrap: break-word;
     /** TRANSITION **/
     -webkit-transition: all 0.3s ease-in-out;
     -moz-transition: all 0.3s ease-in-out;
@@ -871,11 +867,11 @@ section .section-wrapper {
     transition: all 0.3s ease-in-out;
 }
 #leftPanel .panelIcons:hover {
-    background-color: rgba(0, 0, 0, 1.0);
+    background-color: rgb(255, 255, 255);
 }
 #leftPanel .panelIcons .panelIcon {
-    height: 4.75rem;
-    width: 5.75rem;
+    width: 50px;
+    height: 50px;
     cursor: pointer;
     /** TRANSITION **/
     -webkit-transition: all 0.2s ease-in-out;
@@ -902,7 +898,7 @@ section .section-wrapper {
     pointer-events: none;
 }
 #leftPanel .panelIcon:hover {
-    background-color: #a09f9f7e;
+    background-color: #8c8c8ce6;
 }
 /* -----------------------------------------------------
     LEFT-PANEL [OPTIONS]
@@ -916,7 +912,6 @@ section .section-wrapper {
     margin: 0px;
     padding: 10px;
     border: 1px solid rgba(255, 255, 255, 0.30);
-    background-color: rgba(0, 0, 0, 0.50);
     z-index: 1;
     /** TRANSITION **/
     -webkit-transition: all 0.4s ease-in-out;
@@ -1067,7 +1062,7 @@ section .section-wrapper {
 #leftPanel .sectionOption .layers-nav ul.layers-list li.layer {
     position: relative;
     margin: 0px 0px 15px 0px;
-    padding: 10px;
+    padding: 10px 25px 10px 30px;
     border: 1px solid rgba(255, 255, 255, 0.20);
     background-color: rgba(255, 255, 255, 0.10);
     cursor: pointer;
@@ -1215,8 +1210,7 @@ section .section-wrapper {
 #rightPanel {
     right: 0px;
     width: 360px;
-    background-color: rgba(0, 0, 0, 0.70);
-}
+    background-color: rgba(255, 255, 255, 88%);
 }
 #rightPanel .panelContainer {
     /* VACIO */
@@ -1228,7 +1222,7 @@ section .section-wrapper {
     padding: 10px;
     font-size: 14px;
     font-weight: 400;
-    color: rgba(255, 255, 255, 1.00);
+    color: rgb(49, 49, 49);
     line-height: 1.4em;
     height: 100%;
 }
@@ -1242,7 +1236,7 @@ section .section-wrapper {
     font-size: 15px;
     font-weight: 400;
     line-height: 1.3em;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.30);
+    border-bottom: 1px solid rgba(51, 51, 51, 30%);
 }
 #rightPanel .panelSelect .topics {
     /* ADD-MOD */
@@ -1631,7 +1625,7 @@ section .section-wrapper {
 
 .leaflet-touch .leaflet-bar {
     border: 2px solid rgba(250, 250, 250, 0.5);
-    left: 16px !important;
+    left: -23px !important;
 }
 
 #loadingDiv {
@@ -1676,7 +1670,7 @@ section .section-wrapper {
 #legends .tools .itool {
     margin: 3px;
     cursor: pointer;
-    color: white;
+    color: #333333;
 }
 
 .animationTransition {
@@ -1707,22 +1701,22 @@ section .section-wrapper {
 .categoryContainer {
     position: absolute;
     top: 10px;
-    left: 100px;
+    left: 60px;
     width: 420px;
     flex-basis: 420px;
     margin: 0px;
     padding: 10px;
-    border: 1px solid rgba(255, 255, 255, 0.30);
-    background-color: rgba(0, 0, 0, 0.70);
+    border: 1px solid rgb(84, 84, 84, 30%);
+    background-color: rgba(255, 255, 255, 88%);
     max-height: 95%;
 }
 
 .layer {
     position: relative;
     margin: 0px 0px 15px 0px;
-    padding: 10px 25px 10px 30px;
-    border: 1px solid rgba(255, 255, 255, 0.20);
-    background-color: rgba(255, 255, 255, 0.10);
+    padding: 10px;
+    border: 1px solid rgb(140, 140, 140);
+    background-color: rgba(255, 255, 255, 6%);
     cursor: pointer;
 }
 
@@ -1732,9 +1726,7 @@ section .section-wrapper {
 }
 .leaflet-touch .leaflet-control-attribution {
     z-index: 99999;
-    background: rgba(19, 18, 18, 0.7)!important;
-    color: rgb(192, 192, 192);
-    margin-left: 95px!important;
+    margin-left: 50px!important;
 }
 .thumb {
     margin-top: 5px;
@@ -1744,7 +1736,6 @@ section .section-wrapper {
     position: relative;
     left: 490px;
     margin-top: 10px;
-    border: 1px solid rgba(250, 250, 250, 0.30)!important;
     border-radius: 4px;
     pointer-events: auto;
     cursor: auto;
@@ -1752,24 +1743,16 @@ section .section-wrapper {
     margin-left: 85px!important;
 }
 
+
 .leaflet-control-zoom-in {
     display: block!important;
     width: 30px!important;
     height: 30px!important;
-    color: rgba(255, 255, 255, 1.00)!important;
-    background-color: rgba(0, 0, 0, 0.50)!important;
-    border-bottom: none!important;
-}
-.leaflet-bar a, .leaflet-bar a:hover {
-    color: rgba(255, 255, 255, 1.00)!important;
-    background-color: rgba(0, 0, 0, 0.50)!important;
 }
 .leaflet-control-zoom-out {
     display: block!important;
     width: 30px!important;
     height: 30px!important;
-    color: rgba(255, 255, 255, 1.00)!important;
-    background-color: rgba(0, 0, 0, 0.50)!important;
     border-bottom: none!important;
 }
 .onoffswitch{
@@ -1806,11 +1789,11 @@ section .section-wrapper {
     transition: all 0.2s cubic-bezier(0.445, 0.05, 0.55, 0.95)
 }
 .leaflet-popup-content-wrapper{
-    background: rgb(60, 57, 57) !important;
-    color: white !important;
+    background: rgba(255, 255, 255) !important;
+    color: #080808 !important;
 }
 .leaflet-popup-tip{
-    background: rgb(60, 57, 57) !important;
+    background: rgb(255, 255, 255) !important;
 }
 
 .maptype {
@@ -1835,7 +1818,7 @@ section .section-wrapper {
 
 .layer-title {
     margin: 0;
-    color: white;
+    color: #404040;
     font-family: var(--mainFont);
     font-weight: 500;
     font-style: normal;
@@ -1852,7 +1835,8 @@ section .section-wrapper {
     height: 45%;
     top: 25%;
     left: 30%;
-    background-color: rgba(0, 0, 0, 0.70);
+    border-radius: 4px;
+    background-color: rgba(253, 253, 253, 94%);
 }
 
 .is-active .modal-close {
@@ -1865,18 +1849,18 @@ section .section-wrapper {
     width: 40px;
     height: 40px;
     z-index: 20;
-    color: #fff;
+    color: #2f2f2f;
     cursor: pointer;
 }
 .is-active h2{
-    color: #fff;
+    color: #212121;
     font-family: var(--mainFont);
     font-size: 20px;
     margin: 30px;
     margin-bottom: 0px;    
 }
 .is-active p{
-    color: #fff;
+    color: #272727;
     font-family: var(--mainFont);
     font-size: 15px;
     margin: 30px;
@@ -1887,35 +1871,27 @@ section .section-wrapper {
     overflow-y:scroll;
 }
 .is-active h3{
-    color: #fff;
+    color: #5f5f5f;
     font-family: var(--mainFont);
-    font-size: 15px;
+    font-size: 13px;
     margin-top: 0px;
     margin-left: 30px;
     margin-bottom: 30px;
 }
 .btn {
-    border: 2px solid white;
-    color: #fff;
+    border: 2px solid grey;
+    color: #585858;
     border-radius: 10px;
     margin: 15px;
 }
 .is-active .m-btncontainer{
-    position: absolute;
-    top: 83%;
-    left: 39%;
-    width: fit-content;
 }
 .modal-source{
     top: 15px;
     position: relative;
 }
 .panelIcons p{
-    font-size: 12px;
-    line-height: 1.2;
-    padding: 0;
-    margin: 0;
-    max-width: 5.4rem;
+    display: none;
 }
 .colorCap{
     color:rgb(250, 183, 82);
@@ -1967,13 +1943,13 @@ section .section-wrapper {
 .textTopicContainer {
     position: absolute;
     bottom: 27px;
-    left: 105px;
+    left: 60px;
     width: 420px;
     flex-basis: 420px;
     margin: 0px;
     padding: 10px;
     border: 1px solid rgba(255, 255, 255, 0.30);
-    background-color: rgba(0, 0, 0, 0.70);
+    background-color: rgb(239, 239, 239, 84%);
     max-height: 95%;
 }
 .panelIconTextTopic:hover {
@@ -1988,15 +1964,17 @@ section .section-wrapper {
     width: 40px;
 }
 .btn-panelHidden.btn-panel-lf-bottom:after {
-    content: url("images/fa-arrow-alt-from-left_white.svg");
+    content: url("images/fa-arrow-alt-from-left_black.svg");
 }
 #textTopicModal {
     position: absolute;
     z-index: 9999999;
     width: 70%;
     height: 70%;
-    background-color: black;
-    color: white;
+    background-color: #e6e6e6;
+    border-radius: 4px;
+    border: 1px solid gray;
+    color: #5a5a5a;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -2006,8 +1984,10 @@ section .section-wrapper {
     z-index: 9999999;
     width: 70%;
     height: 70%;
-    background-color: #000000E6;
-    color: white;
+    background-color: #e6e6e6E6;
+    border-radius: 4px;
+    border: 1px solid gray;
+    color: #5a5a5a;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -2017,8 +1997,10 @@ section .section-wrapper {
     z-index: 9999999;
     width: 45%;
     height: 45%;
-    background-color: #000000B3;
-    color: white;
+    background-color: #e6e6e6B3;
+    border-radius: 4px;
+    border: 1px solid gray;
+    color: #5a5a5a;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -2036,7 +2018,7 @@ section .section-wrapper {
     position: relative;
     margin: 0px 0px 15px 0px;
     padding: 10px;
-    border: 1px solid rgba(255, 255, 255, 0.20);
+    border: 1px solid rgba(0, 0, 0, 20%);
     background-color: rgba(255, 255, 255, 0.10);
     cursor: pointer;
 }
@@ -2070,7 +2052,7 @@ section .section-wrapper {
     top: 5px;
     left: 355px;
     padding: 10px;
-} 
+}
 #modalBackground {
     width: 100%;
     height: 100%;
@@ -2094,17 +2076,17 @@ section .section-wrapper {
     -moz-border-radius: 8px;
     border-radius: 8px;
     background-color: rgba(102, 102, 102, 1.00);
-}
+} 
 #logo_nav{
     position: absolute;
     bottom: 30px;
-    left: 100px;
+    left: 75px;
     z-index: 102;
     top: 90%;
 }
 .leaflet-right{
     margin-right: 360px !important;
-}
+} 
 #titleTopic {
     font-size: 25px;
     font-weight: 900;
@@ -2116,8 +2098,13 @@ section .section-wrapper {
 .narTitle {
     font-size: 22px!important;
     font-weight: 500;
-} 
+}
 #thematicTopics{
     overflow-x: hidden;
     max-height: calc(100% - 170px);
+}
+.modal-footer {
+    position: absolute;
+    bottom: 0;
+    right: 5px;
 }

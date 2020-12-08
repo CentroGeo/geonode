@@ -97,6 +97,12 @@ var bounds = [
     baseMap = basemapsDict[val][0];
   });
 
+
+/* Scale control */
+  L.control.betterscale({metric: true, position:'bottomright'}).addTo(map);
+  L.control.scalefactor({position:'bottomright'}).addTo(map);
+
+
   /* zoom */
   L.control.zoom({
      position:'bottomright'

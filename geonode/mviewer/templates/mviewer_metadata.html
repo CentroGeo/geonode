@@ -22,7 +22,7 @@
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB6ZJwb2cqgW1YXsmXGT1I-0ujia5UREAg&libraries=places" async defer></script>
 <script src='https://unpkg.com/leaflet.gridlayer.googlemutant@latest/Leaflet.GoogleMutant.js'></script>
 <style>
-#map {
+#map, #second {
   height: 480px;
 }
 
@@ -68,6 +68,8 @@
 				<label>Ajuste el mapa para definir el BBOX</label>
 				<div style="margin-bottom:10px;">Mapa Base:<select id="basemaps" style="margin-left:50px;"></select></div>
 				<div id="map"></div></br>
+        <input id="id_limited_zoom" type="checkbox" name="limited_zoom"> Activar para restringir Zoom</br>
+        <div id="second"></div><br>
 				<p><a href="{% url 'mviewer_list' %}" class="btn btn-primary">Regresar</a> <input type="submit" class="btn btn-primary pull-right" value="Guardar y Avanzar"></p></br>
 			</form>
 		</div>
@@ -77,6 +79,7 @@
 
 {% block extra_script %}
 <script>{% include "basemap.js" %}</script>
+<script>{% include "tileMapsLayers.js" %}</script>
 
 <!--menu de logos-->
 <script language="javascript">
@@ -107,12 +110,14 @@ $.each(basemapsDict, function(k, v){
   $("#basemaps").append('<option value="'+ k +'">'+ v[1] +'</option>');
 });
 
-var baseMap;
+var baseMap, secondMap;
 if($('#id_config').val()!='' && $('#id_config').val() in basemapsDict) {
-	baseMap = basemapsDict[$('#id_config').val()][0];
+  baseMap = basemapsDict[$('#id_config').val()][0];
+  secondMap = basemapsDict_2[$('#id_config').val()][0];
 	$("#basemaps").val($('#id_config').val());
 } else {
-	baseMap = Stamen_TerrainBackground;
+  baseMap = Stamen_TerrainBackground;
+  secondMap = Stamen_TerrainBackground_2;
 	$("#basemaps").val('stamenTerrain');
 }
 
@@ -126,40 +131,58 @@ var map = L.map('map', {
         animate: true,
         layers: [baseMap],
         maxBounds: bounds,
-        maxZoom: 12, 
-        minZoom: 3
+        maxZoom: 18, 
+        //minZoom: 3
       });
+
+
+var second = L.map('second', {
+  center: [24, -101],
+  zoom: 5,
+  animate: true,
+  layers: [secondMap],
+  maxBounds: bounds,
+  maxZoom: 16, 
+  //minZoom: 3
+});
 
 $("#basemaps").change(function () {
   basemapsDict[this.value][0].addTo(map);
+  basemapsDict_2[this.value][0].addTo(second);
   map.removeLayer(baseMap);
+  second.removeLayer(secondMap);
   baseMap = basemapsDict[this.value][0];
+  secondMap = basemapsDict_2[this.value][0];
   $('#id_config').val(this.value);
 });
 
 let tema = document.getElementById("id_template_style").value
 
-  if(tema=="Original"){
-    document.getElementById("div_id_no_topics").style.display="block";
-    document.getElementById("div_id_is_vertical").style.display="block";
-    document.getElementById("div_id_icon_title").style.display="none";
-  }else{
-    document.getElementById("div_id_no_topics").style.display="none";
-    document.getElementById("div_id_is_vertical").style.display="none";
-    document.getElementById("div_id_icon_title").style.display="block";
+document.getElementById("div_id_icon_title").style.display="none";
+document.getElementById("div_id_no_topics").style.display="none";
+document.getElementById("div_id_is_vertical").style.display="none";
+
+function template_choose() {
+  if (tema == "Original_1") {
+    document.getElementById("id_no_topics").checked = false;
+    document.getElementById("id_icon_title").checked = false;
+  } else if (tema == "Original_2") {
+    document.getElementById("id_no_topics").checked = true;
+    document.getElementById("id_icon_title").checked = false;
+  } else if (tema == "Alternativo_1" || tema == "Alternativo_3") {
+    document.getElementById("id_no_topics").checked = false;
+    document.getElementById("id_icon_title").checked = true;
+  } else if (tema == "Alternativo_2" || tema == "Alternativo_4") {
+    document.getElementById("id_no_topics").checked = false;
+    document.getElementById("id_icon_title").checked = false;
   }
+}
+
+
 
 $('#id_template_style').change(function() {
   tema = document.getElementById("id_template_style").value
-  if(tema=="Original"){
-    document.getElementById("div_id_no_topics").style.display="block";
-    document.getElementById("div_id_is_vertical").style.display="block";
-    document.getElementById("div_id_icon_title").style.display="none";
-  }else{
-    document.getElementById("div_id_no_topics").style.display="none";
-    document.getElementById("div_id_is_vertical").style.display="none";
-    document.getElementById("div_id_icon_title").style.display="block";
-  }
+  template_choose()
 });
 
 var arcgisOnline = L.esri.Geocoding.arcgisOnlineProvider();
@@ -170,20 +193,33 @@ var searchControl = L.esri.Geocoding.geosearch({
 
 var results = L.layerGroup().addTo(map);
 
+var searchControl = L.esri.Geocoding.geosearch({
+	providers: [arcgisOnline]
+	}).addTo(second);
+
+var results = L.layerGroup().addTo(second);
+
 var mviewer = {{mviewer|safe}};
+
+if (mviewer.limited_zoom) { $('#id_limited_zoom').prop('checked', true) }
 
 if (mviewer.bbox_x0 != 'a') {
 	var bounds = [
     [mviewer.bbox_y0, mviewer.bbox_x0],
      [mviewer.bbox_y1, mviewer.bbox_x1]
   	];
-  	map.fitBounds(bounds);
+  map.fitBounds(bounds);
 } else {
 	set_bbox();
+  set_limitZoom();
 }
 
 map.on('moveend', function() {
      set_bbox();
+});
+
+second.on('moveend', function() {
+     set_limitZoom();
 });
 
 function set_bbox () {
@@ -193,8 +229,14 @@ function set_bbox () {
 	 $('#id_bbox_x1').val(Math.round(bbox._southWest.lng*10000000)/10000000);
 	 $('#id_bbox_y1').val(Math.round(bbox._southWest.lat*10000000)/10000000);
 }
+
+function set_limitZoom(){
+  var set_limitZoom = second.getZoom();
+  $('#id_custome_zoom').val(set_limitZoom);
+  
+}
+$('#div_id_custome_zoom').css('display', 'none');
 let check = document.getElementById('id_no_topics');
-console.log(check.checked)
 let check2 = document.getElementById('id_is_vertical');
 $('input[type="checkbox"]').on('click', function(){
     if(this.id == "id_no_topics") {
@@ -211,6 +253,22 @@ $('input[type="checkbox"]').on('click', function(){
       }
     }
 })
+function activeZommMap() {
+  if($('#id_limited_zoom').is(':checked')){
+    $('#second').show()
+  } else {
+    $('#second').hide()
+  }
+  var customeZoom =[mviewer.custome_zoom];
+  var secondBounds = [
+    [mviewer.bbox_y0, mviewer.bbox_x0],
+    [mviewer.bbox_y1, mviewer.bbox_x1]
+  	];
+  second.fitBounds(secondBounds);
+  second.setZoom(customeZoom);
+}
+activeZommMap();
+$('#id_limited_zoom').on('click', activeZommMap)
 <!--// Set logo inicial-->
 <!--$("#webmenu").val(mviewer.logo);-->
 <!--</script>-->

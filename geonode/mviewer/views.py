@@ -9,8 +9,9 @@ from django.contrib.auth.decorators import login_required
 from django.urls import reverse
 from geonode.geoserver.helpers import ogc_server_settings
 
-from geonode.mviewer.models import MViewer, Topic, LayerIds, LayeridMarker
-from geonode.mviewer.forms import MViewerForm, TopicForm, MViewerFormAll, LayerNarrativeForm, MarkerNarrativeForm, MarkerIconForm
+from geonode.mviewer.models import MViewer, Topic, LayerIds, LayeridMarker, MviewerHeader, TopicText, TopicTextItems
+from geonode.mviewer.forms import MViewerForm, TopicForm, MViewerFormAll, LayerNarrativeForm, MarkerNarrativeForm, \
+                                    MarkerIconForm, MviewerHeaderForm, TopicTextForm, TopicTextItemForm
 from geonode.layers.models import Layer
 from geonode.interactive.views import cat_connect, SENTINEL_LAYERS
 from geonode.toolkit.models import ConfigureObjectSOA, SpatialObject
@@ -155,6 +156,10 @@ def mviewer_remove(request, mv_id, template='mviewer_remove.html'):
 def microviewer(request, url_id):
     dir_conf = {}
     mviewer = get_object_or_404(MViewer, url_id=url_id)
+    try:
+        mviewer_header = get_object_or_404(MviewerHeader, mviewer=mviewer)
+    except:
+        mviewer_header = None
     configure_tool = ConfigureObjectSOA.objects.filter(mviewer=mviewer.id)
     soa = SpatialObject.objects.filter(general_tool=0)
     conf_specific = ConfigureObjectSOA.objects.filter(tool__in=soa).filter(mviewer=mviewer.id).order_by('tool')
@@ -187,9 +192,9 @@ def microviewer(request, url_id):
     else:
         basemap = 'stamenTerrain'
 
-    if mviewer.template_style == 'Original':
+    if 'Original' in mviewer.template_style:
         template = 'mviewer.html'
-    elif mviewer.template_style == 'Alternativo':
+    elif 'Alternativo' in mviewer.template_style:
         template = 'mviewerAlt.html'
     else:
         template = 'mviewer.html'
@@ -214,6 +219,7 @@ def microviewer(request, url_id):
 
     return render(request, template, {
         'mviewer': mviewer,
+        'mviewer_header':mviewer_header,
         'topics': topics,
         'configure_tool': configure_tool,
         'gen_tool_count': general_tool_count,
@@ -237,11 +243,15 @@ def topic_create(request, mv_id):
             if num >= 7:
                 try:
                     mv = get_object_or_404(MViewer, id=mv_id)
-                    if mv.is_vertical != True: # solamente si el panel no esta activado puedes pasar el límite de tematicas
+                    if mviewer.template_style == 'Alternativo':
+                        if num > 50:
                             return HttpResponse('Limite excedido')
                     else:
-                        if num > 20:# vamos a poner un límite de 15 tematicas para el panel izquierdo
-                            return HttpResponse('Limite excedido')
+                        if mv.is_vertical != True: # solamente si el panel no esta activado puedes pasar el límite de tematicas
+                                return HttpResponse('Limite excedido')
+                        else:
+                            if num > 20:# vamos a poner un límite de 15 tematicas para el panel izquierdo
+                                return HttpResponse('Limite excedido')
                 except:
                     pass
             index = num + 1
@@ -588,3 +598,132 @@ def layerid_markers(request):
         return HttpResponse(json.dumps(markers_dict), content_type="application/json")
     else:
         return HttpResponse("Not ajax request")
+
+@login_required
+def upload_mviewer_header(request, mv_id):
+    mviewer = MViewer.objects.get(id=mv_id)
+    if request.method == 'POST':
+        header_form = MviewerHeaderForm(request.POST, request.FILES)
+        if header_form.is_valid():
+            temp = header_form.save(commit=False)
+            temp.mviewer = mviewer
+            temp.save()
+            return HttpResponseRedirect(reverse('mviewer_detail', args=[mv_id]))
+    else:
+        header_form = MviewerHeaderForm()
+    return render(request, 'mviewer_header.html',{'form':header_form,'mviewer':mviewer})
+
+
+@login_required
+def edit_mviewer_header(request, header_id):
+    header = MviewerHeader.objects.get(id=header_id)
+    if request.method == 'POST':
+        header_form = MviewerHeaderForm(request.POST, request.FILES, instance=header)
+        if header_form.is_valid():
+            header_form.save()
+            return HttpResponseRedirect(reverse('mviewer_detail', args=[header.mviewer.id]))
+    else:
+        header_form = MviewerHeaderForm(instance=header)
+    return render(request, 'mviewer_header.html',{'form':header_form,'header':header}) 
+
+
+@login_required
+def create_text_topic(request, mv_id):
+    mv_instance = MViewer.objects.get(id=mv_id)
+    if request.method == 'POST':
+        topicForm = TopicTextForm(request.POST, request.FILES)
+        if topicForm.is_valid():
+            tmp = topicForm.save(commit=False)
+            tmp.mviewer = mv_instance
+            tmp.save()
+            return HttpResponseRedirect(reverse('mviewer_detail', args=[mv_instance.id]))
+    else:
+        topicForm = TopicTextForm()
+
+    return render(request, 'topic_text.html', {'form': topicForm, 'mvid': mv_instance.id})
+
+
+@login_required
+def update_text_topic(request, topictext_id):
+    topic_text_instance = TopicText.objects.get(id=topictext_id)
+    if request.method == 'POST':
+        topicForm = TopicTextForm(request.POST, request.FILES, instance=topic_text_instance)
+        if topicForm.is_valid():
+            topicForm.save()
+            return HttpResponseRedirect(reverse('mviewer_detail', args=[topic_text_instance.mviewer.id]))
+    else:
+        topicForm = TopicTextForm(instance=topic_text_instance)
+
+    return render(request, 'topic_text.html', {'form': topicForm, 'mvid': topic_text_instance.mviewer.id})
+
+@login_required
+def delete_text_topic(request, topictext_id):
+    mviewer_id = TopicText.objects.get(id=topictext_id).mviewer.id
+    TopicText.objects.get(id=topictext_id).delete()
+
+    return HttpResponseRedirect(reverse('mviewer_detail', args=[mviewer_id]))
+
+
+@login_required
+def create_text_topic_item(request, topictext_id):
+    topic_text_instance = TopicText.objects.get(id=topictext_id)
+    if request.method == 'POST':
+        topicForm = TopicTextItemForm(request.POST, request.FILES)
+        if topicForm.is_valid():
+            tmp = topicForm.save(commit=False)
+            tmp.topic_text = topic_text_instance
+            tmp.save()
+            return HttpResponseRedirect(reverse('mviewer_detail', args=[topic_text_instance.mviewer.id]))
+    else:
+        topicForm = TopicTextItemForm()
+
+    return render(request, 'topic_text_item.html', {'form': topicForm, 'mvid': topic_text_instance.mviewer.id})
+
+
+@login_required
+def update_text_topic_item(request, topictextitem_id):
+    topic_text_instance = TopicTextItems.objects.get(id=topictextitem_id)
+    if request.method == 'POST':
+        topicForm = TopicTextItemForm(request.POST, request.FILES, instance=topic_text_instance)
+        if topicForm.is_valid():
+            topicForm.save()
+            return HttpResponseRedirect(reverse('mviewer_detail', args=[topic_text_instance.topic_text.mviewer.id]))
+    else:
+        topicForm = TopicTextItemForm(instance=topic_text_instance)
+
+    return render(request, 'topic_text_item.html', {'form': topicForm, 'mvid': topic_text_instance.topic_text.mviewer.id})
+
+@login_required
+def delete_text_topic_item(request, topictextitem_id):
+    mviewer_id = TopicTextItems.objects.get(id=topictextitem_id).topic_text.mviewer.id
+    TopicTextItems.objects.get(id=topictextitem_id).delete()
+
+    return HttpResponseRedirect(reverse('mviewer_detail', args=[mviewer_id]))
+
+def sort_text_topic(request):
+    if request.is_ajax():
+        sorted_ids = json.loads(request.POST['sorted_ids'])
+        st_order=1
+        for e in sorted_ids:
+            topic = get_object_or_404(TopicText, id=int(e))
+            topic.stack_order = st_order
+            topic.save()
+            st_order += 1
+
+        return HttpResponse(json.dumps({'ok': 'ok'}), mimetype="application/json")
+    else:
+        return HttpResponse("Not ajax request")
+
+def sort_text_topic_item(request):
+    if request.is_ajax():
+        sorted_ids = json.loads(request.POST['sorted_ids'])
+        st_order=1
+        for e in sorted_ids:
+            topic = get_object_or_404(TopicTextItems, id=int(e))
+            topic.stack_order = st_order
+            topic.save()
+            st_order += 1
+
+        return HttpResponse(json.dumps({'ok': 'ok'}), mimetype="application/json")
+    else:
+        return HttpResponse("Not ajax request") 
