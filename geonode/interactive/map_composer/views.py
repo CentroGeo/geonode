@@ -1,7 +1,7 @@
 import json
 
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import render_to_response
+from django.shortcuts import render
 from django.template import RequestContext
 from django.http import HttpResponse, HttpResponseRedirect, HttpResponseNotAllowed, HttpResponseServerError
 from geonode.interactive.views import get_user_layers
@@ -25,14 +25,14 @@ def composer(request, template='composer.html'):
     if isinstance(config, HttpResponse):
         return config
     else:
-        return render_to_response(template, RequestContext(request, {
-            'config': config,
+        return render(request, template, {
+            'config': json.dumps(config),
             'mapid': 0,
             'list_category': list_category,
             'local_layers':layer_list,
             'wms_services': wms_services,
             'wms_form': wms_form
-        }))
+        })
 
 
 @login_required
@@ -47,11 +47,11 @@ def composer_view(request, mapid, template='composer.html'):
     wms_services = WmsService.objects.all()
     wms_form = WmsServiceForm()
 
-    return render_to_response(template, RequestContext(request, {
+    return render(request, template, {
         'config': json.dumps(config),
         'mapid': mapid,
         'list_category': list_category,
         'local_layers':layer_list,
         'wms_services': wms_services,
         'wms_form': wms_form
-    }))
+    })

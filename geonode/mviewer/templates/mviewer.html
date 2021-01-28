@@ -51,7 +51,7 @@
     <script src="{{ STATIC_URL }}idegeo/lib/leaflet/leaflet.easyPrint.js"></script>
     <script src='//api.tiles.mapbox.com/mapbox.js/plugins/leaflet-omnivore/v0.3.1/leaflet-omnivore.min.js'></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB6ZJwb2cqgW1YXsmXGT1I-0ujia5UREAg&libraries=places" async defer></script>
-    <script src='https://unpkg.com/leaflet.gridlayer.googlemutant@latest/Leaflet.GoogleMutant.js'></script>
+    <script src='https://unpkg.com/leaflet.gridlayer.googlemutant@latest/dist/Leaflet.GoogleMutant.js'></script>
     <script type="text/javascript" src="{{ STATIC_URL }}idegeo/charts/areaChart.json"></script>
     <script src='https://npmcdn.com/@turf/turf/turf.min.js'></script>
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
@@ -379,7 +379,7 @@
                     </div>
                 </li>
                 <li class="tab-content" id="analysis-tab">
-                    {% include "main_tool_menu.html" %}
+<!--                    Se quita include de html-->
                 </li>
                 <li class="tab-content" id="desc-tab"></li>
             </ul>

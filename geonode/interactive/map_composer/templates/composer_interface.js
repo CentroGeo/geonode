@@ -6,6 +6,7 @@
   var map_id = 0;
 
   var config = JSON.parse('{{config|escapejs}}');
+  //var config = JSON.parse({{config|safe}});
 
   var progress = setInterval(function () {
     var $bar = $("#bar");
