@@ -212,6 +212,7 @@ def main_list(request, ch_id):
     smooth = MainHome.objects.filter(active=True).filter(is_smooth=True).filter(home=ch_id).order_by('link_order')
     site1 = Site.objects.get(id=1).domain
     site = site1+"handler/"
+    print(carrucel)
     return render(request,'hd_interactive.html',
                               {'ms':home,
                                'site':site,

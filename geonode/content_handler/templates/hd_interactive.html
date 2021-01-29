@@ -8,20 +8,16 @@
 
 {% block title %}Acervo de difusión{% endblock %}
 
-{% block head %}
-{{ block.super }}
-
+{% block head %}{{ block.super }}
 <link href="{{ STATIC_URL }}idegeo/bootstrap/bootstrap-responsive.css" rel="stylesheet" type="text/css">
-<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.12.1/bootstrap-table.min.css">
+<!--<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.12.1/bootstrap-table.min.css">-->
 <link rel="stylesheet" href="{{STATIC_URL}}idegeo/content_handler/css/home.css"/>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
-
-<script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.12.1/bootstrap-table.min.js"></script>
+<!--<script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.12.1/bootstrap-table.min.js"></script>-->
 {% endblock %}
+
 {% block body_class %}links{% endblock %}
 {% block middle %}
-{% block body_outer %}
-{% endblock %}
 <div id="page-header" class="content">
   <div class="container">
     <div class="titulo-blk-row">
